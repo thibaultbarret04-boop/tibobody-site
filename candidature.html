@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candidature coaching — Thibault</title>
+<meta name="description" content="Candidature pour l'accompagnement personnalisé Tibobody. Réponds en quelques minutes, Thibault étudie ta situation et te recontacte.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<meta name="theme-color" content="#121110">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111010; --ink-2:#1A1918;
+  --paper:#FAF7F6; --paper-2:#EFE6E4;
+  --ember:#8C1B16; --ember-dim:#6B1310;
+  --steel:#55555A; --steel-on-dark:#A5A4A8;
+  --line:#D6D6D6; --line-dark:rgba(255,255,255,.12);
+  --white:#FFFFFF;
+  --display:'Bebas Neue',Impact,sans-serif;
+  --sans:'Work Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--paper);background:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.01em;line-height:.95;text-transform:uppercase;color:var(--paper);}
+a{color:inherit;}
+.top{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;max-width:760px;margin:0 auto;}
+.logo{font-family:var(--display);font-size:24px;letter-spacing:.02em;}
+.logo em{font-style:normal;color:var(--ember);}
+.top a.back{font-size:13px;font-weight:600;color:var(--steel-on-dark);display:flex;align-items:center;gap:6px;}
+.top a.back:hover{color:var(--paper);}
+
+.progress-wrap{max-width:760px;margin:0 auto;padding:0 28px;}
+.progress-track{height:3px;background:var(--line-dark);width:100%;position:relative;overflow:hidden;}
+.progress-bar{height:100%;background:var(--ember);width:0%;transition:width .35s ease;}
+.progress-label{font-size:12px;color:var(--steel-on-dark);margin-top:10px;letter-spacing:.03em;text-transform:uppercase;font-weight:700;}
+
+main{max-width:760px;margin:0 auto;padding:50px 28px 100px;min-height:60vh;display:flex;flex-direction:column;justify-content:center;}
+
+.step{display:none;animation:fade .4s ease;}
+.step.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+.step .tag{color:var(--ember);font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;display:block;}
+.step h2{font-size:clamp(26px,4vw,38px);margin-bottom:10px;}
+.step p.hint{color:var(--steel-on-dark);font-size:14.5px;margin-bottom:26px;max-width:560px;}
+
+input[type=text], input[type=email], textarea{
+  width:100%;background:transparent;border:none;border-bottom:2px solid var(--line-dark);
+  color:var(--paper);font-family:var(--sans);font-size:19px;padding:12px 2px;outline:none;
+  transition:border-color .2s ease;
+}
+input[type=text]:focus, input[type=email]:focus, textarea:focus{border-color:var(--ember);}
+textarea{resize:vertical;min-height:90px;line-height:1.5;}
+::placeholder{color:#5c5a58;}
+
+.choice-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+.choice-pill{border:2px solid var(--line-dark);padding:13px 20px;font-size:14.5px;font-weight:600;cursor:pointer;
+  background:none;color:var(--paper);transition:.2s ease;}
+.choice-pill:hover{border-color:var(--steel-on-dark);}
+.choice-pill.selected{background:var(--ember);border-color:var(--ember);color:#fff;}
+
+.scale-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.scale-pill{width:44px;height:44px;border:2px solid var(--line-dark);background:none;color:var(--paper);
+  font-family:var(--sans);font-weight:700;font-size:15px;cursor:pointer;transition:.2s ease;}
+.scale-pill:hover{border-color:var(--steel-on-dark);}
+.scale-pill.selected{background:var(--ember);border-color:var(--ember);color:#fff;}
+.scale-labels{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--steel-on-dark);}
+
+.nav-row{display:flex;align-items:center;gap:16px;margin-top:34px;}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
+  padding:15px 28px;border:2px solid var(--ember);cursor:pointer;background:var(--ember);color:#fff;transition:.15s ease;}
+.btn:hover{background:var(--ember-dim);border-color:var(--ember-dim);transform:translateY(-2px);}
+.btn:disabled{opacity:.35;cursor:not-allowed;transform:none;}
+.btn-ghost{background:none;border-color:var(--line-dark);color:var(--steel-on-dark);}
+.btn-ghost:hover{border-color:var(--steel-on-dark);color:var(--paper);background:none;transform:none;}
+.err{color:#e8836f;font-size:13px;margin-top:10px;display:none;}
+
+.done-screen{text-align:center;padding:60px 0;}
+.done-check{width:64px;height:64px;border-radius:50%;background:var(--ember);display:flex;align-items:center;justify-content:center;
+  margin:0 auto 24px;font-size:30px;font-weight:900;}
+.done-screen h2{font-size:clamp(28px,5vw,40px);margin-bottom:14px;}
+.done-screen p{color:var(--steel-on-dark);max-width:460px;margin:0 auto;font-size:15px;}
+.done-screen .btn{margin-top:30px;}
+
+@media(max-width:600px){
+  main{padding:36px 22px 80px;}
+  .choice-pill{flex:1 1 auto;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a href="index.html" class="logo">TIBO<em>BODY</em></a>
+  <a href="index.html" class="back">← Retour au site</a>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="progress-label" id="progressLabel">Question 1 / 21</div>
+</div>
+
+<main>
+  <form id="candForm">
+    <input type="hidden" name="_subject" value="Nouvelle candidature coaching">
+    <input type="hidden" name="formule" id="formuleField" value="Non précisée">
+    <input type="text" name="_gotcha" id="hp-field" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
+
+    <div class="step active" data-q="1">
+      <span class="tag">Identité</span>
+      <h2>Quel est ton nom / prénom ?</h2>
+      <input type="text" name="nom" id="q1" required placeholder="Ton nom et prénom">
+    </div>
+
+    <div class="step" data-q="2">
+      <span class="tag">Identité</span>
+      <h2>Sur quelle adresse email peut-on te répondre ?</h2>
+      <input type="email" name="email" id="q2" required placeholder="ton@email.com">
+    </div>
+
+    <div class="step" data-q="3">
+      <span class="tag">Objectif</span>
+      <h2>Cet accompagnement, tu le veux avant tout pour :</h2>
+      <div class="choice-row" data-field="objectif">
+        <button type="button" class="choice-pill">Ta vie professionnelle</button>
+        <button type="button" class="choice-pill">Ta vie personnelle</button>
+        <button type="button" class="choice-pill">Les deux à parts égales</button>
+      </div>
+      <input type="hidden" name="objectif" id="q3">
+    </div>
+
+    <div class="step" data-q="4">
+      <span class="tag">Situation</span>
+      <h2>Décris ta situation actuelle en quelques phrases</h2>
+      <p class="hint">Travail / études, vie perso, où t'en es aujourd'hui.</p>
+      <textarea name="situation" id="q4" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="5">
+      <span class="tag">Situation</span>
+      <h2>Décris ton contexte concret</h2>
+      <p class="hint">Situation familiale, financière, professionnelle — ça m'aide à proposer un plan réaliste pour toi, pas un plan générique.</p>
+      <textarea name="contexte" id="q5" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="6">
+      <span class="tag">Satisfaction</span>
+      <h2>Sur une échelle de 1 à 10, à quel point es-tu satisfait de ta vie actuelle ?</h2>
+      <div class="scale-row" data-field="satisfaction">
+        <button type="button" class="scale-pill">1</button><button type="button" class="scale-pill">2</button>
+        <button type="button" class="scale-pill">3</button><button type="button" class="scale-pill">4</button>
+        <button type="button" class="scale-pill">5</button><button type="button" class="scale-pill">6</button>
+        <button type="button" class="scale-pill">7</button><button type="button" class="scale-pill">8</button>
+        <button type="button" class="scale-pill">9</button><button type="button" class="scale-pill">10</button>
+      </div>
+      <div class="scale-labels"><span>Pas du tout</span><span>Très satisfait</span></div>
+      <input type="hidden" name="satisfaction" id="q6">
+    </div>
+
+    <div class="step" data-q="7">
+      <span class="tag">Frustrations</span>
+      <h2>Qu'est-ce qui te frustre le plus en ce moment ?</h2>
+      <textarea name="frustration" id="q7" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="8">
+      <span class="tag">Vision</span>
+      <h2>Si dans 6 mois ta vie avait changé pour le mieux, à quoi ça ressemblerait concrètement ?</h2>
+      <textarea name="vision_6mois" id="q8" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="9">
+      <span class="tag">Vision</span>
+      <h2>Quel est LE changement qui aurait le plus d'impact si tu le réussissais ?</h2>
+      <textarea name="changement_impact" id="q9" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="10">
+      <span class="tag">Motivation</span>
+      <h2>Pourquoi maintenant ?</h2>
+      <p class="hint">Qu'est-ce qui te pousse à agir aujourd'hui plutôt qu'avant ?</p>
+      <textarea name="pourquoi_maintenant" id="q10" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="11">
+      <span class="tag">Historique</span>
+      <h2>Qu'est-ce que tu as déjà essayé pour régler ça ?</h2>
+      <p class="hint">Qu'est-ce qui a marché, qu'est-ce qui n'a pas marché ?</p>
+      <textarea name="deja_essaye" id="q11" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="12">
+      <span class="tag">Historique</span>
+      <h2>Qu'est-ce qui t'a fait abandonner ou stagner les fois précédentes ?</h2>
+      <textarea name="raisons_abandon" id="q12" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="13">
+      <span class="tag">Entourage</span>
+      <h2>Ton entourage (famille, amis, travail) te soutient dans ce changement, ou plutôt te freine ?</h2>
+      <textarea name="entourage" id="q13" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="14">
+      <span class="tag">Freins</span>
+      <h2>Qu'est-ce qui te fait le plus peur à l'idée de te lancer dans cet accompagnement ?</h2>
+      <textarea name="peur" id="q14" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="15">
+      <span class="tag">Fonctionnement</span>
+      <h2>Comment tu apprends / progresses le mieux ?</h2>
+      <div class="choice-row" data-field="apprentissage">
+        <button type="button" class="choice-pill">Par la discussion</button>
+        <button type="button" class="choice-pill">Par l'écrit</button>
+        <button type="button" class="choice-pill">Par l'action directe</button>
+      </div>
+      <input type="hidden" name="apprentissage" id="q15">
+    </div>
+
+    <div class="step" data-q="16">
+      <span class="tag">Fonctionnement</span>
+      <h2>À quel moment de la journée es-tu le plus réceptif pour des messages / échanges ?</h2>
+      <input type="text" name="moment_journee" id="q16" required placeholder="Ta réponse">
+    </div>
+
+    <div class="step" data-q="17">
+      <span class="tag">Historique</span>
+      <h2>As-tu déjà eu un coach, mentor, ou accompagnement structuré avant ?</h2>
+      <p class="hint">Comment ça s'est passé ?</p>
+      <textarea name="coach_avant" id="q17" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="18">
+      <span class="tag">Engagement</span>
+      <h2>Combien de temps par semaine peux-tu réellement consacrer à appliquer ce qu'on va mettre en place ?</h2>
+      <input type="text" name="temps_semaine" id="q18" required placeholder="Ta réponse">
+    </div>
+
+    <div class="step" data-q="19">
+      <span class="tag">Engagement</span>
+      <h2>Qu'est-ce qui pourrait te faire lâcher en cours de route, honnêtement ?</h2>
+      <textarea name="risque_abandon" id="q19" required placeholder="Ta réponse"></textarea>
+    </div>
+
+    <div class="step" data-q="20">
+      <span class="tag">Engagement</span>
+      <h2>Sur une échelle de 1 à 10, à quel point es-tu prêt à sortir de ta zone de confort pour ce changement ?</h2>
+      <div class="scale-row" data-field="zone_confort">
+        <button type="button" class="scale-pill">1</button><button type="button" class="scale-pill">2</button>
+        <button type="button" class="scale-pill">3</button><button type="button" class="scale-pill">4</button>
+        <button type="button" class="scale-pill">5</button><button type="button" class="scale-pill">6</button>
+        <button type="button" class="scale-pill">7</button><button type="button" class="scale-pill">8</button>
+        <button type="button" class="scale-pill">9</button><button type="button" class="scale-pill">10</button>
+      </div>
+      <div class="scale-labels"><span>Jamais de la vie</span><span>Je veux absolument en sortir</span></div>
+      <input type="hidden" name="zone_confort" id="q20">
+    </div>
+
+    <div class="step" data-q="21">
+      <span class="tag">Pour finir</span>
+      <h2>Y a-t-il quelque chose d'important sur ta situation qu'on ne t'a pas demandé et que tu veux que je sache ?</h2>
+      <textarea name="autre_chose" id="q21" placeholder="Ta réponse (facultatif)"></textarea>
+    </div>
+
+    <div class="err" id="errMsg">Merci de répondre avant de continuer.</div>
+
+    <div class="nav-row">
+      <button type="button" class="btn btn-ghost" id="prevBtn" onclick="goStep(-1)">← Précédent</button>
+      <button type="button" class="btn" id="nextBtn" onclick="goStep(1)">Suivant →</button>
+      <button type="submit" class="btn" id="submitBtn" style="display:none;">Envoyer ma candidature</button>
+    </div>
+  </form>
+
+  <div class="done-screen" id="doneScreen" style="display:none;">
+    <div class="done-check">✓</div>
+    <h2>Candidature envoyée</h2>
+    <p>Thibault va étudier ta situation et te recontacte sous 24 à 48h pour la suite. Merci pour ta franchise dans les réponses.</p>
+    <a href="index.html" class="btn">Retour au site</a>
+  </div>
+</main>
+
+<script>
+const steps = Array.from(document.querySelectorAll('.step'));
+let current = 0;
+
+// pré-remplit la formule si on arrive depuis un bouton "Candidater" avec ?formule=...
+const params = new URLSearchParams(window.location.search);
+const formule = params.get('formule');
+if(formule){ document.getElementById('formuleField').value = formule; }
+
+function updateProgress(){
+  const pct = ((current+1)/steps.length)*100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = 'Question ' + (current+1) + ' / ' + steps.length;
+  document.getElementById('prevBtn').style.visibility = current === 0 ? 'hidden' : 'visible';
+  const isLast = current === steps.length - 1;
+  document.getElementById('nextBtn').style.display = isLast ? 'none' : 'inline-flex';
+  document.getElementById('submitBtn').style.display = isLast ? 'inline-flex' : 'none';
+}
+
+function currentStepValid(){
+  const step = steps[current];
+  document.getElementById('errMsg').style.display = 'none';
+  const choiceField = step.querySelector('[data-field]');
+  if(choiceField){
+    const hidden = step.querySelector('input[type=hidden]');
+    if(!hidden.value){ document.getElementById('errMsg').style.display='block'; return false; }
+    return true;
+  }
+  const input = step.querySelector('input[required], textarea[required]');
+  if(input && !input.value.trim()){ document.getElementById('errMsg').style.display='block'; return false; }
+  return true;
+}
+
+function goStep(dir){
+  if(dir > 0 && !currentStepValid()) return;
+  const next = current + dir;
+  if(next < 0 || next >= steps.length) return;
+  steps[current].classList.remove('active');
+  current = next;
+  steps[current].classList.add('active');
+  updateProgress();
+  const firstField = steps[current].querySelector('input[type=text], input[type=email], textarea');
+  if(firstField) firstField.focus();
+}
+
+// gestion des boutons de choix (pills) et des échelles
+document.querySelectorAll('[data-field]').forEach(group=>{
+  const field = group.getAttribute('data-field');
+  const hidden = document.getElementById('q' + group.closest('.step').dataset.q);
+  group.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      group.querySelectorAll('button').forEach(b=>b.classList.remove('selected'));
+      btn.classList.add('selected');
+      hidden.value = btn.textContent.trim();
+    });
+  });
+});
+
+updateProgress();
+
+document.getElementById('candForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  if(!currentStepValid()) return;
+  const hp = document.getElementById('hp-field');
+  if(hp && hp.value) return;
+  const btn = document.getElementById('submitBtn');
+  const original = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Envoi en cours...';
+  fetch('https://formspree.io/f/xyezygwb', {
+    method:'POST',
+    body:new FormData(this),
+    headers:{'Accept':'application/json'}
+  }).then(res=>{
+    if(res.ok){
+      document.getElementById('candForm').style.display='none';
+      document.querySelector('.progress-wrap').style.display='none';
+      document.getElementById('doneScreen').style.display='block';
+    } else {
+      document.getElementById('errMsg').textContent = "Un problème est survenu, réessaie ou écris directement à Thibault.";
+      document.getElementById('errMsg').style.display='block';
+      btn.disabled=false; btn.textContent=original;
+    }
+  }).catch(()=>{
+    document.getElementById('errMsg').textContent = "Un problème est survenu, réessaie ou écris directement à Thibault.";
+    document.getElementById('errMsg').style.display='block';
+    btn.disabled=false; btn.textContent=original;
+  });
+});
+
+// permet d'avancer avec la touche Entrée sur les champs texte simples
+document.querySelectorAll('input[type=text], input[type=email]').forEach(inp=>{
+  inp.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){ e.preventDefault(); goStep(1); }
+  });
+});
+</script>
+</body>
+</html>
