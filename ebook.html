@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les e-books — Tibobody</title>
+<meta name="description" content="Le Défi 30 jours et tous les e-books Tibobody : discipline, mental, ambition — à ton rythme, à petit prix.">
+<link rel="canonical" href="https://tondomaine.com/ebook.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Les e-books — Tibobody">
+<meta property="og:description" content="Le Défi 30 jours et tous les e-books Tibobody.">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<meta name="theme-color" content="#121110">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111010; --ink-2:#1A1918;
+  --paper:#FFFFFF; --paper-2:#F2F2F2;
+  --ember:#8C1B16; --ember-dim:#6B1310;
+  --steel:#55555A; --steel-on-dark:#A5A4A8;
+  --line:#D6D6D6; --line-dark:rgba(255,255,255,.12);
+  --white:#FFFFFF;
+  --gold:#C9A24B;
+  --display:'Bebas Neue',Impact,sans-serif;
+  --sans:'Work Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;letter-spacing:0.01em;line-height:0.92;text-transform:uppercase;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+section{padding:104px 0;}
+p{color:var(--steel);}
+
+@media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important;} .reveal{opacity:1 !important;transform:none !important;} }
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
+  padding:16px 30px;border:2px solid var(--ink);cursor:pointer;background:none;transition:transform .15s ease,background .2s ease,color .2s ease;}
+.btn-solid{background:var(--ink);color:var(--paper);}
+.btn-solid:hover{background:var(--ember);border-color:var(--ember);color:#fff;transform:translateY(-2px);}
+.btn-line{border-color:var(--ink);color:var(--ink);}
+.btn-line:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);}
+.btn-ember{background:var(--ember);border-color:var(--ember);color:#fff;}
+.btn-ember:hover{background:var(--ember-dim);border-color:var(--ember-dim);transform:translateY(-2px);}
+.btn-block{display:flex;justify-content:center;width:100%;}
+.btn:disabled{opacity:.45;cursor:not-allowed;pointer-events:none;}
+
+/* header */
+header{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80px;gap:16px;}
+.logo{font-family:var(--display);font-size:26px;letter-spacing:.02em;}
+.logo em{font-style:normal;color:var(--ember);}
+.nav-links{display:flex;gap:30px;font-size:14.5px;font-weight:600;}
+.nav-links a{opacity:.75;transition:opacity .2s;}
+.nav-links a:hover{opacity:1;color:var(--ember-dim);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.cart-btn{position:relative;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:none;background:none;cursor:pointer;color:var(--ink);}
+.cart-count{position:absolute;top:2px;right:1px;background:var(--ember);color:#fff;font-size:10.5px;font-weight:700;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 3px;}
+.cart-bg{position:fixed;inset:0;background:rgba(18,17,16,.6);opacity:0;pointer-events:none;transition:opacity .3s;z-index:160;}
+.cart-bg.open{opacity:1;pointer-events:auto;}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(90vw,400px);background:var(--white);transform:translateX(100%);transition:transform .32s cubic-bezier(.22,.9,.3,1);z-index:170;display:flex;flex-direction:column;}
+.cart-drawer.open{transform:translateX(0);}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:22px 22px 18px;border-bottom:1px solid var(--line);}
+.cart-header h3{font-size:22px;}
+.cart-close{width:36px;height:36px;border:none;background:var(--paper-2);border-radius:50%;cursor:pointer;color:var(--ink);}
+.cart-items{flex:1;overflow-y:auto;padding:10px 22px;}
+.cart-empty{color:var(--steel);font-size:14px;padding:30px 0;text-align:center;}
+.cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);}
+.cart-item-thumb{width:52px;height:66px;object-fit:cover;background:var(--ink);flex-shrink:0;}
+.cart-item-info{flex:1;display:flex;flex-direction:column;gap:6px;}
+.cart-item-title{font-size:14px;font-weight:700;line-height:1.25;}
+.cart-item-price{font-size:13px;color:var(--steel);}
+.cart-remove{font-size:12px;color:var(--steel);text-decoration:underline;background:none;border:none;cursor:pointer;align-self:flex-start;margin-top:6px;}
+.cart-footer{padding:18px 22px 24px;border-top:1px solid var(--line);}
+.cart-subtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:16px;}
+.cart-note{display:block;font-size:11.5px;color:var(--steel);text-align:center;margin-top:10px;}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;padding:14px 24px;font-size:14px;font-weight:600;z-index:500;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast .check{color:var(--ember);font-weight:800;}
+.burger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;}
+.burger span{width:22px;height:2px;background:var(--ink);transition:.25s;}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mmenu-bg{position:fixed;inset:0;background:rgba(18,17,16,.6);opacity:0;pointer-events:none;transition:opacity .3s;z-index:140;}
+.mmenu-bg.open{opacity:1;pointer-events:auto;}
+.mmenu{position:fixed;top:0;right:0;bottom:0;width:min(80vw,320px);background:var(--paper);transform:translateX(100%);transition:transform .32s cubic-bezier(.22,.9,.3,1);z-index:150;overflow-y:auto;}
+.mmenu.open{transform:translateX(0);}
+.mmenu-inner{display:flex;flex-direction:column;padding:26px 26px 30px;gap:2px;}
+.mmenu-inner a{padding:15px 2px;font-size:15px;font-weight:700;border-bottom:1px solid var(--line);}
+.mmenu-close{align-self:flex-end;margin:16px 16px 0;width:38px;height:38px;border:none;background:var(--paper-2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+@media(max-width:860px){.nav-links{display:none;} .burger{display:flex;}}
+
+/* section head */
+.shead{max-width:680px;margin-bottom:54px;}
+.shead .tag{font-size:13px;font-weight:700;color:var(--ember-dim);margin-bottom:14px;}
+.shead h2{font-size:clamp(30px,5.6vw,52px);}
+.shead p{margin-top:16px;font-size:16px;max-width:58ch;}
+
+/* page intro */
+.page-hero{background:var(--ink);color:#fff;padding:90px 0;overflow:hidden;}
+.page-hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:50px;align-items:center;}
+.page-hero .tag{font-size:15px;font-weight:700;color:var(--steel-on-dark);margin-bottom:16px;}
+.page-hero h1{color:#fff;font-size:clamp(38px,5.6vw,60px);max-width:16ch;}
+.page-hero h1 .ac{color:var(--ember);}
+.page-hero p{color:#C9C5B7;max-width:52ch;margin-top:18px;font-size:19px;}
+.hero-stack{position:relative;height:460px;}
+.hero-stack a{position:absolute;width:56%;border:2px solid var(--ink);box-shadow:0 24px 50px rgba(0,0,0,.45);transition:transform .25s ease,box-shadow .25s ease;overflow:hidden;background:var(--ink);}
+.hero-stack a img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:3/4;}
+.hero-stack a:hover{transform:translateY(-8px);z-index:9 !important;box-shadow:0 30px 60px rgba(0,0,0,.55);}
+.hero-stack a .hs-label{position:absolute;left:0;right:0;bottom:0;padding:16px 18px;background:linear-gradient(0deg,rgba(17,16,16,.92),transparent);}
+.hero-stack a .hs-label .hs-name{font-family:var(--display);font-size:20px;color:#fff;text-transform:uppercase;}
+.hero-stack a .hs-label .hs-price{font-size:12.5px;color:var(--steel-on-dark);}
+.hero-stack .hs-1{left:0;top:0;z-index:3;transform:rotate(-4deg);}
+.hero-stack .hs-2{left:17%;top:60px;z-index:2;transform:rotate(2deg);}
+.hero-stack .hs-3{left:34%;top:130px;z-index:1;transform:rotate(-2deg);}
+@media(max-width:900px){.page-hero-grid{grid-template-columns:1fr;} .hero-stack{display:none;}}
+.back-link{display:inline-block;margin-bottom:22px;font-size:13.5px;font-weight:700;color:var(--steel-on-dark);text-decoration:underline;}
+.back-link:hover{color:#fff;}
+
+/* defi 30 */
+.defi{background:var(--paper-2);}
+.defi-feature{display:grid;grid-template-columns:0.9fr 1.1fr;gap:48px;align-items:center;border:2px solid var(--ink);background:var(--white);padding:0;margin-bottom:60px;}
+.defi-cover{aspect-ratio:3/4;overflow:hidden;background:var(--ink);}
+.defi-cover img{width:100%;height:100%;object-fit:cover;}
+.defi-info{padding:40px 44px 40px 0;}
+.defi-tag{font-size:13px;font-weight:700;color:var(--ember-dim);margin-bottom:14px;}
+.defi-info h3{font-size:clamp(26px,4vw,36px);margin-bottom:14px;}
+.defi-price{font-size:22px;font-weight:700;color:var(--ember-dim);margin-bottom:20px;}
+@media(max-width:800px){.defi-feature{grid-template-columns:1fr;} .defi-info{padding:0 26px 32px;}}
+
+.ebooks{background:var(--white);}
+.pack-grid{display:grid;grid-template-columns:repeat(2,minmax(0,420px));gap:24px;justify-content:center;margin-bottom:64px;}
+.book-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.book{border:1px solid var(--line);border-radius:14px;padding:0;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;background:var(--white);overflow:hidden;}
+.book:hover{transform:translateY(-6px);box-shadow:0 18px 34px rgba(18,17,16,.14);}
+.cover{aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--ink);}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,16,16,0) 42%,rgba(17,16,16,.9) 100%);}
+.cover .idx{position:absolute;top:18px;left:20px;font-family:var(--display);font-size:15px;color:var(--steel-on-dark);z-index:2;}
+.cover .price-tag{position:absolute;top:16px;right:16px;background:var(--ember);color:#fff;font-size:16px;font-weight:700;padding:9px 16px;z-index:2;}
+.cover .cover-title{position:absolute;left:0;right:0;bottom:0;padding:20px 22px;z-index:2;}
+.cover .cover-title h4{color:#fff;font-size:clamp(20px,2.4vw,25px);line-height:1;}
+.book-info{padding:18px 20px 22px;}
+.book-info .price{font-size:14px;color:var(--steel);margin-bottom:8px;}
+.book-info .more{font-size:13.5px;font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:2px;}
+.pack{border:2px solid var(--ink);border-radius:14px;padding:26px 26px 24px;cursor:pointer;background:var(--white);}
+.pack .tag{font-size:12.5px;font-weight:700;color:var(--ember-dim);margin-bottom:10px;}
+.pack h4{font-size:24px;margin-bottom:10px;}
+.pack .price{font-size:16px;margin-bottom:14px;}
+.packs-lead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px;}
+.packs-lead h3{font-size:22px;}
+.ebook-desc{max-width:60ch;color:var(--steel);font-size:15px;margin-bottom:28px;}
+.rule{border-top:1px solid var(--line);margin:56px 0 30px;}
+
+/* modal — plein écran, même style que les formules */
+.modal-full{position:fixed;top:80px;left:0;right:0;bottom:0;background:var(--white);display:none;z-index:70;opacity:0;transition:opacity .25s ease;}
+.modal-full.active{display:flex;}
+.modal-full.in{opacity:1;}
+.modal-full-panel{display:grid;grid-template-columns:0.75fr 1.25fr;width:100%;height:100%;}
+.modal-full-cover{background:var(--ink);position:relative;overflow:hidden;height:100%;padding:28px;box-sizing:border-box;}
+.modal-carousel{width:100%;height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-radius:10px;}
+.modal-carousel::-webkit-scrollbar{display:none;}
+.modal-carousel-track{display:flex;height:100%;}
+.modal-carousel-slide{flex:0 0 100%;height:100%;scroll-snap-align:start;position:relative;}
+.modal-carousel-slide img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;border-radius:10px;}
+.modal-nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;z-index:4;border:none;border-radius:50%;background:rgba(255,255,255,.85);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);}
+.modal-nav-prev{left:12px;} .modal-nav-next{right:12px;}
+.modal-dots{position:absolute;left:0;right:0;bottom:16px;z-index:3;display:flex;justify-content:center;gap:6px;}
+.modal-dot{width:6px;height:6px;border-radius:4px;background:rgba(255,255,255,.55);transition:all .25s ease;}
+.modal-dot.active{background:#fff;width:16px;}
+.modal-full-back{position:absolute;top:30px;right:40px;font-size:13.5px;font-weight:700;color:var(--ink);text-decoration:underline;background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;z-index:3;}
+.modal-full-back:hover{color:var(--ember-dim);}
+.modal-full-body{padding:80px 70px 60px;display:flex;flex-direction:column;justify-content:center;overflow-y:auto;height:100%;position:relative;}
+.modal-eyebrow{font-size:16px;font-weight:700;color:var(--ember-dim);margin-bottom:10px;}
+.modal-title-side{font-size:clamp(30px,4vw,48px);margin-bottom:14px;}
+.modal-price{font-size:20px;margin-bottom:26px;color:var(--ink);}
+.modal-desc{font-size:16px;line-height:1.75;margin-bottom:30px;}
+.modal-note{font-size:12px;color:var(--steel);text-align:center;display:block;margin-top:14px;}
+@media(max-width:860px){.modal-full-panel{grid-template-columns:1fr;grid-template-rows:38vh 1fr;} .modal-full-cover{height:auto;} .modal-full-body{padding:34px 26px 50px;height:auto;}}
+
+/* lightbox */
+.lightbox-ov{position:fixed;inset:0;background:rgba(8,7,7,.94);display:none;align-items:center;justify-content:center;z-index:300;padding:20px;cursor:zoom-out;opacity:0;transition:opacity .2s;touch-action:pan-y;}
+.lightbox-ov.active{display:flex;opacity:1;}
+.lightbox-ov img{max-width:92vw;max-height:90vh;object-fit:contain;user-select:none;-webkit-user-drag:none;transition:transform .25s ease,opacity .25s ease;}
+.lightbox-close{position:absolute;top:16px;right:16px;width:38px;height:38px;border:none;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;}
+.lightbox-nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;z-index:5;border:none;border-radius:50%;background:rgba(255,255,255,.12);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;}
+.lightbox-nav-btn:hover{background:rgba(255,255,255,.22);}
+.lightbox-nav-prev{left:14px;} .lightbox-nav-next{right:14px;}
+@media(max-width:600px){.lightbox-nav-btn{width:38px;height:38px;}}
+
+footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font-size:14px;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:40px;border-bottom:1px solid var(--line-dark);}
+.foot-grid h5{color:#fff;font-size:12.5px;font-weight:700;margin-bottom:16px;}
+.foot-grid a{display:block;margin-bottom:10px;}
+.foot-grid a:hover{color:var(--ember);}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:22px;font-size:12px;}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:28px;}}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+@media(max-width:860px){
+  section{padding:72px 0;}
+  .pack-grid{grid-template-columns:1fr;}
+  .book-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:560px){
+  .book-grid{grid-template-columns:1fr;}
+  section{padding:56px 0;}
+}
+
+/* page transition */
+.page-transition{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .4s ease;}
+.page-transition.hide{opacity:0;pointer-events:none;}
+.page-transition .pt-text{font-family:var(--display);font-size:clamp(60px,16vw,240px);color:#fff;letter-spacing:.01em;white-space:nowrap;line-height:1;padding:0 20px;text-align:center;}
+.page-transition .pt-text em{font-style:normal;color:var(--ember);}
+</style>
+</head>
+<body>
+
+<div class="page-transition" id="pageTransition"><span class="pt-text">Tibo<em>body</em></span></div>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html#top" class="logo">Tibo<em>body</em></a>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="formule.html">Formules</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" id="cartBtn" aria-label="Voir le panier">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+<div class="mmenu-bg" id="mmenuBg"></div>
+<div class="mmenu" id="mmenu">
+  <button class="mmenu-close" id="mmenuClose" aria-label="Fermer">✕</button>
+  <div class="mmenu-inner">
+    <a href="index.html">Accueil</a>
+    <a href="formule.html">Formules</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="index.html#contact">Contact</a>
+    <button class="btn btn-solid" style="justify-content:center;margin-top:14px;width:100%;" onclick="closeM();openCart();">Voir le panier (<span id="cartCountMobile">0</span>)</button>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- PAGE INTRO -->
+<section class="page-hero">
+  <div class="wrap page-hero-grid">
+    <div>
+      <a href="index.html" class="back-link">← Retour à l'accueil</a>
+      <p class="tag">E-books</p>
+      <h1>Les <span class="ac">e-books</span> Tibobody</h1>
+      <p>Des programmes écrits pour être suivis seul, à ton rythme. Chaque e-book répond à un besoin précis — retrouve les descriptions ci-dessous pour choisir celui qui correspond à ta situation.</p>
+    </div>
+    <div class="hero-stack reveal">
+      <a href="#ebooks-grid" class="hs-1" onclick="event.preventDefault();openBook('05');">
+        <img src="assets/img/COVER5.jpg" alt="30 jours pour devenir inarrêtable">
+        <div class="hs-label"><div class="hs-name">30 jours</div><div class="hs-price">9,99 €</div></div>
+      </a>
+      <a href="#ebooks-grid" class="hs-2" onclick="event.preventDefault();openBook('04');">
+        <img src="assets/img/COVER4.jpg" alt="Le guide d'un jeune homme ambitieux">
+        <div class="hs-label"><div class="hs-name">Ambitieux</div><div class="hs-price">5,99 €</div></div>
+      </a>
+      <a href="#ebooks-grid" class="hs-3" onclick="event.preventDefault();openBook('06');">
+        <img src="assets/img/COVER6.jpg" alt="10 leçons que la musculation m'a apprises">
+        <div class="hs-label"><div class="hs-name">10 leçons</div><div class="hs-price">4,99 €</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EBOOKS -->
+<section class="ebooks" id="ebooks-grid">
+  <div class="wrap">
+    <div class="packs-lead reveal"><h3>Les packs</h3></div>
+    <p class="ebook-desc reveal">Plusieurs e-books réunis autour d'un même objectif, pour avancer sur plusieurs fronts en même temps.</p>
+    <div class="pack-grid reveal">
+      <div class="book" onclick="openBook('07')">
+        <div class="cover"><img src="assets/img/COVER7.png" alt="Pack Discipline"><span class="idx">Pack</span><span class="price-tag">11,99 €</span><div class="cover-title"><h4>Pack Discipline</h4></div></div>
+        <div class="book-info"><div class="price">11,99 € — 2 e-books</div><div class="more">En savoir plus</div></div>
+      </div>
+      <div class="book" onclick="openBook('08')">
+        <div class="cover"><img src="assets/img/COVER8.png" alt="Pack Accomplissement"><span class="idx">Pack</span><span class="price-tag">8,99 €</span><div class="cover-title"><h4>Pack Accomplissement</h4></div></div>
+        <div class="book-info"><div class="price">8,99 € — 2 e-books</div><div class="more">En savoir plus</div></div>
+      </div>
+    </div>
+
+    <div class="rule reveal"></div>
+    <div class="packs-lead reveal"><h3>À l'unité</h3></div>
+    <p class="ebook-desc reveal">Chaque e-book traite un sujet précis — clique sur celui qui correspond le mieux à ce que tu cherches à changer en ce moment.</p>
+    <div class="book-grid">
+      <div class="book reveal" onclick="openBook('01')">
+        <div class="cover"><img src="assets/img/COVER1.jpg" alt="Trouver sa passion"><span class="idx">01</span><span class="price-tag">5,99 €</span><div class="cover-title"><h4>Trouver sa passion</h4></div></div>
+        <div class="book-info"><div class="price">5,99 €</div><div class="more">En savoir plus</div></div>
+      </div>
+      <div class="book reveal" onclick="openBook('02')">
+        <div class="cover"><img src="assets/img/COVER2.jpg" alt="L'art de positiver"><span class="idx">02</span><span class="price-tag">5,99 €</span><div class="cover-title"><h4>L'art de positiver</h4></div></div>
+        <div class="book-info"><div class="price">5,99 €</div><div class="more">En savoir plus</div></div>
+      </div>
+      <div class="book reveal" onclick="openBook('03')">
+        <div class="cover"><img src="assets/img/COVER3.jpg" alt="Communication non violente"><span class="idx">03</span><span class="price-tag">9,99 €</span><div class="cover-title"><h4>Communication non violente</h4></div></div>
+        <div class="book-info"><div class="price">9,99 €</div><div class="more">En savoir plus</div></div>
+      </div>
+      <div class="book reveal" onclick="openBook('04')">
+        <div class="cover"><img src="assets/img/COVER4.jpg" alt="Le guide d'un jeune homme ambitieux"><span class="idx">04</span><span class="price-tag">5,99 €</span><div class="cover-title"><h4>Le guide d'un jeune homme ambitieux</h4></div></div>
+        <div class="book-info"><div class="price">5,99 €</div><div class="more">En savoir plus</div></div>
+      </div>
+      <div class="book reveal" onclick="openBook('05')">
+        <div class="cover"><img src="assets/img/COVER5.jpg" alt="30 jours pour devenir inarrêtable"><span class="idx">05</span><span class="price-tag">9,99 €</span><div class="cover-title"><h4>30 jours pour devenir inarrêtable</h4></div></div>
+        <div class="book-info"><div class="price">9,99 €</div><div class="more">En savoir plus</div></div>
+      </div>
+      <div class="book reveal" onclick="openBook('06')">
+        <div class="cover"><img src="assets/img/COVER6.jpg" alt="10 leçons que la musculation m'a apprises"><span class="idx">06</span><span class="price-tag">4,99 €</span><div class="cover-title"><h4>10 leçons que la musculation m'a apprises</h4></div></div>
+        <div class="book-info"><div class="price">4,99 €</div><div class="more">En savoir plus</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- MODAL EBOOK (plein écran, même style que les formules) -->
+<div class="modal-full" id="bookModal">
+  <div class="modal-full-panel">
+    <div class="modal-full-cover" id="modalCover">
+      <div class="modal-carousel" id="modalCarousel">
+        <div class="modal-carousel-track" id="modalCarouselTrack"></div>
+      </div>
+      <button class="modal-nav-btn modal-nav-prev" onclick="carouselNav(-1)" aria-label="Précédent">‹</button>
+      <button class="modal-nav-btn modal-nav-next" onclick="carouselNav(1)" aria-label="Suivant">›</button>
+      <div class="modal-dots" id="modalDots"></div>
+    </div>
+    <div class="modal-full-body">
+      <button class="modal-full-back" onclick="closeBook()">← Retour aux e-books</button>
+      <p class="modal-eyebrow" id="modalEyebrow"></p>
+      <h2 class="modal-title-side" id="modalTitle"></h2>
+      <p class="modal-price" id="modalPrice"></p>
+      <p class="modal-desc" id="modalDesc"></p>
+      <button class="btn btn-solid btn-block" id="modalAddBtn" onclick="addToCart(currentBookId)">Ajouter au panier</button>
+      <span class="modal-note">Paiement sécurisé par Stripe.</span>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-ov" id="lightboxOv">
+  <button class="lightbox-close" onclick="event.stopPropagation();closeLightbox()" aria-label="Fermer">✕</button>
+  <button class="lightbox-nav-btn lightbox-nav-prev" onclick="event.stopPropagation();lightboxNav(-1)" aria-label="Image précédente">‹</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav-btn lightbox-nav-next" onclick="event.stopPropagation();lightboxNav(1)" aria-label="Image suivante">›</button>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-bg" id="cartBg"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Ton panier</h3>
+    <button class="cart-close" id="cartClose" aria-label="Fermer">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal"><span>Sous-total</span><strong id="cartSubtotal">0,00 €</strong></div>
+    <button class="btn btn-ember btn-block" id="checkoutBtn" onclick="startCheckout()">Passer commande</button>
+    <span class="cart-note">Paiement sécurisé par Stripe — livraison immédiate par email après achat.</span>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="check">✓</span><span id="toastMsg">Ajouté au panier</span></div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="color:#fff;">Tibo<em>body</em></div>
+        <p style="max-width:280px;margin-top:12px;">Coach en développement personnel. E-books et accompagnement pour t'aider à tenir tes objectifs.</p>
+      </div>
+      <div>
+        <h5>Offres</h5>
+        <a href="formule.html">Formules</a>
+        <a href="index.html#defi30">Défi 30 jours</a>
+        <a href="#ebooks-grid">Les e-books</a>
+      </div>
+      <div>
+        <h5>Réseaux</h5>
+        <a href="https://www.instagram.com/tibobody?stkn=MXc2aDRpMTFsMnFtYg%3D%3D&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://youtube.com/@tibobody?si=4-kEflijwVZpphdh" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.tiktok.com/@tibobody?_r=1&_t=ZG-99Wi2ngUSNE" target="_blank" rel="noopener">TikTok</a>
+      </div>
+      <div>
+        <h5>Informations</h5>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="confidentialite.html">Confidentialité</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Thibault. Tous droits réservés.</span>
+      <span>Conçu pour la performance.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+// ---------------------------------------------------------------------
+// PAGE TRANSITION
+// ---------------------------------------------------------------------
+(function(){
+  const overlay = document.getElementById('pageTransition');
+  if(!overlay) return;
+  function reveal(){ overlay.classList.add('hide'); }
+  if(document.readyState === 'complete'){ setTimeout(reveal, 150); }
+  else { window.addEventListener('load', ()=> setTimeout(reveal, 150)); }
+
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    if(!href) return;
+    if(href.startsWith('#')) return;
+    if(href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    if(a.target === '_blank' || a.hasAttribute('download')) return;
+    if(/^https?:\/\//i.test(href)) return;
+    e.preventDefault();
+    overlay.classList.remove('hide');
+    setTimeout(()=>{ window.location.href = href; }, 380);
+  });
+})();
+
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(window.gsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+if(window.gsap && !prefersReduced){
+  gsap.utils.toArray('.reveal').forEach(el=>{
+    gsap.fromTo(el, {opacity:0, y:24}, {
+      opacity:1, y:0, duration:0.8, ease:'power2.out',
+      scrollTrigger:{trigger:el, start:'top 85%'}
+    });
+  });
+} else {
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+}
+
+// burger menu
+const burgerBtn=document.getElementById('burgerBtn'),mmenu=document.getElementById('mmenu'),mmenuBg=document.getElementById('mmenuBg'),mmenuClose=document.getElementById('mmenuClose');
+function openM(){mmenu.classList.add('open');mmenuBg.classList.add('open');burgerBtn.classList.add('open');document.body.style.overflow='hidden';}
+function closeM(){mmenu.classList.remove('open');mmenuBg.classList.remove('open');burgerBtn.classList.remove('open');document.body.style.overflow='';}
+burgerBtn.addEventListener('click',()=>mmenu.classList.contains('open')?closeM():openM());
+mmenuBg.addEventListener('click',closeM);
+mmenuClose.addEventListener('click',closeM);
+document.querySelectorAll('.mmenu-inner a').forEach(a=>a.addEventListener('click',closeM));
+
+// ebook data
+const books={
+  '01':{eyebrow:'E-book Nº01',title:"Trouver sa passion",price:'5,99 €',
+    images:['assets/img/COVER1.jpg','assets/img/PAGE/Passion/1.png','assets/img/PAGE/Passion/2.png','assets/img/PAGE/Passion/3.png'],
+    desc:"Tu tournes en rond sans savoir ce que tu veux vraiment faire de ta vie ? Ce guide t'aide à sortir de l'indécision avec une méthode en 3 étapes, des exercices pratiques de moins de 30 minutes, et des questions concrètes pour clarifier ce que tu veux vraiment."},
+  '02':{eyebrow:'E-book Nº02',title:"L'art de positiver",price:'5,99 €',
+    images:['assets/img/COVER2.jpg','assets/img/PAGE/positiver/1.png','assets/img/PAGE/positiver/2.png','assets/img/PAGE/positiver/3.png'],
+    desc:"Arrête de subir tes journées. Des techniques pour changer ton dialogue intérieur, réagir face à un échec sans t'effondrer, et des rituels quotidiens pour muscler ton mental."},
+  '03':{eyebrow:'E-book Nº03',title:"Communication non violente",price:'9,99 €',
+    images:['assets/img/COVER3.jpg','assets/img/PAGE/comnonviolente/1.png','assets/img/PAGE/comnonviolente/2.png','assets/img/PAGE/comnonviolente/3.png'],
+    desc:"Arrête les conflits qui empoisonnent tes relations. Une méthode en 4 étapes pour désamorcer un conflit, dire ce que tu ressens sans accuser l'autre, et des phrases concrètes à utiliser au quotidien."},
+  '04':{eyebrow:'E-book Nº04',title:"Le guide d'un jeune homme ambitieux",price:'5,99 €',
+    images:['assets/img/COVER4.jpg','assets/img/PAGE/Ambitieux/1.png','assets/img/PAGE/Ambitieux/2.png','assets/img/PAGE/Ambitieux/3.png'],
+    desc:"Poser une vision claire de ce que tu veux construire, bâtir une discipline qui tient dans le temps, gérer ton temps et tes priorités, et éviter les pièges qui freinent la plupart des gens."},
+  '05':{eyebrow:'E-book Nº05',title:"30 jours pour devenir inarrêtable",price:'9,99 €',
+    images:['assets/img/COVER5.jpg','assets/img/PAGE/30jours/1.jpeg','assets/img/PAGE/30jours/2.jpeg','assets/img/PAGE/30jours/3.jpeg'],
+    desc:"Un programme structuré sur 30 jours, des séances pensées pour progresser en sécurité, et un suivi pour mesurer tes progrès chaque semaine."},
+  '06':{eyebrow:'E-book Nº06',title:"10 leçons que la musculation m'a apprises",price:'4,99 €',
+    images:['assets/img/COVER6.jpg','assets/img/PAGE/10lecon/1.png','assets/img/PAGE/10lecon/2.png','assets/img/PAGE/10lecon/3.png'],
+    desc:"Ce que la musculation t'apprend sur la patience, comment transformer la discipline physique en discipline de vie, et gérer les phases de stagnation sans lâcher."},
+  '07':{eyebrow:'Pack économique',title:"Pack Discipline",price:'11,99 €',
+    images:['assets/img/COVER7.png'],
+    desc:"Réunit « 30 Jours pour devenir Inarrêtable » et « 10 Leçons que la Musculation m'a Apprises » pour construire une discipline qui tient dans le temps, même quand la motivation initiale s'essouffle."},
+  '08':{eyebrow:'Pack économique',title:"Pack Accomplissement",price:'8,99 €',
+    images:['assets/img/COVER8.png'],
+    desc:"Réunit « Trouver sa Passion » et « Le Guide du Jeune Homme Ambitieux » pour passer d'une envie encore diffuse à une trajectoire construite, avec les outils pour avancer avec clarté."}
+};
+let currentSlideCount=0;
+let currentBookId=null;
+function openBook(id){
+  const b=books[id]; if(!b) return;
+  currentBookId=id;
+  document.getElementById('modalEyebrow').textContent=b.eyebrow;
+  document.getElementById('modalTitle').textContent=b.title;
+  document.getElementById('modalPrice').textContent=b.price;
+  document.getElementById('modalDesc').textContent=b.desc;
+
+  const track=document.getElementById('modalCarouselTrack');
+  track.innerHTML='';
+  b.images.forEach((src,idx)=>{
+    const slide=document.createElement('div');
+    slide.className='modal-carousel-slide';
+    const img=document.createElement('img');
+    img.src=src; img.alt=b.title;
+    img.addEventListener('click',(e)=>{e.stopPropagation(); openLightbox(idx);});
+    slide.appendChild(img);
+    track.appendChild(slide);
+  });
+  currentSlideCount=b.images.length;
+
+  const dotsWrap=document.getElementById('modalDots');
+  dotsWrap.innerHTML='';
+  for(let i=0;i<currentSlideCount;i++){
+    const dot=document.createElement('span');
+    dot.className='modal-dot'+(i===0?' active':'');
+    dotsWrap.appendChild(dot);
+  }
+  document.getElementById('modalCarousel').scrollLeft=0;
+
+  const ov=document.getElementById('bookModal');
+  ov.classList.add('active');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>ov.classList.add('in')));
+  document.body.style.overflow='hidden';
+}
+function closeBook(){
+  const ov=document.getElementById('bookModal');
+  ov.classList.remove('in');
+  setTimeout(()=>ov.classList.remove('active'),220);
+  document.body.style.overflow='';
+}
+function carouselNav(dir){
+  const c=document.getElementById('modalCarousel');
+  c.scrollBy({left:dir*c.clientWidth,behavior:'smooth'});
+}
+let lightboxIndex=0;
+function openLightbox(idx){
+  lightboxIndex=idx;
+  document.getElementById('lightboxImg').src=books[currentBookId].images[lightboxIndex];
+  document.getElementById('lightboxOv').classList.add('active');
+}
+function closeLightbox(){
+  document.getElementById('lightboxOv').classList.remove('active');
+}
+function lightboxNav(dir){
+  const imgs=books[currentBookId].images;
+  lightboxIndex=(lightboxIndex+dir+imgs.length)%imgs.length;
+  const el=document.getElementById('lightboxImg');
+  el.style.opacity='0';
+  setTimeout(()=>{ el.src=imgs[lightboxIndex]; el.style.opacity='1'; },120);
+}
+document.getElementById('lightboxOv').addEventListener('click',function(e){
+  if(e.target===this) closeLightbox();
+});
+(function(){
+  const params=new URLSearchParams(window.location.search);
+  const openId=params.get('open');
+  if(openId && books[openId]){ openBook(openId); }
+})();
+(function(){
+  const lb=document.getElementById('lightboxOv');
+  let touchStartX=0, touchStartY=0, touchDeltaX=0, isSwiping=false;
+  lb.addEventListener('touchstart',e=>{
+    if(e.touches.length!==1) return;
+    touchStartX=e.touches[0].clientX;
+    touchStartY=e.touches[0].clientY;
+    touchDeltaX=0; isSwiping=true;
+  },{passive:true});
+  lb.addEventListener('touchmove',e=>{
+    if(!isSwiping) return;
+    touchDeltaX=e.touches[0].clientX-touchStartX;
+  },{passive:true});
+  lb.addEventListener('touchend',()=>{
+    if(!isSwiping) return;
+    isSwiping=false;
+    if(Math.abs(touchDeltaX)>50){ lightboxNav(touchDeltaX<0?1:-1); }
+  });
+})();
+document.getElementById('modalCarousel').addEventListener('scroll',function(){
+  if(currentSlideCount===0) return;
+  const idx=Math.round(this.scrollLeft/this.clientWidth);
+  document.querySelectorAll('.modal-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+});
+document.getElementById('bookModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeBook();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){
+  if(document.getElementById('lightboxOv').classList.contains('active')) closeLightbox();
+  else {closeBook();closeM();}
+}});
+
+// ---------------------------------------------------------------------
+// CART
+// ---------------------------------------------------------------------
+function priceToNumber(str){
+  return parseFloat(String(str).replace(/[^\d,.-]/g,'').replace(',','.')) || 0;
+}
+let cart = [];
+try{
+  const saved = localStorage.getItem('tb_cart');
+  if(saved) cart = JSON.parse(saved);
+}catch(e){ cart = []; }
+
+function saveCart(){
+  try{ localStorage.setItem('tb_cart', JSON.stringify(cart)); }catch(e){}
+}
+
+function addToCart(id){
+  if(!id || !books[id]) return;
+  const existing = cart.find(i=>i.id===id);
+  if(existing){
+    showToast(books[id].title + ' est déjà dans ton panier');
+    return;
+  }
+  const b = books[id];
+  cart.push({id:id, title:b.title, price:priceToNumber(b.price)});
+  saveCart();
+  renderCart();
+  showToast(books[id].title + ' ajouté au panier');
+}
+let toastTimer=null;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.classList.remove('show'), 2400);
+}
+function removeFromCart(id){
+  cart = cart.filter(i=>i.id!==id);
+  saveCart();
+  renderCart();
+}
+function renderCart(){
+  const wrap = document.getElementById('cartItems');
+  const count = cart.length;
+  document.getElementById('cartCount').textContent = count;
+  const mobileCount = document.getElementById('cartCountMobile');
+  if(mobileCount) mobileCount.textContent = count;
+
+  if(cart.length===0){
+    wrap.innerHTML = '<p class="cart-empty">Ton panier est vide pour l\'instant.</p>';
+  } else {
+    wrap.innerHTML = cart.map(item=>{
+      const b = books[item.id];
+      const thumb = b && b.images && b.images[0] ? b.images[0] : '';
+      return `<div class="cart-item">
+        <img class="cart-item-thumb" src="${thumb}" alt="${item.title}">
+        <div class="cart-item-info">
+          <div class="cart-item-title">${item.title}</div>
+          <div class="cart-item-price">${item.price.toFixed(2).replace('.',',')} €</div>
+          <button class="cart-remove" onclick="removeFromCart('${item.id}')">Retirer</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  const subtotal = cart.reduce((s,i)=>s+i.price,0);
+  document.getElementById('cartSubtotal').textContent = subtotal.toFixed(2).replace('.',',')+' €';
+}
+
+const cartBtn=document.getElementById('cartBtn'),cartBg=document.getElementById('cartBg'),cartDrawer=document.getElementById('cartDrawer'),cartClose=document.getElementById('cartClose');
+function openCart(){ cartDrawer.classList.add('open'); cartBg.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeCart(){ cartDrawer.classList.remove('open'); cartBg.classList.remove('open'); document.body.style.overflow=''; }
+cartBtn.addEventListener('click', openCart);
+cartBg.addEventListener('click', closeCart);
+cartClose.addEventListener('click', closeCart);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeCart(); });
+
+async function startCheckout(){
+  if(cart.length===0){ showToast('Ton panier est vide.'); return; }
+  const btn = document.getElementById('checkoutBtn');
+  const originalLabel = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Redirection vers le paiement...';
+  try{
+    const res = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ items: cart.map(i=>({id:i.id})) })
+    });
+    const data = await res.json();
+    if(res.ok && data.url){
+      window.location.href = data.url;
+    } else {
+      showToast(data.error || "Le paiement n'a pas pu démarrer, réessaie.");
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+    }
+  }catch(e){
+    showToast("Le paiement n'a pas pu démarrer, réessaie.");
+    btn.disabled = false;
+    btn.textContent = originalLabel;
+  }
+}
+
+renderCart();
+
+// cookie banner
+(function(){
+  const KEY='tb_cookie_consent';
+  let consent=null;
+  try{ consent = localStorage.getItem(KEY); }catch(e){}
+  if(consent) return;
+  const bar=document.createElement('div');
+  bar.id='cookieBar';
+  bar.style.cssText='position:fixed;left:16px;right:16px;bottom:16px;max-width:520px;margin:0 auto;background:var(--ink);color:#fff;padding:18px 20px;z-index:400;font-family:var(--sans);font-size:13.5px;box-shadow:0 10px 30px rgba(0,0,0,.3);';
+  bar.innerHTML = 'Ce site utilise des cookies pour améliorer ton expérience et mesurer l\'audience.'
+    +'<div style="display:flex;gap:10px;margin-top:12px;">'
+    +'<button id="cookieAccept" style="flex:1;background:var(--ember);color:#fff;border:none;padding:10px;font-weight:700;cursor:pointer;">Accepter</button>'
+    +'<button id="cookieRefuse" style="flex:1;background:none;color:#fff;border:1px solid rgba(255,255,255,.3);padding:10px;font-weight:700;cursor:pointer;">Refuser</button></div>';
+  document.body.appendChild(bar);
+  function setConsent(v){ try{ localStorage.setItem(KEY, v); }catch(e){} bar.remove(); }
+  document.getElementById('cookieAccept').addEventListener('click', ()=>setConsent('accepted'));
+  document.getElementById('cookieRefuse').addEventListener('click', ()=>setConsent('refused'));
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les accompagnements — Tibobody</title>
+<meta name="description" content="Cadre, Accompagné, Immersion, Ascension : toutes les formules d'accompagnement Tibobody sur une seule page.">
+<link rel="canonical" href="https://tondomaine.com/formule.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<meta name="theme-color" content="#121110">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111010; --ink-2:#1A1918;
+  --paper:#FFFFFF; --paper-2:#F2F2F2;
+  --ember:#8C1B16; --ember-dim:#6B1310;
+  --steel:#55555A; --steel-on-dark:#A5A4A8;
+  --line:#D6D6D6; --line-dark:rgba(255,255,255,.12);
+  --white:#FFFFFF;
+  --gold:#C9A24B;
+  --display:'Bebas Neue',Impact,sans-serif;
+  --sans:'Work Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;letter-spacing:0.01em;line-height:0.92;text-transform:uppercase;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+section{padding:104px 0;}
+p{color:var(--steel);font-size:17.5px;}
+
+@media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important;} .reveal{opacity:1 !important;transform:none !important;} }
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
+  padding:16px 30px;border:2px solid var(--ink);cursor:pointer;background:none;transition:transform .15s ease,background .2s ease,color .2s ease;}
+.btn-solid{background:var(--ink);color:var(--paper);}
+.btn-solid:hover{background:var(--ember);border-color:var(--ember);color:#fff;transform:translateY(-2px);}
+.btn-line{border-color:var(--ink);color:var(--ink);}
+.btn-line:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);}
+.btn-ember{background:var(--ember);border-color:var(--ember);color:#fff;}
+.btn-ember:hover{background:var(--ember-dim);border-color:var(--ember-dim);transform:translateY(-2px);}
+.btn-gold{background:#C93A32;border-color:#C93A32;color:#fff;}
+.btn-gold:hover{background:#E24B41;border-color:#E24B41;transform:translateY(-2px);}
+.btn-disabled{background:#2A2824;border-color:#2A2824;color:#8a8884;cursor:not-allowed;pointer-events:none;opacity:.7;}
+.btn-disabled:hover{background:#2A2824;border-color:#2A2824;transform:none;}
+
+/* contact */
+.contact{background:var(--ink);color:#fff;}
+.contact h2{color:#fff;font-size:clamp(28px,4.8vw,44px);max-width:16ch;margin-bottom:18px;}
+.contact p.lede{color:#C9C5B7;max-width:54ch;margin-bottom:40px;font-size:19px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:680px;}
+.form-grid .full{grid-column:1/-1;}
+.form-grid label{display:block;font-size:12.5px;font-weight:600;color:var(--steel-on-dark);margin-bottom:8px;}
+.form-grid input,.form-grid select,.form-grid textarea{width:100%;background:var(--ink-2);border:1px solid var(--line-dark);color:#fff;padding:13px 14px;font-family:var(--sans);font-size:14.5px;}
+.form-grid textarea{resize:vertical;min-height:100px;}
+.form-grid button{margin-top:6px;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;padding:14px 24px;font-size:14px;font-weight:600;z-index:500;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast .check{color:var(--ember);font-weight:800;}
+.btn-block{display:flex;justify-content:center;width:100%;}
+
+/* header */
+header{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80px;gap:16px;}
+.logo{font-family:var(--display);font-size:26px;letter-spacing:.02em;}
+.logo em{font-style:normal;color:var(--ember);}
+.nav-links{display:flex;gap:30px;font-size:14.5px;font-weight:600;}
+.nav-links a{opacity:.75;transition:opacity .2s;}
+.nav-links a:hover{opacity:1;color:var(--ember-dim);}
+.nav-links a.active{opacity:1;color:var(--ember-dim);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.cart-btn{position:relative;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:none;background:none;cursor:pointer;color:var(--ink);}
+.cart-count{position:absolute;top:2px;right:1px;background:var(--ember);color:#fff;font-size:10.5px;font-weight:700;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 3px;}
+.cart-bg{position:fixed;inset:0;background:rgba(18,17,16,.6);opacity:0;pointer-events:none;transition:opacity .3s;z-index:160;}
+.cart-bg.open{opacity:1;pointer-events:auto;}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(90vw,400px);background:var(--white);transform:translateX(100%);transition:transform .32s cubic-bezier(.22,.9,.3,1);z-index:170;display:flex;flex-direction:column;}
+.cart-drawer.open{transform:translateX(0);}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:22px 22px 18px;border-bottom:1px solid var(--line);}
+.cart-header h3{font-size:22px;}
+.cart-close{width:36px;height:36px;border:none;background:var(--paper-2);border-radius:50%;cursor:pointer;color:var(--ink);}
+.cart-items{flex:1;overflow-y:auto;padding:10px 22px;}
+.cart-empty{color:var(--steel);font-size:14px;padding:30px 0;text-align:center;}
+.cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);}
+.cart-item-info{flex:1;display:flex;flex-direction:column;gap:6px;}
+.cart-item-title{font-size:14px;font-weight:700;line-height:1.25;}
+.cart-item-price{font-size:13px;color:var(--steel);}
+.cart-remove{font-size:12px;color:var(--steel);text-decoration:underline;background:none;border:none;cursor:pointer;align-self:flex-start;margin-top:6px;}
+.cart-footer{padding:18px 22px 24px;border-top:1px solid var(--line);}
+.cart-subtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:16px;}
+.cart-note{display:block;font-size:11.5px;color:var(--steel);text-align:center;margin-top:10px;}
+.burger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;}
+.burger span{width:22px;height:2px;background:var(--ink);transition:.25s;}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mmenu-bg{position:fixed;inset:0;background:rgba(18,17,16,.6);opacity:0;pointer-events:none;transition:opacity .3s;z-index:140;}
+.mmenu-bg.open{opacity:1;pointer-events:auto;}
+.mmenu{position:fixed;top:0;right:0;bottom:0;width:min(80vw,320px);background:var(--paper);transform:translateX(100%);transition:transform .32s cubic-bezier(.22,.9,.3,1);z-index:150;overflow-y:auto;}
+.mmenu.open{transform:translateX(0);}
+.mmenu-inner{display:flex;flex-direction:column;padding:26px 26px 30px;gap:2px;}
+.mmenu-inner a{padding:15px 2px;font-size:15px;font-weight:700;border-bottom:1px solid var(--line);}
+.mmenu-close{align-self:flex-end;margin:16px 16px 0;width:38px;height:38px;border:none;background:var(--paper-2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+@media(max-width:860px){.nav-links{display:none;} .burger{display:flex;}}
+
+/* page intro */
+.page-hero{background:var(--ink);color:#fff;padding:90px 0;overflow:hidden;}
+.page-hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:50px;align-items:center;}
+.page-hero .tag{font-size:15px;font-weight:700;color:var(--steel-on-dark);margin-bottom:16px;}
+.page-hero h1{color:#fff;font-size:clamp(38px,5.6vw,60px);max-width:14ch;}
+.page-hero h1 .ac{color:var(--ember);}
+.page-hero p{color:#C9C5B7;max-width:52ch;margin-top:18px;font-size:19px;}
+.hero-stack{position:relative;height:460px;}
+.hero-stack a{position:absolute;width:56%;border:2px solid var(--ink);box-shadow:0 24px 50px rgba(0,0,0,.45);transition:transform .25s ease,box-shadow .25s ease;overflow:hidden;background:var(--ink);}
+.hero-stack a img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:3/4;}
+.hero-stack a:hover{transform:translateY(-8px);z-index:9 !important;box-shadow:0 30px 60px rgba(0,0,0,.55);}
+.hero-stack a .hs-label{position:absolute;left:0;right:0;bottom:0;padding:16px 18px;background:linear-gradient(0deg,rgba(17,16,16,.92),transparent);}
+.hero-stack a .hs-label .hs-name{font-family:var(--display);font-size:20px;color:#fff;text-transform:uppercase;}
+.hero-stack a .hs-label .hs-price{font-size:12.5px;color:var(--steel-on-dark);}
+.hero-stack .hs-1{left:0;top:0;z-index:3;transform:rotate(-4deg);}
+.hero-stack .hs-2{left:17%;top:60px;z-index:2;transform:rotate(2deg);}
+.hero-stack .hs-3{left:34%;top:130px;z-index:1;transform:rotate(-2deg);}
+@media(max-width:900px){.page-hero-grid{grid-template-columns:1fr;} .hero-stack{display:none;}}
+.back-link{display:inline-block;margin-bottom:22px;font-size:13.5px;font-weight:700;color:var(--steel-on-dark);text-decoration:underline;}
+.back-link:hover{color:#fff;}
+
+/* diagnostic quiz */
+.diagnostic{background:var(--paper-2);padding:104px 0;}
+.quiz-card{max-width:720px;margin:0 auto;background:var(--white);border:2px solid var(--ink);padding:44px 40px;}
+.quiz-progress-track{height:4px;background:var(--line);width:100%;margin-bottom:34px;}
+.quiz-progress-bar{height:100%;background:var(--ember);width:0%;transition:width .35s ease;}
+.quiz-progress-label{font-size:12px;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px;}
+.quiz-step{display:none;}
+.quiz-step.active{display:block;animation:qfade .35s ease;}
+@keyframes qfade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.quiz-step h3{font-family:var(--sans);text-transform:none;font-weight:700;font-size:clamp(19px,2.6vw,24px);margin-bottom:26px;line-height:1.3;}
+.quiz-opt{display:block;width:100%;text-align:left;border:2px solid var(--line);background:none;padding:16px 20px;margin-bottom:12px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;transition:.15s ease;}
+.quiz-opt:hover{border-color:var(--ink);}
+.quiz-opt.selected{border-color:var(--ember);background:rgba(140,27,22,.06);}
+.quiz-nav{display:flex;justify-content:space-between;margin-top:22px;}
+.quiz-back{background:none;border:none;color:var(--steel);font-weight:600;font-size:13.5px;cursor:pointer;text-decoration:underline;}
+.quiz-lead input{width:100%;border:2px solid var(--line);padding:14px 16px;font-family:var(--sans);font-size:15px;margin-bottom:14px;}
+.quiz-lead input:focus{border-color:var(--ember);outline:none;}
+.quiz-lead label{display:block;font-size:12.5px;font-weight:700;color:var(--steel);margin-bottom:6px;}
+.quiz-result{text-align:center;}
+.quiz-result .r-tag{font-size:13px;font-weight:700;color:var(--ember-dim);margin-bottom:10px;}
+.quiz-result h3{font-size:clamp(28px,5vw,42px);margin-bottom:8px;}
+.quiz-result .r-price{font-size:18px;color:var(--ember-dim);margin-bottom:20px;font-weight:700;}
+.quiz-result p.r-desc{max-width:52ch;margin:0 auto 26px;font-size:15.5px;}
+.quiz-result .r-list{text-align:left;max-width:44ch;margin:0 auto 26px;}
+.quiz-result .r-list li{font-size:14.5px;padding:8px 0;border-top:1px solid var(--line);}
+.quiz-result .r-list li:first-child{border-top:none;}
+.quiz-err{color:var(--ember);font-size:13px;margin-top:8px;display:none;}
+@media(max-width:600px){ .quiz-card{padding:30px 22px;} }
+
+/* section head */
+.shead{max-width:720px;margin-bottom:54px;}
+.shead .tag{font-size:15px;font-weight:700;color:var(--ember-dim);margin-bottom:16px;}
+.shead h2{font-size:clamp(34px,6.2vw,60px);}
+.shead p{margin-top:18px;font-size:19px;max-width:60ch;}
+
+/* how it works */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.how-grid .h-item{padding:0 30px;}
+.how-grid .h-item:first-child{padding-left:0;}
+.how-grid .h-item+.h-item{border-left:1px solid var(--line);}
+.how-grid .h-num{font-family:var(--display);font-size:44px;color:var(--ember-dim);margin-bottom:14px;}
+.how-grid h4{font-family:var(--sans);text-transform:none;font-weight:700;font-size:17px;margin-bottom:10px;}
+@media(max-width:800px){.how-grid{grid-template-columns:1fr;row-gap:34px;} .how-grid .h-item{border-left:none !important;padding-left:0 !important;}}
+
+.rule{border-top:1px solid var(--line);margin:56px 0 30px;}
+
+/* méthode (comment se passe ton mois) */
+.method-section{background:var(--ink);color:#fff;}
+.method-section .shead .tag{color:var(--ember);}
+.method-section .shead h2{color:#fff;}
+.method-section .shead p{color:#C9C5B7;}
+.method-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line-dark);margin-bottom:80px;}
+.method-card{padding:30px 26px;border-left:1px solid var(--line-dark);}
+.method-card:first-child{border-left:none;}
+.method-card .tag{font-size:13.5px;font-weight:700;color:var(--ember);margin-bottom:16px;}
+.method-card h4{font-family:var(--sans);text-transform:none;font-weight:800;font-size:23px;margin-bottom:14px;color:#fff;}
+.method-card p{font-size:16px;color:#C9C5B7;}
+@media(max-width:900px){.method-grid{grid-template-columns:1fr 1fr;} .method-card:nth-child(3){border-left:none;}}
+@media(max-width:560px){.method-grid{grid-template-columns:1fr;} .method-card{border-left:none !important;border-top:1px solid var(--line-dark);} .method-card:first-child{border-top:none;}}
+
+.rules-wrap{display:grid;grid-template-columns:0.9fr 1.6fr;gap:48px;align-items:start;}
+.rules-wrap .tag{font-size:13.5px;font-weight:700;color:var(--ember);margin-bottom:16px;}
+.rules-wrap h3{color:#fff;font-size:clamp(32px,4.6vw,46px);max-width:12ch;}
+.rules-list{border-top:1px solid var(--line-dark);}
+.rule-item{display:grid;grid-template-columns:56px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line-dark);}
+.rule-item .rn{font-family:var(--display);font-size:40px;color:var(--ember);}
+.rule-item h5{font-family:var(--sans);text-transform:none;font-weight:800;font-size:18px;color:#fff;margin-bottom:8px;letter-spacing:.02em;}
+.rule-item p{font-size:16.5px;color:#C9C5B7;margin:0;}
+@media(max-width:800px){.rules-wrap{grid-template-columns:1fr;}}
+
+/* plans */
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start;}
+.plan{border:2px solid var(--ink);background:var(--white);display:flex;flex-direction:column;position:relative;}
+.plan-badges{position:absolute;top:-15px;left:50%;transform:translateX(-50%);display:flex;gap:8px;white-space:nowrap;}
+.plan-badge{background:var(--ember);color:#fff;font-size:11.5px;font-weight:700;padding:7px 16px;}
+.plan-places{background:#8a8a8e;color:#fff;font-size:11.5px;font-weight:700;padding:7px 16px;}
+.plan-head{padding:30px 26px 22px;border-bottom:1px solid var(--line);}
+.plan-name{font-size:26px;margin-bottom:14px;}
+.plan-price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.plan-old-price{font-size:19px;color:var(--steel);text-decoration:line-through;}
+.plan-price{font-size:42px;color:var(--ember-dim);}
+.plan-price span{font-family:var(--sans);font-size:15px;color:var(--steel);font-weight:500;}
+.plan-body{padding:24px 26px;flex:1;}
+.plan-body ul{list-style:none;}
+.plan-body li{font-size:15.5px;padding:10px 0;border-top:1px solid var(--line);}
+.plan-body li:first-child{border-top:none;}
+.plan-foot{padding:0 26px 26px;}
+.founder-mention{font-size:12.5px;color:var(--steel);text-align:center;padding:0 26px 24px;}
+@media(max-width:900px){.plan-grid{grid-template-columns:1fr;}}
+
+/* comparatif des formules */
+.compare-section{background:var(--white);color:var(--ink);}
+.compare-note{font-size:18px;color:var(--steel);margin-bottom:40px;}
+.compare-note strong{color:var(--ink);font-weight:800;}
+.plan-compare{border:1px solid var(--ink);}
+.pc-row{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;border-bottom:1px solid var(--ink);}
+.pc-row:last-child{border-bottom:none;}
+.pc-row:not(.head):nth-child(even){background:var(--paper-2);}
+.pc-c{padding:24px 26px;font-size:17px;color:var(--ink);}
+.pc-row .pc-c:first-child{color:var(--steel);}
+.pc-row.head{border-bottom:2px solid var(--ink);}
+.pc-row.head .pc-c{font-family:var(--display);font-size:clamp(22px,2.6vw,30px);text-transform:uppercase;font-weight:400;padding:28px 26px;}
+.pc-row.head .pc-c:first-child{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--steel);}
+.pc-row.head .pc-c.accent{color:var(--ember-dim);}
+.plan-compare-wrap{overflow-x:auto;}
+@media(max-width:760px){.plan-compare{min-width:640px;}}
+
+/* ascension */
+.ascension{background:var(--ink);color:#fff;}
+.asc-badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:#EDEAE0;border:1px solid rgba(255,214,120,.4);padding:8px 16px;margin-bottom:26px;}
+.asc-badge .dot{width:7px;height:7px;border-radius:50%;background:#C93A32;}
+.ascension h2{color:#fff;font-size:clamp(34px,6.2vw,58px);max-width:16ch;}
+.asc-compare{border:1px solid var(--line-dark);margin-top:40px;}
+.diff-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line-dark);}
+.diff-row:last-child{border-bottom:none;}
+.diff-row .c{padding:18px 22px;font-size:15.5px;}
+.diff-row .c:first-child{color:var(--steel-on-dark);border-right:1px solid var(--line-dark);}
+.diff-row .c:last-child{color:#fff;font-weight:600;}
+.diff-row.head .c{font-weight:700;font-size:13.5px;padding:16px 22px;}
+.diff-row.head .c:last-child{color:#C93A32;}
+@media(max-width:620px){.diff-row{grid-template-columns:1fr;} .diff-row .c:first-child{border-right:none;border-bottom:1px solid var(--line-dark);}}
+.asc-price{max-width:560px;margin-left:auto;margin-right:auto;border:2px solid #C93A32;background:#1B1A17;margin-top:50px;}
+.asc-price-top{padding:38px 40px 26px;text-align:center;border-bottom:1px solid var(--line-dark);}
+.asc-amount{font-family:var(--display);font-size:58px;color:#C93A32;}
+.asc-sub{font-size:15px;color:var(--steel-on-dark);margin-top:8px;}
+.asc-cta{padding:26px 40px 32px;}
+
+/* modal */
+.modal-ov{position:fixed;inset:0;background:rgba(18,17,16,.82);display:none;align-items:center;justify-content:center;z-index:200;padding:18px;opacity:0;transition:opacity .2s;}
+.modal-ov.active{display:flex;}
+.modal-ov.in{opacity:1;}
+.modal-panel{background:var(--white);max-width:920px;width:100%;max-height:90vh;overflow-y:auto;border-radius:2px;display:grid;grid-template-columns:1fr 1fr;
+  transform:scale(.95) translateY(12px);opacity:0;transition:transform .3s cubic-bezier(.22,.9,.3,1),opacity .22s;}
+.modal-ov.in .modal-panel{transform:scale(1) translateY(0);opacity:1;}
+.modal-cover{background:var(--ink);position:relative;overflow:hidden;min-height:320px;}
+.modal-cover>img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border:none;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;}
+.modal-body{padding:34px 34px 32px;display:flex;flex-direction:column;justify-content:center;}
+.modal-eyebrow{font-size:12.5px;font-weight:700;color:var(--ember-dim);margin-bottom:6px;}
+.modal-title-side{font-size:clamp(22px,2.4vw,28px);margin-bottom:8px;}
+.modal-price{font-size:16px;margin-bottom:18px;}
+.modal-desc{font-size:14.5px;line-height:1.75;margin-bottom:26px;}
+@media(max-width:760px){.modal-panel{grid-template-columns:1fr;max-height:94vh;} .modal-cover{aspect-ratio:4/3;min-height:0;}}
+
+/* modal plein écran (test) — même forme que la popup, mais à l'échelle de l'écran */
+.modal-full{position:fixed;top:80px;left:0;right:0;bottom:0;background:var(--white);display:none;z-index:70;opacity:0;transition:opacity .25s ease;}
+.modal-full.active{display:flex;}
+.modal-full.in{opacity:1;}
+.modal-full-panel{display:grid;grid-template-columns:0.75fr 1.25fr;width:100%;height:100%;}
+.modal-full-cover{background:var(--ink);position:relative;overflow:hidden;height:100%;padding:28px;box-sizing:border-box;}
+.modal-full-cover img{width:100%;height:100%;object-fit:cover;border-radius:10px;}
+.modal-full-back{position:absolute;top:30px;right:40px;font-size:13.5px;font-weight:700;color:var(--ink);text-decoration:underline;background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;z-index:3;}
+.modal-full-back:hover{color:var(--ember-dim);}
+.modal-full-body{padding:80px 70px 60px;display:flex;flex-direction:column;justify-content:center;overflow-y:auto;height:100%;position:relative;}
+.modal-full-eyebrow{font-size:16px;font-weight:700;color:var(--ember-dim);margin-bottom:10px;}
+.modal-full-title{font-size:clamp(34px,4.2vw,56px);margin-bottom:14px;}
+.modal-full-price{font-size:22px;margin-bottom:30px;color:var(--ink);}
+.modal-full-desc{font-size:18px;line-height:1.8;}
+.modal-full-desc ul{margin:0 0 24px 20px;padding:0;}
+.modal-full-desc li{margin-bottom:16px;}
+.modal-full-cta{margin-top:10px;}
+@media(max-width:860px){.modal-full-panel{grid-template-columns:1fr;grid-template-rows:38vh 1fr;} .modal-full-cover{height:auto;} .modal-full-body{padding:40px 26px 60px;height:auto;}}
+
+/* page transition */
+.page-transition{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .4s ease;}
+.page-transition.hide{opacity:0;pointer-events:none;}
+.page-transition .pt-text{font-family:var(--display);font-size:clamp(60px,16vw,240px);color:#fff;letter-spacing:.01em;white-space:nowrap;line-height:1;padding:0 20px;text-align:center;}
+.page-transition .pt-text em{font-style:normal;color:var(--ember);}
+
+/* MODAL CANDIDATURE */
+.cand-modal{position:fixed;inset:0;background:var(--ink);display:none;z-index:300;overflow-y:auto;}
+.cand-modal.open{display:block;}
+.cand-top{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;max-width:760px;margin:0 auto;}
+.cand-logo{font-family:var(--display);font-size:24px;letter-spacing:.02em;color:var(--paper);}
+.cand-logo em{font-style:normal;color:var(--ember);}
+.cand-close{font-size:13px;font-weight:600;color:var(--steel-on-dark);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:var(--sans);}
+.cand-close:hover{color:var(--paper);}
+.cand-progress-wrap{max-width:760px;margin:0 auto;padding:0 28px;}
+.cand-progress-track{height:3px;background:var(--line-dark);width:100%;position:relative;overflow:hidden;}
+.cand-progress-bar{height:100%;background:var(--ember);width:0%;transition:width .35s ease;}
+.cand-progress-label{font-size:12px;color:var(--steel-on-dark);margin-top:10px;letter-spacing:.03em;text-transform:uppercase;font-weight:700;}
+.cand-main{max-width:760px;margin:0 auto;padding:50px 28px 100px;min-height:60vh;display:flex;flex-direction:column;justify-content:center;}
+.cand-step{display:none;animation:candFade .4s ease;}
+.cand-step.active{display:block;}
+@keyframes candFade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.cand-step .cand-tag{color:var(--ember);font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;display:block;}
+.cand-step h2{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.95;color:var(--paper);font-size:clamp(26px,4vw,38px);margin-bottom:10px;}
+.cand-step p.cand-hint{color:var(--steel-on-dark);font-size:14.5px;margin-bottom:26px;max-width:560px;}
+.cand-modal input[type=text], .cand-modal input[type=email], .cand-modal textarea{
+  width:100%;background:transparent;border:none;border-bottom:2px solid var(--line-dark);
+  color:var(--paper);font-family:var(--sans);font-size:19px;padding:12px 2px;outline:none;
+  transition:border-color .2s ease;
+}
+.cand-modal input[type=text]:focus, .cand-modal input[type=email]:focus, .cand-modal textarea:focus{border-color:var(--ember);}
+.cand-modal textarea{resize:vertical;min-height:90px;line-height:1.5;}
+.cand-modal ::placeholder{color:#8a8884;}
+.cand-choice-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+.cand-choice-pill{border:2px solid var(--line-dark);padding:13px 20px;font-size:14.5px;font-weight:600;cursor:pointer;
+  background:none;color:var(--paper);transition:.2s ease;font-family:var(--sans);}
+.cand-choice-pill:hover{border-color:var(--steel-on-dark);}
+.cand-choice-pill.selected{background:var(--ember);border-color:var(--ember);color:#fff;}
+.cand-scale-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.cand-scale-pill{width:44px;height:44px;border:2px solid var(--line-dark);background:none;color:var(--paper);
+  font-family:var(--sans);font-weight:700;font-size:15px;cursor:pointer;transition:.2s ease;}
+.cand-scale-pill:hover{border-color:var(--steel-on-dark);}
+.cand-scale-pill.selected{background:var(--ember);border-color:var(--ember);color:#fff;}
+.cand-scale-labels{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--steel-on-dark);}
+.cand-nav-row{display:flex;align-items:center;gap:16px;margin-top:34px;}
+.cand-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
+  padding:15px 28px;border:2px solid var(--ember);cursor:pointer;background:var(--ember);color:#fff;transition:.15s ease;}
+.cand-btn:hover{background:var(--ember-dim);border-color:var(--ember-dim);transform:translateY(-2px);}
+.cand-btn:disabled{opacity:.35;cursor:not-allowed;transform:none;}
+.cand-btn-ghost{background:none;border-color:var(--line-dark);color:var(--steel-on-dark);}
+.cand-btn-ghost:hover{border-color:var(--steel-on-dark);color:var(--paper);background:none;transform:none;}
+.cand-err{color:#e8836f;font-size:13px;margin-top:10px;display:none;}
+.cand-done-screen{text-align:center;padding:60px 0;}
+.cand-done-check{width:64px;height:64px;border-radius:50%;background:var(--ember);display:flex;align-items:center;justify-content:center;
+  margin:0 auto 24px;font-size:30px;font-weight:900;color:#fff;}
+.cand-done-screen h2{font-family:var(--display);color:var(--paper);font-size:clamp(28px,5vw,40px);margin-bottom:14px;text-transform:uppercase;}
+.cand-done-screen p{color:var(--steel-on-dark);max-width:460px;margin:0 auto;font-size:15px;}
+.cand-done-screen .cand-btn{margin-top:30px;}
+@media(max-width:600px){
+  .cand-main{padding:36px 22px 80px;}
+  .cand-choice-pill{flex:1 1 auto;text-align:center;}
+}
+
+/* FAQ courte */
+.faq-mini{border-top:1px solid var(--line);}
+.faq-mini-item{border-bottom:1px solid var(--line);}
+.faq-mini-q{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:24px 0;font-family:var(--sans);text-transform:none;font-weight:700;font-size:19px;color:var(--ink);}
+.faq-mini-q .sign{font-family:var(--display);font-size:22px;color:var(--ember-dim);flex-shrink:0;transition:transform .2s ease;}
+.faq-mini-item.open .faq-mini-q .sign{transform:rotate(45deg);}
+.faq-mini-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.faq-mini-a p{padding-bottom:24px;margin:0;}
+
+footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font-size:14px;border-top:1px solid var(--line-dark);}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:40px;border-bottom:1px solid var(--line-dark);}
+.foot-grid h5{color:#fff;font-size:12.5px;font-weight:700;margin-bottom:16px;}
+.foot-grid a{display:block;margin-bottom:10px;}
+.foot-grid a:hover{color:var(--ember);}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:22px;font-size:12px;}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:28px;}}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+@media(max-width:860px){ section{padding:72px 0;} }
+</style>
+</head>
+<body>
+
+<div class="page-transition" id="pageTransition"><span class="pt-text">Tibo<em>body</em></span></div>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html#top" class="logo">Tibo<em>body</em></a>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="ebook.html">Les e-books</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" id="cartBtn" aria-label="Voir le panier">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+<div class="mmenu-bg" id="mmenuBg"></div>
+<div class="mmenu" id="mmenu">
+  <button class="mmenu-close" id="mmenuClose" aria-label="Fermer">✕</button>
+  <div class="mmenu-inner">
+    <a href="index.html">Accueil</a>
+    <a href="ebook.html">Les e-books</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="index.html#contact">Contact</a>
+    <button class="btn btn-solid" style="justify-content:center;margin-top:14px;width:100%;" onclick="closeM();openCart();">Voir le panier (<span id="cartCountMobile">0</span>)</button>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- PAGE INTRO -->
+<section class="page-hero">
+  <div class="wrap page-hero-grid">
+    <div>
+      <a href="index.html" class="back-link">← Retour à l'accueil</a>
+      <p class="tag">Accompagnement</p>
+      <h1>Choisis ton niveau <span class="ac">d'accompagnement</span></h1>
+      <p>Du plan à suivre seul au suivi quasi quotidien : quatre façons de travailler avec moi, pour trouver celle qui correspond à où tu en es.</p>
+      <div style="margin-top:28px;"><a href="#diagnostic" class="btn btn-ember">Faire le test gratuit (2 min)</a></div>
+    </div>
+    <div class="hero-stack reveal">
+      <a href="#formules" class="hs-1">
+        <img src="assets/img/cadre.png" alt="Cadre">
+        <div class="hs-label"><div class="hs-name">Cadre</div><div class="hs-price">67 €/mois</div></div>
+      </a>
+      <a href="#formules" class="hs-2">
+        <img src="assets/img/accompagne.png" alt="Accompagné">
+        <div class="hs-label"><div class="hs-name">Accompagné</div><div class="hs-price">147 €/mois</div></div>
+      </a>
+      <a href="#formules" class="hs-3">
+        <img src="assets/img/immersion.png" alt="Immersion">
+        <div class="hs-label"><div class="hs-name">Immersion</div><div class="hs-price">297 €/mois</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNOSTIC QUIZ -->
+<section class="diagnostic" id="diagnostic">
+  <div class="wrap">
+    <div class="shead reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
+      <div style="max-width:640px;margin-left:auto;margin-right:auto;text-align:left;">
+        <p class="tag">Diagnostic gratuit</p>
+        <h2>Quelle formule est faite pour toi ?</h2>
+      </div>
+      <p style="margin-left:auto;margin-right:auto;">6 questions, 2 minutes. Réponds honnêtement — le résultat n'a d'intérêt que si tu es sincère avec toi-même.</p>
+    </div>
+
+    <div class="quiz-card reveal">
+      <div class="quiz-progress-label" id="quizProgressLabel">Question 1 / 6</div>
+      <div class="quiz-progress-track"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+
+      <form id="quizForm">
+        <div class="quiz-step active" data-step="1">
+          <h3>Aujourd'hui, où en es-tu avec ta discipline ?</h3>
+          <button type="button" class="quiz-opt" data-q="1" data-v="A">Je tiens globalement mes habitudes, il me manque juste un cadre clair.</button>
+          <button type="button" class="quiz-opt" data-q="1" data-v="B">Je commence bien mais je lâche au bout de quelques semaines.</button>
+          <button type="button" class="quiz-opt" data-q="1" data-v="C">Je n'arrive plus à rien tenir, je repars de zéro.</button>
+        </div>
+
+        <div class="quiz-step" data-step="2">
+          <h3>Quand personne ne te surveille, tu…</h3>
+          <button type="button" class="quiz-opt" data-q="2" data-v="A">T'y tiens quand même.</button>
+          <button type="button" class="quiz-opt" data-q="2" data-v="B">Décroches de temps en temps.</button>
+          <button type="button" class="quiz-opt" data-q="2" data-v="C">Décroches presque à chaque fois.</button>
+        </div>
+
+        <div class="quiz-step" data-step="3">
+          <h3>Depuis combien de temps essaies-tu de changer seul ?</h3>
+          <button type="button" class="quiz-opt" data-q="3" data-v="A">Je commence tout juste.</button>
+          <button type="button" class="quiz-opt" data-q="3" data-v="B">Plusieurs mois, avec des hauts et des bas.</button>
+          <button type="button" class="quiz-opt" data-q="3" data-v="C">Des années, sans résultat durable.</button>
+        </div>
+
+        <div class="quiz-step" data-step="4">
+          <h3>De quel niveau de suivi as-tu besoin ?</h3>
+          <button type="button" class="quiz-opt" data-q="4" data-v="A">Un plan clair et un point de temps en temps.</button>
+          <button type="button" class="quiz-opt" data-q="4" data-v="B">Un suivi régulier chaque semaine.</button>
+          <button type="button" class="quiz-opt" data-q="4" data-v="C">Quelqu'un de disponible presque au quotidien.</button>
+        </div>
+
+        <div class="quiz-step" data-step="5">
+          <h3>À quel point ton changement est-il urgent ?</h3>
+          <button type="button" class="quiz-opt" data-q="5" data-v="A">Je veux progresser à mon rythme.</button>
+          <button type="button" class="quiz-opt" data-q="5" data-v="B">Je veux des résultats visibles dans les prochains mois.</button>
+          <button type="button" class="quiz-opt" data-q="5" data-v="C">C'est urgent, j'ai besoin d'un changement rapide et profond.</button>
+        </div>
+
+        <div class="quiz-step" data-step="6">
+          <h3>Quel budget mensuel es-tu prêt à investir dans ta transformation ?</h3>
+          <button type="button" class="quiz-opt" data-q="6" data-v="A">Autour de 70 €</button>
+          <button type="button" class="quiz-opt" data-q="6" data-v="B">Autour de 150 €</button>
+          <button type="button" class="quiz-opt" data-q="6" data-v="C">300 € ou plus</button>
+          <button type="button" class="quiz-opt" data-q="6" data-v="D">Je ne suis pas prêt à investir pour l'instant</button>
+        </div>
+
+        <div class="quiz-step" data-step="7">
+          <h3>Reçois ton résultat + le Diagnostic de la Discipline (PDF) offert</h3>
+          <div class="quiz-lead">
+            <label for="quizPrenom">Prénom</label>
+            <input type="text" id="quizPrenom" name="prenom" required placeholder="Ton prénom">
+            <label for="quizEmail">Email</label>
+            <input type="email" id="quizEmail" name="email" required placeholder="ton@email.com">
+          </div>
+        </div>
+
+        <div class="quiz-err" id="quizErr">Sélectionne une réponse avant de continuer.</div>
+
+        <div class="quiz-nav">
+          <button type="button" class="quiz-back" id="quizBack" onclick="quizGo(-1)">← Précédent</button>
+          <button type="button" class="btn btn-ember" id="quizNext" onclick="quizGo(1)">Suivant →</button>
+          <button type="button" class="btn btn-ember" id="quizSubmit" style="display:none;" onclick="quizSubmit()">Voir mon résultat</button>
+        </div>
+      </form>
+
+      <div class="quiz-result" id="quizResult" style="display:none;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT SE PASSE TON MOIS -->
+<section class="method-section">
+  <div class="wrap">
+    <div class="shead reveal">
+      <p class="tag">La méthode Tibobody</p>
+      <h2>Comment se passe ton mois</h2>
+      <p>Quatre semaines, une étape chacune. Tu sais exactement où tu en es et ce qui vient ensuite.</p>
+    </div>
+
+    <div class="method-grid reveal">
+      <div class="method-card">
+        <p class="tag">Semaine 1</p>
+        <h4>Poser le cadre</h4>
+        <p>Un objectif chiffré, 1 à 3 actions minimum, un seul indicateur. Petit et tenable, pas impressionnant.</p>
+      </div>
+      <div class="method-card">
+        <p class="tag">Semaine 2</p>
+        <h4>Passer le cap</h4>
+        <p>La motivation retombe. On repère ton point de rupture et on déclenche ton plan B.</p>
+      </div>
+      <div class="method-card">
+        <p class="tag">Semaine 3</p>
+        <h4>Automatiser</h4>
+        <p>Tes actions sont fixées à des heures et des lieux précis. Tu n'as plus à décider, juste à exécuter.</p>
+      </div>
+      <div class="method-card">
+        <p class="tag">Semaine 4</p>
+        <h4>Monter d'un cran</h4>
+        <p>Bilan chiffré, avant / après. On décide ensemble du niveau suivant.</p>
+      </div>
+    </div>
+
+    <div class="rules-wrap reveal">
+      <div>
+        <p class="tag">Les règles</p>
+        <h3>Cinq règles, zéro excuse</h3>
+      </div>
+      <div class="rules-list">
+        <div class="rule-item">
+          <div class="rn">1</div>
+          <div>
+            <h5>L'action minimum</h5>
+            <p>Chaque action a une version « mauvais jour » de 5 minutes. On ne vise pas zéro, on vise « pas rien ».</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rn">2</div>
+          <div>
+            <h5>Jamais deux fois de suite</h5>
+            <p>Rater un jour, c'est normal. Rater deux jours d'affilée, c'est le début de l'abandon.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rn">3</div>
+          <div>
+            <h5>Un seul chiffre</h5>
+            <p>Un indicateur à la fois : séances, heures de travail, matins sans téléphone.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rn">4</div>
+          <div>
+            <h5>Tout est écrit</h5>
+            <p>Si ce n'est pas dans ton check-in, ça n'a pas eu lieu.</p>
+          </div>
+        </div>
+        <div class="rule-item" style="border-bottom:none;">
+          <div class="rn">5</div>
+          <div>
+            <h5>On règle le système, pas la volonté</h5>
+            <p>Quand ça coince, on change l'heure, le lieu ou la taille de l'action. Jamais « plus de motivation ».</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULES -->
+<section class="formules-section" id="formules">
+  <div class="wrap">
+    <div class="shead reveal">
+      <p class="tag">Les formules</p>
+      <h2>Choisis ton niveau d'accompagnement</h2>
+    </div>
+
+    <div class="plan-grid reveal">
+      <div class="plan">
+        <div class="plan-badges"><span class="plan-places">8 places restantes</span></div>
+        <div class="plan-head">
+          <div class="plan-name">Cadre</div>
+          <div class="plan-price-row"><span class="plan-old-price">127€</span><div class="plan-price">67€<span>/mois</span></div></div>
+        </div>
+        <div class="plan-body"><ul>
+          <li>1 appel de diagnostic initial (30 min)</li>
+          <li>Plan d'action personnalisé</li>
+          <li>Suivi écrit hebdomadaire</li>
+        </ul></div>
+        <div class="plan-foot"><button type="button" class="btn btn-line btn-block" onclick="openCandidature('Cadre')">Candidater</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('cadre')">En savoir plus</button></div>
+        <div class="founder-mention">Offre fondateurs : places limitées, prix garanti 3 mois puis tarif normal. En échange, un témoignage sur tes résultats.</div>
+      </div>
+      <div class="plan feat">
+        <div class="plan-badges"><span class="plan-badge">Recommandé</span><span class="plan-places">6 places restantes</span></div>
+        <div class="plan-head">
+          <div class="plan-name">Accompagné</div>
+          <div class="plan-price-row"><span class="plan-old-price">297€</span><div class="plan-price">147€<span>/mois</span></div></div>
+        </div>
+        <div class="plan-body"><ul>
+          <li>1 appel de diagnostic initial (45 min)</li>
+          <li>Plan d'action personnalisé détaillé</li>
+          <li>Suivi actif plusieurs fois par semaine</li>
+          <li>1 appel de suivi mensuel</li>
+          <li>Accès à tous les e-books</li>
+        </ul></div>
+        <div class="plan-foot"><button type="button" class="btn btn-ember btn-block" onclick="openCandidature('Accompagné')">Candidater</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('accompagne')">En savoir plus</button></div>
+        <div class="founder-mention">Offre fondateurs : places limitées, prix garanti 3 mois puis tarif normal. En échange, un témoignage sur tes résultats.</div>
+      </div>
+      <div class="plan">
+        <div class="plan-badges"><span class="plan-places">3 places restantes</span></div>
+        <div class="plan-head">
+          <div class="plan-name">Immersion</div>
+          <div class="plan-price-row"><span class="plan-old-price">597€</span><div class="plan-price">297€<span>/mois</span></div></div>
+        </div>
+        <div class="plan-body"><ul>
+          <li>1 appel de diagnostic approfondi (1h)</li>
+          <li>Plan ultra-personnalisé semaine par semaine</li>
+          <li>Suivi quasi quotidien</li>
+          <li>Places limitées à 3 personnes en simultané</li>
+          <li>Accès à tous les e-books</li>
+        </ul></div>
+        <div class="plan-foot"><button type="button" class="btn btn-line btn-block" onclick="openCandidature('Immersion')">Candidater</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('immersion')">En savoir plus</button></div>
+        <div class="founder-mention">Offre fondateurs : places limitées, prix garanti 3 mois puis tarif normal. En échange, un témoignage sur tes résultats.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIF DES FORMULES -->
+<section class="compare-section">
+  <div class="wrap">
+    <div class="shead reveal">
+      <p class="tag">Tout mettre côte à côte</p>
+      <h2>Les formules en un coup d'œil</h2>
+    </div>
+    <p class="compare-note reveal"><strong>Sans engagement.</strong> Tu changes de formule ou tu arrêtes quand tu veux, d'un mois sur l'autre.</p>
+    <div class="plan-compare-wrap reveal">
+      <div class="plan-compare">
+        <div class="pc-row head">
+          <div class="pc-c">Comparatif</div>
+          <div class="pc-c">Cadre</div>
+          <div class="pc-c accent">Accompagné</div>
+          <div class="pc-c">Immersion</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-c">Prix</div>
+          <div class="pc-c">67 €/mois</div>
+          <div class="pc-c">147 €/mois</div>
+          <div class="pc-c">297 €/mois</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-c">Appel de départ</div>
+          <div class="pc-c">30 min</div>
+          <div class="pc-c">45 min</div>
+          <div class="pc-c">1 h</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-c">Plan d'action</div>
+          <div class="pc-c">Mensuel</div>
+          <div class="pc-c">Ajusté chaque semaine</div>
+          <div class="pc-c">Refait chaque semaine</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-c">Check-ins</div>
+          <div class="pc-c">1 / semaine</div>
+          <div class="pc-c">3 / semaine</div>
+          <div class="pc-c">1 / jour</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-c">Appels de suivi</div>
+          <div class="pc-c">—</div>
+          <div class="pc-c">1 × 30 min / mois</div>
+          <div class="pc-c">2 × 30 min / mois</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-c">Délai de réponse</div>
+          <div class="pc-c">72 h</div>
+          <div class="pc-c">48 h</div>
+          <div class="pc-c">24 h (jours ouvrés)</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-c">Places</div>
+          <div class="pc-c">8 max</div>
+          <div class="pc-c">6 max</div>
+          <div class="pc-c">3 max</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASCENSION -->
+<section class="ascension" id="ascension">
+  <div class="wrap">
+    <span class="asc-badge reveal"><span class="dot"></span>Sur candidature — une place à la fois</span>
+    <h2 class="reveal">Ascension — l'accompagnement le plus poussé</h2>
+    <p class="reveal" style="max-width:60ch;color:#C9C5B7;margin-top:18px;font-size:19px;">Un engagement forfaitaire de 90 jours. Ce n'est plus toi qui portes le projet avec mon aide — c'est un projet qu'on porte à deux, avec un objectif chiffré et daté posé dès le premier jour.</p>
+
+    <div class="asc-compare reveal">
+      <div class="diff-row head"><div class="c">Accompagnement classique</div><div class="c">Ascension</div></div>
+      <div class="diff-row"><div class="c">Abonnement mensuel, sans fin fixée</div><div class="c">Engagement forfaitaire de 90 jours</div></div>
+      <div class="diff-row"><div class="c">Suivi illimité mais asynchrone</div><div class="c">Ligne directe + calls hebdomadaires en visio</div></div>
+      <div class="diff-row"><div class="c">Un plan d'action</div><div class="c">Un objectif chiffré et daté, contractualisé</div></div>
+      <div class="diff-row"><div class="c">Ouvert à tous</div><div class="c">Sur candidature, une place à la fois</div></div>
+      <div class="diff-row"><div class="c">Rien de prévu après le programme</div><div class="c">2 points de suivi inclus, à J+30 et J+60</div></div>
+    </div>
+
+    <div class="asc-price reveal">
+      <div class="asc-price-top">
+        <div class="asc-amount" style="font-size:30px;">Bientôt disponible</div>
+        <div class="asc-sub">Le programme n'est pas encore ouvert aux candidatures</div>
+      </div>
+      <div class="asc-cta"><button type="button" class="btn btn-gold btn-disabled btn-block" disabled aria-disabled="true" title="Pas encore disponible">Candidater — bientôt disponible</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUESTIONS COURTES -->
+<section>
+  <div class="wrap">
+    <div class="shead reveal">
+      <p class="tag">Avant de choisir</p>
+      <h2>Questions fréquentes sur les formules</h2>
+    </div>
+    <div class="faq-mini reveal">
+      <div class="faq-mini-item">
+        <button class="faq-mini-q">Je ne sais pas laquelle choisir, par où commencer ?<span class="sign">+</span></button>
+        <div class="faq-mini-a"><p>Fais le test gratuit de 2 minutes sur la page d'accueil — il t'oriente directement vers la formule la plus adaptée à ta situation.</p></div>
+      </div>
+      <div class="faq-mini-item">
+        <button class="faq-mini-q">Je peux changer de formule en cours de route ?<span class="sign">+</span></button>
+        <div class="faq-mini-a"><p>Oui, à tout moment. Beaucoup commencent par Cadre et passent à Accompagné une fois que le besoin d'un suivi plus rapproché se fait sentir.</p></div>
+      </div>
+      <div class="faq-mini-item">
+        <button class="faq-mini-q">Il y a un engagement de durée ?<span class="sign">+</span></button>
+        <div class="faq-mini-a"><p>Non pour Cadre, Accompagné et Immersion — ce sont des abonnements mensuels sans engagement. Ascension est un engagement forfaitaire de 90 jours.</p></div>
+      </div>
+      <div class="faq-mini-item">
+        <button class="faq-mini-q">Je n'ai pas le temps.<span class="sign">+</span></button>
+        <div class="faq-mini-a"><p>Aucune formule ne demande plus de temps que ce que tu perds déjà à recommencer de zéro tous les deux mois. On construit un plan qui rentre dans ta vie réelle, pas l'inverse.</p></div>
+      </div>
+      <div class="faq-mini-item">
+        <button class="faq-mini-q">J'ai déjà essayé et je n'ai jamais tenu.<span class="sign">+</span></button>
+        <div class="faq-mini-a"><p>C'est justement pour ça que ça existe. Seul, rien ne t'empêche de lâcher. Ici, quelqu'un attend de tes nouvelles chaque semaine — ça change tout.</p></div>
+      </div>
+      <div class="faq-mini-item">
+        <button class="faq-mini-q">C'est trop cher.<span class="sign">+</span></button>
+        <div class="faq-mini-a"><p>Le prix fondateurs est là pour ça : tester l'accompagnement à un tarif réduit, garanti 3 mois. Compare-le à ce que t'a déjà coûté chaque tentative ratée en temps et en motivation perdue.</p></div>
+      </div>
+      <div class="faq-mini-item">
+        <button class="faq-mini-q">Je ne sais pas si ça va marcher pour moi.<span class="sign">+</span></button>
+        <div class="faq-mini-a"><p>Le test gratuit existe justement pour ça : voir objectivement où tu en es avant de t'engager, sans pression et sans surprise.</p></div>
+      </div>
+      <div class="faq-mini-item">
+        <button class="faq-mini-q">J'ai peur de m'engager et d'abandonner encore une fois.<span class="sign">+</span></button>
+        <div class="faq-mini-a"><p>C'est exactement le rôle du suivi : rendre l'abandon plus visible et plus inconfortable que de continuer. Tu n'es plus seul face à ta motivation qui baisse — quelqu'un le remarque et t'aide à repartir.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Une question avant de choisir ?</h2>
+    <p class="lede">Sur une formule, un délai, ou autre chose. Réponse sous 24h.</p>
+    <form class="form-grid" id="contactForm" action="https://formspree.io/f/xyezygwb" method="POST" onsubmit="return handleContactSubmit(event);">
+      <input type="text" name="_gotcha" id="hp-field" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
+      <div><label for="fname">Prénom</label><input id="fname" name="prenom" type="text" required></div>
+      <div><label for="femail">Email</label><input id="femail" name="email" type="email" required></div>
+      <div class="full"><label for="finterest">Ce qui t'intéresse</label>
+        <select id="finterest" name="interet">
+          <option>Cadre</option>
+          <option>Accompagné</option>
+          <option>Immersion</option>
+          <option>Ascension</option>
+          <option>Une question générale</option>
+        </select>
+      </div>
+      <div class="full"><label for="fmsg">Ta situation en quelques mots</label><textarea id="fmsg" name="message"></textarea></div>
+      <div class="full"><button type="submit" class="btn btn-ember" id="contactSubmitBtn">Envoyer ma demande</button></div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="check">✓</span><span id="toastMsg">Ta demande a bien été envoyée !</span></div>
+
+<!-- CART DRAWER -->
+<div class="cart-bg" id="cartBg"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Ton panier</h3>
+    <button class="cart-close" id="cartClose" aria-label="Fermer">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal"><span>Sous-total</span><strong id="cartSubtotal">0,00 €</strong></div>
+    <button class="btn btn-ember btn-block" id="checkoutBtn" onclick="startCheckout()">Passer commande</button>
+    <span class="cart-note">Paiement sécurisé par Stripe — livraison immédiate par email après achat.</span>
+  </div>
+</div>
+
+<!-- MODAL FORMULE -->
+<div class="modal-ov" id="planModal">
+  <div class="modal-panel">
+    <div class="modal-cover" id="planModalCover">
+      <button class="modal-close" onclick="closePlan()">✕</button>
+      <img id="planModalImg" src="" alt="">
+    </div>
+    <div class="modal-body">
+      <p class="modal-eyebrow" id="planModalEyebrow"></p>
+      <h3 class="modal-title-side" id="planModalTitle"></h3>
+      <p class="modal-price" id="planModalPrice"></p>
+      <div class="modal-desc" id="planModalDesc"></div>
+      <a href="#" class="btn btn-ember btn-block" id="planModalCta">En savoir plus</a>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PLEIN ECRAN (test — Cadre) -->
+<div class="modal-full" id="fullModal">
+  <div class="modal-full-panel">
+    <div class="modal-full-cover">
+      <img id="fullModalImg" src="" alt="">
+    </div>
+    <div class="modal-full-body">
+      <button class="modal-full-back" onclick="closeFullPlan()">← Retour aux formules</button>
+      <p class="modal-full-eyebrow" id="fullModalEyebrow"></p>
+      <h2 class="modal-full-title" id="fullModalTitle"></h2>
+      <p class="modal-full-price" id="fullModalPrice"></p>
+      <div class="modal-full-desc" id="fullModalDesc"></div>
+      <a href="#" class="btn btn-ember btn-block modal-full-cta" id="fullModalCta">En savoir plus</a>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CANDIDATURE -->
+<div class="cand-modal" id="candModal">
+  <div class="cand-top">
+    <span class="cand-logo">TIBO<em>BODY</em></span>
+    <button type="button" class="cand-close" onclick="closeCandidature()">✕ Fermer</button>
+  </div>
+  <div class="cand-progress-wrap">
+    <div class="cand-progress-track"><div class="cand-progress-bar" id="candProgressBar"></div></div>
+    <div class="cand-progress-label" id="candProgressLabel">Question 1 / 21</div>
+  </div>
+  <main class="cand-main">
+    <form id="candForm">
+      <input type="hidden" name="_subject" value="Nouvelle candidature coaching">
+      <input type="hidden" name="formule" id="candFormuleField" value="Non précisée">
+      <input type="text" name="_gotcha" id="cand-hp-field" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
+
+      <div class="cand-step active" data-q="1">
+        <span class="cand-tag">Identité</span>
+        <h2>Quel est ton nom / prénom ?</h2>
+        <input type="text" name="nom" id="cq1" required placeholder="Ton nom et prénom">
+      </div>
+
+      <div class="cand-step" data-q="2">
+        <span class="cand-tag">Identité</span>
+        <h2>Sur quelle adresse email peut-on te répondre ?</h2>
+        <input type="email" name="email" id="cq2" required placeholder="ton@email.com">
+      </div>
+
+      <div class="cand-step" data-q="3">
+        <span class="cand-tag">Objectif</span>
+        <h2>Cet accompagnement, tu le veux avant tout pour :</h2>
+        <div class="cand-choice-row" data-field="objectif">
+          <button type="button" class="cand-choice-pill">Ta vie professionnelle</button>
+          <button type="button" class="cand-choice-pill">Ta vie personnelle</button>
+          <button type="button" class="cand-choice-pill">Les deux à parts égales</button>
+        </div>
+        <input type="hidden" name="objectif" id="cq3">
+      </div>
+
+      <div class="cand-step" data-q="4">
+        <span class="cand-tag">Situation</span>
+        <h2>Décris ta situation actuelle en quelques phrases</h2>
+        <p class="cand-hint">Travail / études, vie perso, où t'en es aujourd'hui.</p>
+        <textarea name="situation" id="cq4" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="5">
+        <span class="cand-tag">Situation</span>
+        <h2>Décris ton contexte concret</h2>
+        <p class="cand-hint">Situation familiale, financière, professionnelle — ça m'aide à proposer un plan réaliste pour toi, pas un plan générique.</p>
+        <textarea name="contexte" id="cq5" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="6">
+        <span class="cand-tag">Satisfaction</span>
+        <h2>Sur une échelle de 1 à 10, à quel point es-tu satisfait de ta vie actuelle ?</h2>
+        <div class="cand-scale-row" data-field="satisfaction">
+          <button type="button" class="cand-scale-pill">1</button><button type="button" class="cand-scale-pill">2</button>
+          <button type="button" class="cand-scale-pill">3</button><button type="button" class="cand-scale-pill">4</button>
+          <button type="button" class="cand-scale-pill">5</button><button type="button" class="cand-scale-pill">6</button>
+          <button type="button" class="cand-scale-pill">7</button><button type="button" class="cand-scale-pill">8</button>
+          <button type="button" class="cand-scale-pill">9</button><button type="button" class="cand-scale-pill">10</button>
+        </div>
+        <div class="cand-scale-labels"><span>Pas du tout</span><span>Très satisfait</span></div>
+        <input type="hidden" name="satisfaction" id="cq6">
+      </div>
+
+      <div class="cand-step" data-q="7">
+        <span class="cand-tag">Frustrations</span>
+        <h2>Qu'est-ce qui te frustre le plus en ce moment ?</h2>
+        <textarea name="frustration" id="cq7" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="8">
+        <span class="cand-tag">Vision</span>
+        <h2>Si dans 6 mois ta vie avait changé pour le mieux, à quoi ça ressemblerait concrètement ?</h2>
+        <textarea name="vision_6mois" id="cq8" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="9">
+        <span class="cand-tag">Vision</span>
+        <h2>Quel est LE changement qui aurait le plus d'impact si tu le réussissais ?</h2>
+        <textarea name="changement_impact" id="cq9" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="10">
+        <span class="cand-tag">Motivation</span>
+        <h2>Pourquoi maintenant ?</h2>
+        <p class="cand-hint">Qu'est-ce qui te pousse à agir aujourd'hui plutôt qu'avant ?</p>
+        <textarea name="pourquoi_maintenant" id="cq10" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="11">
+        <span class="cand-tag">Historique</span>
+        <h2>Qu'est-ce que tu as déjà essayé pour régler ça ?</h2>
+        <p class="cand-hint">Qu'est-ce qui a marché, qu'est-ce qui n'a pas marché ?</p>
+        <textarea name="deja_essaye" id="cq11" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="12">
+        <span class="cand-tag">Historique</span>
+        <h2>Qu'est-ce qui t'a fait abandonner ou stagner les fois précédentes ?</h2>
+        <textarea name="raisons_abandon" id="cq12" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="13">
+        <span class="cand-tag">Entourage</span>
+        <h2>Ton entourage (famille, amis, travail) te soutient dans ce changement, ou plutôt te freine ?</h2>
+        <textarea name="entourage" id="cq13" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="14">
+        <span class="cand-tag">Freins</span>
+        <h2>Qu'est-ce qui te fait le plus peur à l'idée de te lancer dans cet accompagnement ?</h2>
+        <textarea name="peur" id="cq14" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="15">
+        <span class="cand-tag">Fonctionnement</span>
+        <h2>Comment tu apprends / progresses le mieux ?</h2>
+        <div class="cand-choice-row" data-field="apprentissage">
+          <button type="button" class="cand-choice-pill">Par la discussion</button>
+          <button type="button" class="cand-choice-pill">Par l'écrit</button>
+          <button type="button" class="cand-choice-pill">Par l'action directe</button>
+        </div>
+        <input type="hidden" name="apprentissage" id="cq15">
+      </div>
+
+      <div class="cand-step" data-q="16">
+        <span class="cand-tag">Fonctionnement</span>
+        <h2>À quel moment de la journée es-tu le plus réceptif pour des messages / échanges ?</h2>
+        <input type="text" name="moment_journee" id="cq16" required placeholder="Ta réponse">
+      </div>
+
+      <div class="cand-step" data-q="17">
+        <span class="cand-tag">Historique</span>
+        <h2>As-tu déjà eu un coach, mentor, ou accompagnement structuré avant ?</h2>
+        <p class="cand-hint">Comment ça s'est passé ?</p>
+        <textarea name="coach_avant" id="cq17" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="18">
+        <span class="cand-tag">Engagement</span>
+        <h2>Combien de temps par semaine peux-tu réellement consacrer à appliquer ce qu'on va mettre en place ?</h2>
+        <input type="text" name="temps_semaine" id="cq18" required placeholder="Ta réponse">
+      </div>
+
+      <div class="cand-step" data-q="19">
+        <span class="cand-tag">Engagement</span>
+        <h2>Qu'est-ce qui pourrait te faire lâcher en cours de route, honnêtement ?</h2>
+        <textarea name="risque_abandon" id="cq19" required placeholder="Ta réponse"></textarea>
+      </div>
+
+      <div class="cand-step" data-q="20">
+        <span class="cand-tag">Engagement</span>
+        <h2>Sur une échelle de 1 à 10, à quel point es-tu prêt à sortir de ta zone de confort pour ce changement ?</h2>
+        <div class="cand-scale-row" data-field="zone_confort">
+          <button type="button" class="cand-scale-pill">1</button><button type="button" class="cand-scale-pill">2</button>
+          <button type="button" class="cand-scale-pill">3</button><button type="button" class="cand-scale-pill">4</button>
+          <button type="button" class="cand-scale-pill">5</button><button type="button" class="cand-scale-pill">6</button>
+          <button type="button" class="cand-scale-pill">7</button><button type="button" class="cand-scale-pill">8</button>
+          <button type="button" class="cand-scale-pill">9</button><button type="button" class="cand-scale-pill">10</button>
+        </div>
+        <div class="cand-scale-labels"><span>Jamais de la vie</span><span>Je veux absolument en sortir</span></div>
+        <input type="hidden" name="zone_confort" id="cq20">
+      </div>
+
+      <div class="cand-step" data-q="21">
+        <span class="cand-tag">Pour finir</span>
+        <h2>Y a-t-il quelque chose d'important sur ta situation qu'on ne t'a pas demandé et que tu veux que je sache ?</h2>
+        <textarea name="autre_chose" id="cq21" placeholder="Ta réponse (facultatif)"></textarea>
+      </div>
+
+      <div class="cand-err" id="candErrMsg">Merci de répondre avant de continuer.</div>
+
+      <div class="cand-nav-row">
+        <button type="button" class="cand-btn cand-btn-ghost" id="candPrevBtn" onclick="candGoStep(-1)">← Précédent</button>
+        <button type="button" class="cand-btn" id="candNextBtn" onclick="candGoStep(1)">Suivant →</button>
+        <button type="submit" class="cand-btn" id="candSubmitBtn" style="display:none;">Envoyer ma candidature</button>
+      </div>
+    </form>
+
+    <div class="cand-done-screen" id="candDoneScreen" style="display:none;">
+      <div class="cand-done-check">✓</div>
+      <h2>Candidature envoyée</h2>
+      <p>Thibault va étudier ta situation et te recontacte sous 24 à 48h pour la suite. Merci pour ta franchise dans les réponses.</p>
+      <button type="button" class="cand-btn" onclick="closeCandidature()">Retour aux formules</button>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="color:#fff;">Tibo<em>body</em></div>
+        <p style="max-width:280px;margin-top:12px;">Coach en développement personnel. E-books et accompagnement pour t'aider à tenir tes objectifs.</p>
+      </div>
+      <div>
+        <h5>Offres</h5>
+        <a href="formule.html">Formules</a>
+        <a href="index.html#defi30">Défi 30 jours</a>
+        <a href="ebook.html">Les e-books</a>
+      </div>
+      <div>
+        <h5>Réseaux</h5>
+        <a href="https://www.instagram.com/tibobody?stkn=MXc2aDRpMTFsMnFtYg%3D%3D&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://youtube.com/@tibobody?si=4-kEflijwVZpphdh" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.tiktok.com/@tibobody?_r=1&_t=ZG-99Wi2ngUSNE" target="_blank" rel="noopener">TikTok</a>
+      </div>
+      <div>
+        <h5>Informations</h5>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="confidentialite.html">Confidentialité</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Thibault. Tous droits réservés.</span>
+      <span>Conçu pour la performance.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+// ---------------------------------------------------------------------
+// PAGE TRANSITION
+// ---------------------------------------------------------------------
+(function(){
+  const overlay = document.getElementById('pageTransition');
+  if(!overlay) return;
+  function reveal(){ overlay.classList.add('hide'); }
+  if(document.readyState === 'complete'){ setTimeout(reveal, 150); }
+  else { window.addEventListener('load', ()=> setTimeout(reveal, 150)); }
+
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    if(!href) return;
+    if(href.startsWith('#')) return;
+    if(href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    if(a.target === '_blank' || a.hasAttribute('download')) return;
+    if(/^https?:\/\//i.test(href)) return;
+    e.preventDefault();
+    overlay.classList.remove('hide');
+    setTimeout(()=>{ window.location.href = href; }, 380);
+  });
+})();
+
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(window.gsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+if(window.gsap && !prefersReduced){
+  gsap.utils.toArray('.reveal').forEach(el=>{
+    gsap.fromTo(el, {opacity:0, y:24}, {
+      opacity:1, y:0, duration:0.8, ease:'power2.out',
+      scrollTrigger:{trigger:el, start:'top 85%'}
+    });
+  });
+} else {
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+}
+
+// burger menu
+const burgerBtn=document.getElementById('burgerBtn'),mmenu=document.getElementById('mmenu'),mmenuBg=document.getElementById('mmenuBg'),mmenuClose=document.getElementById('mmenuClose');
+function openM(){mmenu.classList.add('open');mmenuBg.classList.add('open');burgerBtn.classList.add('open');document.body.style.overflow='hidden';}
+function closeM(){mmenu.classList.remove('open');mmenuBg.classList.remove('open');burgerBtn.classList.remove('open');document.body.style.overflow='';}
+burgerBtn.addEventListener('click',()=>mmenu.classList.contains('open')?closeM():openM());
+mmenuBg.addEventListener('click',closeM);
+mmenuClose.addEventListener('click',closeM);
+document.querySelectorAll('.mmenu-inner a').forEach(a=>a.addEventListener('click',closeM));
+
+// ---------------------------------------------------------------------
+// DIAGNOSTIC QUIZ
+// ---------------------------------------------------------------------
+const quizAnswers = {};
+let quizStep = 1;
+const quizTotalSteps = 7; // 6 questions + lead capture
+
+const RESULTS = {
+  CADRE: {
+    tag: 'Ta formule', title: 'CADRE', price: '67 €/mois au lieu de 127 € (offre fondateurs)',
+    desc: "Tu as déjà la volonté, il te manque la structure. CADRE te donne un plan clair et des repères pour avancer seul, sans te disperser.",
+    cta: 'Candidater', action: 'Cadre'
+  },
+  ACCOMPAGNE: {
+    tag: 'Ta formule', title: 'ACCOMPAGNÉ', price: '147 €/mois au lieu de 297 € (offre fondateurs)',
+    desc: "Tu sais démarrer, mais tu lâches quand personne ne te suit. ACCOMPAGNÉ te donne un suivi chaque semaine pour tenir sur la durée. C'est la formule la plus choisie.",
+    cta: 'Candidater', action: 'Accompagné'
+  },
+  IMMERSION: {
+    tag: 'Ta formule', title: 'IMMERSION', price: '297 €/mois au lieu de 597 € (offre fondateurs)',
+    desc: "Tu as besoin d'un changement profond et rapide. IMMERSION, c'est un suivi quasi quotidien, limité à 3 personnes en même temps.",
+    cta: 'Candidater', action: 'Immersion'
+  },
+  EBOOKS: {
+    tag: 'Ta formule', title: 'EBOOKS', price: '',
+    desc: "Pas encore prêt pour un accompagnement ? Commence par poser les bases seul.",
+    list: ["30 Jours pour devenir Inarrêtable", "10 Leçons que la Musculation m'a Apprises", "Le Guide du Jeune Homme Ambitieux"],
+    cta: 'Voir les ebooks', action: 'ebooks'
+  }
+};
+
+function quizShowStep(n){
+  document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));
+  document.querySelector(`.quiz-step[data-step="${n}"]`).classList.add('active');
+  document.getElementById('quizProgressBar').style.width = (n/quizTotalSteps*100)+'%';
+  document.getElementById('quizProgressLabel').textContent = n <= 6 ? `Question ${n} / 6` : 'Dernière étape';
+  document.getElementById('quizBack').style.visibility = n===1 ? 'hidden' : 'visible';
+  document.getElementById('quizNext').style.display = n < quizTotalSteps ? 'inline-flex' : 'none';
+  document.getElementById('quizSubmit').style.display = n === quizTotalSteps ? 'inline-flex' : 'none';
+  document.getElementById('quizErr').style.display = 'none';
+}
+
+document.querySelectorAll('.quiz-opt').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const q = btn.dataset.q;
+    document.querySelectorAll(`.quiz-opt[data-q="${q}"]`).forEach(b=>b.classList.remove('selected'));
+    btn.classList.add('selected');
+    quizAnswers[q] = btn.dataset.v;
+    setTimeout(()=>quizGo(1), 180);
+  });
+});
+
+function quizGo(dir){
+  if(dir > 0){
+    if(quizStep <= 6 && !quizAnswers[quizStep]){
+      document.getElementById('quizErr').style.display = 'block';
+      return;
+    }
+    if(quizStep === 7){ return; }
+  }
+  const next = quizStep + dir;
+  if(next < 1 || next > quizTotalSteps) return;
+  quizStep = next;
+  quizShowStep(quizStep);
+}
+
+function quizComputeResult(){
+  const d = quizAnswers;
+  if(d['6'] === 'D') return 'EBOOKS';
+  const map = {A:1,B:2,C:3};
+  const score = [1,2,3,4,5].reduce((s,i)=> s + (map[d[i]]||0), 0);
+  let scoreTier;
+  if(score <= 8) scoreTier = 0;
+  else if(score <= 12) scoreTier = 1;
+  else scoreTier = 2;
+  let capTier;
+  if(d['6'] === 'A') capTier = 0;
+  else if(d['6'] === 'B') capTier = 1;
+  else capTier = 2;
+  const finalTier = Math.min(scoreTier, capTier);
+  return ['CADRE','ACCOMPAGNE','IMMERSION'][finalTier];
+}
+
+function quizSubmit(){
+  const prenom = document.getElementById('quizPrenom').value.trim();
+  const email = document.getElementById('quizEmail').value.trim();
+  if(!prenom || !email){
+    document.getElementById('quizErr').textContent = 'Merci de renseigner ton prénom et ton email.';
+    document.getElementById('quizErr').style.display = 'block';
+    return;
+  }
+  const resultKey = quizComputeResult();
+  const r = RESULTS[resultKey];
+
+  // envoi du lead vers Formspree (même compte que le formulaire de contact)
+  try{
+    fetch('https://formspree.io/f/xyezygwb', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        _subject: 'Nouveau résultat du test diagnostic',
+        prenom: prenom, email: email, resultat: resultKey,
+        reponses: JSON.stringify(quizAnswers)
+      })
+    });
+  }catch(e){}
+
+  document.getElementById('quizForm').style.display = 'none';
+  const resWrap = document.getElementById('quizResult');
+  resWrap.style.display = 'block';
+
+  let listHtml = '';
+  if(r.list){
+    listHtml = '<ul class="r-list">' + r.list.map(t=>`<li>${t}</li>`).join('') + '</ul>';
+  }
+  const priceHtml = r.price ? `<div class="r-price">${r.price}</div>` : '';
+
+  resWrap.innerHTML = `
+    <div class="r-tag">${r.tag}</div>
+    <h3>${r.title}</h3>
+    ${priceHtml}
+    <p class="r-desc">${r.desc}</p>
+    ${listHtml}
+    <button class="btn btn-ember" id="quizResultCta">${r.cta}</button>
+  `;
+
+  document.getElementById('quizResultCta').addEventListener('click', ()=>{
+    if(r.action === 'ebooks'){ window.location.href = 'ebook.html'; }
+    else { openCandidature(r.action); }
+  });
+}
+
+quizShowStep(1);
+
+// toast
+let toastTimer=null;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.classList.remove('show'), 2400);
+}
+
+// contact form — envoie vers Formspree (voir l'attribut action du formulaire)
+function handleContactSubmit(e){
+  e.preventDefault();
+  const form = document.getElementById('contactForm');
+  const hp = document.getElementById('hp-field');
+  if(hp && hp.value){ return false; } // bot a rempli le champ piège, on ignore silencieusement
+
+  const btn = document.getElementById('contactSubmitBtn');
+  const originalLabel = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(res => {
+    if(res.ok){
+      showToast('Ta demande a bien été envoyée !');
+      form.reset();
+    } else {
+      showToast("Un problème est survenu, réessaie ou écris-moi directement.");
+    }
+  })
+  .catch(() => {
+    showToast("Un problème est survenu, réessaie ou écris-moi directement.");
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.textContent = originalLabel;
+  });
+
+  return false;
+}
+
+// ---------------------------------------------------------------------
+// CART
+// ---------------------------------------------------------------------
+function priceToNumber(str){
+  return parseFloat(String(str).replace(/[^\d,.-]/g,'').replace(',','.')) || 0;
+}
+let cart = [];
+try{
+  const saved = localStorage.getItem('tb_cart');
+  if(saved) cart = JSON.parse(saved);
+}catch(e){ cart = []; }
+
+function saveCart(){
+  try{ localStorage.setItem('tb_cart', JSON.stringify(cart)); }catch(e){}
+}
+function removeFromCart(id){
+  cart = cart.filter(i=>i.id!==id);
+  saveCart();
+  renderCart();
+}
+function renderCart(){
+  const wrap = document.getElementById('cartItems');
+  const count = cart.length;
+  document.getElementById('cartCount').textContent = count;
+  const mobileCount = document.getElementById('cartCountMobile');
+  if(mobileCount) mobileCount.textContent = count;
+
+  if(cart.length===0){
+    wrap.innerHTML = '<p class="cart-empty">Ton panier est vide pour l\'instant.</p>';
+  } else {
+    wrap.innerHTML = cart.map(item=>{
+      return `<div class="cart-item">
+        <div class="cart-item-info">
+          <div class="cart-item-title">${item.title}</div>
+          <div class="cart-item-price">${item.price.toFixed(2).replace('.',',')} €</div>
+          <button class="cart-remove" onclick="removeFromCart('${item.id}')">Retirer</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  const subtotal = cart.reduce((s,i)=>s+i.price,0);
+  document.getElementById('cartSubtotal').textContent = subtotal.toFixed(2).replace('.',',')+' €';
+}
+
+const cartBtn=document.getElementById('cartBtn'),cartBg=document.getElementById('cartBg'),cartDrawer=document.getElementById('cartDrawer'),cartClose=document.getElementById('cartClose');
+function openCart(){ cartDrawer.classList.add('open'); cartBg.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeCart(){ cartDrawer.classList.remove('open'); cartBg.classList.remove('open'); document.body.style.overflow=''; }
+if(cartBtn) cartBtn.addEventListener('click', openCart);
+if(cartBg) cartBg.addEventListener('click', closeCart);
+if(cartClose) cartClose.addEventListener('click', closeCart);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeCart(); });
+
+async function startCheckout(){
+  if(cart.length===0){ showToast('Ton panier est vide.'); return; }
+  const btn = document.getElementById('checkoutBtn');
+  const originalLabel = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Redirection vers le paiement...';
+  try{
+    const res = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ items: cart.map(i=>({id:i.id})) })
+    });
+    const data = await res.json();
+    if(res.ok && data.url){
+      window.location.href = data.url;
+    } else {
+      showToast(data.error || "Le paiement n'a pas pu démarrer, réessaie.");
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+    }
+  }catch(e){
+    showToast("Le paiement n'a pas pu démarrer, réessaie.");
+    btn.disabled = false;
+    btn.textContent = originalLabel;
+  }
+}
+
+renderCart();
+
+// FAQ mini (accordéon)
+document.querySelectorAll('.faq-mini-item').forEach(item=>{
+  const q = item.querySelector('.faq-mini-q');
+  const a = item.querySelector('.faq-mini-a');
+  q.addEventListener('click', ()=>{
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-mini-item.open').forEach(o=>{ o.classList.remove('open'); o.querySelector('.faq-mini-a').style.maxHeight = null; });
+    if(!isOpen){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+  });
+});
+
+// ---------------------------------------------------------------------
+// MODAL FORMULE
+// ---------------------------------------------------------------------
+const plans = {
+  cadre:{eyebrow:'Cadre',title:'Une semaine type',price:'67€/mois',image:'assets/img/cadre.png',
+    desc:`<ul style="margin:0 0 16px 18px;padding:0;">
+      <li style="margin-bottom:10px;">Du lundi au samedi : tu avances seul sur ton plan, avec 3 à 5 axes prioritaires et une action concrète pour chacun.</li>
+      <li style="margin-bottom:10px;">Dimanche soir : je t'envoie ton point de la semaine sur WhatsApp, avec toujours les 3 mêmes questions : ce que tu as réussi, ce qui a bloqué, sur quoi te concentrer ensuite.</li>
+      <li style="margin-bottom:10px;">Après ta réponse : je te renvoie un retour court sous 72h, avec un ajustement si besoin.</li>
+      <li>Pas de réponse au bout de 5 jours ? Je te relance.</li>
+    </ul>
+    <p style="font-weight:700;color:var(--ink);">Pour toi si tu as besoin d'un cadre régulier, pas d'un suivi rapproché.</p>`,
+    fullDesc:`<p style="margin-bottom:26px;">Cadre, c'est la formule pour avancer seul sans partir dans tous les sens. Tu gardes la main sur ton quotidien, et je garde un œil sur ta progression chaque semaine — assez pour te rattraper si tu commences à lâcher, sans jamais prendre le contrôle à ta place.</p>
+    <ul style="margin:0 0 26px 20px;padding:0;">
+      <li style="margin-bottom:16px;">Du lundi au samedi : tu avances seul sur ton plan, avec 3 à 5 axes prioritaires et une action concrète pour chacun.</li>
+      <li style="margin-bottom:16px;">Dimanche soir : je t'envoie ton point de la semaine sur WhatsApp, avec toujours les 3 mêmes questions : ce que tu as réussi, ce qui a bloqué, sur quoi te concentrer ensuite.</li>
+      <li style="margin-bottom:16px;">Après ta réponse : je te renvoie un retour court sous 72h, avec un ajustement si besoin.</li>
+      <li>Pas de réponse au bout de 5 jours ? Je te relance — tu n'es jamais vraiment seul, même si tu avances en autonomie.</li>
+    </ul>
+    <p style="font-weight:700;color:var(--ink);font-size:21px;">Pour toi si tu as besoin d'un cadre régulier, pas d'un suivi rapproché.</p>`,
+    cta:'Cadre',ctaLabel:'Candidater'},
+  accompagne:{eyebrow:'Accompagné',title:'Une semaine type',price:'147€/mois',image:'assets/img/accompagne.png',
+    desc:`<ul style="margin:0 0 16px 18px;padding:0;">
+      <li style="margin-bottom:10px;">Quand tu avances ou que tu bloques : tu m'écris, en message ou en vocal. Je réponds sous 72h maximum.</li>
+      <li style="margin-bottom:10px;">En moyenne, 2 à 3 échanges par semaine, au rythme de ce qui se passe pour toi.</li>
+      <li style="margin-bottom:10px;">Après chaque échange : je mets à jour ton doc de suivi partagé (ce qui est fait, ce qui bloque, prochaine étape). Tu y as accès à tout moment.</li>
+      <li style="margin-bottom:10px;">Pas de nouvelles depuis 4 jours ? Je te relance.</li>
+      <li>Une fois par mois : un appel de 30 minutes pour faire le bilan, ajuster le plan et fixer l'objectif du mois suivant.</li>
+    </ul>
+    <p style="font-weight:700;color:var(--ink);">Pour toi si tu lâches dès que personne ne regarde.</p>`,
+    cta:'Accompagné',ctaLabel:'Candidater'},
+  immersion:{eyebrow:'Immersion',title:'Une semaine type',price:'297€/mois',image:'assets/img/immersion.png',
+    desc:`<ul style="margin:0 0 16px 18px;padding:0;">
+      <li style="margin-bottom:10px;">Chaque jour : tu m'écris autant que tu veux sur ton canal dédié. Je réponds sous 72h maximum.</li>
+      <li style="margin-bottom:10px;">Ton plan est détaillé semaine par semaine dans ton espace Notion, avec un journal mis à jour au fil de nos échanges.</li>
+      <li style="margin-bottom:10px;">À mi-mois : un bilan écrit, puis un appel de 30 minutes pour ajuster ce qui ne fonctionne pas.</li>
+      <li>En fin de mois : un bilan écrit, puis un appel de 30 minutes pour construire le mois suivant semaine par semaine.</li>
+    </ul>
+    <p style="font-weight:700;color:var(--ink);">Pour toi si tu veux quelqu'un à tes côtés tous les jours. 3 places seulement.</p>`,
+    cta:'Immersion',ctaLabel:'Candidater'}
+};
+function openPlan(id){
+  openFullPlan(id); return;
+  const p = plans[id]; if(!p) return;
+  document.getElementById('planModalEyebrow').textContent = p.eyebrow;
+  document.getElementById('planModalTitle').textContent = p.title;
+  document.getElementById('planModalPrice').textContent = p.price;
+  document.getElementById('planModalDesc').innerHTML = p.desc;
+  document.getElementById('planModalImg').src = p.image;
+  document.getElementById('planModalImg').alt = p.title;
+  const cta = document.getElementById('planModalCta');
+  cta.href = p.cta;
+  cta.textContent = p.ctaLabel;
+  const ov = document.getElementById('planModal');
+  ov.classList.add('active');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>ov.classList.add('in')));
+  document.body.style.overflow = 'hidden';
+}
+function closePlan(){
+  const ov = document.getElementById('planModal');
+  ov.classList.remove('in');
+  setTimeout(()=>ov.classList.remove('active'),220);
+  document.body.style.overflow = '';
+}
+document.getElementById('planModal').addEventListener('click', e=>{ if(e.target===e.currentTarget) closePlan(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closePlan(); });
+
+// ---------------------------------------------------------------------
+// MODAL PLEIN ECRAN (test)
+// ---------------------------------------------------------------------
+function openFullPlan(id){
+  const p = plans[id]; if(!p) return;
+  document.getElementById('fullModalEyebrow').textContent = p.eyebrow;
+  document.getElementById('fullModalTitle').textContent = p.title;
+  document.getElementById('fullModalPrice').textContent = p.price;
+  document.getElementById('fullModalDesc').innerHTML = p.fullDesc || p.desc;
+  document.getElementById('fullModalImg').src = p.image;
+  document.getElementById('fullModalImg').alt = p.title;
+  const cta = document.getElementById('fullModalCta');
+  cta.href = '#';
+  cta.textContent = p.ctaLabel;
+  cta.onclick = function(ev){ ev.preventDefault(); closeFullPlan(); openCandidature(p.cta); };
+  const ov = document.getElementById('fullModal');
+  ov.classList.add('active');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>ov.classList.add('in')));
+  ov.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+function closeFullPlan(){
+  const ov = document.getElementById('fullModal');
+  ov.classList.remove('in');
+  setTimeout(()=>ov.classList.remove('active'),250);
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeFullPlan(); });
+
+// ---------------------------------------------------------------------
+// MODAL CANDIDATURE
+// ---------------------------------------------------------------------
+const candSteps = Array.from(document.querySelectorAll('#candModal .cand-step'));
+let candCurrent = 0;
+
+function openCandidature(formule){
+  document.getElementById('candFormuleField').value = formule || 'Non précisée';
+  const modal = document.getElementById('candModal');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  modal.scrollTop = 0;
+  // reset le formulaire à chaque ouverture
+  candCurrent = 0;
+  candSteps.forEach((s,i)=>s.classList.toggle('active', i===0));
+  document.getElementById('candForm').style.display = '';
+  document.getElementById('candDoneScreen').style.display = 'none';
+  document.querySelector('#candModal .cand-progress-wrap').style.display = '';
+  candUpdateProgress();
+}
+function closeCandidature(){
+  document.getElementById('candModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('candModal').addEventListener('click', e=>{ if(e.target===e.currentTarget) closeCandidature(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && document.getElementById('candModal').classList.contains('open')) closeCandidature(); });
+
+function candUpdateProgress(){
+  const pct = ((candCurrent+1)/candSteps.length)*100;
+  document.getElementById('candProgressBar').style.width = pct + '%';
+  document.getElementById('candProgressLabel').textContent = 'Question ' + (candCurrent+1) + ' / ' + candSteps.length;
+  document.getElementById('candPrevBtn').style.visibility = candCurrent === 0 ? 'hidden' : 'visible';
+  const isLast = candCurrent === candSteps.length - 1;
+  document.getElementById('candNextBtn').style.display = isLast ? 'none' : 'inline-flex';
+  document.getElementById('candSubmitBtn').style.display = isLast ? 'inline-flex' : 'none';
+}
+
+function candStepValid(){
+  const step = candSteps[candCurrent];
+  document.getElementById('candErrMsg').style.display = 'none';
+  const choiceField = step.querySelector('[data-field]');
+  if(choiceField){
+    const hidden = step.querySelector('input[type=hidden]');
+    if(!hidden.value){ document.getElementById('candErrMsg').style.display='block'; return false; }
+    return true;
+  }
+  const input = step.querySelector('input[required], textarea[required]');
+  if(input && !input.value.trim()){ document.getElementById('candErrMsg').style.display='block'; return false; }
+  return true;
+}
+
+function candGoStep(dir){
+  if(dir > 0 && !candStepValid()) return;
+  const next = candCurrent + dir;
+  if(next < 0 || next >= candSteps.length) return;
+  candSteps[candCurrent].classList.remove('active');
+  candCurrent = next;
+  candSteps[candCurrent].classList.add('active');
+  candUpdateProgress();
+  document.getElementById('candModal').scrollTop = 0;
+  const firstField = candSteps[candCurrent].querySelector('input[type=text], input[type=email], textarea');
+  if(firstField) firstField.focus();
+}
+
+document.querySelectorAll('#candModal [data-field]').forEach(group=>{
+  const hidden = document.getElementById('cq' + group.closest('.cand-step').dataset.q);
+  group.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      group.querySelectorAll('button').forEach(b=>b.classList.remove('selected'));
+      btn.classList.add('selected');
+      hidden.value = btn.textContent.trim();
+    });
+  });
+});
+
+document.getElementById('candForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  if(!candStepValid()) return;
+  const hp = document.getElementById('cand-hp-field');
+  if(hp && hp.value) return;
+  const btn = document.getElementById('candSubmitBtn');
+  const original = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Envoi en cours...';
+  fetch('https://formspree.io/f/xyezygwb', {
+    method:'POST',
+    body:new FormData(this),
+    headers:{'Accept':'application/json'}
+  }).then(res=>{
+    if(res.ok){
+      document.getElementById('candForm').style.display='none';
+      document.querySelector('#candModal .cand-progress-wrap').style.display='none';
+      document.getElementById('candDoneScreen').style.display='block';
+    } else {
+      document.getElementById('candErrMsg').textContent = "Un problème est survenu, réessaie ou écris directement à Thibault.";
+      document.getElementById('candErrMsg').style.display='block';
+      btn.disabled=false; btn.textContent=original;
+    }
+  }).catch(()=>{
+    document.getElementById('candErrMsg').textContent = "Un problème est survenu, réessaie ou écris directement à Thibault.";
+    document.getElementById('candErrMsg').style.display='block';
+    btn.disabled=false; btn.textContent=original;
+  });
+});
+
+document.querySelectorAll('#candModal input[type=text], #candModal input[type=email]').forEach(inp=>{
+  inp.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){ e.preventDefault(); candGoStep(1); }
+  });
+});
+</script>
+
+</body>
+</html>
