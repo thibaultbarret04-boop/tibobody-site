@@ -8,9 +8,10 @@
 //   GET  /api/telechargements?session_id=cs_… | ?t=…   -> liens de téléchargement
 //   GET  /api/fichier/05?exp=…&sig=…    -> le PDF (lien signé, valable 1 h)
 //
-// Les PDF sont dans le dossier /ebooks-files/ du site, mais inaccessibles
-// directement (bloqués par functions/ebooks-files/[[path]].js) : seuls les
-// liens signés par ce fichier permettent de les télécharger.
+// Les PDF sont dans un dossier au nom secret (DOSSIER_PRIVE ci-dessous),
+// impossible à deviner : le backend lit le fichier et le transmet à l'acheteur
+// sans jamais révéler ce nom. Seuls les liens signés permettent de télécharger.
+// ⚠ Ne jamais écrire ce nom de dossier sur le site, ni le partager.
 //
 // La clé secrète Stripe n'est JAMAIS écrite ici : elle est lue dans la
 // variable d'environnement STRIPE_SECRET_KEY (réglages Cloudflare Pages).
@@ -46,7 +47,10 @@ const CONTENU = {
   '08': ['01', '04'], // Pack Accomplissement
 };
 
-// Fichiers PDF à placer dans le dossier /ebooks-files/ du site (noms exacts)
+// Dossier des PDF, à la racine du site (nom secret, ne pas le modifier sans renommer le dossier)
+const DOSSIER_PRIVE = 'ebooks-a9f0aca74470de24f4c9627367dabf01';
+
+// Fichiers PDF à placer dans ce dossier (noms exacts)
 const FICHIERS = {
   '01': { fichier: 'trouver-sa-passion.pdf',            titre: 'Trouver sa passion' },
   '02': { fichier: 'art-de-positiver.pdf',              titre: "L'art de positiver" },
@@ -278,7 +282,7 @@ async function getFichier(request, env, id) {
   if (!egal(sig, await signer(env, `fichier|${id}|${exp}`))) return new Response('Lien invalide', { status: 403 });
   if (!env.ASSETS) return new Response('Stockage indisponible', { status: 500 });
 
-  const fichier = await env.ASSETS.fetch(new Request(new URL(`/ebooks-files/${FICHIERS[id].fichier}`, url.origin)));
+  const fichier = await env.ASSETS.fetch(new Request(new URL(`/${DOSSIER_PRIVE}/${FICHIERS[id].fichier}`, url.origin)));
   if (!fichier.ok) return new Response('Fichier introuvable', { status: 404 });
   return new Response(fichier.body, {
     status: 200,
