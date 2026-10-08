@@ -20,6 +20,10 @@
   a{display:inline-flex;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.03em;padding:14px 28px;border:2px solid #fff;color:#fff;text-decoration:none;}
   a:hover{background:#fff;color:#111010;}
   [hidden]{display:none !important;}
+  .dl{display:flex;flex-direction:column;gap:12px;width:100%;max-width:440px;margin:0 0 30px;}
+  .dl a{justify-content:center;background:#8C1B16;border-color:#8C1B16;text-transform:none;letter-spacing:0;font-size:15px;padding:15px 22px;}
+  .dl a:hover{background:#6B1310;border-color:#6B1310;color:#fff;}
+  .dl-wait{color:#A8A49B;font-size:14px;margin:0 0 30px;}
 </style>
 </head>
 <body>
@@ -27,7 +31,9 @@
   <h1>Merci !</h1>
 
   <!-- Achat d'e-books -->
-  <p id="msgEbook">Ton paiement a bien été reçu. Un email de confirmation avec tes e-books va t'être envoyé sous peu — pense à vérifier tes spams si tu ne le vois pas passer.</p>
+  <p id="msgEbook">Ton paiement a bien été reçu. Tes e-books sont prêts : télécharge-les ci-dessous. Tu reçois aussi ta facture par email avec un lien pour les retrouver pendant 1 an — pense à vérifier tes spams.</p>
+  <p id="dlWait" class="dl-wait">Préparation de tes téléchargements…</p>
+  <div id="dlList" class="dl" hidden></div>
 
   <!-- Abonnement à une formule -->
   <p id="msgFormule" hidden>Ton abonnement est confirmé, bienvenue dans l'accompagnement. Je te contacte sous 48 h à l'adresse email utilisée pour le paiement, pour fixer ton appel de départ.</p>
@@ -40,13 +46,45 @@
   const type = new URLSearchParams(window.location.search).get('type');
   if(type === 'formule'){
     document.getElementById('msgEbook').hidden = true;
+    document.getElementById('dlWait').hidden = true;
     document.getElementById('msgFormule').hidden = false;
     document.getElementById('msgFormuleNote').hidden = false;
   } else {
     // achat d'e-books : on vide le panier
     try{ localStorage.removeItem('tb_cart'); }catch(e){}
+    chargerTelechargements();
   }
 })();
+
+async function chargerTelechargements(){
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id'), jeton = params.get('t');
+  const wait = document.getElementById('dlWait'), list = document.getElementById('dlList');
+  if(!sessionId && !jeton){ wait.hidden = true; return; }
+  const q = sessionId ? 'session_id=' + encodeURIComponent(sessionId) : 't=' + encodeURIComponent(jeton);
+  try{
+    let res, data;
+    // juste après le paiement, Stripe peut mettre quelques secondes à confirmer : on réessaie
+    for(let essai = 0; essai < 4; essai++){
+      res = await fetch('/api/telechargements?' + q, { cache: 'no-store' });
+      data = await res.json().catch(()=>({}));
+      if(res.status !== 402) break;
+      await new Promise(r => setTimeout(r, 2500));
+    }
+    if(!res.ok || !data.ebooks){ throw new Error(data.error || ''); }
+    list.innerHTML = '';
+    data.ebooks.forEach(e => {
+      const a = document.createElement('a');
+      a.href = e.url;
+      a.textContent = '⬇ ' + e.titre;
+      a.setAttribute('download', '');
+      list.appendChild(a);
+    });
+    wait.hidden = true; list.hidden = false;
+  }catch(err){
+    wait.textContent = (err.message ? err.message + ' ' : '') + "Si le problème persiste, écris à contact@tibobody.fr avec l'email utilisé pour l'achat.";
+  }
+}
 </script>
 </body>
 </html>
