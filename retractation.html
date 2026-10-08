@@ -73,7 +73,7 @@
 
   <form class="form" id="retractForm" action="https://formspree.io/f/xnpjdajy" method="POST">
     <input type="hidden" name="_subject" value="Demande de rétractation">
-    <input type="text" name="_gotcha" id="hp" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
+    <input type="text" name="_gotcha" id="hp" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
     <p style="margin:0;color:#111010;font-weight:600;">À l'attention de Tibobody — je vous notifie par la présente ma rétractation du contrat portant sur la prestation de services ci-dessous :</p>
     <div>
       <label for="formule">Formule souscrite</label>
@@ -167,7 +167,6 @@
   const form = document.getElementById('retractForm');
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    if(document.getElementById('hp').value) return;
     const btn = document.getElementById('submitBtn');
     const err = document.getElementById('formErr');
     err.style.display = 'none';

@@ -534,7 +534,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     <h2>Une question ?</h2>
     <p class="lede">Pour un e-book, une info avant d'acheter, ou toute autre question. Réponse sous 24h. Tu peux aussi m'écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
     <form class="form-grid" id="contactForm" action="https://formspree.io/f/xnpjdajy" method="POST" onsubmit="return handleContactSubmit(event);">
-      <input type="text" name="_gotcha" id="hp-field" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
+      <input type="text" name="_gotcha" id="hp-field" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
       <input type="hidden" name="_subject" value="Nouveau message — formulaire de contact tibobody.fr">
       <div><label for="fname">Prénom</label><input id="fname" name="prenom" type="text" required></div>
       <div><label for="femail">Email</label><input id="femail" name="email" type="email" required></div>
@@ -724,8 +724,6 @@ function showToast(msg){
 function handleContactSubmit(e){
   e.preventDefault();
   const form = document.getElementById('contactForm');
-  const hp = document.getElementById('hp-field');
-  if(hp && hp.value){ return false; } // bot filled the hidden field, silently drop
 
   const btn = document.getElementById('contactSubmitBtn');
   const originalLabel = btn.textContent;

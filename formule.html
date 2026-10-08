@@ -239,6 +239,10 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .plan-badges{position:absolute;top:-15px;left:50%;transform:translateX(-50%);display:flex;gap:8px;white-space:nowrap;}
 .plan-badge{background:var(--ember);color:#fff;font-size:11.5px;font-weight:700;padding:7px 16px;}
 .plan-places{background:#8a8a8e;color:#fff;font-size:11.5px;font-weight:700;padding:7px 16px;}
+.plan-places.is-full{background:var(--ink);}
+.plan-buy:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.plan-question{display:block;text-align:center;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--steel);text-decoration:underline;}
+.plan-question:hover{color:var(--ember-dim);}
 .plan-head{padding:30px 26px 22px;border-bottom:1px solid var(--line);}
 .plan-name{font-size:26px;margin-bottom:14px;}
 .plan-price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
@@ -330,63 +334,6 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 @keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
 @keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
 @media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
-
-/* MODAL CANDIDATURE */
-.cand-modal{position:fixed;inset:0;background:var(--ink);display:none;z-index:300;overflow-y:auto;}
-.cand-modal.open{display:block;}
-.cand-top{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;max-width:760px;margin:0 auto;}
-.cand-logo{font-family:var(--display);font-size:24px;letter-spacing:.02em;color:var(--paper);}
-.cand-logo em{font-style:normal;color:var(--ember);}
-.cand-close{font-size:13px;font-weight:600;color:var(--steel-on-dark);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:var(--sans);}
-.cand-close:hover{color:var(--paper);}
-.cand-progress-wrap{max-width:760px;margin:0 auto;padding:0 28px;}
-.cand-progress-track{height:3px;background:var(--line-dark);width:100%;position:relative;overflow:hidden;}
-.cand-progress-bar{height:100%;background:var(--ember);width:0%;transition:width .35s ease;}
-.cand-progress-label{font-size:12px;color:var(--steel-on-dark);margin-top:10px;letter-spacing:.03em;text-transform:uppercase;font-weight:700;}
-.cand-main{max-width:760px;margin:0 auto;padding:50px 28px 100px;min-height:60vh;display:flex;flex-direction:column;justify-content:center;}
-.cand-step{display:none;animation:candFade .4s ease;}
-.cand-step.active{display:block;}
-@keyframes candFade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-.cand-step .cand-tag{color:var(--ember);font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;display:block;}
-.cand-step h2{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.95;color:var(--paper);font-size:clamp(26px,4vw,38px);margin-bottom:10px;}
-.cand-step p.cand-hint{color:var(--steel-on-dark);font-size:14.5px;margin-bottom:26px;max-width:560px;}
-.cand-modal input[type=text], .cand-modal input[type=email], .cand-modal textarea{
-  width:100%;background:transparent;border:none;border-bottom:2px solid var(--line-dark);
-  color:var(--paper);font-family:var(--sans);font-size:19px;padding:12px 2px;outline:none;
-  transition:border-color .2s ease;
-}
-.cand-modal input[type=text]:focus, .cand-modal input[type=email]:focus, .cand-modal textarea:focus{border-color:var(--ember);}
-.cand-modal textarea{resize:vertical;min-height:90px;line-height:1.5;}
-.cand-modal ::placeholder{color:#8a8884;}
-.cand-choice-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
-.cand-choice-pill{border:2px solid var(--line-dark);padding:13px 20px;font-size:14.5px;font-weight:600;cursor:pointer;
-  background:none;color:var(--paper);transition:.2s ease;font-family:var(--sans);}
-.cand-choice-pill:hover{border-color:var(--steel-on-dark);}
-.cand-choice-pill.selected{background:var(--ember);border-color:var(--ember);color:#fff;}
-.cand-scale-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
-.cand-scale-pill{width:44px;height:44px;border:2px solid var(--line-dark);background:none;color:var(--paper);
-  font-family:var(--sans);font-weight:700;font-size:15px;cursor:pointer;transition:.2s ease;}
-.cand-scale-pill:hover{border-color:var(--steel-on-dark);}
-.cand-scale-pill.selected{background:var(--ember);border-color:var(--ember);color:#fff;}
-.cand-scale-labels{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--steel-on-dark);}
-.cand-nav-row{display:flex;align-items:center;gap:16px;margin-top:34px;}
-.cand-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
-  padding:15px 28px;border:2px solid var(--ember);cursor:pointer;background:var(--ember);color:#fff;transition:.15s ease;}
-.cand-btn:hover{background:var(--ember-dim);border-color:var(--ember-dim);transform:translateY(-2px);}
-.cand-btn:disabled{opacity:.35;cursor:not-allowed;transform:none;}
-.cand-btn-ghost{background:none;border-color:var(--line-dark);color:var(--steel-on-dark);}
-.cand-btn-ghost:hover{border-color:var(--steel-on-dark);color:var(--paper);background:none;transform:none;}
-.cand-err{color:#e8836f;font-size:13px;margin-top:10px;display:none;}
-.cand-done-screen{text-align:center;padding:60px 0;}
-.cand-done-check{width:64px;height:64px;border-radius:50%;background:var(--ember);display:flex;align-items:center;justify-content:center;
-  margin:0 auto 24px;font-size:30px;font-weight:900;color:#fff;}
-.cand-done-screen h2{font-family:var(--display);color:var(--paper);font-size:clamp(28px,5vw,40px);margin-bottom:14px;text-transform:uppercase;}
-.cand-done-screen p{color:var(--steel-on-dark);max-width:460px;margin:0 auto;font-size:15px;}
-.cand-done-screen .cand-btn{margin-top:30px;}
-@media(max-width:600px){
-  .cand-main{padding:36px 22px 80px;}
-  .cand-choice-pill{flex:1 1 auto;text-align:center;}
-}
 
 /* FAQ courte */
 .faq-mini{border-top:1px solid var(--line);}
@@ -550,7 +497,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         <div class="quiz-nav">
           <button type="button" class="quiz-back" id="quizBack" onclick="quizGo(-1)">← Précédent</button>
           <button type="button" class="btn btn-ember" id="quizNext" onclick="quizGo(1)">Suivant →</button>
-          <button type="button" class="btn btn-ember" id="quizSubmit" style="display:none;" onclick="quizSubmit()">Voir mon résultat</button>
+          <button type="button" class="btn btn-ember" id="quizSubmit" style="display:none;" onclick="quizSend()">Voir mon résultat</button>
         </div>
       </form>
 
@@ -667,7 +614,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 
     <div class="plan-grid reveal">
       <div class="plan">
-        <div class="plan-badges"><span class="plan-places">8 places restantes</span></div>
+        <div class="plan-badges"><span class="plan-places" data-places="cadre" hidden></span></div>
         <div class="plan-head">
           <div class="plan-name">Cadre</div>
           <div class="plan-price-row"><span class="plan-old-price">127€</span><div class="plan-price">67€<span>/mois</span></div></div>
@@ -677,11 +624,11 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
           <li>Plan d'action personnalisé</li>
           <li>Suivi écrit hebdomadaire</li>
         </ul></div>
-        <div class="plan-foot"><button type="button" class="btn btn-line btn-block" onclick="openCandidature('Cadre')">Candidater</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('cadre')">En savoir plus</button></div>
+        <div class="plan-foot"><button type="button" class="btn btn-line btn-block plan-buy" data-formule="cadre" data-label="Commencer maintenant" onclick="buyFormule('cadre', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('cadre')">En savoir plus</button><a href="#contact" class="plan-question">Une question avant de te lancer ?</a></div>
         <div class="founder-mention">Offre fondateurs : places limitées, prix garanti 3 mois puis tarif normal. En échange, un témoignage sur tes résultats.</div>
       </div>
       <div class="plan feat">
-        <div class="plan-badges"><span class="plan-badge">Recommandé</span><span class="plan-places">6 places restantes</span></div>
+        <div class="plan-badges"><span class="plan-badge">Recommandé</span><span class="plan-places" data-places="accompagne" hidden></span></div>
         <div class="plan-head">
           <div class="plan-name">Accompagné</div>
           <div class="plan-price-row"><span class="plan-old-price">297€</span><div class="plan-price">147€<span>/mois</span></div></div>
@@ -693,11 +640,11 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
           <li>1 appel de suivi mensuel</li>
           <li>Accès à tous les e-books</li>
         </ul></div>
-        <div class="plan-foot"><button type="button" class="btn btn-ember btn-block" onclick="openCandidature('Accompagné')">Candidater</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('accompagne')">En savoir plus</button></div>
+        <div class="plan-foot"><button type="button" class="btn btn-ember btn-block plan-buy" data-formule="accompagne" data-label="Commencer maintenant" onclick="buyFormule('accompagne', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('accompagne')">En savoir plus</button><a href="#contact" class="plan-question">Une question avant de te lancer ?</a></div>
         <div class="founder-mention">Offre fondateurs : places limitées, prix garanti 3 mois puis tarif normal. En échange, un témoignage sur tes résultats.</div>
       </div>
       <div class="plan">
-        <div class="plan-badges"><span class="plan-places">3 places restantes</span></div>
+        <div class="plan-badges"><span class="plan-places" data-places="immersion" hidden></span></div>
         <div class="plan-head">
           <div class="plan-name">Immersion</div>
           <div class="plan-price-row"><span class="plan-old-price">597€</span><div class="plan-price">297€<span>/mois</span></div></div>
@@ -710,7 +657,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
           <li>Places limitées à 3 personnes en simultané</li>
           <li>Accès à tous les e-books</li>
         </ul></div>
-        <div class="plan-foot"><button type="button" class="btn btn-line btn-block" onclick="openCandidature('Immersion')">Candidater</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('immersion')">En savoir plus</button></div>
+        <div class="plan-foot"><button type="button" class="btn btn-line btn-block plan-buy" data-formule="immersion" data-label="Commencer maintenant" onclick="buyFormule('immersion', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('immersion')">En savoir plus</button><a href="#contact" class="plan-question">Une question avant de te lancer ?</a></div>
         <div class="founder-mention">Offre fondateurs : places limitées, prix garanti 3 mois puis tarif normal. En échange, un témoignage sur tes résultats.</div>
       </div>
     </div>
@@ -771,9 +718,9 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         </div>
         <div class="pc-row">
           <div class="pc-c">Places</div>
-          <div class="pc-c">8 max</div>
-          <div class="pc-c">6 max</div>
-          <div class="pc-c">3 max</div>
+          <div class="pc-c" data-places-max="cadre">8 max</div>
+          <div class="pc-c" data-places-max="accompagne">6 max</div>
+          <div class="pc-c" data-places-max="immersion">3 max</div>
         </div>
       </div>
     </div>
@@ -806,7 +753,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       </div>
       <div class="faq-mini-item">
         <button class="faq-mini-q">Je peux changer de formule en cours de route ?<span class="sign">+</span></button>
-        <div class="faq-mini-a"><p>Oui, à tout moment. je te conseille Cadre au début, si tu as un petit budget.</p></div>
+        <div class="faq-mini-a"><p>Oui, à tout moment. Beaucoup commencent par Cadre et passent à Accompagné une fois que le besoin d'un suivi plus rapproché se fait sentir.</p></div>
       </div>
     
       <div class="faq-mini-item">
@@ -839,7 +786,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     <h2>Une question avant de choisir ?</h2>
     <p class="lede">Sur une formule, un délai, ou autre chose. Réponse sous 24h. Tu peux aussi m'écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
     <form class="form-grid" id="contactForm" action="https://formspree.io/f/xnpjdajy" method="POST" onsubmit="return handleContactSubmit(event);">
-      <input type="text" name="_gotcha" id="hp-field" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
+      <input type="text" name="_gotcha" id="hp-field" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
       <input type="hidden" name="_subject" value="Nouveau message — page formules tibobody.fr">
       <div><label for="fname">Prénom</label><input id="fname" name="prenom" type="text" required></div>
       <div><label for="femail">Email</label><input id="femail" name="email" type="email" required></div>
@@ -910,197 +857,6 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       <a href="#" class="btn btn-ember btn-block modal-full-cta" id="fullModalCta">En savoir plus</a>
     </div>
   </div>
-</div>
-
-<!-- MODAL CANDIDATURE -->
-<div class="cand-modal" id="candModal">
-  <div class="cand-top">
-    <span class="cand-logo">TIBO<em>BODY</em></span>
-    <button type="button" class="cand-close" onclick="closeCandidature()">✕ Fermer</button>
-  </div>
-  <div class="cand-progress-wrap">
-    <div class="cand-progress-track"><div class="cand-progress-bar" id="candProgressBar"></div></div>
-    <div class="cand-progress-label" id="candProgressLabel">Question 1 / 21</div>
-  </div>
-  <main class="cand-main">
-    <form id="candForm">
-      <input type="hidden" name="_subject" value="Nouvelle candidature coaching">
-      <input type="hidden" name="formule" id="candFormuleField" value="Non précisée">
-      <input type="text" name="_gotcha" id="cand-hp-field" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
-
-      <div class="cand-step active" data-q="1">
-        <span class="cand-tag">Identité</span>
-        <h2>Quel est ton nom / prénom ?</h2>
-        <input type="text" name="nom" id="cq1" required placeholder="Ton nom et prénom">
-      </div>
-
-      <div class="cand-step" data-q="2">
-        <span class="cand-tag">Identité</span>
-        <h2>Sur quelle adresse email peut-on te répondre ?</h2>
-        <input type="email" name="email" id="cq2" required placeholder="ton@email.com">
-      </div>
-
-      <div class="cand-step" data-q="3">
-        <span class="cand-tag">Objectif</span>
-        <h2>Cet accompagnement, tu le veux avant tout pour :</h2>
-        <div class="cand-choice-row" data-field="objectif">
-          <button type="button" class="cand-choice-pill">Ta vie professionnelle</button>
-          <button type="button" class="cand-choice-pill">Ta vie personnelle</button>
-          <button type="button" class="cand-choice-pill">Les deux à parts égales</button>
-        </div>
-        <input type="hidden" name="objectif" id="cq3">
-      </div>
-
-      <div class="cand-step" data-q="4">
-        <span class="cand-tag">Situation</span>
-        <h2>Décris ta situation actuelle en quelques phrases</h2>
-        <p class="cand-hint">Travail / études, vie perso, où t'en es aujourd'hui.</p>
-        <textarea name="situation" id="cq4" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="5">
-        <span class="cand-tag">Situation</span>
-        <h2>Décris ton contexte concret</h2>
-        <p class="cand-hint">Situation familiale, financière, professionnelle — ça m'aide à proposer un plan réaliste pour toi, pas un plan générique.</p>
-        <textarea name="contexte" id="cq5" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="6">
-        <span class="cand-tag">Satisfaction</span>
-        <h2>Sur une échelle de 1 à 10, à quel point es-tu satisfait de ta vie actuelle ?</h2>
-        <div class="cand-scale-row" data-field="satisfaction">
-          <button type="button" class="cand-scale-pill">1</button><button type="button" class="cand-scale-pill">2</button>
-          <button type="button" class="cand-scale-pill">3</button><button type="button" class="cand-scale-pill">4</button>
-          <button type="button" class="cand-scale-pill">5</button><button type="button" class="cand-scale-pill">6</button>
-          <button type="button" class="cand-scale-pill">7</button><button type="button" class="cand-scale-pill">8</button>
-          <button type="button" class="cand-scale-pill">9</button><button type="button" class="cand-scale-pill">10</button>
-        </div>
-        <div class="cand-scale-labels"><span>Pas du tout</span><span>Très satisfait</span></div>
-        <input type="hidden" name="satisfaction" id="cq6">
-      </div>
-
-      <div class="cand-step" data-q="7">
-        <span class="cand-tag">Frustrations</span>
-        <h2>Qu'est-ce qui te frustre le plus en ce moment ?</h2>
-        <textarea name="frustration" id="cq7" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="8">
-        <span class="cand-tag">Vision</span>
-        <h2>Si dans 6 mois ta vie avait changé pour le mieux, à quoi ça ressemblerait concrètement ?</h2>
-        <textarea name="vision_6mois" id="cq8" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="9">
-        <span class="cand-tag">Vision</span>
-        <h2>Quel est LE changement qui aurait le plus d'impact si tu le réussissais ?</h2>
-        <textarea name="changement_impact" id="cq9" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="10">
-        <span class="cand-tag">Motivation</span>
-        <h2>Pourquoi maintenant ?</h2>
-        <p class="cand-hint">Qu'est-ce qui te pousse à agir aujourd'hui plutôt qu'avant ?</p>
-        <textarea name="pourquoi_maintenant" id="cq10" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="11">
-        <span class="cand-tag">Historique</span>
-        <h2>Qu'est-ce que tu as déjà essayé pour régler ça ?</h2>
-        <p class="cand-hint">Qu'est-ce qui a marché, qu'est-ce qui n'a pas marché ?</p>
-        <textarea name="deja_essaye" id="cq11" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="12">
-        <span class="cand-tag">Historique</span>
-        <h2>Qu'est-ce qui t'a fait abandonner ou stagner les fois précédentes ?</h2>
-        <textarea name="raisons_abandon" id="cq12" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="13">
-        <span class="cand-tag">Entourage</span>
-        <h2>Ton entourage (famille, amis, travail) te soutient dans ce changement, ou plutôt te freine ?</h2>
-        <textarea name="entourage" id="cq13" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="14">
-        <span class="cand-tag">Freins</span>
-        <h2>Qu'est-ce qui te fait le plus peur à l'idée de te lancer dans cet accompagnement ?</h2>
-        <textarea name="peur" id="cq14" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="15">
-        <span class="cand-tag">Fonctionnement</span>
-        <h2>Comment tu apprends / progresses le mieux ?</h2>
-        <div class="cand-choice-row" data-field="apprentissage">
-          <button type="button" class="cand-choice-pill">Par la discussion</button>
-          <button type="button" class="cand-choice-pill">Par l'écrit</button>
-          <button type="button" class="cand-choice-pill">Par l'action directe</button>
-        </div>
-        <input type="hidden" name="apprentissage" id="cq15">
-      </div>
-
-      <div class="cand-step" data-q="16">
-        <span class="cand-tag">Fonctionnement</span>
-        <h2>À quel moment de la journée es-tu le plus réceptif pour des messages / échanges ?</h2>
-        <input type="text" name="moment_journee" id="cq16" required placeholder="Ta réponse">
-      </div>
-
-      <div class="cand-step" data-q="17">
-        <span class="cand-tag">Historique</span>
-        <h2>As-tu déjà eu un coach, mentor, ou accompagnement structuré avant ?</h2>
-        <p class="cand-hint">Comment ça s'est passé ?</p>
-        <textarea name="coach_avant" id="cq17" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="18">
-        <span class="cand-tag">Engagement</span>
-        <h2>Combien de temps par semaine peux-tu réellement consacrer à appliquer ce qu'on va mettre en place ?</h2>
-        <input type="text" name="temps_semaine" id="cq18" required placeholder="Ta réponse">
-      </div>
-
-      <div class="cand-step" data-q="19">
-        <span class="cand-tag">Engagement</span>
-        <h2>Qu'est-ce qui pourrait te faire lâcher en cours de route, honnêtement ?</h2>
-        <textarea name="risque_abandon" id="cq19" required placeholder="Ta réponse"></textarea>
-      </div>
-
-      <div class="cand-step" data-q="20">
-        <span class="cand-tag">Engagement</span>
-        <h2>Sur une échelle de 1 à 10, à quel point es-tu prêt à sortir de ta zone de confort pour ce changement ?</h2>
-        <div class="cand-scale-row" data-field="zone_confort">
-          <button type="button" class="cand-scale-pill">1</button><button type="button" class="cand-scale-pill">2</button>
-          <button type="button" class="cand-scale-pill">3</button><button type="button" class="cand-scale-pill">4</button>
-          <button type="button" class="cand-scale-pill">5</button><button type="button" class="cand-scale-pill">6</button>
-          <button type="button" class="cand-scale-pill">7</button><button type="button" class="cand-scale-pill">8</button>
-          <button type="button" class="cand-scale-pill">9</button><button type="button" class="cand-scale-pill">10</button>
-        </div>
-        <div class="cand-scale-labels"><span>Jamais de la vie</span><span>Je veux absolument en sortir</span></div>
-        <input type="hidden" name="zone_confort" id="cq20">
-      </div>
-
-      <div class="cand-step" data-q="21">
-        <span class="cand-tag">Pour finir</span>
-        <h2>Y a-t-il quelque chose d'important sur ta situation qu'on ne t'a pas demandé et que tu veux que je sache ?</h2>
-        <textarea name="autre_chose" id="cq21" placeholder="Ta réponse (facultatif)"></textarea>
-      </div>
-
-      <div class="cand-err" id="candErrMsg">Merci de répondre avant de continuer.</div>
-
-      <div class="cand-nav-row">
-        <button type="button" class="cand-btn cand-btn-ghost" id="candPrevBtn" onclick="candGoStep(-1)">← Précédent</button>
-        <button type="button" class="cand-btn" id="candNextBtn" onclick="candGoStep(1)">Suivant →</button>
-        <button type="submit" class="cand-btn" id="candSubmitBtn" style="display:none;">Envoyer ma candidature</button>
-      </div>
-    </form>
-
-    <div class="cand-done-screen" id="candDoneScreen" style="display:none;">
-      <div class="cand-done-check">✓</div>
-      <h2>Candidature envoyée</h2>
-      <p>Thibault va étudier ta situation et te recontacte sous 24 à 48h pour la suite. Merci pour ta franchise dans les réponses.</p>
-      <button type="button" class="cand-btn" onclick="closeCandidature()">Retour aux formules</button>
-    </div>
-  </main>
 </div>
 
 <footer>
@@ -1233,17 +989,17 @@ const RESULTS = {
   CADRE: {
     tag: 'Ta formule', title: 'CADRE', price: '67 €/mois au lieu de 127 € (offre fondateurs)',
     desc: "Tu as déjà la volonté, il te manque la structure. CADRE te donne un plan clair et des repères pour avancer seul, sans te disperser.",
-    cta: 'Candidater', action: 'Cadre'
+    cta: 'Choisir cette formule', action: 'cadre'
   },
   ACCOMPAGNE: {
     tag: 'Ta formule', title: 'ACCOMPAGNÉ', price: '147 €/mois au lieu de 297 € (offre fondateurs)',
     desc: "Tu sais démarrer, mais tu lâches quand personne ne te suit. ACCOMPAGNÉ te donne un suivi chaque semaine pour tenir sur la durée. C'est la formule la plus choisie.",
-    cta: 'Candidater', action: 'Accompagné'
+    cta: 'Choisir cette formule', action: 'accompagne'
   },
   IMMERSION: {
     tag: 'Ta formule', title: 'IMMERSION', price: '297 €/mois au lieu de 597 € (offre fondateurs)',
     desc: "Tu as besoin d'un changement profond et rapide. IMMERSION, c'est un suivi quasi quotidien, limité à 3 personnes en même temps.",
-    cta: 'Candidater', action: 'Immersion'
+    cta: 'Choisir cette formule', action: 'immersion'
   },
   EBOOKS: {
     tag: 'Ta formule', title: 'EBOOKS', price: '',
@@ -1305,7 +1061,7 @@ function quizComputeResult(){
   return ['CADRE','ACCOMPAGNE','IMMERSION'][finalTier];
 }
 
-function quizSubmit(){
+function quizSend(){
   const prenom = document.getElementById('quizPrenom').value.trim();
   const email = document.getElementById('quizEmail').value.trim();
   if(!prenom || !email){
@@ -1355,7 +1111,7 @@ function quizSubmit(){
 
   document.getElementById('quizResultCta').addEventListener('click', ()=>{
     if(r.action === 'ebooks'){ window.location.href = 'ebook.html'; }
-    else { openCandidature(r.action); }
+    else { buyFormule(r.action, document.getElementById('quizResultCta')); }
   });
 }
 
@@ -1375,8 +1131,6 @@ function showToast(msg){
 function handleContactSubmit(e){
   e.preventDefault();
   const form = document.getElementById('contactForm');
-  const hp = document.getElementById('hp-field');
-  if(hp && hp.value){ return false; } // bot a rempli le champ piège, on ignore silencieusement
 
   const btn = document.getElementById('contactSubmitBtn');
   const originalLabel = btn.textContent;
@@ -1519,7 +1273,7 @@ const plans = {
       <li>Pas de réponse au bout de 5 jours ? Je te relance — tu n'es jamais vraiment seul, même si tu avances en autonomie.</li>
     </ul>
     <p style="font-weight:700;color:var(--ink);font-size:21px;">Pour toi si tu as besoin d'un cadre régulier, pas d'un suivi rapproché.</p>`,
-    cta:'Cadre',ctaLabel:'Candidater'},
+    cta:'cadre',ctaLabel:'Commencer maintenant'},
   accompagne:{eyebrow:'Accompagné',title:'Une semaine type',price:'147€/mois',image:'assets/img/accompagne.png',
     desc:`<ul style="margin:0 0 16px 18px;padding:0;">
       <li style="margin-bottom:10px;">Quand tu avances ou que tu bloques : tu m'écris, en message ou en vocal. Je réponds sous 48h maximum.</li>
@@ -1529,7 +1283,7 @@ const plans = {
       <li>Une fois par mois : un appel de 30 minutes pour faire le bilan, ajuster le plan et fixer l'objectif du mois suivant.</li>
     </ul>
     <p style="font-weight:700;color:var(--ink);">Pour toi si tu lâches dès que personne ne regarde.</p>`,
-    cta:'Accompagné',ctaLabel:'Candidater'},
+    cta:'accompagne',ctaLabel:'Commencer maintenant'},
   immersion:{eyebrow:'Immersion',title:'Une semaine type',price:'297€/mois',image:'assets/img/immersion.png',
     desc:`<ul style="margin:0 0 16px 18px;padding:0;">
       <li style="margin-bottom:10px;">Chaque jour : tu m'écris autant que tu veux sur ton canal dédié. Je réponds sous 24h, les jours ouvrés.</li>
@@ -1538,7 +1292,7 @@ const plans = {
       <li>En fin de mois : un bilan écrit, puis un appel de 30 minutes pour construire le mois suivant semaine par semaine.</li>
     </ul>
     <p style="font-weight:700;color:var(--ink);">Pour toi si tu veux quelqu'un à tes côtés tous les jours. 3 places seulement.</p>`,
-    cta:'Immersion',ctaLabel:'Candidater'}
+    cta:'immersion',ctaLabel:'Commencer maintenant'}
 };
 function openPlan(id){
   openFullPlan(id); return;
@@ -1580,7 +1334,7 @@ function openFullPlan(id){
   const cta = document.getElementById('fullModalCta');
   cta.href = '#';
   cta.textContent = p.ctaLabel;
-  cta.onclick = function(ev){ ev.preventDefault(); closeFullPlan(); openCandidature(p.cta); };
+  cta.onclick = function(ev){ ev.preventDefault(); buyFormule(p.cta, cta); };
   const ov = document.getElementById('fullModal');
   ov.classList.add('active');
   requestAnimationFrame(()=>requestAnimationFrame(()=>ov.classList.add('in')));
@@ -1596,114 +1350,68 @@ function closeFullPlan(){
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeFullPlan(); });
 
 // ---------------------------------------------------------------------
-// MODAL CANDIDATURE
+// ACHAT DIRECT DES FORMULES + PLACES RESTANTES
 // ---------------------------------------------------------------------
-const candSteps = Array.from(document.querySelectorAll('#candModal .cand-step'));
-let candCurrent = 0;
+let placesData = null;
 
-function openCandidature(formule){
-  document.getElementById('candFormuleField').value = formule || 'Non précisée';
-  const modal = document.getElementById('candModal');
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  modal.scrollTop = 0;
-  // reset le formulaire à chaque ouverture
-  candCurrent = 0;
-  candSteps.forEach((s,i)=>s.classList.toggle('active', i===0));
-  document.getElementById('candForm').style.display = '';
-  document.getElementById('candDoneScreen').style.display = 'none';
-  document.querySelector('#candModal .cand-progress-wrap').style.display = '';
-  candUpdateProgress();
-}
-function closeCandidature(){
-  document.getElementById('candModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('candModal').addEventListener('click', e=>{ if(e.target===e.currentTarget) closeCandidature(); });
-document.addEventListener('keydown', e=>{ if(e.key==='Escape' && document.getElementById('candModal').classList.contains('open')) closeCandidature(); });
-
-function candUpdateProgress(){
-  const pct = ((candCurrent+1)/candSteps.length)*100;
-  document.getElementById('candProgressBar').style.width = pct + '%';
-  document.getElementById('candProgressLabel').textContent = 'Question ' + (candCurrent+1) + ' / ' + candSteps.length;
-  document.getElementById('candPrevBtn').style.visibility = candCurrent === 0 ? 'hidden' : 'visible';
-  const isLast = candCurrent === candSteps.length - 1;
-  document.getElementById('candNextBtn').style.display = isLast ? 'none' : 'inline-flex';
-  document.getElementById('candSubmitBtn').style.display = isLast ? 'inline-flex' : 'none';
-}
-
-function candStepValid(){
-  const step = candSteps[candCurrent];
-  document.getElementById('candErrMsg').style.display = 'none';
-  const choiceField = step.querySelector('[data-field]');
-  if(choiceField){
-    const hidden = step.querySelector('input[type=hidden]');
-    if(!hidden.value){ document.getElementById('candErrMsg').style.display='block'; return false; }
-    return true;
+async function buyFormule(key, btn){
+  if(btn && btn.disabled) return;
+  const label = btn ? btn.textContent : '';
+  if(btn){ btn.disabled = true; btn.textContent = 'Redirection vers le paiement...'; }
+  let complet = false;
+  try{
+    const res = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ formule: key })
+    });
+    const data = await res.json().catch(()=>({}));
+    if(res.ok && data.url){ window.location.href = data.url; return; }
+    complet = !!data.complet;
+    showToast(data.error || "Le paiement n'a pas pu démarrer, réessaie.");
+  }catch(e){
+    showToast("Le paiement n'a pas pu démarrer, réessaie.");
   }
-  const input = step.querySelector('input[required], textarea[required]');
-  if(input && !input.value.trim()){ document.getElementById('candErrMsg').style.display='block'; return false; }
-  return true;
+  if(btn){ btn.disabled = false; btn.textContent = label; }
+  if(complet) loadPlaces();
 }
 
-function candGoStep(dir){
-  if(dir > 0 && !candStepValid()) return;
-  const next = candCurrent + dir;
-  if(next < 0 || next >= candSteps.length) return;
-  candSteps[candCurrent].classList.remove('active');
-  candCurrent = next;
-  candSteps[candCurrent].classList.add('active');
-  candUpdateProgress();
-  document.getElementById('candModal').scrollTop = 0;
-  const firstField = candSteps[candCurrent].querySelector('input[type=text], input[type=email], textarea');
-  if(firstField) firstField.focus();
+async function loadPlaces(){
+  try{
+    const res = await fetch('/api/places', { cache: 'no-store' });
+    if(!res.ok) return;
+    placesData = await res.json();
+    applyPlaces();
+  }catch(e){}
 }
 
-document.querySelectorAll('#candModal [data-field]').forEach(group=>{
-  const hidden = document.getElementById('cq' + group.closest('.cand-step').dataset.q);
-  group.querySelectorAll('button').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      group.querySelectorAll('button').forEach(b=>b.classList.remove('selected'));
-      btn.classList.add('selected');
-      hidden.value = btn.textContent.trim();
+function applyPlaces(){
+  if(!placesData) return;
+  Object.entries(placesData).forEach(([k, v])=>{
+    const full = v.restantes <= 0;
+    document.querySelectorAll(`[data-places="${k}"]`).forEach(el=>{
+      el.hidden = false;
+      el.textContent = full ? 'Complet' : (v.restantes === 1 ? 'Dernière place' : v.restantes + ' places restantes');
+      el.classList.toggle('is-full', full);
+    });
+    document.querySelectorAll(`[data-places-max="${k}"]`).forEach(el=>{ el.textContent = v.max + ' max'; });
+    document.querySelectorAll(`.plan-buy[data-formule="${k}"]`).forEach(b=>{
+      b.disabled = full;
+      b.textContent = full ? 'Complet' : b.dataset.label;
     });
   });
+}
+
+// retour depuis la page de paiement avec le bouton « précédent » : on remet les boutons en état
+window.addEventListener('pageshow', e=>{
+  if(!e.persisted) return;
+  document.querySelectorAll('.plan-buy').forEach(b=>{ b.disabled = false; b.textContent = b.dataset.label; });
+  const q = document.getElementById('quizResultCta'); if(q){ q.disabled = false; q.textContent = 'Choisir cette formule'; }
+  const m = document.getElementById('fullModalCta'); if(m){ m.textContent = 'Commencer maintenant'; }
+  loadPlaces();
 });
 
-document.getElementById('candForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  if(!candStepValid()) return;
-  const hp = document.getElementById('cand-hp-field');
-  if(hp && hp.value) return;
-  const btn = document.getElementById('candSubmitBtn');
-  const original = btn.textContent;
-  btn.disabled = true; btn.textContent = 'Envoi en cours...';
-  fetch(FORMSPREE_URL, {
-    method:'POST',
-    body:new FormData(this),
-    headers:{'Accept':'application/json'}
-  }).then(res=>{
-    if(res.ok){
-      document.getElementById('candForm').style.display='none';
-      document.querySelector('#candModal .cand-progress-wrap').style.display='none';
-      document.getElementById('candDoneScreen').style.display='block';
-    } else {
-      document.getElementById('candErrMsg').textContent = "Un problème est survenu, réessaie ou écris à " + CONTACT_EMAIL;
-      document.getElementById('candErrMsg').style.display='block';
-      btn.disabled=false; btn.textContent=original;
-    }
-  }).catch(()=>{
-    document.getElementById('candErrMsg').textContent = "Un problème est survenu, réessaie ou écris à " + CONTACT_EMAIL;
-    document.getElementById('candErrMsg').style.display='block';
-    btn.disabled=false; btn.textContent=original;
-  });
-});
-
-document.querySelectorAll('#candModal input[type=text], #candModal input[type=email]').forEach(inp=>{
-  inp.addEventListener('keydown', e=>{
-    if(e.key === 'Enter'){ e.preventDefault(); candGoStep(1); }
-  });
-});
+loadPlaces();
 </script>
 
 </body>
