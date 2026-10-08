@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Se rétracter — Tibobody</title>
+<link rel="canonical" href="https://tibobody.fr/retractation.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<meta name="theme-color" content="#121110">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#F2F1EE;color:#111010;font-family:'Work Sans',sans-serif;line-height:1.7;}
+  .wrap{max-width:760px;margin:0 auto;padding:60px 24px 80px;}
+  h1{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(32px,6vw,52px);line-height:1;text-transform:uppercase;margin-bottom:24px;}
+  h2{font-size:18px;margin:36px 0 10px;}
+  h3{font-size:15.5px;margin:22px 0 6px;}
+  p,li{color:#57544C;font-size:15px;margin-bottom:10px;}
+  ul,ol{padding-left:22px;margin-bottom:10px;}
+  strong{color:#111010;}
+  a{color:#8C1B16;}
+  a.back{display:inline-block;margin-bottom:30px;font-size:13px;font-weight:700;color:#8C1B16;text-decoration:none;}
+  .note{background:#fff;border-left:3px solid #8C1B16;padding:14px 18px;margin-top:16px;font-size:14px;color:#57544C;}
+  .annex{background:#fff;border:1px solid #DDD9D0;padding:24px 26px;margin-top:14px;}
+  .legal-foot{border-top:1px solid #DDD9D0;padding:28px 24px 40px;text-align:center;font-size:13px;color:#57544C;}
+  .legal-foot nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 10px;margin-bottom:10px;}
+  .legal-foot nav a{color:#111010;text-decoration:none;font-weight:600;}
+  .legal-foot nav a:hover{color:#8C1B16;}
+  .legal-foot span{color:#B5B1A8;}
+  .legal-foot p{font-size:12.5px;margin:0;}
+  .form{display:grid;gap:16px;margin-top:26px;background:#fff;border:1px solid #DDD9D0;padding:28px 26px;}
+  .form label{display:block;font-size:12.5px;font-weight:700;color:#111010;margin-bottom:6px;}
+  .form input,.form select,.form textarea{width:100%;border:1px solid #CFCBC1;background:#FBFAF8;padding:12px 13px;font-family:inherit;font-size:15px;color:#111010;}
+  .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:#8C1B16;}
+  .form textarea{min-height:90px;resize:vertical;}
+  .form .row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .form button{justify-self:start;background:#8C1B16;color:#fff;border:none;padding:15px 28px;font-family:inherit;font-weight:700;font-size:14.5px;cursor:pointer;}
+  .form button:hover{background:#6B1310;}
+  .form button:disabled{opacity:.5;cursor:not-allowed;}
+  .form-err{color:#8C1B16;font-size:13.5px;display:none;}
+  .done{display:none;background:#fff;border-left:3px solid #8C1B16;padding:22px 24px;margin-top:26px;}
+  .done h2{margin-top:0;}
+  @media(max-width:600px){.form .row{grid-template-columns:1fr;}}
+/* page transition — écran de chargement (rendu de la vidéo d'intro) */
+.page-transition{position:fixed;inset:0;background:#111010;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .5s ease;}
+.page-transition.hide{opacity:0;pointer-events:none;}
+.pt-logo{position:relative;font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(64px,15vw,200px);line-height:1;letter-spacing:.01em;filter:drop-shadow(0 10px 18px rgba(0,0,0,.7));}
+.pt-glow{position:absolute;left:42%;top:52%;width:78%;height:190%;transform:translateY(-50%) scale(.75);background:radial-gradient(closest-side,rgba(140,27,22,.42),rgba(140,27,22,.14) 55%,rgba(140,27,22,0));opacity:0;pointer-events:none;}
+.pt-word{position:relative;display:flex;overflow:hidden;padding:0 .02em;}
+.pt-l{display:inline-block;color:#fff;transform:translateY(110%);}
+.pt-l.r{color:#8C1B16;}
+.pt-play .pt-l{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 60ms + 120ms);}
+.pt-play .pt-l.r{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards,ptShine .5s ease forwards;animation-delay:calc(var(--i) * 60ms + 120ms),calc((var(--i) - 4) * 70ms + 1150ms);}
+.pt-play .pt-glow{animation:ptGlow .8s ease .65s forwards;}
+.pt-fast.pt-play .pt-l,.pt-fast.pt-play .pt-l.r{animation:ptUp .4s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 35ms + 60ms);}
+.pt-fast.pt-play .pt-glow{animation:ptGlow .5s ease .3s forwards;}
+@keyframes ptUp{to{transform:translateY(0);}}
+@keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
+@keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
+@media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
+</style>
+</head>
+<body>
+<div class="page-transition" id="pageTransition" aria-hidden="true"><div class="pt-logo"><span class="pt-glow"></span><span class="pt-word"><span class="pt-l" style="--i:0">T</span><span class="pt-l" style="--i:1">I</span><span class="pt-l" style="--i:2">B</span><span class="pt-l" style="--i:3">O</span><span class="pt-l r" style="--i:4">B</span><span class="pt-l r" style="--i:5">O</span><span class="pt-l r" style="--i:6">D</span><span class="pt-l r" style="--i:7">Y</span></span></div></div>
+<div class="wrap">
+  <a class="back" href="index.html">← Retour à l'accueil</a>
+  <h1>Se rétracter</h1>
+  <p>Tu as souscrit un accompagnement il y a moins de 14 jours ? Tu peux te rétracter sans avoir à te justifier. Remplis le formulaire ci-dessous : tu recevras un accusé de réception par email, et le remboursement intervient au plus tard 14 jours après ta rétractation, par le même moyen de paiement.</p>
+  <p>Les conditions complètes sont détaillées dans les <a href="cgv.html">conditions générales de vente</a>. Tu peux aussi écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
+
+  <form class="form" id="retractForm" action="https://formspree.io/f/xnpjdajy" method="POST">
+    <input type="hidden" name="_subject" value="Demande de rétractation">
+    <input type="text" name="_gotcha" id="hp" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
+    <p style="margin:0;color:#111010;font-weight:600;">À l'attention de Tibobody — je vous notifie par la présente ma rétractation du contrat portant sur la prestation de services ci-dessous :</p>
+    <div>
+      <label for="formule">Formule souscrite</label>
+      <select id="formule" name="formule_souscrite" required>
+        <option value="">Choisis ta formule</option>
+        <option>Cadre</option>
+        <option>Accompagné</option>
+        <option>Immersion</option>
+        <option>E-book</option>
+      </select>
+    </div>
+    <div class="row">
+      <div><label for="dateSous">Date de souscription</label><input id="dateSous" name="date_souscription" type="date" required></div>
+      <div><label for="dateDemande">Date</label><input id="dateDemande" name="date_demande" type="date" required></div>
+    </div>
+    <div><label for="nom">Nom du client</label><input id="nom" name="nom" type="text" required autocomplete="name"></div>
+    <div><label for="email">Adresse email utilisée pour l'achat</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+    <div><label for="msg">Précision (facultatif)</label><textarea id="msg" name="message"></textarea></div>
+    <p class="form-err" id="formErr"></p>
+    <button type="submit" id="submitBtn">Envoyer ma rétractation</button>
+  </form>
+
+  <div class="done" id="done">
+    <h2>Ta demande de rétractation est bien envoyée</h2>
+    <p>Un accusé de réception va t'être envoyé par email. Le remboursement intervient au plus tard 14 jours après ta rétractation. Pour toute question : <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
+  </div>
+</div>
+<footer class="legal-foot">
+  <nav>
+    <a href="cgv.html">CGV</a><span>·</span>
+    <a href="mentions-legales.html">Mentions légales</a><span>·</span>
+    <a href="confidentialite.html">Confidentialité</a><span>·</span>
+    <a href="mailto:contact@tibobody.fr?subject=G%C3%A9rer%20ou%20r%C3%A9silier%20mon%20abonnement">Gérer ou résilier mon abonnement</a><span>·</span>
+    <a href="retractation.html">Se rétracter</a><span>·</span>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <p>© 2026 Tibobody — tibobody.fr · <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a></p>
+</footer>
+<script>
+(function(){
+  const overlay = document.getElementById('pageTransition');
+  if(!overlay) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // intro complète à la première page vue, version courte ensuite
+  let seen = false;
+  try{ seen = sessionStorage.getItem('tb_intro') === '1'; sessionStorage.setItem('tb_intro','1'); }catch(e){}
+  if(seen) overlay.classList.add('pt-fast');
+  const minTime = reduce ? 150 : (seen ? 850 : 2100);
+  const t0 = performance.now();
+  requestAnimationFrame(()=> overlay.classList.add('pt-play'));
+
+  let done = false;
+  function reveal(){
+    if(done) return; done = true;
+    const wait = Math.max(0, minTime - (performance.now() - t0));
+    setTimeout(()=>{
+      overlay.classList.add('hide');
+      window.__tbRevealed = true;
+      document.dispatchEvent(new Event('tb:reveal'));
+    }, wait);
+  }
+  if(document.readyState === 'complete') reveal();
+  else window.addEventListener('load', reveal);
+  setTimeout(reveal, 4500); // sécurité si une ressource bloque le chargement
+
+  // retour arrière du navigateur : ne pas rester bloqué sur l'écran noir
+  window.addEventListener('pageshow', e=>{ if(e.persisted){ overlay.classList.remove('pt-play'); overlay.classList.add('hide'); } });
+
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    if(!href) return;
+    if(href.startsWith('#')) return;
+    if(href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    if(a.target === '_blank' || a.hasAttribute('download')) return;
+    if(/\.pdf($|\?)/i.test(href)) return;
+    if(/^https?:\/\//i.test(href)) return;
+    if(e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    overlay.classList.remove('pt-play');
+    overlay.classList.remove('hide');
+    setTimeout(()=>{ window.location.href = href; }, 420);
+  });
+})();
+(function(){
+  const today = new Date();
+  const iso = new Date(today.getTime() - today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+  document.getElementById('dateDemande').value = iso;
+  document.getElementById('dateSous').max = iso;
+  const form = document.getElementById('retractForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(document.getElementById('hp').value) return;
+    const btn = document.getElementById('submitBtn');
+    const err = document.getElementById('formErr');
+    err.style.display = 'none';
+    btn.disabled = true; btn.textContent = 'Envoi en cours...';
+    fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} })
+      .then(res=>{
+        if(res.ok){ form.style.display='none'; document.getElementById('done').style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); }
+        else throw new Error();
+      })
+      .catch(()=>{
+        err.textContent = "Un problème est survenu. Réessaie, ou envoie ta demande par email à contact@tibobody.fr.";
+        err.style.display = 'block';
+        btn.disabled = false; btn.textContent = 'Envoyer ma rétractation';
+      });
+  });
+})();
+</script>
+</body>
+</html>

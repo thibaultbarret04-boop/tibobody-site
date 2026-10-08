@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les e-books — Tibobody</title>
 <meta name="description" content="Le Défi 30 jours et tous les e-books Tibobody : discipline, mental, ambition — à ton rythme, à petit prix.">
-<link rel="canonical" href="https://tondomaine.com/ebook.html">
+<link rel="canonical" href="https://tibobody.fr/ebook.html">
+<meta property="og:url" content="https://tibobody.fr/ebook.html">
+<meta property="og:image" content="https://tibobody.fr/assets/img/og-image.jpg">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="Les e-books — Tibobody">
@@ -160,6 +162,16 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .ebook-desc{max-width:60ch;color:var(--steel);font-size:15px;margin-bottom:28px;}
 .rule{border-top:1px solid var(--line);margin:56px 0 30px;}
 
+/* cta bas de page */
+.ebook-cta{background:var(--ink);color:#fff;text-align:center;}
+.ebook-cta .tag{font-size:13px;font-weight:700;color:var(--ember);margin-bottom:14px;}
+.ebook-cta h2{color:#fff;font-size:clamp(30px,5.4vw,50px);max-width:20ch;margin:0 auto 16px;}
+.ebook-cta p{color:#C9C5B7;max-width:52ch;margin:0 auto 34px;font-size:16px;}
+.ebook-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-line-w{border-color:#fff;color:#fff;}
+.btn-line-w:hover{background:#fff;color:var(--ink);transform:translateY(-2px);}
+@media(max-width:560px){.ebook-cta-btns .btn{width:100%;justify-content:center;}}
+
 /* modal — plein écran, même style que les formules */
 .modal-full{position:fixed;top:80px;left:0;right:0;bottom:0;background:var(--white);display:none;z-index:70;opacity:0;transition:opacity .25s ease;}
 .modal-full.active{display:flex;}
@@ -217,16 +229,28 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
   section{padding:56px 0;}
 }
 
-/* page transition */
-.page-transition{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .4s ease;}
+/* page transition — écran de chargement (rendu de la vidéo d'intro) */
+.page-transition{position:fixed;inset:0;background:#111010;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .5s ease;}
 .page-transition.hide{opacity:0;pointer-events:none;}
-.page-transition .pt-text{font-family:var(--display);font-size:clamp(60px,16vw,240px);color:#fff;letter-spacing:.01em;white-space:nowrap;line-height:1;padding:0 20px;text-align:center;}
-.page-transition .pt-text em{font-style:normal;color:var(--ember);}
+.pt-logo{position:relative;font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(64px,15vw,200px);line-height:1;letter-spacing:.01em;filter:drop-shadow(0 10px 18px rgba(0,0,0,.7));}
+.pt-glow{position:absolute;left:42%;top:52%;width:78%;height:190%;transform:translateY(-50%) scale(.75);background:radial-gradient(closest-side,rgba(140,27,22,.42),rgba(140,27,22,.14) 55%,rgba(140,27,22,0));opacity:0;pointer-events:none;}
+.pt-word{position:relative;display:flex;overflow:hidden;padding:0 .02em;}
+.pt-l{display:inline-block;color:#fff;transform:translateY(110%);}
+.pt-l.r{color:#8C1B16;}
+.pt-play .pt-l{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 60ms + 120ms);}
+.pt-play .pt-l.r{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards,ptShine .5s ease forwards;animation-delay:calc(var(--i) * 60ms + 120ms),calc((var(--i) - 4) * 70ms + 1150ms);}
+.pt-play .pt-glow{animation:ptGlow .8s ease .65s forwards;}
+.pt-fast.pt-play .pt-l,.pt-fast.pt-play .pt-l.r{animation:ptUp .4s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 35ms + 60ms);}
+.pt-fast.pt-play .pt-glow{animation:ptGlow .5s ease .3s forwards;}
+@keyframes ptUp{to{transform:translateY(0);}}
+@keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
+@keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
+@media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
 </style>
 </head>
 <body>
 
-<div class="page-transition" id="pageTransition"><span class="pt-text">Tibo<em>body</em></span></div>
+<div class="page-transition" id="pageTransition" aria-hidden="true"><div class="pt-logo"><span class="pt-glow"></span><span class="pt-word"><span class="pt-l" style="--i:0">T</span><span class="pt-l" style="--i:1">I</span><span class="pt-l" style="--i:2">B</span><span class="pt-l" style="--i:3">O</span><span class="pt-l r" style="--i:4">B</span><span class="pt-l r" style="--i:5">O</span><span class="pt-l r" style="--i:6">D</span><span class="pt-l r" style="--i:7">Y</span></span></div></div>
 
 <header>
   <nav class="wrap">
@@ -272,7 +296,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     <div class="hero-stack reveal">
       <a href="#ebooks-grid" class="hs-1" onclick="event.preventDefault();openBook('05');">
         <img src="assets/img/COVER5.jpg" alt="30 jours pour devenir inarrêtable">
-        <div class="hs-label"><div class="hs-name">30 jours</div><div class="hs-price">9,99 €</div></div>
+        <div class="hs-label"><div class="hs-name">30 jours</div><div class="hs-price">14,99 €</div></div>
       </a>
       <a href="#ebooks-grid" class="hs-2" onclick="event.preventDefault();openBook('04');">
         <img src="assets/img/COVER4.jpg" alt="Le guide d'un jeune homme ambitieux">
@@ -293,8 +317,8 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     <p class="ebook-desc reveal">Plusieurs e-books réunis autour d'un même objectif, pour avancer sur plusieurs fronts en même temps.</p>
     <div class="pack-grid reveal">
       <div class="book" onclick="openBook('07')">
-        <div class="cover"><img src="assets/img/COVER7.png" alt="Pack Discipline"><span class="idx">Pack</span><span class="price-tag">11,99 €</span><div class="cover-title"><h4>Pack Discipline</h4></div></div>
-        <div class="book-info"><div class="price">11,99 € — 2 e-books</div><div class="more">En savoir plus</div></div>
+        <div class="cover"><img src="assets/img/COVER7.png" alt="Pack Discipline"><span class="idx">Pack</span><span class="price-tag">16,99 €</span><div class="cover-title"><h4>Pack Discipline</h4></div></div>
+        <div class="book-info"><div class="price">16,99 € — 2 e-books</div><div class="more">En savoir plus</div></div>
       </div>
       <div class="book" onclick="openBook('08')">
         <div class="cover"><img src="assets/img/COVER8.png" alt="Pack Accomplissement"><span class="idx">Pack</span><span class="price-tag">8,99 €</span><div class="cover-title"><h4>Pack Accomplissement</h4></div></div>
@@ -323,13 +347,26 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         <div class="book-info"><div class="price">5,99 €</div><div class="more">En savoir plus</div></div>
       </div>
       <div class="book reveal" onclick="openBook('05')">
-        <div class="cover"><img src="assets/img/COVER5.jpg" alt="30 jours pour devenir inarrêtable"><span class="idx">05</span><span class="price-tag">9,99 €</span><div class="cover-title"><h4>30 jours pour devenir inarrêtable</h4></div></div>
-        <div class="book-info"><div class="price">9,99 €</div><div class="more">En savoir plus</div></div>
+        <div class="cover"><img src="assets/img/COVER5.jpg" alt="30 jours pour devenir inarrêtable"><span class="idx">05</span><span class="price-tag">14,99 €</span><div class="cover-title"><h4>30 jours pour devenir inarrêtable</h4></div></div>
+        <div class="book-info"><div class="price">14,99 €</div><div class="more">En savoir plus</div></div>
       </div>
       <div class="book reveal" onclick="openBook('06')">
         <div class="cover"><img src="assets/img/COVER6.jpg" alt="10 leçons que la musculation m'a apprises"><span class="idx">06</span><span class="price-tag">4,99 €</span><div class="cover-title"><h4>10 leçons que la musculation m'a apprises</h4></div></div>
         <div class="book-info"><div class="price">4,99 €</div><div class="more">En savoir plus</div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA : TEST + FORMULES -->
+<section class="ebook-cta">
+  <div class="wrap reveal">
+    <p class="tag">Besoin d'aller plus loin ?</p>
+    <h2>Un e-book te donne la méthode. Un suivi t'aide à la tenir.</h2>
+    <p>Fais le test gratuit en 2 minutes pour savoir quelle formule d'accompagnement correspond à ta situation — et reçois le Défi 7 jours offert.</p>
+    <div class="ebook-cta-btns">
+      <a href="formule.html#diagnostic" class="btn btn-ember">Faire le test gratuit (2 min)</a>
+      <a href="formule.html" class="btn btn-line-w">Voir les formules</a>
     </div>
   </div>
 </section>
@@ -395,7 +432,6 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       <div>
         <h5>Offres</h5>
         <a href="formule.html">Formules</a>
-        <a href="index.html#defi30">Défi 30 jours</a>
         <a href="#ebooks-grid">Les e-books</a>
       </div>
       <div>
@@ -406,14 +442,17 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       </div>
       <div>
         <h5>Informations</h5>
-        <a href="mentions-legales.html">Mentions légales</a>
         <a href="cgv.html">CGV</a>
+        <a href="mentions-legales.html">Mentions légales</a>
         <a href="confidentialite.html">Confidentialité</a>
+        <a href="mailto:contact@tibobody.fr?subject=G%C3%A9rer%20ou%20r%C3%A9silier%20mon%20abonnement">Gérer ou résilier mon abonnement</a>
+        <a href="retractation.html">Se rétracter</a>
         <a href="index.html#contact">Contact</a>
+        <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Thibault. Tous droits réservés.</span>
+      <span>© 2026 Tibobody — tibobody.fr. Tous droits réservés.</span>
       <span>Conçu pour la performance.</span>
     </div>
   </div>
@@ -428,9 +467,31 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 (function(){
   const overlay = document.getElementById('pageTransition');
   if(!overlay) return;
-  function reveal(){ overlay.classList.add('hide'); }
-  if(document.readyState === 'complete'){ setTimeout(reveal, 150); }
-  else { window.addEventListener('load', ()=> setTimeout(reveal, 150)); }
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // intro complète à la première page vue, version courte ensuite
+  let seen = false;
+  try{ seen = sessionStorage.getItem('tb_intro') === '1'; sessionStorage.setItem('tb_intro','1'); }catch(e){}
+  if(seen) overlay.classList.add('pt-fast');
+  const minTime = reduce ? 150 : (seen ? 850 : 2100);
+  const t0 = performance.now();
+  requestAnimationFrame(()=> overlay.classList.add('pt-play'));
+
+  let done = false;
+  function reveal(){
+    if(done) return; done = true;
+    const wait = Math.max(0, minTime - (performance.now() - t0));
+    setTimeout(()=>{
+      overlay.classList.add('hide');
+      window.__tbRevealed = true;
+      document.dispatchEvent(new Event('tb:reveal'));
+    }, wait);
+  }
+  if(document.readyState === 'complete') reveal();
+  else window.addEventListener('load', reveal);
+  setTimeout(reveal, 4500); // sécurité si une ressource bloque le chargement
+
+  // retour arrière du navigateur : ne pas rester bloqué sur l'écran noir
+  window.addEventListener('pageshow', e=>{ if(e.persisted){ overlay.classList.remove('pt-play'); overlay.classList.add('hide'); } });
 
   document.addEventListener('click', function(e){
     const a = e.target.closest('a');
@@ -440,10 +501,13 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     if(href.startsWith('#')) return;
     if(href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
     if(a.target === '_blank' || a.hasAttribute('download')) return;
+    if(/\.pdf($|\?)/i.test(href)) return;
     if(/^https?:\/\//i.test(href)) return;
+    if(e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault();
+    overlay.classList.remove('pt-play');
     overlay.classList.remove('hide');
-    setTimeout(()=>{ window.location.href = href; }, 380);
+    setTimeout(()=>{ window.location.href = href; }, 420);
   });
 })();
 
@@ -484,13 +548,13 @@ const books={
   '04':{eyebrow:'E-book Nº04',title:"Le guide d'un jeune homme ambitieux",price:'5,99 €',
     images:['assets/img/COVER4.jpg','assets/img/PAGE/Ambitieux/1.png','assets/img/PAGE/Ambitieux/2.png','assets/img/PAGE/Ambitieux/3.png'],
     desc:"Poser une vision claire de ce que tu veux construire, bâtir une discipline qui tient dans le temps, gérer ton temps et tes priorités, et éviter les pièges qui freinent la plupart des gens."},
-  '05':{eyebrow:'E-book Nº05',title:"30 jours pour devenir inarrêtable",price:'9,99 €',
+  '05':{eyebrow:'E-book Nº05',title:"30 jours pour devenir inarrêtable",price:'14,99 €',
     images:['assets/img/COVER5.jpg','assets/img/PAGE/30jours/1.jpeg','assets/img/PAGE/30jours/2.jpeg','assets/img/PAGE/30jours/3.jpeg'],
     desc:"Un programme structuré sur 30 jours, des séances pensées pour progresser en sécurité, et un suivi pour mesurer tes progrès chaque semaine."},
   '06':{eyebrow:'E-book Nº06',title:"10 leçons que la musculation m'a apprises",price:'4,99 €',
     images:['assets/img/COVER6.jpg','assets/img/PAGE/10lecon/1.png','assets/img/PAGE/10lecon/2.png','assets/img/PAGE/10lecon/3.png'],
     desc:"Ce que la musculation t'apprend sur la patience, comment transformer la discipline physique en discipline de vie, et gérer les phases de stagnation sans lâcher."},
-  '07':{eyebrow:'Pack économique',title:"Pack Discipline",price:'11,99 €',
+  '07':{eyebrow:'Pack économique',title:"Pack Discipline",price:'16,99 €',
     images:['assets/img/COVER7.png'],
     desc:"Réunit « 30 Jours pour devenir Inarrêtable » et « 10 Leçons que la Musculation m'a Apprises » pour construire une discipline qui tient dans le temps, même quand la motivation initiale s'essouffle."},
   '08':{eyebrow:'Pack économique',title:"Pack Accomplissement",price:'8,99 €',
@@ -609,10 +673,13 @@ try{
   const saved = localStorage.getItem('tb_cart');
   if(saved) cart = JSON.parse(saved);
 }catch(e){ cart = []; }
+// met à jour les prix d'un panier enregistré avant un changement de tarif
+cart = cart.filter(i=>books[i.id]).map(i=>({id:i.id, title:books[i.id].title, price:priceToNumber(books[i.id].price)}));
 
 function saveCart(){
   try{ localStorage.setItem('tb_cart', JSON.stringify(cart)); }catch(e){}
 }
+saveCart();
 
 function addToCart(id){
   if(!id || !books[id]) return;

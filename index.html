@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tibobody — Tu commences fort. Je t'aide à tenir.</title>
 <meta name="description" content="Tu commences fort et tu lâches au bout de 3 semaines ? Fais le test gratuit en 2 minutes et découvre la formule d'accompagnement faite pour toi.">
-<link rel="canonical" href="https://tondomaine.com/">
+<link rel="canonical" href="https://tibobody.fr/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://tibobody.fr/">
 <meta property="og:title" content="Tibobody — Tu commences fort. Je t'aide à tenir.">
 <meta property="og:description" content="Fais le test gratuit en 2 minutes et découvre la formule d'accompagnement faite pour toi.">
-<meta property="og:image" content="https://tondomaine.com/assets/img/og-image.jpg">
+<meta property="og:image" content="https://tibobody.fr/assets/img/og-image.jpg">
 <meta name="robots" content="index, follow">
 <link rel="icon" type="image/png" href="assets/img/logo.png">
 <meta name="theme-color" content="#121110">
@@ -18,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Thibault","jobTitle":"Coach en développement personnel","url":"https://tondomaine.com/"}
+{"@context":"https://schema.org","@type":"Person","name":"Thibault","jobTitle":"Coach en développement personnel","url":"https://tibobody.fr/","email":"contact@tibobody.fr"}
 </script>
 <style>
 :root{
@@ -115,7 +116,9 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .hero-media video{z-index:0;transform:scale(1.15);transform-origin:center center;}
 @media(max-width:760px){.hero-media video{transform:scale(1.2);}}
 .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(140,27,22,.42) 0%,rgba(18,17,16,.6) 45%,rgba(18,17,16,.88) 100%);}
-.hero-kicker{font-size:16.5px;font-weight:700;color:var(--ember);border:2px solid var(--ember);display:inline-block;width:fit-content;align-self:flex-start;padding:8px 18px;margin-bottom:14px;}
+.hero-kickers{display:flex;flex-wrap:wrap;gap:10px;align-self:flex-start;margin-bottom:14px;}
+.hero-kicker{font-size:16.5px;font-weight:700;color:var(--ember);border:2px solid var(--ember);display:inline-block;width:fit-content;padding:8px 18px;}
+.hero-kicker-grey{color:var(--steel-on-dark);border-color:var(--steel-on-dark);}
 .hero h1{font-size:clamp(48px,9.5vw,118px);max-width:22ch;margin-bottom:18px;}
 .hero h1 .ac{color:var(--ember);}
 .hero .lede{font-size:clamp(15px,1.6vw,17.5px);color:#CFCBBD;max-width:52ch;margin-bottom:26px;}
@@ -274,6 +277,7 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .contact{background:var(--ink);color:#fff;}
 .contact h2{color:#fff;font-size:clamp(28px,4.8vw,44px);max-width:16ch;margin-bottom:18px;}
 .contact p.lede{color:#C9C5B7;max-width:54ch;margin-bottom:40px;}
+.contact p.lede a{color:#fff;text-decoration:underline;}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:680px;}
 .form-grid .full{grid-column:1/-1;}
 .form-grid label{display:block;font-size:12.5px;font-weight:600;color:var(--steel-on-dark);margin-bottom:8px;}
@@ -310,20 +314,33 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
   section{padding:56px 0;}
   .cta-final .wrap{flex-direction:column;align-items:flex-start;}
   .hero-inner{align-items:center;text-align:center;}
+  .hero-kickers{align-self:center;justify-content:center;}
   .hero-kicker,.hero h1,.hero .lede{margin-left:auto;margin-right:auto;}
   .hero-ctas{justify-content:center;}
 }
 
-/* page transition */
-.page-transition{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .4s ease;}
+/* page transition — écran de chargement (rendu de la vidéo d'intro) */
+.page-transition{position:fixed;inset:0;background:#111010;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .5s ease;}
 .page-transition.hide{opacity:0;pointer-events:none;}
-.page-transition .pt-text{font-family:var(--display);font-size:clamp(60px,16vw,240px);color:#fff;letter-spacing:.01em;white-space:nowrap;line-height:1;padding:0 20px;text-align:center;}
-.page-transition .pt-text em{font-style:normal;color:var(--ember);}
+.pt-logo{position:relative;font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(64px,15vw,200px);line-height:1;letter-spacing:.01em;filter:drop-shadow(0 10px 18px rgba(0,0,0,.7));}
+.pt-glow{position:absolute;left:42%;top:52%;width:78%;height:190%;transform:translateY(-50%) scale(.75);background:radial-gradient(closest-side,rgba(140,27,22,.42),rgba(140,27,22,.14) 55%,rgba(140,27,22,0));opacity:0;pointer-events:none;}
+.pt-word{position:relative;display:flex;overflow:hidden;padding:0 .02em;}
+.pt-l{display:inline-block;color:#fff;transform:translateY(110%);}
+.pt-l.r{color:#8C1B16;}
+.pt-play .pt-l{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 60ms + 120ms);}
+.pt-play .pt-l.r{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards,ptShine .5s ease forwards;animation-delay:calc(var(--i) * 60ms + 120ms),calc((var(--i) - 4) * 70ms + 1150ms);}
+.pt-play .pt-glow{animation:ptGlow .8s ease .65s forwards;}
+.pt-fast.pt-play .pt-l,.pt-fast.pt-play .pt-l.r{animation:ptUp .4s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 35ms + 60ms);}
+.pt-fast.pt-play .pt-glow{animation:ptGlow .5s ease .3s forwards;}
+@keyframes ptUp{to{transform:translateY(0);}}
+@keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
+@keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
+@media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
 </style>
 </head>
 <body>
 
-<div class="page-transition" id="pageTransition"><span class="pt-text">Tibo<em>body</em></span></div>
+<div class="page-transition" id="pageTransition" aria-hidden="true"><div class="pt-logo"><span class="pt-glow"></span><span class="pt-word"><span class="pt-l" style="--i:0">T</span><span class="pt-l" style="--i:1">I</span><span class="pt-l" style="--i:2">B</span><span class="pt-l" style="--i:3">O</span><span class="pt-l r" style="--i:4">B</span><span class="pt-l r" style="--i:5">O</span><span class="pt-l r" style="--i:6">D</span><span class="pt-l r" style="--i:7">Y</span></span></div></div>
 
 <header>
   <nav class="wrap">
@@ -365,7 +382,10 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     </video>
   </div>
   <div class="wrap hero-inner">
-    <p class="hero-kicker" data-hero-el>Thibault - Disciplineur</p>
+    <div class="hero-kickers" data-hero-el>
+      <p class="hero-kicker">Thibault - Disciplineur</p>
+      <p class="hero-kicker hero-kicker-grey">Pour les 18-30 ans</p>
+    </div>
     <h1 data-hero-el>Tu sais quoi faire. <br><span class="ac">Je t'aide à le tenir.</span></h1>
     <p class="lede" data-hero-el>La motivation, tu l'as déjà — sinon tu ne lirais pas ça. Ce qui te manque, c'est un cadre et quelqu'un pour t'empêcher de lâcher quand ça devient difficile. Fais le test, on regarde ensemble ce dont tu as vraiment besoin.</p>
     <div class="hero-ctas" data-hero-el>
@@ -424,7 +444,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         <h3 style="font-size:clamp(42px,7vw,64px);margin-bottom:4px;">Je suis <span style="color:var(--ember-dim);">Thibault</span></h3>
         <p style="font-family:var(--sans);text-transform:uppercase;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--ember-dim);margin-bottom:22px;">Disciplineur</p>
         <div class="ba-wrap">
-          <div class="ba-item"><img src="assets/img/avant.jpg" alt="Avant"><span class="ba-label">Avant<span class="ba-date">20 juin 2026</span></span></div>
+          <div class="ba-item"><img src="assets/img/avant.jpg" alt="Avant"><span class="ba-label">Avant<span class="ba-date">20 juillet 2026</span></span></div>
           <div class="ba-item"><img src="assets/img/apres.png" alt="Après"><span class="ba-label">Après<span class="ba-date">20 septembre 2026</span></span></div>
         </div>
       </div>
@@ -438,7 +458,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 
     <div class="stats3 reveal" style="grid-template-columns:repeat(2,1fr);">
       <div class="s3"><div class="num">4 ans</div><div class="lab">de pratique sportive</div></div>
-      <div class="s3"><div class="num">-10 kg</div><div class="lab">perdus et stabilisés durablement</div></div>
+      <div class="s3"><div class="num">-10 kg</div><div class="lab">perdus et stabilisés </div></div>
     </div>
 
     <div class="definition-card reveal">
@@ -497,10 +517,6 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         <div class="faq-a"><p>Oui. Une fois acheté, le fichier est à toi définitivement — tu peux le retélécharger quand tu veux.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Y a-t-il un engagement minimum en coaching ?<span class="sign">+</span></button>
-        <div class="faq-a"><p>Le prix fondateurs est garanti pendant 3 mois. Au-delà, tu peux ajuster ou arrêter ta formule à tout moment, sans engagement caché.</p></div>
-      </div>
-      <div class="faq-item">
         <button class="faq-q">Es-tu psychologue ou thérapeute ?<span class="sign">+</span></button>
         <div class="faq-a"><p>Non. Cet accompagnement porte sur le développement personnel et professionnel — organisation, discipline, objectifs. Si ta situation nécessite un accompagnement psychologique, je t'orienterai vers un professionnel qualifié.</p></div>
       </div>
@@ -516,9 +532,10 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 <section class="contact" id="contact">
   <div class="wrap">
     <h2>Une question ?</h2>
-    <p class="lede">Pour un e-book, une info avant d'acheter, ou toute autre question. Réponse sous 24h.</p>
-    <form class="form-grid" id="contactForm" action="https://formspree.io/f/xyezygwb" method="POST" onsubmit="return handleContactSubmit(event);">
+    <p class="lede">Pour un e-book, une info avant d'acheter, ou toute autre question. Réponse sous 24h. Tu peux aussi m'écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
+    <form class="form-grid" id="contactForm" action="https://formspree.io/f/xnpjdajy" method="POST" onsubmit="return handleContactSubmit(event);">
       <input type="text" name="_gotcha" id="hp-field" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
+      <input type="hidden" name="_subject" value="Nouveau message — formulaire de contact tibobody.fr">
       <div><label for="fname">Prénom</label><input id="fname" name="prenom" type="text" required></div>
       <div><label for="femail">Email</label><input id="femail" name="email" type="email" required></div>
       <div class="full"><label for="finterest">Ce qui t'intéresse</label>
@@ -555,7 +572,6 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       <div>
         <h5>Offres</h5>
         <a href="formule.html">Formules</a>
-        <a href="#commencer">Par où commencer ?</a>
         <a href="ebook.html">Les e-books</a>
       </div>
       <div>
@@ -566,14 +582,17 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       </div>
       <div>
         <h5>Informations</h5>
-        <a href="mentions-legales.html">Mentions légales</a>
         <a href="cgv.html">CGV</a>
+        <a href="mentions-legales.html">Mentions légales</a>
         <a href="confidentialite.html">Confidentialité</a>
+        <a href="mailto:contact@tibobody.fr?subject=G%C3%A9rer%20ou%20r%C3%A9silier%20mon%20abonnement">Gérer ou résilier mon abonnement</a>
+        <a href="retractation.html">Se rétracter</a>
         <a href="#contact">Contact</a>
+        <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Thibault. Tous droits réservés.</span>
+      <span>© 2026 Tibobody — tibobody.fr. Tous droits réservés.</span>
       <span>Conçu pour la performance.</span>
     </div>
   </div>
@@ -603,9 +622,31 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 (function(){
   const overlay = document.getElementById('pageTransition');
   if(!overlay) return;
-  function reveal(){ overlay.classList.add('hide'); }
-  if(document.readyState === 'complete'){ setTimeout(reveal, 150); }
-  else { window.addEventListener('load', ()=> setTimeout(reveal, 150)); }
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // intro complète à la première page vue, version courte ensuite
+  let seen = false;
+  try{ seen = sessionStorage.getItem('tb_intro') === '1'; sessionStorage.setItem('tb_intro','1'); }catch(e){}
+  if(seen) overlay.classList.add('pt-fast');
+  const minTime = reduce ? 150 : (seen ? 850 : 2100);
+  const t0 = performance.now();
+  requestAnimationFrame(()=> overlay.classList.add('pt-play'));
+
+  let done = false;
+  function reveal(){
+    if(done) return; done = true;
+    const wait = Math.max(0, minTime - (performance.now() - t0));
+    setTimeout(()=>{
+      overlay.classList.add('hide');
+      window.__tbRevealed = true;
+      document.dispatchEvent(new Event('tb:reveal'));
+    }, wait);
+  }
+  if(document.readyState === 'complete') reveal();
+  else window.addEventListener('load', reveal);
+  setTimeout(reveal, 4500); // sécurité si une ressource bloque le chargement
+
+  // retour arrière du navigateur : ne pas rester bloqué sur l'écran noir
+  window.addEventListener('pageshow', e=>{ if(e.persisted){ overlay.classList.remove('pt-play'); overlay.classList.add('hide'); } });
 
   document.addEventListener('click', function(e){
     const a = e.target.closest('a');
@@ -615,10 +656,13 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     if(href.startsWith('#')) return;
     if(href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
     if(a.target === '_blank' || a.hasAttribute('download')) return;
+    if(/\.pdf($|\?)/i.test(href)) return;
     if(/^https?:\/\//i.test(href)) return;
+    if(e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault();
+    overlay.classList.remove('pt-play');
     overlay.classList.remove('hide');
-    setTimeout(()=>{ window.location.href = href; }, 380);
+    setTimeout(()=>{ window.location.href = href; }, 420);
   });
 })();
 
@@ -630,8 +674,11 @@ if(window.gsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
 // ---------------------------------------------------------------------
 if(window.gsap && !prefersReduced){
   gsap.set('[data-hero-el]', {opacity:0, y:22});
-  gsap.timeline({defaults:{ease:'power3.out'}})
-    .to('[data-hero-el]', {opacity:1, y:0, duration:0.9, stagger:0.12, delay:0.15});
+  const heroTl = gsap.timeline({paused:true, defaults:{ease:'power3.out'}})
+    .to('[data-hero-el]', {opacity:1, y:0, duration:0.9, stagger:0.12});
+  // le hero démarre quand l'écran de chargement se lève
+  if(window.__tbRevealed) heroTl.play();
+  else document.addEventListener('tb:reveal', ()=>heroTl.play(), {once:true});
 
   gsap.utils.toArray('.reveal').forEach(el=>{
     gsap.fromTo(el, {opacity:0, y:24}, {
@@ -695,11 +742,11 @@ function handleContactSubmit(e){
       showToast('Ta demande a bien été envoyée !');
       form.reset();
     } else {
-      showToast("Un problème est survenu, réessaie ou écris-moi directement.");
+      showToast("Un problème est survenu, réessaie ou écris à contact@tibobody.fr");
     }
   })
   .catch(() => {
-    showToast("Un problème est survenu, réessaie ou écris-moi directement.");
+    showToast("Un problème est survenu, réessaie ou écris à contact@tibobody.fr");
   })
   .finally(() => {
     btn.disabled = false;

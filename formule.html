@@ -5,7 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les accompagnements — Tibobody</title>
 <meta name="description" content="Cadre, Accompagné, Immersion, Ascension : toutes les formules d'accompagnement Tibobody sur une seule page.">
-<link rel="canonical" href="https://tondomaine.com/formule.html">
+<link rel="canonical" href="https://tibobody.fr/formule.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://tibobody.fr/formule.html">
+<meta property="og:title" content="Les accompagnements — Tibobody">
+<meta property="og:description" content="Fais le test gratuit en 2 minutes et découvre la formule d'accompagnement faite pour toi.">
+<meta property="og:image" content="https://tibobody.fr/assets/img/og-image.jpg">
 <meta name="robots" content="index, follow">
 <link rel="icon" type="image/png" href="assets/img/logo.png">
 <meta name="theme-color" content="#121110">
@@ -54,6 +60,7 @@ p{color:var(--steel);font-size:17.5px;}
 .contact{background:var(--ink);color:#fff;}
 .contact h2{color:#fff;font-size:clamp(28px,4.8vw,44px);max-width:16ch;margin-bottom:18px;}
 .contact p.lede{color:#C9C5B7;max-width:54ch;margin-bottom:40px;font-size:19px;}
+.contact p.lede a{color:#fff;text-decoration:underline;}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:680px;}
 .form-grid .full{grid-column:1/-1;}
 .form-grid label{display:block;font-size:12.5px;font-weight:600;color:var(--steel-on-dark);margin-bottom:8px;}
@@ -158,7 +165,13 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .quiz-result .r-list{text-align:left;max-width:44ch;margin:0 auto 26px;}
 .quiz-result .r-list li{font-size:14.5px;padding:8px 0;border-top:1px solid var(--line);}
 .quiz-result .r-list li:first-child{border-top:none;}
+.quiz-result .r-gift{margin-top:30px;padding-top:26px;border-top:1px solid var(--line);}
+.quiz-result .r-gift p{font-size:14.5px;margin:0 auto 14px;max-width:46ch;}
 .quiz-err{color:var(--ember);font-size:13px;margin-top:8px;display:none;}
+.quiz-lead .quiz-consent{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;font-weight:500;color:var(--steel);line-height:1.5;margin:6px 0 12px;cursor:pointer;}
+.quiz-lead .quiz-consent input{width:18px;height:18px;padding:0;margin:1px 0 0;flex-shrink:0;accent-color:var(--ember);cursor:pointer;}
+.quiz-privacy{font-size:12.5px;color:var(--steel);}
+.quiz-privacy a{text-decoration:underline;}
 @media(max-width:600px){ .quiz-card{padding:30px 22px;} }
 
 /* section head */
@@ -177,6 +190,24 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 @media(max-width:800px){.how-grid{grid-template-columns:1fr;row-gap:34px;} .how-grid .h-item{border-left:none !important;padding-left:0 !important;}}
 
 .rule{border-top:1px solid var(--line);margin:56px 0 30px;}
+
+/* exemple de check-in */
+.checkin{margin-top:90px;}
+.checkin .tag{font-size:13.5px;font-weight:700;color:var(--ember);margin-bottom:16px;}
+.checkin h3{color:#fff;font-size:clamp(32px,4.6vw,46px);}
+.checkin-sub{color:var(--steel-on-dark);font-size:15px;margin-top:12px;font-style:italic;}
+.checkin-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px;align-items:start;}
+.checkin-card{border:1px solid var(--line-dark);padding:30px 28px;background:var(--ink-2);}
+.checkin-label{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--steel-on-dark);margin-bottom:16px;}
+.checkin-label span{text-transform:none;letter-spacing:0;font-weight:500;}
+.checkin-card ol{padding-left:20px;}
+.checkin-card li{color:#C9C5B7;font-size:16px;margin-bottom:12px;}
+.checkin-card li:last-child{margin-bottom:0;}
+.checkin-card li::marker{color:var(--ember);font-weight:700;}
+.checkin-card li strong{color:#fff;}
+.checkin-reply{border-color:var(--ember);}
+.checkin-reply blockquote{color:#fff;font-size:17px;line-height:1.7;border-left:3px solid var(--ember);padding-left:18px;}
+@media(max-width:800px){.checkin-grid{grid-template-columns:1fr;}}
 
 /* méthode (comment se passe ton mois) */
 .method-section{background:var(--ink);color:#fff;}
@@ -240,24 +271,11 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 @media(max-width:760px){.plan-compare{min-width:640px;}}
 
 /* ascension */
-.ascension{background:var(--ink);color:#fff;}
-.asc-badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:#EDEAE0;border:1px solid rgba(255,214,120,.4);padding:8px 16px;margin-bottom:26px;}
-.asc-badge .dot{width:7px;height:7px;border-radius:50%;background:#C93A32;}
-.ascension h2{color:#fff;font-size:clamp(34px,6.2vw,58px);max-width:16ch;}
-.asc-compare{border:1px solid var(--line-dark);margin-top:40px;}
-.diff-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line-dark);}
-.diff-row:last-child{border-bottom:none;}
-.diff-row .c{padding:18px 22px;font-size:15.5px;}
-.diff-row .c:first-child{color:var(--steel-on-dark);border-right:1px solid var(--line-dark);}
-.diff-row .c:last-child{color:#fff;font-weight:600;}
-.diff-row.head .c{font-weight:700;font-size:13.5px;padding:16px 22px;}
-.diff-row.head .c:last-child{color:#C93A32;}
-@media(max-width:620px){.diff-row{grid-template-columns:1fr;} .diff-row .c:first-child{border-right:none;border-bottom:1px solid var(--line-dark);}}
-.asc-price{max-width:560px;margin-left:auto;margin-right:auto;border:2px solid #C93A32;background:#1B1A17;margin-top:50px;}
-.asc-price-top{padding:38px 40px 26px;text-align:center;border-bottom:1px solid var(--line-dark);}
-.asc-amount{font-family:var(--display);font-size:58px;color:#C93A32;}
-.asc-sub{font-size:15px;color:var(--steel-on-dark);margin-top:8px;}
-.asc-cta{padding:26px 40px 32px;}
+.ascension{background:var(--ink);color:#fff;text-align:center;}
+.ascension h2{color:#fff;font-size:clamp(40px,7vw,72px);}
+.asc-price{max-width:560px;margin-left:auto;margin-right:auto;border:2px solid #C93A32;background:#1B1A17;margin-top:34px;}
+.asc-price-top{padding:34px 40px;text-align:center;}
+.asc-amount{font-family:var(--display);font-size:34px;color:#C93A32;}
 
 /* modal */
 .modal-ov{position:fixed;inset:0;background:rgba(18,17,16,.82);display:none;align-items:center;justify-content:center;z-index:200;padding:18px;opacity:0;transition:opacity .2s;}
@@ -295,11 +313,23 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .modal-full-cta{margin-top:10px;}
 @media(max-width:860px){.modal-full-panel{grid-template-columns:1fr;grid-template-rows:38vh 1fr;} .modal-full-cover{height:auto;} .modal-full-body{padding:40px 26px 60px;height:auto;}}
 
-/* page transition */
-.page-transition{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .4s ease;}
+/* page transition — écran de chargement (rendu de la vidéo d'intro) */
+.page-transition{position:fixed;inset:0;background:#111010;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .5s ease;}
 .page-transition.hide{opacity:0;pointer-events:none;}
-.page-transition .pt-text{font-family:var(--display);font-size:clamp(60px,16vw,240px);color:#fff;letter-spacing:.01em;white-space:nowrap;line-height:1;padding:0 20px;text-align:center;}
-.page-transition .pt-text em{font-style:normal;color:var(--ember);}
+.pt-logo{position:relative;font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(64px,15vw,200px);line-height:1;letter-spacing:.01em;filter:drop-shadow(0 10px 18px rgba(0,0,0,.7));}
+.pt-glow{position:absolute;left:42%;top:52%;width:78%;height:190%;transform:translateY(-50%) scale(.75);background:radial-gradient(closest-side,rgba(140,27,22,.42),rgba(140,27,22,.14) 55%,rgba(140,27,22,0));opacity:0;pointer-events:none;}
+.pt-word{position:relative;display:flex;overflow:hidden;padding:0 .02em;}
+.pt-l{display:inline-block;color:#fff;transform:translateY(110%);}
+.pt-l.r{color:#8C1B16;}
+.pt-play .pt-l{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 60ms + 120ms);}
+.pt-play .pt-l.r{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards,ptShine .5s ease forwards;animation-delay:calc(var(--i) * 60ms + 120ms),calc((var(--i) - 4) * 70ms + 1150ms);}
+.pt-play .pt-glow{animation:ptGlow .8s ease .65s forwards;}
+.pt-fast.pt-play .pt-l,.pt-fast.pt-play .pt-l.r{animation:ptUp .4s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 35ms + 60ms);}
+.pt-fast.pt-play .pt-glow{animation:ptGlow .5s ease .3s forwards;}
+@keyframes ptUp{to{transform:translateY(0);}}
+@keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
+@keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
+@media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
 
 /* MODAL CANDIDATURE */
 .cand-modal{position:fixed;inset:0;background:var(--ink);display:none;z-index:300;overflow-y:auto;}
@@ -383,7 +413,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 </head>
 <body>
 
-<div class="page-transition" id="pageTransition"><span class="pt-text">Tibo<em>body</em></span></div>
+<div class="page-transition" id="pageTransition" aria-hidden="true"><div class="pt-logo"><span class="pt-glow"></span><span class="pt-word"><span class="pt-l" style="--i:0">T</span><span class="pt-l" style="--i:1">I</span><span class="pt-l" style="--i:2">B</span><span class="pt-l" style="--i:3">O</span><span class="pt-l r" style="--i:4">B</span><span class="pt-l r" style="--i:5">O</span><span class="pt-l r" style="--i:6">D</span><span class="pt-l r" style="--i:7">Y</span></span></div></div>
 
 <header>
   <nav class="wrap">
@@ -504,12 +534,14 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         </div>
 
         <div class="quiz-step" data-step="7">
-          <h3>Reçois ton résultat + le Diagnostic de la Discipline (PDF) offert</h3>
+          <h3>Reçois ton résultat + le Défi 7 jours (PDF) offert</h3>
           <div class="quiz-lead">
             <label for="quizPrenom">Prénom</label>
             <input type="text" id="quizPrenom" name="prenom" required placeholder="Ton prénom">
             <label for="quizEmail">Email</label>
             <input type="email" id="quizEmail" name="email" required placeholder="ton@email.com">
+            <label class="quiz-consent" for="quizConsent"><input type="checkbox" id="quizConsent" name="accepte_emails"><span>J'accepte de recevoir des conseils et offres TiboBody par email. Je peux me désinscrire à tout moment.</span></label>
+            <p class="quiz-privacy">Ton prénom et ton email servent à t'envoyer ton résultat. <a href="confidentialite.html">Politique de confidentialité</a></p>
           </div>
         </div>
 
@@ -602,6 +634,26 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         </div>
       </div>
     </div>
+
+    <div class="checkin reveal">
+      <p class="tag">Concrètement</p>
+      <h3>À quoi ressemble un check-in</h3>
+      <p class="checkin-sub">Exemple illustratif, formule Accompagné, un mardi.</p>
+      <div class="checkin-grid">
+        <div class="checkin-card">
+          <p class="checkin-label">Ton message <span>(2 minutes)</span></p>
+          <ol>
+            <li><strong>Ce que j'ai tenu :</strong> levé à 6 h 30 trois jours sur trois. Séances : deux sur trois, j'ai sauté jeudi.</li>
+            <li><strong>Ce qui a coincé :</strong> jeudi, je suis rentré à 20 h, vidé.</li>
+            <li><strong>Mon énergie :</strong> 6 sur 10.</li>
+          </ol>
+        </div>
+        <div class="checkin-card checkin-reply">
+          <p class="checkin-label">Ma réponse</p>
+          <blockquote>« Les trois levers, c'est ta base, et elle tient. Jeudi, ce n'est pas un problème de volonté : c'est un créneau qui ne tient pas. On le déplace au mercredi soir, et jeudi tu fais seulement ta version minimum. Prochain check-in vendredi : dis-moi si le mercredi a tenu. »</blockquote>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -654,6 +706,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
           <li>1 appel de diagnostic approfondi (1h)</li>
           <li>Plan ultra-personnalisé semaine par semaine</li>
           <li>Suivi quasi quotidien</li>
+          <li>2 appels de suivi mensuel</li>
           <li>Places limitées à 3 personnes en simultané</li>
           <li>Accès à tous les e-books</li>
         </ul></div>
@@ -730,25 +783,11 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 <!-- ASCENSION -->
 <section class="ascension" id="ascension">
   <div class="wrap">
-    <span class="asc-badge reveal"><span class="dot"></span>Sur candidature — une place à la fois</span>
-    <h2 class="reveal">Ascension — l'accompagnement le plus poussé</h2>
-    <p class="reveal" style="max-width:60ch;color:#C9C5B7;margin-top:18px;font-size:19px;">Un engagement forfaitaire de 90 jours. Ce n'est plus toi qui portes le projet avec mon aide — c'est un projet qu'on porte à deux, avec un objectif chiffré et daté posé dès le premier jour.</p>
-
-    <div class="asc-compare reveal">
-      <div class="diff-row head"><div class="c">Accompagnement classique</div><div class="c">Ascension</div></div>
-      <div class="diff-row"><div class="c">Abonnement mensuel, sans fin fixée</div><div class="c">Engagement forfaitaire de 90 jours</div></div>
-      <div class="diff-row"><div class="c">Suivi illimité mais asynchrone</div><div class="c">Ligne directe + calls hebdomadaires en visio</div></div>
-      <div class="diff-row"><div class="c">Un plan d'action</div><div class="c">Un objectif chiffré et daté, contractualisé</div></div>
-      <div class="diff-row"><div class="c">Ouvert à tous</div><div class="c">Sur candidature, une place à la fois</div></div>
-      <div class="diff-row"><div class="c">Rien de prévu après le programme</div><div class="c">2 points de suivi inclus, à J+30 et J+60</div></div>
-    </div>
-
+    <h2 class="reveal">Ascension</h2>
     <div class="asc-price reveal">
       <div class="asc-price-top">
-        <div class="asc-amount" style="font-size:30px;">Bientôt disponible</div>
-        <div class="asc-sub">Le programme n'est pas encore ouvert aux candidatures</div>
+        <div class="asc-amount">Bientôt disponible</div>
       </div>
-      <div class="asc-cta"><button type="button" class="btn btn-gold btn-disabled btn-block" disabled aria-disabled="true" title="Pas encore disponible">Candidater — bientôt disponible</button></div>
     </div>
   </div>
 </section>
@@ -767,12 +806,9 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       </div>
       <div class="faq-mini-item">
         <button class="faq-mini-q">Je peux changer de formule en cours de route ?<span class="sign">+</span></button>
-        <div class="faq-mini-a"><p>Oui, à tout moment. Beaucoup commencent par Cadre et passent à Accompagné une fois que le besoin d'un suivi plus rapproché se fait sentir.</p></div>
+        <div class="faq-mini-a"><p>Oui, à tout moment. je te conseille Cadre au début, si tu as un petit budget.</p></div>
       </div>
-      <div class="faq-mini-item">
-        <button class="faq-mini-q">Il y a un engagement de durée ?<span class="sign">+</span></button>
-        <div class="faq-mini-a"><p>Non pour Cadre, Accompagné et Immersion — ce sont des abonnements mensuels sans engagement. Ascension est un engagement forfaitaire de 90 jours.</p></div>
-      </div>
+    
       <div class="faq-mini-item">
         <button class="faq-mini-q">Je n'ai pas le temps.<span class="sign">+</span></button>
         <div class="faq-mini-a"><p>Aucune formule ne demande plus de temps que ce que tu perds déjà à recommencer de zéro tous les deux mois. On construit un plan qui rentre dans ta vie réelle, pas l'inverse.</p></div>
@@ -801,9 +837,10 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 <section class="contact" id="contact">
   <div class="wrap">
     <h2>Une question avant de choisir ?</h2>
-    <p class="lede">Sur une formule, un délai, ou autre chose. Réponse sous 24h.</p>
-    <form class="form-grid" id="contactForm" action="https://formspree.io/f/xyezygwb" method="POST" onsubmit="return handleContactSubmit(event);">
+    <p class="lede">Sur une formule, un délai, ou autre chose. Réponse sous 24h. Tu peux aussi m'écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
+    <form class="form-grid" id="contactForm" action="https://formspree.io/f/xnpjdajy" method="POST" onsubmit="return handleContactSubmit(event);">
       <input type="text" name="_gotcha" id="hp-field" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
+      <input type="hidden" name="_subject" value="Nouveau message — page formules tibobody.fr">
       <div><label for="fname">Prénom</label><input id="fname" name="prenom" type="text" required></div>
       <div><label for="femail">Email</label><input id="femail" name="email" type="email" required></div>
       <div class="full"><label for="finterest">Ce qui t'intéresse</label>
@@ -1076,7 +1113,6 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       <div>
         <h5>Offres</h5>
         <a href="formule.html">Formules</a>
-        <a href="index.html#defi30">Défi 30 jours</a>
         <a href="ebook.html">Les e-books</a>
       </div>
       <div>
@@ -1087,14 +1123,17 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       </div>
       <div>
         <h5>Informations</h5>
-        <a href="mentions-legales.html">Mentions légales</a>
         <a href="cgv.html">CGV</a>
+        <a href="mentions-legales.html">Mentions légales</a>
         <a href="confidentialite.html">Confidentialité</a>
+        <a href="mailto:contact@tibobody.fr?subject=G%C3%A9rer%20ou%20r%C3%A9silier%20mon%20abonnement">Gérer ou résilier mon abonnement</a>
+        <a href="retractation.html">Se rétracter</a>
         <a href="index.html#contact">Contact</a>
+        <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Thibault. Tous droits réservés.</span>
+      <span>© 2026 Tibobody — tibobody.fr. Tous droits réservés.</span>
       <span>Conçu pour la performance.</span>
     </div>
   </div>
@@ -1104,14 +1143,43 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 // ---------------------------------------------------------------------
+// CONFIG — adresse Formspree et email de contact (un seul endroit à changer)
+// ---------------------------------------------------------------------
+const FORMSPREE_URL = 'https://formspree.io/f/xnpjdajy';
+const CONTACT_EMAIL = 'contact@tibobody.fr';
+const DEFI_PDF_URL  = 'assets/img/defi7jour.pdf';
+
+// ---------------------------------------------------------------------
 // PAGE TRANSITION
 // ---------------------------------------------------------------------
 (function(){
   const overlay = document.getElementById('pageTransition');
   if(!overlay) return;
-  function reveal(){ overlay.classList.add('hide'); }
-  if(document.readyState === 'complete'){ setTimeout(reveal, 150); }
-  else { window.addEventListener('load', ()=> setTimeout(reveal, 150)); }
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // intro complète à la première page vue, version courte ensuite
+  let seen = false;
+  try{ seen = sessionStorage.getItem('tb_intro') === '1'; sessionStorage.setItem('tb_intro','1'); }catch(e){}
+  if(seen) overlay.classList.add('pt-fast');
+  const minTime = reduce ? 150 : (seen ? 850 : 2100);
+  const t0 = performance.now();
+  requestAnimationFrame(()=> overlay.classList.add('pt-play'));
+
+  let done = false;
+  function reveal(){
+    if(done) return; done = true;
+    const wait = Math.max(0, minTime - (performance.now() - t0));
+    setTimeout(()=>{
+      overlay.classList.add('hide');
+      window.__tbRevealed = true;
+      document.dispatchEvent(new Event('tb:reveal'));
+    }, wait);
+  }
+  if(document.readyState === 'complete') reveal();
+  else window.addEventListener('load', reveal);
+  setTimeout(reveal, 4500); // sécurité si une ressource bloque le chargement
+
+  // retour arrière du navigateur : ne pas rester bloqué sur l'écran noir
+  window.addEventListener('pageshow', e=>{ if(e.persisted){ overlay.classList.remove('pt-play'); overlay.classList.add('hide'); } });
 
   document.addEventListener('click', function(e){
     const a = e.target.closest('a');
@@ -1121,10 +1189,13 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     if(href.startsWith('#')) return;
     if(href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
     if(a.target === '_blank' || a.hasAttribute('download')) return;
+    if(/\.pdf($|\?)/i.test(href)) return;
     if(/^https?:\/\//i.test(href)) return;
+    if(e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault();
+    overlay.classList.remove('pt-play');
     overlay.classList.remove('hide');
-    setTimeout(()=>{ window.location.href = href; }, 380);
+    setTimeout(()=>{ window.location.href = href; }, 420);
   });
 })();
 
@@ -1245,14 +1316,15 @@ function quizSubmit(){
   const resultKey = quizComputeResult();
   const r = RESULTS[resultKey];
 
-  // envoi du lead vers Formspree (même compte que le formulaire de contact)
+  // envoi du lead vers Formspree
   try{
-    fetch('https://formspree.io/f/xyezygwb', {
+    fetch(FORMSPREE_URL, {
       method: 'POST',
       headers: {'Content-Type':'application/json','Accept':'application/json'},
       body: JSON.stringify({
         _subject: 'Nouveau résultat du test diagnostic',
         prenom: prenom, email: email, resultat: resultKey,
+        accepte_emails: document.getElementById('quizConsent').checked ? 'oui' : 'non',
         reponses: JSON.stringify(quizAnswers)
       })
     });
@@ -1275,6 +1347,10 @@ function quizSubmit(){
     <p class="r-desc">${r.desc}</p>
     ${listHtml}
     <button class="btn btn-ember" id="quizResultCta">${r.cta}</button>
+    <div class="r-gift">
+      <p><strong style="color:var(--ink);">Ton cadeau :</strong> le Défi 7 jours, à télécharger et commencer dès aujourd'hui.</p>
+      <a href="${DEFI_PDF_URL}" target="_blank" rel="noopener" download class="btn btn-line">Télécharger le Défi 7 jours (PDF)</a>
+    </div>
   `;
 
   document.getElementById('quizResultCta').addEventListener('click', ()=>{
@@ -1317,11 +1393,11 @@ function handleContactSubmit(e){
       showToast('Ta demande a bien été envoyée !');
       form.reset();
     } else {
-      showToast("Un problème est survenu, réessaie ou écris-moi directement.");
+      showToast("Un problème est survenu, réessaie ou écris à " + CONTACT_EMAIL);
     }
   })
   .catch(() => {
-    showToast("Un problème est survenu, réessaie ou écris-moi directement.");
+    showToast("Un problème est survenu, réessaie ou écris à " + CONTACT_EMAIL);
   })
   .finally(() => {
     btn.disabled = false;
@@ -1446,7 +1522,7 @@ const plans = {
     cta:'Cadre',ctaLabel:'Candidater'},
   accompagne:{eyebrow:'Accompagné',title:'Une semaine type',price:'147€/mois',image:'assets/img/accompagne.png',
     desc:`<ul style="margin:0 0 16px 18px;padding:0;">
-      <li style="margin-bottom:10px;">Quand tu avances ou que tu bloques : tu m'écris, en message ou en vocal. Je réponds sous 72h maximum.</li>
+      <li style="margin-bottom:10px;">Quand tu avances ou que tu bloques : tu m'écris, en message ou en vocal. Je réponds sous 48h maximum.</li>
       <li style="margin-bottom:10px;">En moyenne, 2 à 3 échanges par semaine, au rythme de ce qui se passe pour toi.</li>
       <li style="margin-bottom:10px;">Après chaque échange : je mets à jour ton doc de suivi partagé (ce qui est fait, ce qui bloque, prochaine étape). Tu y as accès à tout moment.</li>
       <li style="margin-bottom:10px;">Pas de nouvelles depuis 4 jours ? Je te relance.</li>
@@ -1456,7 +1532,7 @@ const plans = {
     cta:'Accompagné',ctaLabel:'Candidater'},
   immersion:{eyebrow:'Immersion',title:'Une semaine type',price:'297€/mois',image:'assets/img/immersion.png',
     desc:`<ul style="margin:0 0 16px 18px;padding:0;">
-      <li style="margin-bottom:10px;">Chaque jour : tu m'écris autant que tu veux sur ton canal dédié. Je réponds sous 72h maximum.</li>
+      <li style="margin-bottom:10px;">Chaque jour : tu m'écris autant que tu veux sur ton canal dédié. Je réponds sous 24h, les jours ouvrés.</li>
       <li style="margin-bottom:10px;">Ton plan est détaillé semaine par semaine dans ton espace Notion, avec un journal mis à jour au fil de nos échanges.</li>
       <li style="margin-bottom:10px;">À mi-mois : un bilan écrit, puis un appel de 30 minutes pour ajuster ce qui ne fonctionne pas.</li>
       <li>En fin de mois : un bilan écrit, puis un appel de 30 minutes pour construire le mois suivant semaine par semaine.</li>
@@ -1602,7 +1678,7 @@ document.getElementById('candForm').addEventListener('submit', function(e){
   const btn = document.getElementById('candSubmitBtn');
   const original = btn.textContent;
   btn.disabled = true; btn.textContent = 'Envoi en cours...';
-  fetch('https://formspree.io/f/xyezygwb', {
+  fetch(FORMSPREE_URL, {
     method:'POST',
     body:new FormData(this),
     headers:{'Accept':'application/json'}
@@ -1612,12 +1688,12 @@ document.getElementById('candForm').addEventListener('submit', function(e){
       document.querySelector('#candModal .cand-progress-wrap').style.display='none';
       document.getElementById('candDoneScreen').style.display='block';
     } else {
-      document.getElementById('candErrMsg').textContent = "Un problème est survenu, réessaie ou écris directement à Thibault.";
+      document.getElementById('candErrMsg').textContent = "Un problème est survenu, réessaie ou écris à " + CONTACT_EMAIL;
       document.getElementById('candErrMsg').style.display='block';
       btn.disabled=false; btn.textContent=original;
     }
   }).catch(()=>{
-    document.getElementById('candErrMsg').textContent = "Un problème est survenu, réessaie ou écris directement à Thibault.";
+    document.getElementById('candErrMsg').textContent = "Un problème est survenu, réessaie ou écris à " + CONTACT_EMAIL;
     document.getElementById('candErrMsg').style.display='block';
     btn.disabled=false; btn.textContent=original;
   });

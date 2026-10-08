@@ -3,38 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Politique de confidentialité — Thibault</title>
+<title>Politique de confidentialité — Tibobody</title>
+<link rel="canonical" href="https://tibobody.fr/confidentialite.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<meta name="theme-color" content="#121110">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:#F2F1EE;color:#111010;font-family:'Work Sans',sans-serif;line-height:1.7;}
-  .wrap{max-width:760px;margin:0 auto;padding:60px 24px 100px;}
-  h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,52px);text-transform:uppercase;margin-bottom:24px;}
-  h2{font-size:18px;margin:32px 0 10px;}
+  .wrap{max-width:760px;margin:0 auto;padding:60px 24px 80px;}
+  h1{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(32px,6vw,52px);line-height:1;text-transform:uppercase;margin-bottom:24px;}
+  h2{font-size:18px;margin:36px 0 10px;}
+  h3{font-size:15.5px;margin:22px 0 6px;}
   p,li{color:#57544C;font-size:15px;margin-bottom:10px;}
+  ul,ol{padding-left:22px;margin-bottom:10px;}
+  strong{color:#111010;}
+  a{color:#8C1B16;}
   a.back{display:inline-block;margin-bottom:30px;font-size:13px;font-weight:700;color:#8C1B16;text-decoration:none;}
-  .note{background:#fff;border-left:3px solid #8C1B16;padding:14px 18px;margin-top:30px;font-size:13.5px;color:#57544C;}
+  .note{background:#fff;border-left:3px solid #8C1B16;padding:14px 18px;margin-top:16px;font-size:14px;color:#57544C;}
+  .annex{background:#fff;border:1px solid #DDD9D0;padding:24px 26px;margin-top:14px;}
+  .legal-foot{border-top:1px solid #DDD9D0;padding:28px 24px 40px;text-align:center;font-size:13px;color:#57544C;}
+  .legal-foot nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 10px;margin-bottom:10px;}
+  .legal-foot nav a{color:#111010;text-decoration:none;font-weight:600;}
+  .legal-foot nav a:hover{color:#8C1B16;}
+  .legal-foot span{color:#B5B1A8;}
+  .legal-foot p{font-size:12.5px;margin:0;}
+
+/* page transition — écran de chargement (rendu de la vidéo d'intro) */
+.page-transition{position:fixed;inset:0;background:#111010;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .5s ease;}
+.page-transition.hide{opacity:0;pointer-events:none;}
+.pt-logo{position:relative;font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(64px,15vw,200px);line-height:1;letter-spacing:.01em;filter:drop-shadow(0 10px 18px rgba(0,0,0,.7));}
+.pt-glow{position:absolute;left:42%;top:52%;width:78%;height:190%;transform:translateY(-50%) scale(.75);background:radial-gradient(closest-side,rgba(140,27,22,.42),rgba(140,27,22,.14) 55%,rgba(140,27,22,0));opacity:0;pointer-events:none;}
+.pt-word{position:relative;display:flex;overflow:hidden;padding:0 .02em;}
+.pt-l{display:inline-block;color:#fff;transform:translateY(110%);}
+.pt-l.r{color:#8C1B16;}
+.pt-play .pt-l{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 60ms + 120ms);}
+.pt-play .pt-l.r{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards,ptShine .5s ease forwards;animation-delay:calc(var(--i) * 60ms + 120ms),calc((var(--i) - 4) * 70ms + 1150ms);}
+.pt-play .pt-glow{animation:ptGlow .8s ease .65s forwards;}
+.pt-fast.pt-play .pt-l,.pt-fast.pt-play .pt-l.r{animation:ptUp .4s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 35ms + 60ms);}
+.pt-fast.pt-play .pt-glow{animation:ptGlow .5s ease .3s forwards;}
+@keyframes ptUp{to{transform:translateY(0);}}
+@keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
+@keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
+@media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
 </style>
 </head>
 <body>
+<div class="page-transition" id="pageTransition" aria-hidden="true"><div class="pt-logo"><span class="pt-glow"></span><span class="pt-word"><span class="pt-l" style="--i:0">T</span><span class="pt-l" style="--i:1">I</span><span class="pt-l" style="--i:2">B</span><span class="pt-l" style="--i:3">O</span><span class="pt-l r" style="--i:4">B</span><span class="pt-l r" style="--i:5">O</span><span class="pt-l r" style="--i:6">D</span><span class="pt-l r" style="--i:7">Y</span></span></div></div>
 <div class="wrap">
   <a class="back" href="index.html">← Retour à l'accueil</a>
   <h1>Politique de confidentialité</h1>
 
-  <h2>Données collectées</h2>
-  <p>Nom, prénom, email et message via le formulaire de contact ou de candidature coaching ; panier stocké localement dans ton navigateur (non transmis à un serveur).</p>
+  <h2>Les données collectées</h2>
+  <h3>Formulaire de contact</h3>
+  <p>Prénom, email, message. Pour répondre à ta demande. Conservées 3 ans après notre dernier échange.</p>
+  <h3>Test gratuit</h3>
+  <p>Prénom, email, réponses au test. Pour t'envoyer ton résultat et, si tu l'acceptes, des emails de conseils et d'offres. Base : ton consentement. Conservées 3 ans après ton dernier contact ou jusqu'à ta désinscription.</p>
+  <h3>Candidature</h3>
+  <p>Identité, objectifs, situation, réponses au questionnaire. Pour vérifier que l'accompagnement te correspond. Conservées 6 mois si tu ne deviens pas client.</p>
+  <h3>Accompagnement</h3>
+  <p>Identité, email, échanges de suivi, check-ins. Pour réaliser l'accompagnement. Conservées pendant l'accompagnement, puis 3 ans.</p>
+  <h3>Paiements</h3>
+  <p>Nom, email, montants. Les données de carte sont traitées par Stripe, jamais par nous. Factures conservées 10 ans (obligation légale).</p>
 
   <h2>Cookies</h2>
-  <p>Ce site utilise des cookies pour mesurer l'audience. Tu peux les refuser via la bannière affichée lors de ta première visite.</p>
+  <p>Ce site utilise des cookies pour mesurer l'audience. Tu peux les refuser via la bannière affichée lors de ta première visite. Ton panier est stocké localement dans ton navigateur et n'est pas transmis à un serveur.</p>
 
-  <h2>Utilisation des données</h2>
-  <p>Les informations transmises via les formulaires sont utilisées uniquement pour répondre à ta demande et ne sont ni vendues ni partagées avec des tiers.</p>
+  <h2>Comment tes données sont utilisées</h2>
+  <p>Tes données servent uniquement aux finalités listées ci-dessus. Elles ne sont jamais vendues. Si tu as accepté de recevoir nos emails, chacun contient un lien de désinscription qui fonctionne en un clic.</p>
 
   <h2>Tes droits</h2>
-  <p>Conformément au RGPD, tu disposes d'un droit d'accès, de rectification et de suppression de tes données. Contacte thibault.barret04@gmail.com pour l'exercer.</p>
-
-  <div class="note">Modèle à faire vérifier et compléter par un professionnel du droit avant mise en ligne — ce texte n'a pas de valeur juridique en l'état.</div>
+  <p>Tu peux à tout moment accéder à tes données, les rectifier, les effacer, t'opposer à leur utilisation, en limiter l'usage, les récupérer dans un format lisible, et retirer ton consentement. Écris simplement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a> : nous répondons dans un délai d'un mois.</p>
+  <p>Si tu estimes que tes droits ne sont pas respectés, tu peux adresser une réclamation à la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>).</p>
 </div>
+<footer class="legal-foot">
+  <nav>
+    <a href="cgv.html">CGV</a><span>·</span>
+    <a href="mentions-legales.html">Mentions légales</a><span>·</span>
+    <a href="confidentialite.html">Confidentialité</a><span>·</span>
+    <a href="mailto:contact@tibobody.fr?subject=G%C3%A9rer%20ou%20r%C3%A9silier%20mon%20abonnement">Gérer ou résilier mon abonnement</a><span>·</span>
+    <a href="retractation.html">Se rétracter</a><span>·</span>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <p>© 2026 Tibobody — tibobody.fr · <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a></p>
+</footer>
+<script>
+(function(){
+  const overlay = document.getElementById('pageTransition');
+  if(!overlay) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // intro complète à la première page vue, version courte ensuite
+  let seen = false;
+  try{ seen = sessionStorage.getItem('tb_intro') === '1'; sessionStorage.setItem('tb_intro','1'); }catch(e){}
+  if(seen) overlay.classList.add('pt-fast');
+  const minTime = reduce ? 150 : (seen ? 850 : 2100);
+  const t0 = performance.now();
+  requestAnimationFrame(()=> overlay.classList.add('pt-play'));
+
+  let done = false;
+  function reveal(){
+    if(done) return; done = true;
+    const wait = Math.max(0, minTime - (performance.now() - t0));
+    setTimeout(()=>{
+      overlay.classList.add('hide');
+      window.__tbRevealed = true;
+      document.dispatchEvent(new Event('tb:reveal'));
+    }, wait);
+  }
+  if(document.readyState === 'complete') reveal();
+  else window.addEventListener('load', reveal);
+  setTimeout(reveal, 4500); // sécurité si une ressource bloque le chargement
+
+  // retour arrière du navigateur : ne pas rester bloqué sur l'écran noir
+  window.addEventListener('pageshow', e=>{ if(e.persisted){ overlay.classList.remove('pt-play'); overlay.classList.add('hide'); } });
+
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    if(!href) return;
+    if(href.startsWith('#')) return;
+    if(href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    if(a.target === '_blank' || a.hasAttribute('download')) return;
+    if(/\.pdf($|\?)/i.test(href)) return;
+    if(/^https?:\/\//i.test(href)) return;
+    if(e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    overlay.classList.remove('pt-play');
+    overlay.classList.remove('hide');
+    setTimeout(()=>{ window.location.href = href; }, 420);
+  });
+})();
+
+</script>
 </body>
 </html>
