@@ -15,6 +15,9 @@
 //   PAIEMENTS_OUVERTS      (Texte)   facultatif : "non" pour fermer les paiements. Absent = ouverts.
 //   BREVO_API_KEY          (Secret)  clé API Brevo (emails automatiques)
 //   STRIPE_WEBHOOK_SECRET  (Secret)  whsec_… du webhook Stripe
+//   PORTAIL_CLIENT_URL     (Texte)   lien du portail client Stripe (https://billing.stripe.com/p/login/…)
+//
+//   GET  /api/portail                   -> redirige vers le portail client Stripe
 //
 // Tarif de bienvenue : dans Stripe, produit > Métadonnées > clé "coupon" = ID du coupon
 // (repeating, 3 mois). Il est appliqué automatiquement au paiement.
@@ -104,6 +107,11 @@ export async function onRequest({ request, env, params }) {
   const route = (params.route || []).join('/');
   try {
     if (route === 'retractation' && request.method === 'POST') return await postRetractation(request, env);
+    if (route === 'portail') {
+      // lien « Gérer ou résilier mon abonnement » : portail client Stripe, sinon le formulaire de contact
+      const dest = /^https:\/\/billing\.stripe\.com\//.test(env.PORTAIL_CLIENT_URL || '') ? env.PORTAIL_CLIENT_URL : '/index.html#contact';
+      return Response.redirect(new URL(dest, request.url).toString(), 302);
+    }
     if (!env.STRIPE_SECRET_KEY) {
       return json({ error: 'Paiement indisponible : clé Stripe non configurée.' }, 500);
     }
