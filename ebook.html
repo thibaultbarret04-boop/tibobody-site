@@ -776,7 +776,7 @@ renderCart();
 // ---------------------------------------------------------------------
 // Paiements fermés (variable PAIEMENTS_OUVERTS dans Cloudflare) : on n'affiche pas l'achat
 // ---------------------------------------------------------------------
-let paiementsOuverts = false;
+let paiementsOuverts = true; // ouvert par défaut : ne se ferme que si le serveur répond explicitement « ouvert: false »
 function appliquerEtatPaiements(){
   const add = document.getElementById('modalAddBtn');
   const note = document.getElementById('modalNote');
@@ -794,7 +794,7 @@ function appliquerEtatPaiements(){
 appliquerEtatPaiements();
 fetch('/api/places', { cache: 'no-store' })
   .then(r => r.ok ? r.json() : null)
-  .then(d => { paiementsOuverts = !!(d && d.ouvert); appliquerEtatPaiements(); })
+  .then(d => { if(d && d.ouvert === false){ paiementsOuverts = false; appliquerEtatPaiements(); } })
   .catch(()=>{});
 
 // cookie banner
