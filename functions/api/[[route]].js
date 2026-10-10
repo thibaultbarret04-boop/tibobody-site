@@ -7,6 +7,17 @@
 //        { items: [{ id: "01" }, ...] }                     (e-books)
 //   GET  /api/telechargements?session_id=cs_… | ?t=…   -> liens de téléchargement
 //   GET  /api/fichier/05?exp=…&sig=…    -> le PDF (lien signé, valable 1 h)
+//   POST /api/retractation              -> demande de rétractation + accusé de réception (Brevo)
+//   POST /api/stripe-webhook            -> email 7 jours avant la fin du tarif de bienvenue (Brevo)
+//
+// Variables à régler dans Cloudflare (Settings > Variables and Secrets) :
+//   STRIPE_SECRET_KEY      (Secret)  clé Stripe sk_test_… / sk_live_…
+//   PAIEMENTS_OUVERTS      (Texte)   facultatif : "non" pour fermer les paiements. Absent = ouverts.
+//   BREVO_API_KEY          (Secret)  clé API Brevo (emails automatiques)
+//   STRIPE_WEBHOOK_SECRET  (Secret)  whsec_… du webhook Stripe
+//
+// Tarif de bienvenue : dans Stripe, produit > Métadonnées > clé "coupon" = ID du coupon
+// (repeating, 3 mois). Il est appliqué automatiquement au paiement.
 //
 // Les PDF sont dans un dossier au nom secret (DOSSIER_PRIVE ci-dessous),
 // impossible à deviner : le backend lit le fichier et le transmet à l'acheteur
@@ -63,6 +74,23 @@ const FICHIERS = {
 const LIEN_COMMANDE_JOURS = 365;      // lien envoyé dans la facture
 const LIEN_FICHIER_SECONDES = 60 * 60; // lien direct vers un PDF
 
+const EMAIL_CONTACT = 'contact@tibobody.fr';
+const NOM_EXPEDITEUR = 'Tibobody';
+const NOMS_FORMULES = { cadre: 'Cadre', accompagne: 'Accompagné', immersion: 'Immersion' };
+
+// Champ obligatoire au paiement (Stripe n'a pas de case à cocher : liste à un seul choix)
+const CHAMP_MAJEUR = {
+  key: 'majeur',
+  label: { type: 'custom', custom: 'Âge' },
+  type: 'dropdown',
+  optional: false,
+  dropdown: { options: [{ label: "J'ai 18 ans ou plus", value: 'oui' }] },
+};
+
+function paiementsOuverts(env) {
+  return String(env.PAIEMENTS_OUVERTS || '').trim().toLowerCase() !== 'non';
+}
+
 // Un client compte comme « place occupée » tant que son abonnement est dans un de ces états
 const STATUTS_OCCUPANTS = ['active', 'trialing', 'past_due', 'unpaid'];
 // Durée de réservation d'une place pendant le paiement (Stripe impose 30 min minimum)
@@ -75,11 +103,13 @@ const CACHE_PLACES_SECONDES = 20;
 export async function onRequest({ request, env, params }) {
   const route = (params.route || []).join('/');
   try {
+    if (route === 'retractation' && request.method === 'POST') return await postRetractation(request, env);
     if (!env.STRIPE_SECRET_KEY) {
       return json({ error: 'Paiement indisponible : clé Stripe non configurée.' }, 500);
     }
     if (route === 'places' && request.method === 'GET') return await getPlaces(request, env);
     if (route === 'create-checkout-session' && request.method === 'POST') return await createCheckout(request, env);
+    if (route === 'stripe-webhook' && request.method === 'POST') return await stripeWebhook(request, env);
     if (route === 'telechargements' && request.method === 'GET') return await getTelechargements(request, env);
     if (params.route && params.route[0] === 'fichier' && request.method === 'GET') return await getFichier(request, env, params.route[1]);
     return json({ error: 'Route inconnue.' }, 404);
@@ -101,6 +131,7 @@ async function getPlaces(request, env) {
   }
   const places = await calculerPlaces(env);
   const data = Object.fromEntries(Object.entries(places).map(([k, v]) => [k, { max: v.max, restantes: v.restantes }]));
+  data.ouvert = paiementsOuverts(env);
   const res = json(data, 200, { 'Cache-Control': `public, max-age=${CACHE_PLACES_SECONDES}` });
   if (cache) await cache.put(cacheKey, res.clone());
   return res;
@@ -131,6 +162,7 @@ async function calculerPlaces(env, seulement) {
       max: placesMax,
       restantes: Math.max(0, placesMax - occupees - enCours),
       prix: prixId,
+      coupon: (produit.metadata && produit.metadata.coupon || '').trim() || null,
     };
   }));
   return resultat;
@@ -144,6 +176,10 @@ async function createCheckout(request, env) {
   try { body = await request.json(); } catch { return json({ error: 'Requête invalide.' }, 400); }
   const origin = new URL(request.url).origin;
   const expiresAt = Math.floor(Date.now() / 1000) + RESERVATION_SECONDES;
+
+  if (!paiementsOuverts(env)) {
+    return json({ error: 'Les paiements ouvrent très bientôt. Écris-moi via le formulaire de contact en attendant.', ferme: true }, 403);
+  }
 
   // ----- Formule (abonnement mensuel) -----
   if (body && body.formule) {
@@ -163,8 +199,10 @@ async function createCheckout(request, env) {
       success_url: `${origin}/merci.html?type=formule&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/formule.html#formules`,
       expires_at: expiresAt,
+      // tarif de bienvenue appliqué automatiquement (aucun code à taper)
+      ...(places.coupon ? { discounts: [{ coupon: places.coupon }] } : {}),
       metadata: { formule: cle },
-      subscription_data: { metadata: { formule: cle } },
+      subscription_data: { metadata: { formule: cle, ...(places.coupon ? { bienvenue: places.coupon } : {}) } },
       consent_collection: { terms_of_service: 'required' },
       custom_text: {
         terms_of_service_acceptance: { message: `J'accepte les [conditions générales de vente](${origin}/cgv.html).` },
@@ -180,7 +218,7 @@ async function createCheckout(request, env) {
             { label: 'Je préfère attendre la fin du délai de 14 jours.', value: 'attendre14j' },
           ],
         },
-      }],
+      }, CHAMP_MAJEUR],
     });
     return json({ url: session.url });
   }
@@ -212,6 +250,7 @@ async function createCheckout(request, env) {
     cancel_url: `${origin}/ebook.html`,
     expires_at: expiresAt,
     metadata: { ebooks: ids.join(',') },
+    custom_fields: [CHAMP_MAJEUR],
     invoice_creation: {
       enabled: true,
       invoice_data: {
@@ -227,6 +266,140 @@ async function createCheckout(request, env) {
     },
   });
   return json({ url: session.url });
+}
+
+// ---------------------------------------------------------------------
+// Emails (Brevo)
+// ---------------------------------------------------------------------
+async function envoyerEmail(env, { to, subject, text, replyTo }) {
+  if (!env.BREVO_API_KEY) throw new Error('BREVO_API_KEY manquante');
+  const html = `<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#111">${echapper(text).replace(/\n/g, '<br>')}</div>`;
+  const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: { 'api-key': env.BREVO_API_KEY, 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      sender: { name: NOM_EXPEDITEUR, email: EMAIL_CONTACT },
+      to: Array.isArray(to) ? to : [to],
+      ...(replyTo ? { replyTo } : {}),
+      subject, textContent: text, htmlContent: html,
+    }),
+  });
+  if (!res.ok) throw new Error(`Brevo ${res.status} ${await res.text()}`);
+}
+
+function echapper(t) {
+  return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function dateHeureParis(d) {
+  return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'medium', timeZone: 'Europe/Paris' }).format(d) + ' (heure de Paris)';
+}
+function dateParis(d) {
+  return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long', timeZone: 'Europe/Paris' }).format(d);
+}
+function euros(centimes) {
+  return (centimes / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+}
+
+// ---------------------------------------------------------------------
+// Rétractation : enregistre la demande et envoie l'accusé de réception
+// (contenu + date et heure, sur support durable = email) — obligatoire depuis le 19/06/2026
+// ---------------------------------------------------------------------
+async function postRetractation(request, env) {
+  let b;
+  try { b = await request.json(); } catch { return json({ error: 'Requête invalide.' }, 400); }
+  const champ = (v, max = 200) => String(v || '').trim().slice(0, max);
+  const nom = champ(b.nom, 120), email = champ(b.email, 160), formule = champ(b.formule, 60);
+  const dateSouscription = champ(b.date_souscription, 20), message = champ(b.message, 2000);
+  if (champ(b._gotcha)) return json({ ok: true }); // robot
+  if (!nom || !formule || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return json({ error: 'Merci de renseigner ton nom, ton email et le contrat concerné.' }, 400);
+  }
+  if (!env.BREVO_API_KEY) return json({ error: 'indisponible', indisponible: true }, 503);
+
+  const recue = new Date();
+  const quand = dateHeureParis(recue);
+  const contenu = [
+    'Je vous notifie par la présente ma rétractation du contrat portant sur la prestation de services ci-dessous :',
+    `- Contrat concerné : ${formule}`,
+    `- Date de souscription : ${dateSouscription || 'non précisée'}`,
+    `- Nom du client : ${nom}`,
+    `- Adresse email utilisée pour l'achat : ${email}`,
+    ...(message ? [`- Précision : ${message}`] : []),
+  ].join('\n');
+
+  await envoyerEmail(env, {
+    to: { email, name: nom },
+    replyTo: { email: EMAIL_CONTACT, name: NOM_EXPEDITEUR },
+    subject: 'Accusé de réception de ta rétractation — Tibobody',
+    text: `Bonjour ${nom},\n\nNous accusons réception de ta demande de rétractation, reçue le ${quand}.\n\nVoici le contenu de ta déclaration :\n\n${contenu}\n\nLe remboursement interviendra au plus tard 14 jours après ta rétractation, par le même moyen de paiement que celui utilisé lors de l'achat.\n\nPour toute question, réponds simplement à cet email.\n\nTibobody — ${EMAIL_CONTACT}`,
+  });
+  // copie pour Tibobody (si elle échoue, la demande du client reste valide)
+  try {
+    await envoyerEmail(env, {
+      to: { email: EMAIL_CONTACT, name: NOM_EXPEDITEUR },
+      replyTo: { email, name: nom },
+      subject: `Rétractation reçue — ${nom} (${formule})`,
+      text: `Demande reçue le ${quand}.\n\n${contenu}\n\nÀ faire : arrêter l'abonnement dans Stripe et rembourser sous 14 jours (au prorata si le client a demandé à commencer tout de suite).`,
+    });
+  } catch (e) { console.error('copie rétractation', e.message); }
+
+  return json({ ok: true, recue: quand });
+}
+
+// ---------------------------------------------------------------------
+// Webhook Stripe : prévient le client 7 jours avant la fin du tarif de bienvenue
+// (Stripe > Paramètres > Facturation > « Upcoming renewal events » réglé sur 7 jours)
+// ---------------------------------------------------------------------
+async function stripeWebhook(request, env) {
+  const brut = await request.text();
+  if (!env.STRIPE_WEBHOOK_SECRET || !(await signatureStripeValide(brut, request.headers.get('Stripe-Signature'), env.STRIPE_WEBHOOK_SECRET))) {
+    return json({ error: 'Signature invalide.' }, 400);
+  }
+  const event = JSON.parse(brut);
+  if (event.type !== 'invoice.upcoming') return json({ recu: true });
+
+  const facture = event.data && event.data.object || {};
+  const subId = idDe(facture.subscription)
+    || idDe(facture.parent && facture.parent.subscription_details && facture.parent.subscription_details.subscription);
+  if (!subId) return json({ recu: true });
+
+  const abo = await stripe(env, 'GET', `subscriptions/${subId}`);
+  const meta = abo.metadata || {};
+  if (!meta.bienvenue || meta.prevenu_tarif_normal) return json({ recu: true }); // pas concerné ou déjà prévenu
+
+  const remise = (facture.total_discount_amounts || []).reduce((t, d) => t + (d.amount || 0), 0);
+  if (remise > 0) return json({ recu: true }); // la prochaine mensualité est encore au tarif de bienvenue
+
+  const email = facture.customer_email;
+  if (!email) return json({ recu: true });
+  const ligne = facture.lines && facture.lines.data && facture.lines.data[0];
+  const debut = ligne && ligne.period && ligne.period.start;
+  const quand = debut ? `le ${dateParis(new Date(debut * 1000))}` : 'dans 7 jours';
+  const montant = typeof facture.amount_due === 'number' ? euros(facture.amount_due) : 'le tarif normal';
+  const nomFormule = NOMS_FORMULES[meta.formule] || 'ta formule';
+  const portail = env.PORTAIL_CLIENT_URL ? `\n\nGérer ou résilier ton abonnement : ${env.PORTAIL_CLIENT_URL}` : `\n\nPour gérer ou résilier ton abonnement, utilise le lien présent dans tes reçus ou écris à ${EMAIL_CONTACT}.`;
+
+  await envoyerEmail(env, {
+    to: { email, name: facture.customer_name || undefined },
+    replyTo: { email: EMAIL_CONTACT, name: NOM_EXPEDITEUR },
+    subject: `Ta formule ${nomFormule} passe au tarif normal ${quand}`,
+    text: `Bonjour${facture.customer_name ? ' ' + facture.customer_name : ''},\n\nTes 3 mois au tarif de bienvenue se terminent. À partir de ta prochaine mensualité, ${quand}, ta formule ${nomFormule} sera facturée ${montant} par mois (tarif normal en vigueur au jour de ta souscription).\n\nTu n'as rien à faire pour continuer. Si tu préfères arrêter, tu peux résilier à tout moment, sans frais, avant cette date.${portail}\n\nMerci pour ta confiance,\nTibobody — ${EMAIL_CONTACT}`,
+  });
+  await stripe(env, 'POST', `subscriptions/${subId}`, { metadata: { prevenu_tarif_normal: new Date().toISOString().slice(0, 10) } });
+  return json({ recu: true, prevenu: true });
+}
+
+async function signatureStripeValide(brut, entete, secret) {
+  if (!entete) return false;
+  const parts = Object.fromEntries(entete.split(',').map(p => p.split('=')).filter(p => p.length === 2).map(([k, v]) => [k.trim(), v.trim()]));
+  const v1 = entete.split(',').map(p => p.trim()).filter(p => p.startsWith('v1=')).map(p => p.slice(3));
+  const t = parts.t;
+  if (!t || v1.length === 0) return false;
+  if (Math.abs(Date.now() / 1000 - Number(t)) > 300) return false; // 5 min de tolérance
+  const cle = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  const sig = new Uint8Array(await crypto.subtle.sign('HMAC', cle, new TextEncoder().encode(`${t}.${brut}`)));
+  const attendu = [...sig].map(b => b.toString(16).padStart(2, '0')).join('');
+  return v1.some(v => egal(v, attendu));
 }
 
 // ---------------------------------------------------------------------

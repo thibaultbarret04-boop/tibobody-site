@@ -47,7 +47,7 @@ p{color:var(--steel);}
 @media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important;} .reveal{opacity:1 !important;transform:none !important;} }
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
+.btn{display:inline-flex;border-radius:12px;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
   padding:16px 30px;border:2px solid var(--ink);cursor:pointer;background:none;transition:transform .15s ease,background .2s ease,color .2s ease;}
 .btn-solid{background:var(--ink);color:var(--paper);}
 .btn-solid:hover{background:var(--ember);border-color:var(--ember);color:#fff;transform:translateY(-2px);}
@@ -219,7 +219,7 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .choice-card:first-child .choice-cover::after{right:0;}
 .choice-card:last-child .choice-cover::after{left:0;}
 .choice-body{padding:18px 0 0;}
-.choice-btn{border-radius:10px;}
+.choice-btn{border-radius:12px;}
 @media(max-width:760px){.choice-grid{grid-template-columns:1fr;}}
 
 .ebooks{background:var(--paper-2);}
@@ -540,6 +540,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       <div><label for="femail">Email</label><input id="femail" name="email" type="email" required></div>
       <div class="full"><label for="finterest">Ce qui t'intéresse</label>
         <select id="finterest" name="interet">
+          <option>Un accompagnement</option>
           <option>Un e-book</option>
           <option>Une question générale</option>
         </select>
@@ -765,8 +766,8 @@ function handleContactSubmit(e){
   bar.style.cssText='position:fixed;left:16px;right:16px;bottom:16px;max-width:520px;margin:0 auto;background:var(--ink);color:#fff;padding:18px 20px;z-index:400;font-family:var(--sans);font-size:13.5px;box-shadow:0 10px 30px rgba(0,0,0,.3);';
   bar.innerHTML = 'Ce site utilise des cookies pour améliorer ton expérience et mesurer l\'audience.'
     +'<div style="display:flex;gap:10px;margin-top:12px;">'
-    +'<button id="cookieAccept" style="flex:1;background:var(--ember);color:#fff;border:none;padding:10px;font-weight:700;cursor:pointer;">Accepter</button>'
-    +'<button id="cookieRefuse" style="flex:1;background:none;color:#fff;border:1px solid rgba(255,255,255,.3);padding:10px;font-weight:700;cursor:pointer;">Refuser</button></div>';
+    +'<button id="cookieAccept" style="flex:1;border-radius:10px;background:var(--ember);color:#fff;border:none;padding:10px;font-weight:700;cursor:pointer;">Accepter</button>'
+    +'<button id="cookieRefuse" style="flex:1;border-radius:10px;background:none;color:#fff;border:1px solid rgba(255,255,255,.3);padding:10px;font-weight:700;cursor:pointer;">Refuser</button></div>';
   document.body.appendChild(bar);
   function setConsent(v){ try{ localStorage.setItem(KEY, v); }catch(e){} bar.remove(); }
   document.getElementById('cookieAccept').addEventListener('click', ()=>setConsent('accepted'));

@@ -43,7 +43,7 @@ p{color:var(--steel);}
 @media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important;} .reveal{opacity:1 !important;transform:none !important;} }
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
+.btn{display:inline-flex;border-radius:12px;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
   padding:16px 30px;border:2px solid var(--ink);cursor:pointer;background:none;transition:transform .15s ease,background .2s ease,color .2s ease;}
 .btn-solid{background:var(--ink);color:var(--paper);}
 .btn-solid:hover{background:var(--ember);border-color:var(--ember);color:#fff;transform:translateY(-2px);}
@@ -391,7 +391,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       <p class="modal-price" id="modalPrice"></p>
       <p class="modal-desc" id="modalDesc"></p>
       <button class="btn btn-solid btn-block" id="modalAddBtn" onclick="addToCart(currentBookId)">Ajouter au panier</button>
-      <span class="modal-note">Paiement sécurisé par Stripe.</span>
+      <span class="modal-note" id="modalNote">Paiement sécurisé par Stripe.</span>
     </div>
   </div>
 </div>
@@ -682,6 +682,7 @@ function saveCart(){
 saveCart();
 
 function addToCart(id){
+  if(!paiementsOuverts){ showToast('Les achats ouvrent très bientôt.'); return; }
   if(!id || !books[id]) return;
   const existing = cart.find(i=>i.id===id);
   if(existing){
@@ -743,6 +744,7 @@ cartClose.addEventListener('click', closeCart);
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeCart(); });
 
 async function startCheckout(){
+  if(!paiementsOuverts){ showToast('Les achats ouvrent très bientôt.'); return; }
   if(cart.length===0){ showToast('Ton panier est vide.'); return; }
   const btn = document.getElementById('checkoutBtn');
   const originalLabel = btn.textContent;
@@ -771,6 +773,30 @@ async function startCheckout(){
 
 renderCart();
 
+// ---------------------------------------------------------------------
+// Paiements fermés (variable PAIEMENTS_OUVERTS dans Cloudflare) : on n'affiche pas l'achat
+// ---------------------------------------------------------------------
+let paiementsOuverts = false;
+function appliquerEtatPaiements(){
+  const add = document.getElementById('modalAddBtn');
+  const note = document.getElementById('modalNote');
+  const checkout = document.getElementById('checkoutBtn');
+  if(paiementsOuverts){
+    add.disabled = false; add.textContent = 'Ajouter au panier';
+    note.innerHTML = 'Paiement sécurisé par Stripe.';
+    checkout.disabled = false; checkout.textContent = 'Passer commande';
+  } else {
+    add.disabled = true; add.textContent = 'Disponible très bientôt';
+    note.innerHTML = 'Les achats ouvrent très bientôt. <a href="index.html#contact" style="text-decoration:underline;">Écris-moi</a> pour être prévenu(e) du lancement.';
+    checkout.disabled = true; checkout.textContent = 'Disponible très bientôt';
+  }
+}
+appliquerEtatPaiements();
+fetch('/api/places', { cache: 'no-store' })
+  .then(r => r.ok ? r.json() : null)
+  .then(d => { paiementsOuverts = !!(d && d.ouvert); appliquerEtatPaiements(); })
+  .catch(()=>{});
+
 // cookie banner
 (function(){
   const KEY='tb_cookie_consent';
@@ -782,8 +808,8 @@ renderCart();
   bar.style.cssText='position:fixed;left:16px;right:16px;bottom:16px;max-width:520px;margin:0 auto;background:var(--ink);color:#fff;padding:18px 20px;z-index:400;font-family:var(--sans);font-size:13.5px;box-shadow:0 10px 30px rgba(0,0,0,.3);';
   bar.innerHTML = 'Ce site utilise des cookies pour améliorer ton expérience et mesurer l\'audience.'
     +'<div style="display:flex;gap:10px;margin-top:12px;">'
-    +'<button id="cookieAccept" style="flex:1;background:var(--ember);color:#fff;border:none;padding:10px;font-weight:700;cursor:pointer;">Accepter</button>'
-    +'<button id="cookieRefuse" style="flex:1;background:none;color:#fff;border:1px solid rgba(255,255,255,.3);padding:10px;font-weight:700;cursor:pointer;">Refuser</button></div>';
+    +'<button id="cookieAccept" style="flex:1;border-radius:10px;background:var(--ember);color:#fff;border:none;padding:10px;font-weight:700;cursor:pointer;">Accepter</button>'
+    +'<button id="cookieRefuse" style="flex:1;border-radius:10px;background:none;color:#fff;border:1px solid rgba(255,255,255,.3);padding:10px;font-weight:700;cursor:pointer;">Refuser</button></div>';
   document.body.appendChild(bar);
   function setConsent(v){ try{ localStorage.setItem(KEY, v); }catch(e){} bar.remove(); }
   document.getElementById('cookieAccept').addEventListener('click', ()=>setConsent('accepted'));

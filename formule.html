@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les accompagnements — Tibobody</title>
-<meta name="description" content="Cadre, Accompagné, Immersion, Ascension : toutes les formules d'accompagnement Tibobody sur une seule page.">
+<meta name="description" content="Cadre, Accompagné, Immersion : toutes les formules d'accompagnement Tibobody sur une seule page.">
 <link rel="canonical" href="https://tibobody.fr/formule.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
@@ -43,7 +43,7 @@ p{color:var(--steel);font-size:17.5px;}
 @media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important;} .reveal{opacity:1 !important;transform:none !important;} }
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
+.btn{display:inline-flex;border-radius:12px;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
   padding:16px 30px;border:2px solid var(--ink);cursor:pointer;background:none;transition:transform .15s ease,background .2s ease,color .2s ease;}
 .btn-solid{background:var(--ink);color:var(--paper);}
 .btn-solid:hover{background:var(--ember);border-color:var(--ember);color:#fff;transform:translateY(-2px);}
@@ -149,7 +149,7 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .quiz-step.active{display:block;animation:qfade .35s ease;}
 @keyframes qfade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 .quiz-step h3{font-family:var(--sans);text-transform:none;font-weight:700;font-size:clamp(19px,2.6vw,24px);margin-bottom:26px;line-height:1.3;}
-.quiz-opt{display:block;width:100%;text-align:left;border:2px solid var(--line);background:none;padding:16px 20px;margin-bottom:12px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;transition:.15s ease;}
+.quiz-opt{display:block;border-radius:12px;width:100%;text-align:left;border:2px solid var(--line);background:none;padding:16px 20px;margin-bottom:12px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;transition:.15s ease;}
 .quiz-opt:hover{border-color:var(--ink);}
 .quiz-opt.selected{border-color:var(--ember);background:rgba(140,27,22,.06);}
 .quiz-nav{display:flex;justify-content:space-between;margin-top:22px;}
@@ -246,7 +246,8 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .plan-head{padding:30px 26px 22px;border-bottom:1px solid var(--line);}
 .plan-name{font-size:26px;margin-bottom:14px;}
 .plan-price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
-.plan-old-price{font-size:19px;color:var(--steel);text-decoration:line-through;}
+.plan-price-after{font-size:14.5px;color:var(--steel);margin-top:8px;}
+.plan-price-after strong{color:var(--ink);}
 .plan-price{font-size:42px;color:var(--ember-dim);}
 .plan-price span{font-family:var(--sans);font-size:15px;color:var(--steel);font-weight:500;}
 .plan-body{padding:24px 26px;flex:1;}
@@ -273,13 +274,6 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .pc-row.head .pc-c.accent{color:var(--ember-dim);}
 .plan-compare-wrap{overflow-x:auto;}
 @media(max-width:760px){.plan-compare{min-width:640px;}}
-
-/* ascension */
-.ascension{background:var(--ink);color:#fff;text-align:center;}
-.ascension h2{color:#fff;font-size:clamp(40px,7vw,72px);}
-.asc-price{max-width:560px;margin-left:auto;margin-right:auto;border:2px solid #C93A32;background:#1B1A17;margin-top:34px;}
-.asc-price-top{padding:34px 40px;text-align:center;}
-.asc-amount{font-family:var(--display);font-size:34px;color:#C93A32;}
 
 /* modal */
 .modal-ov{position:fixed;inset:0;background:rgba(18,17,16,.82);display:none;align-items:center;justify-content:center;z-index:200;padding:18px;opacity:0;transition:opacity .2s;}
@@ -407,15 +401,15 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     <div class="hero-stack reveal">
       <a href="#formules" class="hs-1">
         <img src="assets/img/cadre.png" alt="Cadre">
-        <div class="hs-label"><div class="hs-name">Cadre</div><div class="hs-price">67 €/mois</div></div>
+        <div class="hs-label"><div class="hs-name">Cadre</div><div class="hs-price">67 €/mois les 3 premiers mois</div></div>
       </a>
       <a href="#formules" class="hs-2">
         <img src="assets/img/accompagne.png" alt="Accompagné">
-        <div class="hs-label"><div class="hs-name">Accompagné</div><div class="hs-price">147 €/mois</div></div>
+        <div class="hs-label"><div class="hs-name">Accompagné</div><div class="hs-price">147 €/mois les 3 premiers mois</div></div>
       </a>
       <a href="#formules" class="hs-3">
         <img src="assets/img/immersion.png" alt="Immersion">
-        <div class="hs-label"><div class="hs-name">Immersion</div><div class="hs-price">297 €/mois</div></div>
+        <div class="hs-label"><div class="hs-name">Immersion</div><div class="hs-price">297 €/mois les 3 premiers mois</div></div>
       </a>
     </div>
   </div>
@@ -488,6 +482,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
             <label for="quizEmail">Email</label>
             <input type="email" id="quizEmail" name="email" required placeholder="ton@email.com">
             <label class="quiz-consent" for="quizConsent"><input type="checkbox" id="quizConsent" name="accepte_emails"><span>J'accepte de recevoir des conseils et offres TiboBody par email. Je peux me désinscrire à tout moment.</span></label>
+            <label class="quiz-consent" for="quizMajeur"><input type="checkbox" id="quizMajeur" name="majeur" required><span>J'ai 18 ans ou plus.</span></label>
             <p class="quiz-privacy">Ton prénom et ton email servent à t'envoyer ton résultat. <a href="confidentialite.html">Politique de confidentialité</a></p>
           </div>
         </div>
@@ -617,7 +612,8 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         <div class="plan-badges"><span class="plan-places" data-places="cadre" hidden></span></div>
         <div class="plan-head">
           <div class="plan-name">Cadre</div>
-          <div class="plan-price-row"><span class="plan-old-price">127€</span><div class="plan-price">67€<span>/mois</span></div></div>
+          <div class="plan-price-row"><div class="plan-price">67€<span>/mois</span></div></div>
+          <p class="plan-price-after">les 3 premiers mois, puis <strong>127 €/mois</strong></p>
         </div>
         <div class="plan-body"><ul>
           <li>1 appel de diagnostic initial (30 min)</li>
@@ -625,13 +621,14 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
           <li>Suivi écrit hebdomadaire</li>
         </ul></div>
         <div class="plan-foot"><button type="button" class="btn btn-line btn-block plan-buy" data-formule="cadre" data-label="Commencer maintenant" onclick="buyFormule('cadre', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('cadre')">En savoir plus</button><a href="#contact" class="plan-question">Une question avant de te lancer ?</a></div>
-        <div class="founder-mention">Offre fondateurs : places limitées, prix garanti 3 mois puis tarif normal. En échange, un témoignage sur tes résultats.</div>
+        <div class="founder-mention">Sans engagement, résiliable à tout moment. TVA non applicable, art. 293 B du CGI.</div>
       </div>
       <div class="plan feat">
         <div class="plan-badges"><span class="plan-badge">Recommandé</span><span class="plan-places" data-places="accompagne" hidden></span></div>
         <div class="plan-head">
           <div class="plan-name">Accompagné</div>
-          <div class="plan-price-row"><span class="plan-old-price">297€</span><div class="plan-price">147€<span>/mois</span></div></div>
+          <div class="plan-price-row"><div class="plan-price">147€<span>/mois</span></div></div>
+          <p class="plan-price-after">les 3 premiers mois, puis <strong>297 €/mois</strong></p>
         </div>
         <div class="plan-body"><ul>
           <li>1 appel de diagnostic initial (45 min)</li>
@@ -641,13 +638,14 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
           <li>Accès à tous les e-books</li>
         </ul></div>
         <div class="plan-foot"><button type="button" class="btn btn-ember btn-block plan-buy" data-formule="accompagne" data-label="Commencer maintenant" onclick="buyFormule('accompagne', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('accompagne')">En savoir plus</button><a href="#contact" class="plan-question">Une question avant de te lancer ?</a></div>
-        <div class="founder-mention">Offre fondateurs : places limitées, prix garanti 3 mois puis tarif normal. En échange, un témoignage sur tes résultats.</div>
+        <div class="founder-mention">Sans engagement, résiliable à tout moment. TVA non applicable, art. 293 B du CGI.</div>
       </div>
       <div class="plan">
         <div class="plan-badges"><span class="plan-places" data-places="immersion" hidden></span></div>
         <div class="plan-head">
           <div class="plan-name">Immersion</div>
-          <div class="plan-price-row"><span class="plan-old-price">597€</span><div class="plan-price">297€<span>/mois</span></div></div>
+          <div class="plan-price-row"><div class="plan-price">297€<span>/mois</span></div></div>
+          <p class="plan-price-after">les 3 premiers mois, puis <strong>597 €/mois</strong></p>
         </div>
         <div class="plan-body"><ul>
           <li>1 appel de diagnostic approfondi (1h)</li>
@@ -658,7 +656,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
           <li>Accès à tous les e-books</li>
         </ul></div>
         <div class="plan-foot"><button type="button" class="btn btn-line btn-block plan-buy" data-formule="immersion" data-label="Commencer maintenant" onclick="buyFormule('immersion', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('immersion')">En savoir plus</button><a href="#contact" class="plan-question">Une question avant de te lancer ?</a></div>
-        <div class="founder-mention">Offre fondateurs : places limitées, prix garanti 3 mois puis tarif normal. En échange, un témoignage sur tes résultats.</div>
+        <div class="founder-mention">Sans engagement, résiliable à tout moment. TVA non applicable, art. 293 B du CGI.</div>
       </div>
     </div>
   </div>
@@ -671,7 +669,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       <p class="tag">Tout mettre côte à côte</p>
       <h2>Les formules en un coup d'œil</h2>
     </div>
-    <p class="compare-note reveal"><strong>Sans engagement.</strong> Tu changes de formule ou tu arrêtes quand tu veux, d'un mois sur l'autre.</p>
+    <p class="compare-note reveal"><strong>Sans engagement, résiliable à tout moment.</strong> Tu changes de formule ou tu arrêtes quand tu veux, d'un mois sur l'autre. TVA non applicable, art. 293 B du CGI.</p>
     <div class="plan-compare-wrap reveal">
       <div class="plan-compare">
         <div class="pc-row head">
@@ -682,9 +680,9 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         </div>
         <div class="pc-row">
           <div class="pc-c">Prix</div>
-          <div class="pc-c">67 €/mois</div>
-          <div class="pc-c">147 €/mois</div>
-          <div class="pc-c">297 €/mois</div>
+          <div class="pc-c">67 €/mois les 3 premiers mois, puis 127 €/mois</div>
+          <div class="pc-c">147 €/mois les 3 premiers mois, puis 297 €/mois</div>
+          <div class="pc-c">297 €/mois les 3 premiers mois, puis 597 €/mois</div>
         </div>
         <div class="pc-row">
           <div class="pc-c">Appel de départ</div>
@@ -727,18 +725,6 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
   </div>
 </section>
 
-<!-- ASCENSION -->
-<section class="ascension" id="ascension">
-  <div class="wrap">
-    <h2 class="reveal">Ascension</h2>
-    <div class="asc-price reveal">
-      <div class="asc-price-top">
-        <div class="asc-amount">Bientôt disponible</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- QUESTIONS COURTES -->
 <section>
   <div class="wrap">
@@ -766,7 +752,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       </div>
       <div class="faq-mini-item">
         <button class="faq-mini-q">C'est trop cher.<span class="sign">+</span></button>
-        <div class="faq-mini-a"><p>Le prix fondateurs est là pour ça : tester l'accompagnement à un tarif réduit, garanti 3 mois. Compare-le à ce que t'a déjà coûté chaque tentative ratée en temps et en motivation perdue.</p></div>
+        <div class="faq-mini-a"><p>Le tarif de bienvenue est là pour ça : tes 3 premiers mois sont à prix réduit, sans engagement, pour tester l'accompagnement. Compare-le à ce que t'a déjà coûté chaque tentative ratée en temps et en motivation perdue.</p></div>
       </div>
       <div class="faq-mini-item">
         <button class="faq-mini-q">Je ne sais pas si ça va marcher pour moi.<span class="sign">+</span></button>
@@ -792,10 +778,8 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       <div><label for="femail">Email</label><input id="femail" name="email" type="email" required></div>
       <div class="full"><label for="finterest">Ce qui t'intéresse</label>
         <select id="finterest" name="interet">
-          <option>Cadre</option>
-          <option>Accompagné</option>
-          <option>Immersion</option>
-          <option>Ascension</option>
+          <option>Un accompagnement</option>
+          <option>Un e-book</option>
           <option>Une question générale</option>
         </select>
       </div>
@@ -987,17 +971,17 @@ const quizTotalSteps = 7; // 6 questions + lead capture
 
 const RESULTS = {
   CADRE: {
-    tag: 'Ta formule', title: 'CADRE', price: '67 €/mois au lieu de 127 € (offre fondateurs)',
+    tag: 'Ta formule', title: 'CADRE', price: '67 €/mois les 3 premiers mois, puis 127 €/mois',
     desc: "Tu as déjà la volonté, il te manque la structure. CADRE te donne un plan clair et des repères pour avancer seul, sans te disperser.",
     cta: 'Choisir cette formule', action: 'cadre'
   },
   ACCOMPAGNE: {
-    tag: 'Ta formule', title: 'ACCOMPAGNÉ', price: '147 €/mois au lieu de 297 € (offre fondateurs)',
+    tag: 'Ta formule', title: 'ACCOMPAGNÉ', price: '147 €/mois les 3 premiers mois, puis 297 €/mois',
     desc: "Tu sais démarrer, mais tu lâches quand personne ne te suit. ACCOMPAGNÉ te donne un suivi chaque semaine pour tenir sur la durée. C'est la formule la plus choisie.",
     cta: 'Choisir cette formule', action: 'accompagne'
   },
   IMMERSION: {
-    tag: 'Ta formule', title: 'IMMERSION', price: '297 €/mois au lieu de 597 € (offre fondateurs)',
+    tag: 'Ta formule', title: 'IMMERSION', price: '297 €/mois les 3 premiers mois, puis 597 €/mois',
     desc: "Tu as besoin d'un changement profond et rapide. IMMERSION, c'est un suivi quasi quotidien, limité à 3 personnes en même temps.",
     cta: 'Choisir cette formule', action: 'immersion'
   },
@@ -1069,6 +1053,11 @@ function quizSend(){
     document.getElementById('quizErr').style.display = 'block';
     return;
   }
+  if(!document.getElementById('quizMajeur').checked){
+    document.getElementById('quizErr').textContent = 'Le test et le Défi sont réservés aux personnes de 18 ans ou plus : coche la case pour continuer.';
+    document.getElementById('quizErr').style.display = 'block';
+    return;
+  }
   const resultKey = quizComputeResult();
   const r = RESULTS[resultKey];
 
@@ -1081,6 +1070,7 @@ function quizSend(){
         _subject: 'Nouveau résultat du test diagnostic',
         prenom: prenom, email: email, resultat: resultKey,
         accepte_emails: document.getElementById('quizConsent').checked ? 'oui' : 'non',
+        majeur: 'oui',
         reponses: JSON.stringify(quizAnswers)
       })
     });
@@ -1257,7 +1247,7 @@ document.querySelectorAll('.faq-mini-item').forEach(item=>{
 // MODAL FORMULE
 // ---------------------------------------------------------------------
 const plans = {
-  cadre:{eyebrow:'Cadre',title:'Une semaine type',price:'67€/mois',image:'assets/img/cadre.png',
+  cadre:{eyebrow:'Cadre',title:'Une semaine type',price:'67 €/mois les 3 premiers mois, puis 127 €/mois',image:'assets/img/cadre.png',
     desc:`<ul style="margin:0 0 16px 18px;padding:0;">
       <li style="margin-bottom:10px;">Du lundi au samedi : tu avances seul sur ton plan, avec 3 à 5 axes prioritaires et une action concrète pour chacun.</li>
       <li style="margin-bottom:10px;">Dimanche soir : je t'envoie ton point de la semaine sur WhatsApp, avec toujours les 3 mêmes questions : ce que tu as réussi, ce qui a bloqué, sur quoi te concentrer ensuite.</li>
@@ -1274,7 +1264,7 @@ const plans = {
     </ul>
     <p style="font-weight:700;color:var(--ink);font-size:21px;">Pour toi si tu as besoin d'un cadre régulier, pas d'un suivi rapproché.</p>`,
     cta:'cadre',ctaLabel:'Commencer maintenant'},
-  accompagne:{eyebrow:'Accompagné',title:'Une semaine type',price:'147€/mois',image:'assets/img/accompagne.png',
+  accompagne:{eyebrow:'Accompagné',title:'Une semaine type',price:'147 €/mois les 3 premiers mois, puis 297 €/mois',image:'assets/img/accompagne.png',
     desc:`<ul style="margin:0 0 16px 18px;padding:0;">
       <li style="margin-bottom:10px;">Quand tu avances ou que tu bloques : tu m'écris, en message ou en vocal. Je réponds sous 48h maximum.</li>
       <li style="margin-bottom:10px;">En moyenne, 2 à 3 échanges par semaine, au rythme de ce qui se passe pour toi.</li>
@@ -1284,7 +1274,7 @@ const plans = {
     </ul>
     <p style="font-weight:700;color:var(--ink);">Pour toi si tu lâches dès que personne ne regarde.</p>`,
     cta:'accompagne',ctaLabel:'Commencer maintenant'},
-  immersion:{eyebrow:'Immersion',title:'Une semaine type',price:'297€/mois',image:'assets/img/immersion.png',
+  immersion:{eyebrow:'Immersion',title:'Une semaine type',price:'297 €/mois les 3 premiers mois, puis 597 €/mois',image:'assets/img/immersion.png',
     desc:`<ul style="margin:0 0 16px 18px;padding:0;">
       <li style="margin-bottom:10px;">Chaque jour : tu m'écris autant que tu veux sur ton canal dédié. Je réponds sous 24h, les jours ouvrés.</li>
       <li style="margin-bottom:10px;">Ton plan est détaillé semaine par semaine dans ton espace Notion, avec un journal mis à jour au fil de nos échanges.</li>
@@ -1354,8 +1344,24 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeFullPlan(); 
 // ---------------------------------------------------------------------
 let placesData = null;
 
+const NOMS_FORMULES = { cadre: 'Cadre', accompagne: 'Accompagné', immersion: 'Immersion' };
+
+// Tant que les paiements sont fermés (variable PAIEMENTS_OUVERTS dans Cloudflare),
+// « Commencer maintenant » mène au formulaire de contact, pré-rempli.
+function contacterPourFormule(key){
+  if(document.getElementById('fullModal').classList.contains('active')) closeFullPlan();
+  const select = document.getElementById('finterest');
+  if(select) select.value = 'Un accompagnement';
+  const msg = document.getElementById('fmsg');
+  if(msg && !msg.value.trim()) msg.value = `Bonjour, la formule ${NOMS_FORMULES[key] || ''} m'intéresse. `;
+  const contact = document.getElementById('contact');
+  if(contact) contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  setTimeout(()=>{ const p = document.getElementById('fname'); if(p) p.focus({ preventScroll: true }); }, 700);
+}
+
 async function buyFormule(key, btn){
   if(btn && btn.disabled) return;
+  if(!placesData || !placesData.ouvert){ contacterPourFormule(key); return; }
   const label = btn ? btn.textContent : '';
   if(btn){ btn.disabled = true; btn.textContent = 'Redirection vers le paiement...'; }
   let complet = false;
@@ -1368,6 +1374,7 @@ async function buyFormule(key, btn){
     const data = await res.json().catch(()=>({}));
     if(res.ok && data.url){ window.location.href = data.url; return; }
     complet = !!data.complet;
+    if(data.ferme){ if(btn){ btn.disabled = false; btn.textContent = label; } contacterPourFormule(key); return; }
     showToast(data.error || "Le paiement n'a pas pu démarrer, réessaie.");
   }catch(e){
     showToast("Le paiement n'a pas pu démarrer, réessaie.");
@@ -1388,6 +1395,7 @@ async function loadPlaces(){
 function applyPlaces(){
   if(!placesData) return;
   Object.entries(placesData).forEach(([k, v])=>{
+    if(!v || typeof v !== 'object') return; // ignore « ouvert »
     const full = v.restantes <= 0;
     document.querySelectorAll(`[data-places="${k}"]`).forEach(el=>{
       el.hidden = false;

@@ -37,9 +37,13 @@
   .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:#8C1B16;}
   .form textarea{min-height:90px;resize:vertical;}
   .form .row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .form button{justify-self:start;background:#8C1B16;color:#fff;border:none;padding:15px 28px;font-family:inherit;font-weight:700;font-size:14.5px;cursor:pointer;}
+  .form button{justify-self:start;border-radius:12px;background:#8C1B16;color:#fff;border:none;padding:15px 28px;font-family:inherit;font-weight:700;font-size:14.5px;cursor:pointer;}
   .form button:hover{background:#6B1310;}
   .form button:disabled{opacity:.5;cursor:not-allowed;}
+  .btn-main{display:inline-block;border-radius:12px;margin-top:22px;background:#8C1B16;color:#fff;border:none;padding:16px 30px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;}
+  .btn-main:hover{background:#6B1310;}
+  .form[hidden],.btn-main[hidden]{display:none;}
+  .opt{font-weight:500;color:#77746C;}
   .form-err{color:#8C1B16;font-size:13.5px;display:none;}
   .done{display:none;background:#fff;border-left:3px solid #8C1B16;padding:22px 24px;margin-top:26px;}
   .done h2{margin-top:0;}
@@ -68,16 +72,20 @@
 <div class="wrap">
   <a class="back" href="index.html">← Retour à l'accueil</a>
   <h1>Se rétracter</h1>
-  <p>Tu as souscrit un accompagnement il y a moins de 14 jours ? Tu peux te rétracter sans avoir à te justifier. Remplis le formulaire ci-dessous : tu recevras un accusé de réception par email, et le remboursement intervient au plus tard 14 jours après ta rétractation, par le même moyen de paiement.</p>
+  <p>Tu as souscrit un accompagnement il y a moins de 14 jours ? Tu peux te rétracter sans avoir à te justifier. Tu reçois immédiatement un accusé de réception par email, avec le contenu de ta demande, la date et l'heure. Le remboursement intervient au plus tard 14 jours après ta rétractation, par le même moyen de paiement.</p>
   <p>Les conditions complètes sont détaillées dans les <a href="cgv.html">conditions générales de vente</a>. Tu peux aussi écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
 
-  <form class="form" id="retractForm" action="https://formspree.io/f/xnpjdajy" method="POST">
+  <!-- Étape 1 : fonction de rétractation -->
+  <button type="button" class="btn-main" id="startBtn" aria-controls="retractForm" aria-expanded="false">Renoncer au contrat ici</button>
+
+  <!-- Étape 2 : déclaration puis confirmation -->
+  <form class="form" id="retractForm" action="https://formspree.io/f/xnpjdajy" method="POST" hidden novalidate>
     <input type="hidden" name="_subject" value="Demande de rétractation">
     <input type="text" name="_gotcha" id="hp" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
     <p style="margin:0;color:#111010;font-weight:600;">À l'attention de Tibobody — je vous notifie par la présente ma rétractation du contrat portant sur la prestation de services ci-dessous :</p>
     <div>
-      <label for="formule">Formule souscrite</label>
-      <select id="formule" name="formule_souscrite" required>
+      <label for="formule">Contrat concerné</label>
+      <select id="formule" name="formule" required>
         <option value="">Choisis ta formule</option>
         <option>Cadre</option>
         <option>Accompagné</option>
@@ -85,20 +93,18 @@
         <option>E-book</option>
       </select>
     </div>
-    <div class="row">
-      <div><label for="dateSous">Date de souscription</label><input id="dateSous" name="date_souscription" type="date" required></div>
-      <div><label for="dateDemande">Date</label><input id="dateDemande" name="date_demande" type="date" required></div>
-    </div>
+    <div><label for="dateSous">Date de souscription <span class="opt">(si tu la connais)</span></label><input id="dateSous" name="date_souscription" type="date"></div>
     <div><label for="nom">Nom du client</label><input id="nom" name="nom" type="text" required autocomplete="name"></div>
-    <div><label for="email">Adresse email utilisée pour l'achat</label><input id="email" name="email" type="email" required autocomplete="email"></div>
-    <div><label for="msg">Précision (facultatif)</label><textarea id="msg" name="message"></textarea></div>
+    <div><label for="email">Adresse email utilisée pour l'achat <span class="opt">(l'accusé de réception y sera envoyé)</span></label><input id="email" name="email" type="email" required autocomplete="email"></div>
+    <div><label for="msg">Précision <span class="opt">(facultatif)</span></label><textarea id="msg" name="message"></textarea></div>
     <p class="form-err" id="formErr"></p>
-    <button type="submit" id="submitBtn">Envoyer ma rétractation</button>
+    <button type="submit" id="submitBtn">Confirmer ma rétractation</button>
   </form>
 
   <div class="done" id="done">
-    <h2>Ta demande de rétractation est bien envoyée</h2>
-    <p>Un accusé de réception va t'être envoyé par email. Le remboursement intervient au plus tard 14 jours après ta rétractation. Pour toute question : <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
+    <h2>Ta rétractation est bien enregistrée</h2>
+    <p id="doneTime"></p>
+    <p id="doneMail">Un accusé de réception reprenant le contenu de ta demande, la date et l'heure t'a été envoyé par email. Le remboursement intervient au plus tard 14 jours après ta rétractation. Pour toute question : <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
   </div>
 </div>
 <footer class="legal-foot">
@@ -160,27 +166,50 @@
   });
 })();
 (function(){
-  const today = new Date();
-  const iso = new Date(today.getTime() - today.getTimezoneOffset()*60000).toISOString().slice(0,10);
-  document.getElementById('dateDemande').value = iso;
+  const iso = new Date(Date.now() - new Date().getTimezoneOffset()*60000).toISOString().slice(0,10);
   document.getElementById('dateSous').max = iso;
+  const start = document.getElementById('startBtn');
   const form = document.getElementById('retractForm');
-  form.addEventListener('submit', function(e){
+  const err = document.getElementById('formErr');
+  const btn = document.getElementById('submitBtn');
+
+  start.addEventListener('click', function(){
+    form.hidden = false;
+    start.setAttribute('aria-expanded','true');
+    start.hidden = true;
+    document.getElementById('formule').focus();
+  });
+
+  function afficherFait(quand, accuseEnvoye){
+    form.style.display = 'none';
+    document.getElementById('doneTime').textContent = 'Demande reçue le ' + quand + '.';
+    if(!accuseEnvoye){
+      document.getElementById('doneMail').innerHTML = "Ta demande nous est bien parvenue. L'accusé de réception t'est envoyé par email dans les plus brefs délais. Le remboursement intervient au plus tard 14 jours après ta rétractation. Pour toute question : <a href=\"mailto:contact@tibobody.fr\">contact@tibobody.fr</a>.";
+    }
+    document.getElementById('done').style.display = 'block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function erreur(t){ err.textContent = t; err.style.display = 'block'; btn.disabled = false; btn.textContent = 'Confirmer ma rétractation'; }
+
+  form.addEventListener('submit', async function(e){
     e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    const err = document.getElementById('formErr');
     err.style.display = 'none';
+    if(!form.checkValidity()){ erreur('Merci de renseigner le contrat concerné, ton nom et ton adresse email.'); form.reportValidity(); return; }
     btn.disabled = true; btn.textContent = 'Envoi en cours...';
-    fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} })
-      .then(res=>{
-        if(res.ok){ form.style.display='none'; document.getElementById('done').style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); }
-        else throw new Error();
-      })
-      .catch(()=>{
-        err.textContent = "Un problème est survenu. Réessaie, ou envoie ta demande par email à contact@tibobody.fr.";
-        err.style.display = 'block';
-        btn.disabled = false; btn.textContent = 'Envoyer ma rétractation';
-      });
+    const donnees = Object.fromEntries(new FormData(form).entries());
+    try{
+      // 1) envoi via le site : enregistre la demande et envoie l'accusé de réception
+      const res = await fetch('/api/retractation', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(donnees) });
+      const data = await res.json().catch(()=>({}));
+      if(res.ok && data.ok){ afficherFait(data.recue || new Date().toLocaleString('fr-FR'), true); return; }
+      if(res.status === 400){ erreur(data.error || 'Vérifie les champs du formulaire.'); return; }
+    }catch(_){}
+    // 2) secours : formulaire Formspree
+    try{
+      const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+      if(res.ok){ afficherFait(new Date().toLocaleString('fr-FR', {dateStyle:'full', timeStyle:'medium'}), false); return; }
+    }catch(_){}
+    erreur("Un problème est survenu. Réessaie, ou envoie ta demande par email à contact@tibobody.fr.");
   });
 })();
 </script>
