@@ -8,7 +8,7 @@
 //   GET  /api/telechargements?session_id=cs_… | ?t=…   -> liens de téléchargement
 //   GET  /api/fichier/05?exp=…&sig=…    -> le PDF (lien signé, valable 1 h)
 //   POST /api/retractation              -> demande de rétractation + accusé de réception (Brevo)
-//   POST /api/stripe-webhook            -> email 7 jours avant la fin du tarif de bienvenue (Brevo)
+//   POST /api/stripe-webhook            -> email de prévenance avant la fin du tarif de bienvenue (Brevo)
 //
 // Variables à régler dans Cloudflare (Settings > Variables and Secrets) :
 //   STRIPE_SECRET_KEY      (Secret)  clé Stripe sk_test_… / sk_live_…
@@ -355,8 +355,10 @@ async function postRetractation(request, env) {
 }
 
 // ---------------------------------------------------------------------
-// Webhook Stripe : prévient le client 7 jours avant la fin du tarif de bienvenue
-// (Stripe > Paramètres > Facturation > « Upcoming renewal events » réglé sur 7 jours)
+// Webhook Stripe : prévient le client avant la fin du tarif de bienvenue
+// Événement principal : invoice.paid — au paiement de la DERNIÈRE mensualité au tarif de bienvenue
+// (la 3e), on prévient le client ~1 mois avant le passage au tarif normal (CGV : « au moins 7 jours »).
+// invoice.upcoming est aussi accepté en secours. Un seul email par client (métadonnée prevenu_tarif_normal).
 // ---------------------------------------------------------------------
 async function stripeWebhook(request, env) {
   const brut = await request.text();
@@ -364,34 +366,53 @@ async function stripeWebhook(request, env) {
     return json({ error: 'Signature invalide.' }, 400);
   }
   const event = JSON.parse(brut);
-  if (event.type !== 'invoice.upcoming') return json({ recu: true });
+  if (event.type !== 'invoice.paid' && event.type !== 'invoice.upcoming') return json({ recu: true });
 
   const facture = event.data && event.data.object || {};
   const subId = idDe(facture.subscription)
     || idDe(facture.parent && facture.parent.subscription_details && facture.parent.subscription_details.subscription);
   if (!subId) return json({ recu: true });
 
-  const abo = await stripe(env, 'GET', `subscriptions/${subId}`);
+  const abo = await stripe(env, 'GET', `subscriptions/${subId}`, { 'expand[]': 'discounts' });
   const meta = abo.metadata || {};
   if (!meta.bienvenue || meta.prevenu_tarif_normal) return json({ recu: true }); // pas concerné ou déjà prévenu
+  if (abo.status === 'canceled' || abo.cancel_at_period_end) return json({ recu: true }); // abonnement qui s'arrête : rien à annoncer
 
-  const remise = (facture.total_discount_amounts || []).reduce((t, d) => t + (d.amount || 0), 0);
-  if (remise > 0) return json({ recu: true }); // la prochaine mensualité est encore au tarif de bienvenue
+  const ligne = facture.lines && facture.lines.data && facture.lines.data[0];
+  let dateTarifNormal = null; // timestamp de la 1re mensualité au tarif normal
+
+  if (event.type === 'invoice.paid') {
+    // fin de la période payée = date de la prochaine mensualité
+    const finPeriode = ligne && ligne.period && ligne.period.end;
+    const remises = (abo.discounts || []).filter(d => d && typeof d === 'object');
+    const remise = remises.find(d => d.coupon && (d.coupon.id === meta.bienvenue)) || remises[0];
+    // la remise de bienvenue se termine au plus tard à la prochaine mensualité -> c'était la dernière au tarif réduit
+    if (!finPeriode || !remise || !remise.end || remise.end > finPeriode + 86400) return json({ recu: true });
+    dateTarifNormal = finPeriode;
+  } else {
+    // invoice.upcoming (secours) : la prochaine mensualité n'a plus de remise
+    const reduction = (facture.total_discount_amounts || []).reduce((t, d) => t + (d.amount || 0), 0);
+    if (reduction > 0) return json({ recu: true });
+    dateTarifNormal = ligne && ligne.period && ligne.period.start;
+  }
 
   const email = facture.customer_email;
   if (!email) return json({ recu: true });
-  const ligne = facture.lines && facture.lines.data && facture.lines.data[0];
-  const debut = ligne && ligne.period && ligne.period.start;
-  const quand = debut ? `le ${dateParis(new Date(debut * 1000))}` : 'dans 7 jours';
-  const montant = typeof facture.amount_due === 'number' ? euros(facture.amount_due) : 'le tarif normal';
+
+  // montant du tarif normal = prix de l'abonnement sans remise
+  const item = abo.items && abo.items.data && abo.items.data[0];
+  const prixUnitaire = item && item.price && typeof item.price.unit_amount === 'number' ? item.price.unit_amount * (item.quantity || 1) : null;
+  const montant = prixUnitaire !== null ? euros(prixUnitaire) : 'le tarif normal';
+  const quand = dateTarifNormal ? `le ${dateParis(new Date(dateTarifNormal * 1000))}` : 'à ta prochaine mensualité';
   const nomFormule = NOMS_FORMULES[meta.formule] || 'ta formule';
-  const portail = env.PORTAIL_CLIENT_URL ? `\n\nGérer ou résilier ton abonnement : ${env.PORTAIL_CLIENT_URL}` : `\n\nPour gérer ou résilier ton abonnement, utilise le lien présent dans tes reçus ou écris à ${EMAIL_CONTACT}.`;
+  const portail = env.PORTAIL_CLIENT_URL ? `\n\nGérer ou résilier ton abonnement : ${env.PORTAIL_CLIENT_URL}` : `\n\nPour gérer ou résilier ton abonnement, utilise le lien « Gérer ou résilier mon abonnement » en bas du site, ou écris à ${EMAIL_CONTACT}.`;
+  const nom = facture.customer_name || '';
 
   await envoyerEmail(env, {
-    to: { email, name: facture.customer_name || undefined },
+    to: nom ? { email, name: nom } : { email },
     replyTo: { email: EMAIL_CONTACT, name: NOM_EXPEDITEUR },
     subject: `Ta formule ${nomFormule} passe au tarif normal ${quand}`,
-    text: `Bonjour${facture.customer_name ? ' ' + facture.customer_name : ''},\n\nTes 3 mois au tarif de bienvenue se terminent. À partir de ta prochaine mensualité, ${quand}, ta formule ${nomFormule} sera facturée ${montant} par mois (tarif normal en vigueur au jour de ta souscription).\n\nTu n'as rien à faire pour continuer. Si tu préfères arrêter, tu peux résilier à tout moment, sans frais, avant cette date.${portail}\n\nMerci pour ta confiance,\nTibobody — ${EMAIL_CONTACT}`,
+    text: `Bonjour${nom ? ' ' + nom : ''},\n\nTes 3 mois au tarif de bienvenue se terminent bientôt. À partir de ta prochaine mensualité, ${quand}, ta formule ${nomFormule} sera facturée ${montant} par mois (tarif normal en vigueur au jour de ta souscription).\n\nTu n'as rien à faire pour continuer. Si tu préfères arrêter, tu peux résilier à tout moment, sans frais, avant cette date.${portail}\n\nMerci pour ta confiance,\nTibobody — ${EMAIL_CONTACT}`,
   });
   await stripe(env, 'POST', `subscriptions/${subId}`, { metadata: { prevenu_tarif_normal: new Date().toISOString().slice(0, 10) } });
   return json({ recu: true, prevenu: true });
