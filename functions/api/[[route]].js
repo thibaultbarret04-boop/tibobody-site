@@ -51,15 +51,13 @@ const EBOOKS = {
   '04': 'prod_VPAKJCA6nnRRZm', // Le guide d'un jeune homme ambitieux
   '05': 'prod_VPAJ5d955advxw', // 30 jours pour devenir inarrêtable
   '06': 'prod_VPAOWpBe12cHeK', // 10 leçons que la musculation m'a apprises
-  '07': 'prod_VPAHXOMr2YbTe1', // Pack Discipline
-  '08': 'prod_VPAIIiyf5OgCIG', // Pack Accomplissement
+  '07': 'prod_VPAHXOMr2YbTe1', // Pack Intégral (les 6 e-books) — ancien produit « Pack Discipline » renommé
 };
 
-// Contenu de chaque article : un pack donne accès à 2 e-books
+// Contenu de chaque article : le pack donne accès aux 6 e-books
 const CONTENU = {
   '01': ['01'], '02': ['02'], '03': ['03'], '04': ['04'], '05': ['05'], '06': ['06'],
-  '07': ['05', '06'], // Pack Discipline
-  '08': ['01', '04'], // Pack Accomplissement
+  '07': ['01', '02', '03', '04', '05', '06'], // Pack Intégral
 };
 
 // Dossier des PDF, à la racine du site (nom secret, ne pas le modifier sans renommer le dossier)

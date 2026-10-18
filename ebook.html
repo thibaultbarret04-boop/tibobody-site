@@ -263,6 +263,21 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 .book-grid .cover{aspect-ratio:2/3;}
 .book-grid .cover::after,.book-grid .cover .cover-title,.book-grid .cover .idx{display:none;}
 .hero-stack a img{aspect-ratio:2/3;}
+
+/* Pack Intégral */
+.pack-solo{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:40px;align-items:center;background:var(--white);border:2px solid var(--ink);border-radius:18px;padding:28px;margin:18px 0 64px;}
+.pack-solo-cover{border:none;padding:0;background:none;cursor:pointer;display:block;border-radius:12px;overflow:hidden;box-shadow:0 18px 34px rgba(18,17,16,.18);transition:transform .2s ease;}
+.pack-solo-cover:hover{transform:translateY(-4px);}
+.pack-solo-cover img{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;}
+.pack-solo-tag{display:inline-block;font-size:12.5px;font-weight:700;color:var(--ember-dim);margin-bottom:8px;}
+.pack-solo h4{font-size:clamp(30px,4vw,44px);margin-bottom:12px;}
+.pack-solo-desc{color:var(--steel);font-size:15.5px;margin-bottom:20px;max-width:52ch;}
+.pack-solo-price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.pack-solo-price strong{font-family:var(--display);font-weight:400;font-size:46px;color:var(--ember-dim);line-height:1;}
+.pack-solo-price span{font-size:14.5px;color:var(--steel);}
+.pack-solo-save{display:inline-block;background:var(--ember);color:#fff;font-weight:700;font-size:14px;padding:7px 14px;border-radius:999px;margin-bottom:22px;}
+.pack-solo-actions{display:flex;gap:12px;flex-wrap:wrap;}
+@media (max-width:760px){.pack-solo{grid-template-columns:1fr;gap:22px;padding:20px;}.pack-solo-cover{max-width:260px;margin:0 auto;}}
 </style>
 </head>
 <body>
@@ -330,16 +345,19 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 <!-- EBOOKS -->
 <section class="ebooks" id="ebooks-grid">
   <div class="wrap">
-    <div class="packs-lead reveal"><h3>Les packs</h3></div>
-    <p class="ebook-desc reveal">Plusieurs e-books réunis autour d'un même objectif, pour avancer sur plusieurs fronts en même temps.</p>
-    <div class="pack-grid reveal">
-      <div class="book" onclick="openBook('07')">
-        <div class="cover"><img src="assets/img/COVER7.png" alt="Pack Discipline"><span class="idx">Pack</span><div class="cover-title"><h4>Pack Discipline</h4></div></div>
-        <div class="book-info"><div class="price">16,99 € — 2 e-books</div><div class="more">En savoir plus</div></div>
-      </div>
-      <div class="book" onclick="openBook('08')">
-        <div class="cover"><img src="assets/img/COVER8.png" alt="Pack Accomplissement"><span class="idx">Pack</span><div class="cover-title"><h4>Pack Accomplissement</h4></div></div>
-        <div class="book-info"><div class="price">8,99 € — 2 e-books</div><div class="more">En savoir plus</div></div>
+    <div class="packs-lead reveal"><h3>Le Pack Intégral</h3></div>
+    <div class="pack-solo reveal">
+      <button type="button" class="pack-solo-cover" onclick="openBook('07')" aria-label="Voir le Pack Intégral"><img src="assets/img/COVER7.jpg" alt="Pack Intégral — les 6 e-books TiboBody"></button>
+      <div class="pack-solo-info">
+        <span class="pack-solo-tag">Les 6 e-books réunis</span>
+        <h4>Pack Intégral</h4>
+        <p class="pack-solo-desc">Discipline, mental, corps, relations, ambition, passion : les 6 guides TiboBody en un seul achat, pour avancer sur tous les fronts.</p>
+        <div class="pack-solo-price"><strong>29 €</strong><span>au lieu de 59,94 € en achetant les 6 à l'unité</span></div>
+        <div class="pack-solo-save">Tu économises 30,94 €</div>
+        <div class="pack-solo-actions">
+          <button type="button" class="btn btn-ember" onclick="addToCart('07')">Ajouter au panier</button>
+          <button type="button" class="btn btn-line" onclick="openBook('07')">En savoir plus</button>
+        </div>
       </div>
     </div>
 
@@ -571,12 +589,9 @@ const books={
   '06':{eyebrow:'E-book Nº06',title:"10 leçons que la musculation m'a apprises",price:'9,99 €',
     images:['assets/img/COVER6.jpg','assets/img/PAGE/10lecon/1.png','assets/img/PAGE/10lecon/2.png','assets/img/PAGE/10lecon/3.png'],
     desc:"Ce que la musculation t'apprend sur la patience, comment transformer la discipline physique en discipline de vie, et gérer les phases de stagnation sans lâcher."},
-  '07':{eyebrow:'Pack économique',title:"Pack Discipline",price:'16,99 €',
-    images:['assets/img/COVER7.png'],
-    desc:"Réunit « 30 Jours pour devenir Inarrêtable » et « 10 Leçons que la Musculation m'a Apprises » pour construire une discipline qui tient dans le temps, même quand la motivation initiale s'essouffle."},
-  '08':{eyebrow:'Pack économique',title:"Pack Accomplissement",price:'8,99 €',
-    images:['assets/img/COVER8.png'],
-    desc:"Réunit « Trouver sa Passion » et « Le Guide du Jeune Homme Ambitieux » pour passer d'une envie encore diffuse à une trajectoire construite, avec les outils pour avancer avec clarté."}
+  '07':{eyebrow:'Les 6 e-books',title:"Pack Intégral",price:'29 €',priceNote:"au lieu de 59,94 € à l'unité — tu économises 30,94 €",
+    images:['assets/img/COVER7.jpg'],
+    desc:"Les 6 e-books TiboBody réunis : Trouver sa passion, L'art de positiver, La communication non violente, Le guide du jeune homme ambitieux, 30 jours pour devenir inarrêtable et 10 leçons que la musculation m'a apprises. 240 pages de méthodes, d'exercices et de fiches pratiques appuyées sur la recherche."}
 };
 let currentSlideCount=0;
 let currentBookId=null;
@@ -585,7 +600,7 @@ function openBook(id){
   currentBookId=id;
   document.getElementById('modalEyebrow').textContent=b.eyebrow;
   document.getElementById('modalTitle').textContent=b.title;
-  document.getElementById('modalPrice').textContent=b.price;
+  document.getElementById('modalPrice').textContent = b.priceNote ? b.price + ' — ' + b.priceNote : b.price;
   document.getElementById('modalDesc').textContent=b.desc;
 
   const track=document.getElementById('modalCarouselTrack');
@@ -706,6 +721,12 @@ function addToCart(id){
     showToast(books[id].title + ' est déjà dans ton panier');
     return;
   }
+  // le Pack Intégral contient déjà les 6 e-books : pas de doublon
+  if(id !== '07' && cart.some(i=>i.id==='07')){
+    showToast('Déjà inclus dans le Pack Intégral de ton panier');
+    return;
+  }
+  if(id === '07') cart = cart.filter(i=>i.id==='07');
   const b = books[id];
   cart.push({id:id, title:b.title, price:priceToNumber(b.price)});
   saveCart();
