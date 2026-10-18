@@ -572,22 +572,22 @@ document.querySelectorAll('.mmenu-inner a').forEach(a=>a.addEventListener('click
 // ebook data
 const books={
   '01':{eyebrow:'E-book Nº01',title:"Trouver sa passion",price:'9,99 €',
-    images:['assets/img/COVER1.jpg','assets/img/PAGE/Passion/1.png','assets/img/PAGE/Passion/2.png','assets/img/PAGE/Passion/3.png'],
+    images:['assets/img/COVER1.jpg','assets/img/PAGE/Passion/1.jpg','assets/img/PAGE/Passion/2.jpg','assets/img/PAGE/Passion/3.jpg'],
     desc:"Tu tournes en rond sans savoir ce que tu veux vraiment faire de ta vie ? Ce guide t'aide à sortir de l'indécision avec une méthode en 3 étapes, des exercices pratiques de moins de 30 minutes, et des questions concrètes pour clarifier ce que tu veux vraiment."},
   '02':{eyebrow:'E-book Nº02',title:"L'art de positiver",price:'9,99 €',
-    images:['assets/img/COVER2.jpg','assets/img/PAGE/positiver/1.png','assets/img/PAGE/positiver/2.png','assets/img/PAGE/positiver/3.png'],
+    images:['assets/img/COVER2.jpg','assets/img/PAGE/positiver/1.jpg','assets/img/PAGE/positiver/2.jpg','assets/img/PAGE/positiver/3.jpg'],
     desc:"Arrête de subir tes journées. Des techniques pour changer ton dialogue intérieur, réagir face à un échec sans t'effondrer, et des rituels quotidiens pour muscler ton mental."},
   '03':{eyebrow:'E-book Nº03',title:"Communication non violente",price:'9,99 €',
-    images:['assets/img/COVER3.jpg','assets/img/PAGE/comnonviolente/1.png','assets/img/PAGE/comnonviolente/2.png','assets/img/PAGE/comnonviolente/3.png'],
+    images:['assets/img/COVER3.jpg','assets/img/PAGE/comnonviolente/1.jpg','assets/img/PAGE/comnonviolente/2.jpg','assets/img/PAGE/comnonviolente/3.jpg'],
     desc:"Arrête les conflits qui empoisonnent tes relations. Une méthode en 4 étapes pour désamorcer un conflit, dire ce que tu ressens sans accuser l'autre, et des phrases concrètes à utiliser au quotidien."},
   '04':{eyebrow:'E-book Nº04',title:"Le guide d'un jeune homme ambitieux",price:'9,99 €',
-    images:['assets/img/COVER4.jpg','assets/img/PAGE/Ambitieux/1.png','assets/img/PAGE/Ambitieux/2.png','assets/img/PAGE/Ambitieux/3.png'],
+    images:['assets/img/COVER4.jpg','assets/img/PAGE/Ambitieux/1.jpg','assets/img/PAGE/Ambitieux/2.jpg','assets/img/PAGE/Ambitieux/3.jpg'],
     desc:"Poser une vision claire de ce que tu veux construire, bâtir une discipline qui tient dans le temps, gérer ton temps et tes priorités, et éviter les pièges qui freinent la plupart des gens."},
   '05':{eyebrow:'E-book Nº05',title:"30 jours pour devenir inarrêtable",price:'9,99 €',
-    images:['assets/img/COVER5.jpg','assets/img/PAGE/30jours/1.jpeg','assets/img/PAGE/30jours/2.jpeg','assets/img/PAGE/30jours/3.jpeg'],
+    images:['assets/img/COVER5.jpg','assets/img/PAGE/30jours/1.jpg','assets/img/PAGE/30jours/2.jpg','assets/img/PAGE/30jours/3.jpg'],
     desc:"Un programme structuré sur 30 jours, des séances pensées pour progresser en sécurité, et un suivi pour mesurer tes progrès chaque semaine."},
   '06':{eyebrow:'E-book Nº06',title:"10 leçons que la musculation m'a apprises",price:'9,99 €',
-    images:['assets/img/COVER6.jpg','assets/img/PAGE/10lecon/1.png','assets/img/PAGE/10lecon/2.png','assets/img/PAGE/10lecon/3.png'],
+    images:['assets/img/COVER6.jpg','assets/img/PAGE/10lecon/1.jpg','assets/img/PAGE/10lecon/2.jpg','assets/img/PAGE/10lecon/3.jpg'],
     desc:"Ce que la musculation t'apprend sur la patience, comment transformer la discipline physique en discipline de vie, et gérer les phases de stagnation sans lâcher."},
   '07':{eyebrow:'Les 6 e-books',title:"Pack Intégral",price:'29 €',priceNote:"au lieu de 59,94 € à l'unité — tu économises 30,94 €",
     images:['assets/img/COVER7.jpg'],
@@ -595,6 +595,16 @@ const books={
 };
 let currentSlideCount=0;
 let currentBookId=null;
+// charge une image en essayant les autres extensions si le fichier n'a pas exactement le nom prévu
+// (ex. 1.png absent mais 1.jpg présent)
+function chargerImage(img, src){
+  const base = src.replace(/\.(png|jpe?g|webp)$/i, '');
+  const essais = [src, ...['.png','.jpg','.jpeg','.webp','.PNG','.JPG','.JPEG'].map(e=>base+e).filter(u=>u!==src)];
+  let i = 0;
+  img.style.visibility = '';
+  img.onerror = ()=>{ i++; if(i < essais.length) img.src = essais[i]; else { img.onerror = null; img.style.visibility = 'hidden'; } };
+  img.src = essais[0];
+}
 function openBook(id){
   const b=books[id]; if(!b) return;
   currentBookId=id;
@@ -609,7 +619,7 @@ function openBook(id){
     const slide=document.createElement('div');
     slide.className='modal-carousel-slide';
     const img=document.createElement('img');
-    img.src=src; img.alt=b.title;
+    chargerImage(img, src); img.alt=b.title;
     img.addEventListener('click',(e)=>{e.stopPropagation(); openLightbox(idx);});
     slide.appendChild(img);
     track.appendChild(slide);
@@ -643,7 +653,7 @@ function carouselNav(dir){
 let lightboxIndex=0;
 function openLightbox(idx){
   lightboxIndex=idx;
-  document.getElementById('lightboxImg').src=books[currentBookId].images[lightboxIndex];
+  chargerImage(document.getElementById('lightboxImg'), books[currentBookId].images[lightboxIndex]);
   document.getElementById('lightboxOv').classList.add('active');
 }
 function closeLightbox(){
