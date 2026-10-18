@@ -774,9 +774,9 @@ function renderCart(){
       return `<div class="cart-item">
         <img class="cart-item-thumb" src="${thumb}" alt="${item.title}">
         <div class="cart-item-info">
-          <div class="cart-item-title">${item.title}</div>
+          <div class="cart-item-title">${String(item.title).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}</div>
           <div class="cart-item-price">${item.price.toFixed(2).replace('.',',')} €</div>
-          <button class="cart-remove" onclick="removeFromCart('${item.id}')">Retirer</button>
+          <button class="cart-remove" onclick="removeFromCart('${String(item.id).replace(/[^0-9]/g,'')}')">Retirer</button>
         </div>
       </div>`;
     }).join('');

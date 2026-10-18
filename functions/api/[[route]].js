@@ -193,6 +193,10 @@ async function createCheckout(request, env) {
   if (body && body.formule) {
     const cle = String(body.formule);
     if (!FORMULES[cle]) return json({ error: 'Formule inconnue.' }, 400);
+    // chaque paiement ouvert réserve une place 31 min : on limite pour qu'un robot ne bloque pas tout
+    if (await limiteAtteinte(request, 'formule', 3, RESERVATION_SECONDES)) {
+      return json({ error: 'Trop de tentatives de paiement. Réessaie dans 30 minutes ou écris-moi via le formulaire de contact.' }, 429);
+    }
 
     const places = (await calculerPlaces(env, cle))[cle];
     if (!places.prix) return json({ error: "Cette formule n'a pas encore de prix dans Stripe." }, 500);
@@ -238,6 +242,9 @@ async function createCheckout(request, env) {
     ? [...new Set(body.items.map(i => String(i && i.id)))].filter(id => EBOOKS[id])
     : [];
   if (ids.length === 0) return json({ error: 'Ton panier est vide.' }, 400);
+  if (await limiteAtteinte(request, 'ebook', 10, RESERVATION_SECONDES)) {
+    return json({ error: 'Trop de tentatives de paiement. Réessaie dans quelques minutes.' }, 429);
+  }
 
   const produits = await Promise.all(ids.map(id => stripe(env, 'GET', `products/${EBOOKS[id]}`)));
   const lignes = produits.map(p => {
@@ -279,6 +286,23 @@ async function createCheckout(request, env) {
 }
 
 // ---------------------------------------------------------------------
+// Anti-abus : nombre maximum de demandes par adresse IP sur une durée
+// (empêche un robot de bloquer les places ou d'envoyer des emails en boucle)
+// ---------------------------------------------------------------------
+async function limiteAtteinte(request, action, max, secondes) {
+  if (typeof caches === 'undefined') return false;
+  const ip = request.headers.get('CF-Connecting-IP') || 'inconnu';
+  const cle = new Request(`https://limite.tibobody.invalid/${action}/${encodeURIComponent(ip)}`);
+  try {
+    const deja = await caches.default.match(cle);
+    const n = deja ? parseInt(await deja.text(), 10) || 0 : 0;
+    if (n >= max) return true;
+    await caches.default.put(cle, new Response(String(n + 1), { headers: { 'Cache-Control': `max-age=${secondes}` } }));
+  } catch (e) { console.warn('limite', e.message); }
+  return false;
+}
+
+// ---------------------------------------------------------------------
 // Emails (Brevo)
 // ---------------------------------------------------------------------
 async function envoyerEmail(env, { to, subject, text, replyTo }) {
@@ -315,13 +339,27 @@ async function postRetractation(request, env) {
   const nom = champ(b.nom, 120), email = champ(b.email, 160), formule = champ(b.formule, 60);
   const dateSouscription = champ(b.date_souscription, 20), message = champ(b.message, 2000);
   if (champ(b._gotcha)) return json({ ok: true }); // robot
-  if (!nom || !formule || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  const CONTRATS = ['Cadre', 'Accompagné', 'Immersion', 'E-book'];
+  if (!nom || !CONTRATS.includes(formule) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return json({ error: 'Merci de renseigner ton nom, ton email et le contrat concerné.' }, 400);
   }
   if (!env.BREVO_API_KEY) return json({ error: 'indisponible', indisponible: true }, 503);
+  if (await limiteAtteinte(request, 'retractation', 3, 3600)) {
+    return json({ error: 'Trop de demandes envoyées. Réessaie dans une heure, ou écris directement à contact@tibobody.fr.' }, 429);
+  }
 
   const recue = new Date();
   const quand = dateHeureParis(recue);
+  // version pour le client : sans le message libre et sans liens (évite qu'un tiers se serve
+  // du formulaire pour envoyer un faux email avec un lien, au nom de Tibobody)
+  const sansLien = t => t.replace(/(https?:\/\/|www\.)\S*/gi, '[lien retiré]');
+  const contenuClient = [
+    'Je vous notifie par la présente ma rétractation du contrat portant sur la prestation de services ci-dessous :',
+    `- Contrat concerné : ${sansLien(formule)}`,
+    `- Date de souscription : ${sansLien(dateSouscription) || 'non précisée'}`,
+    `- Nom du client : ${sansLien(nom)}`,
+    `- Adresse email utilisée pour l'achat : ${email}`,
+  ].join('\n');
   const contenu = [
     'Je vous notifie par la présente ma rétractation du contrat portant sur la prestation de services ci-dessous :',
     `- Contrat concerné : ${formule}`,
@@ -332,10 +370,10 @@ async function postRetractation(request, env) {
   ].join('\n');
 
   await envoyerEmail(env, {
-    to: { email, name: nom },
+    to: { email, name: sansLien(nom).slice(0, 70) },
     replyTo: { email: EMAIL_CONTACT, name: NOM_EXPEDITEUR },
     subject: 'Accusé de réception de ta rétractation — Tibobody',
-    text: `Bonjour ${nom},\n\nNous accusons réception de ta demande de rétractation, reçue le ${quand}.\n\nVoici le contenu de ta déclaration :\n\n${contenu}\n\nLe remboursement interviendra au plus tard 14 jours après ta rétractation, par le même moyen de paiement que celui utilisé lors de l'achat. Si tu avais demandé que l'accompagnement commence avant la fin du délai de 14 jours, seule la part correspondant aux jours écoulés reste due.\n\nPour toute question, réponds simplement à cet email.\n\nTibobody — ${EMAIL_CONTACT}`,
+    text: `Bonjour ${sansLien(nom)},\n\nNous accusons réception de ta demande de rétractation, reçue le ${quand}.\n\nVoici le contenu de ta déclaration :\n\n${contenuClient}\n\nLe remboursement interviendra au plus tard 14 jours après ta rétractation, par le même moyen de paiement que celui utilisé lors de l'achat. Si tu avais demandé que l'accompagnement commence avant la fin du délai de 14 jours, seule la part correspondant aux jours écoulés reste due.\n\nPour toute question, réponds simplement à cet email.\n\nTibobody — ${EMAIL_CONTACT}`,
   });
   // copie pour Tibobody (si elle échoue, la demande du client reste valide)
   try {
