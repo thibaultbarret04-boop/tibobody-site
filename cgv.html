@@ -24,6 +24,8 @@
   a{color:#8C1B16;}
   a.back{display:inline-block;margin-bottom:30px;font-size:13px;font-weight:700;color:#8C1B16;text-decoration:none;}
   .note{background:#fff;border-left:3px solid #8C1B16;padding:14px 18px;margin-top:16px;font-size:14px;color:#57544C;}
+  .seller{background:#fff;border:1px solid #DDD9D0;padding:16px 20px;margin-bottom:8px;}
+  .seller p{margin-bottom:4px;font-size:14px;}
   .annex{background:#fff;border:1px solid #DDD9D0;padding:24px 26px;margin-top:14px;}
   .legal-foot{border-top:1px solid #DDD9D0;padding:28px 24px 40px;text-align:center;font-size:13px;color:#57544C;}
   .legal-foot nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 10px;margin-bottom:10px;}
@@ -49,6 +51,11 @@
 @keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
 @keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
 @media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
+
+  /* coins arrondis */
+  .note,.done{border-radius:0 12px 12px 0;}
+  .annex,.seller,.form{border-radius:16px;}
+  .form input,.form select,.form textarea{border-radius:10px;}
 </style>
 </head>
 <body>
@@ -57,20 +64,27 @@
   <a class="back" href="index.html">← Retour à l'accueil</a>
   <h1>Conditions générales de vente</h1>
 
+  <div class="seller">
+    <p><strong>Vendeur :</strong> Thibault Barret, entrepreneur individuel (micro-entreprise), nom commercial TiboBody</p>
+    <p><strong>Adresse :</strong> 29 rue Tronchet, 75008 Paris (c/o Belldom)</p>
+    <p><strong>E-mail :</strong> <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a> · <strong>SIRET :</strong> 13152662600018</p>
+    <p>TVA non applicable, art. 293 B du CGI</p>
+  </div>
+
   <h2>Produits et services</h2>
   <p>Le site propose des e-books numériques et des formules d'accompagnement personnalisé (Cadre, Accompagné, Immersion), décrits sur les pages correspondantes. Ces offres sont réservées aux personnes âgées de 18 ans ou plus.</p>
 
   <h2>Description des prestations</h2>
   <p>Je propose des accompagnements à distance en discipline et en organisation personnelle, sous forme d'abonnement mensuel. Ils ne constituent ni un suivi médical, ni un suivi psychologique, ni un programme d'entraînement sportif.</p>
   <ul>
-    <li><strong>Cadre — 127 €/mois</strong> (tarif de bienvenue : 67 €/mois les 3 premiers mois) : appel de départ de 30 minutes, plan d'action mensuel, 1 check-in par semaine, réponse sous 72 heures.</li>
-    <li><strong>Accompagné — 297 €/mois</strong> (tarif de bienvenue : 147 €/mois les 3 premiers mois) : appel de départ de 45 minutes, plan d'action ajusté chaque semaine, 3 check-ins par semaine, 1 appel de suivi de 30 minutes par mois, réponse sous 48 heures.</li>
-    <li><strong>Immersion — 597 €/mois</strong> (tarif de bienvenue : 297 €/mois les 3 premiers mois) : appel de départ d'une heure, plan d'action refait chaque semaine, 1 check-in par jour, 2 appels de suivi de 30 minutes par mois, réponse sous 24 heures les jours ouvrés.</li>
+    <li><strong>Cadre — 67 €/mois</strong> : appel de départ de 30 minutes, plan d'action mensuel, 1 check-in par semaine, réponse sous 72 heures.</li>
+    <li><strong>Accompagné — 147 €/mois</strong> : appel de départ de 45 minutes, plan d'action ajusté chaque semaine, 3 check-ins par semaine, 1 appel de suivi de 30 minutes par mois, réponse sous 48 heures.</li>
+    <li><strong>Immersion — 297 €/mois</strong> : appel de départ d'une heure, plan d'action refait chaque semaine, 1 check-in par jour, 2 appels de suivi de 30 minutes par mois, réponse sous 24 heures les jours ouvrés.</li>
   </ul>
 
-  <h2>Prix</h2>
+  <h2>Tarif</h2>
   <p>Les prix sont indiqués en euros. TVA non applicable, article 293 B du Code général des impôts.</p>
-  <p><strong>Tarif de bienvenue.</strong> Les 3 premières mensualités de chaque formule sont facturées au tarif de bienvenue indiqué sur la page Formules. À partir de la 4<sup>e</sup> mensualité, le tarif normal en vigueur au jour de la souscription s'applique automatiquement. Le client est prévenu par email au moins 7 jours avant le passage au tarif normal et peut résilier à tout moment, sans frais, avant cette date.</p>
+  <p>Les prix des accompagnements sont de 67, 147 ou 297 €/mois selon la formule. Dans le cadre du tarif de lancement, valable pour toute souscription jusqu'au 31/12/2026 inclus, un code de lancement donne droit à 50 % de réduction sur le premier mois d'un premier abonnement. Les mois suivants sont facturés au prix normal de la formule. La garantie « appel de départ » et le droit de rétractation s'appliquent au montant réellement payé.</p>
 
   <h2>Paiement et renouvellement de l'abonnement</h2>
   <p>Le paiement s'effectue par carte bancaire via la plateforme sécurisée Stripe. Le premier mois est débité le jour de la souscription. L'abonnement est ensuite renouvelé automatiquement chaque mois, à la même date, pour une durée d'un mois, jusqu'à sa résiliation. Le client reçoit un reçu par email à chaque prélèvement.</p>
@@ -78,38 +92,40 @@
   <h2>Livraison des e-books</h2>
   <p>Les e-books sont des produits numériques, accessibles en téléchargement immédiatement après validation du paiement.</p>
 
-  <h2>Résiliation</h2>
-  <p>Les accompagnements sont sans engagement de durée. Le client peut résilier à tout moment, sans frais et sans justification :</p>
-  <ul>
-    <li>en ligne, via le lien « Gérer ou résilier mon abonnement » présent dans chaque email de reçu et en pied de page du site ;</li>
-    <li>ou par email à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</li>
-  </ul>
-  <p>La résiliation prend effet à la fin du mois en cours, déjà payé. Aucun prélèvement n'a lieu ensuite. Une confirmation de résiliation est envoyée par email. Le mois entamé n'est pas remboursé, sauf exercice du droit de rétractation.</p>
+  <h2>Garantie « appel de départ »</h2>
+  <p>Si, dans les 7 jours qui suivent l'appel de départ, le client estime que l'accompagnement ne lui convient pas, il peut demander par e-mail à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a> le remboursement intégral de son premier mois. Le remboursement est effectué sous 14 jours, par le moyen de paiement utilisé, et l'abonnement prend fin. Cette garantie ne vaut que pour le premier mois d'un premier abonnement.</p>
 
   <h2>Droit de rétractation – Accompagnements</h2>
-  <p>Le client dispose d'un délai de 14 jours à compter de la souscription pour se rétracter, sans avoir à se justifier.</p>
-  <p>Si le client demande expressément que l'accompagnement commence avant la fin de ce délai, il reste libre de se rétracter. Il paie alors uniquement la part du service fournie jusqu'à sa rétractation, calculée au prorata du prix du mois. Exemple : rétractation au 5<sup>e</sup> jour d'un premier mois Accompagné à 147 € (tarif de bienvenue) = 147 × 5 / 30, soit 24,50 €.</p>
+  <p>Indépendamment de la garantie, le client dispose de 14 jours à compter de la souscription pour se rétracter. S'il a demandé que l'accompagnement commence avant la fin de ce délai, il paie seulement la part correspondant aux jours écoulés.</p>
+  <p>Exemple : rétractation au 5<sup>e</sup> jour d'un premier mois Accompagné payé 147 € = 147 × 5 / 30, soit 24,50 €. Avec le code de lancement (premier mois payé 73,50 €) : 73,50 × 5 / 30, soit 12,25 €.</p>
   <p>Pour se rétracter, le client utilise la fonction de rétractation en ligne : le bouton « Renoncer au contrat ici » de la page <a href="retractation.html">Se rétracter</a>, accessible à tout moment depuis le pied de page du site, puis le bouton « Confirmer ma rétractation ». Il peut aussi envoyer le formulaire de rétractation ci-dessous, ou toute déclaration claire, à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>. Un accusé de réception, reprenant le contenu de sa demande ainsi que la date et l'heure de sa réception, lui est envoyé par email sans délai. Le remboursement intervient au plus tard 14 jours après la rétractation, par le même moyen de paiement.</p>
 
-  <h2>Droit de rétractation – E-books</h2>
-  <p>Les e-books sont des contenus numériques livrés immédiatement après le paiement. Avant de payer, le client donne son accord exprès pour cette livraison immédiate et reconnaît qu'il perd ainsi son droit de rétractation (article L221-28, 13° du Code de la consommation). Sans cet accord, le délai de rétractation de 14 jours s'applique.</p>
+  <h2>Après ces délais</h2>
+  <p>Le mois entamé n'est pas remboursé. Le client peut résilier à tout moment, en ligne : la résiliation prend effet à la fin du mois en cours.</p>
+  <p>La résiliation se fait via le lien « Gérer ou résilier mon abonnement », présent en pied de page du site et dans les emails de reçu, ou par email à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>. Elle est sans frais et sans justification. Aucun prélèvement n'a lieu après la fin du mois en cours, et une confirmation est envoyée par email.</p>
 
-  <h2>Garantie</h2>
-  <p>Si le client n'est pas satisfait de son premier mois d'accompagnement, il est remboursé intégralement sur simple demande par email, envoyée avant la fin de ce premier mois.</p>
+  <h2>Droit de rétractation – E-books</h2>
+  <p>Les e-books sont des contenus numériques livrés immédiatement après le paiement. Avant de payer, le client accepte expressément cette livraison immédiate et renonce ainsi à son droit de rétractation (article L221-28, 13° du Code de la consommation). Sans cet accord, le délai de rétractation de 14 jours s'applique.</p>
+
+  <h2>Médiation de la consommation</h2>
+  <p>En cas de litige, le client adresse d'abord une réclamation écrite à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>. À défaut de solution amiable, il peut recourir gratuitement au médiateur de la consommation dont relève le vendeur :</p>
+  <p><strong>CM2C — Centre de la Médiation de la Consommation de Conciliateurs de Justice</strong><br>49 rue de Ponthieu, 75008 Paris · 01 89 47 00 14<br>Saisine en ligne : <a href="https://www.cm2c.net/declarer-un-litige.php" target="_blank" rel="noopener">www.cm2c.net</a></p>
 
   <h2>Annexe — Formulaire de rétractation</h2>
+  <p>(Veuillez compléter et renvoyer le présent formulaire uniquement si vous souhaitez vous rétracter du contrat.)</p>
   <div class="annex">
-    <p>À l'attention de Tibobody, <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a> :</p>
+    <p>À l'attention de Thibault Barret – TiboBody, 29 rue Tronchet, 75008 Paris, <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a> :</p>
     <p>Je vous notifie par la présente ma rétractation du contrat portant sur la prestation de services ci-dessous :</p>
     <ul>
       <li>Formule souscrite :</li>
       <li>Date de souscription :</li>
       <li>Nom du client :</li>
       <li>Adresse email utilisée pour l'achat :</li>
+      <li>Signature (uniquement en cas d'envoi sur papier) :</li>
       <li>Date :</li>
     </ul>
   </div>
-  <p class="note">Tu peux aussi te rétracter directement en ligne sur la page <a href="retractation.html">Se rétracter</a> (bouton « Renoncer au contrat ici »).</p>
+  <p class="note">Vous pouvez aussi vous rétracter directement en ligne sur la page <a href="retractation.html">Se rétracter</a> (bouton « Renoncer au contrat ici »).</p>
 </div>
 <footer class="legal-foot">
   <nav>

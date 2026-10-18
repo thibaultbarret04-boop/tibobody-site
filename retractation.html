@@ -65,6 +65,11 @@
 @keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
 @keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
 @media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
+
+  /* coins arrondis */
+  .note,.done{border-radius:0 12px 12px 0;}
+  .annex,.seller,.form{border-radius:16px;}
+  .form input,.form select,.form textarea{border-radius:10px;}
 </style>
 </head>
 <body>
@@ -73,6 +78,8 @@
   <a class="back" href="index.html">← Retour à l'accueil</a>
   <h1>Se rétracter</h1>
   <p>Tu as souscrit un accompagnement il y a moins de 14 jours ? Tu peux te rétracter sans avoir à te justifier. Tu reçois immédiatement un accusé de réception par email, avec le contenu de ta demande, la date et l'heure. Le remboursement intervient au plus tard 14 jours après ta rétractation, par le même moyen de paiement.</p>
+  <p>Si tu as demandé que l'accompagnement commence avant la fin du délai de 14 jours, tu paies seulement la part correspondant aux jours écoulés, calculée sur le montant réellement payé. Pour un e-book, le droit de rétractation ne s'applique plus si tu as accepté la livraison immédiate au moment du paiement.</p>
+  <p>Pas convaincu après l'appel de départ ? C'est la garantie « appel de départ » : écris à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a> dans les 7 jours qui suivent l'appel pour être remboursé intégralement de ton premier mois.</p>
   <p>Les conditions complètes sont détaillées dans les <a href="cgv.html">conditions générales de vente</a>. Tu peux aussi écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
 
   <!-- Étape 1 : fonction de rétractation -->
@@ -82,7 +89,7 @@
   <form class="form" id="retractForm" action="https://formspree.io/f/xnpjdajy" method="POST" hidden novalidate>
     <input type="hidden" name="_subject" value="Demande de rétractation">
     <input type="text" name="_gotcha" id="hp" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
-    <p style="margin:0;color:#111010;font-weight:600;">À l'attention de Tibobody — je vous notifie par la présente ma rétractation du contrat portant sur la prestation de services ci-dessous :</p>
+    <p style="margin:0;color:#111010;font-weight:600;">À l'attention de Thibault Barret – TiboBody, 29 rue Tronchet, 75008 Paris — je vous notifie par la présente ma rétractation du contrat portant sur la prestation de services ci-dessous :</p>
     <div>
       <label for="formule">Contrat concerné</label>
       <select id="formule" name="formule" required>

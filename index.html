@@ -91,8 +91,8 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .cart-footer{padding:18px 22px 24px;border-top:1px solid var(--line);}
 .cart-subtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:16px;}
 .cart-note{display:block;font-size:11.5px;color:var(--steel);text-align:center;margin-top:10px;}
-.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;padding:14px 24px;font-size:14px;font-weight:600;z-index:500;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;padding:14px 24px;font-size:14px;font-weight:600;z-index:500;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);visibility:hidden;}
+.toast.show{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0);}
 .toast .check{color:var(--ember);font-weight:800;}
 .burger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;}
 .burger span{width:22px;height:2px;background:var(--ink);transition:.25s;}
@@ -278,6 +278,10 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .contact h2{color:#fff;font-size:clamp(28px,4.8vw,44px);max-width:16ch;margin-bottom:18px;}
 .contact p.lede{color:#C9C5B7;max-width:54ch;margin-bottom:40px;}
 .contact p.lede a{color:#fff;text-decoration:underline;}
+.btn-outline-light{border-color:#fff;color:#fff;background:transparent;}
+.btn-outline-light:hover{background:#fff;color:var(--ink);transform:translateY(-2px);}
+.form-privacy{font-size:13px;color:#A8A49B;margin-top:12px;}
+.form-privacy a{color:#fff;text-decoration:underline;}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:680px;}
 .form-grid .full{grid-column:1/-1;}
 .form-grid label{display:block;font-size:12.5px;font-weight:600;color:var(--steel-on-dark);margin-bottom:8px;}
@@ -336,6 +340,18 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 @keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
 @keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
 @media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
+
+/* coins arrondis (cadres et blocs) */
+.pp-quote-card,.definition-card,.guarantee-box,.quiz-card,.plan,.pack,.method-grid,.plan-compare{border-radius:18px;}
+.promise-cards .pc,.obj-box,.checkin-card,.book,.hero-stack a,.ba-item,.pt-card{border-radius:14px;}
+.book,.method-grid,.plan-compare,.hero-stack a{overflow:hidden;}
+.plan-head{border-radius:16px 16px 0 0;}
+.form-grid input,.form-grid select,.form-grid textarea,.quiz-lead input{border-radius:10px;}
+.toast{border-radius:12px;}
+.cart-item-thumb{border-radius:6px;}
+.cart-drawer{border-radius:18px 0 0 18px;}
+.plan-badge,.plan-places{border-radius:8px 8px 0 0;}
+.pp-quote-card blockquote{border-radius:2px;}
 </style>
 </head>
 <body>
@@ -386,7 +402,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       <p class="hero-kicker">Thibault - Disciplineur</p>
       <p class="hero-kicker hero-kicker-grey">Pour les 18-30 ans</p>
     </div>
-    <h1 data-hero-el>Tu sais quoi faire. <br><span class="ac">Je t'aide à le tenir.</span></h1>
+    <h1 data-hero-el>Tu sais quoi faire.<br><span class="ac">Je t'aide à le tenir.</span></h1>
     <p class="lede" data-hero-el>La motivation, tu l'as déjà — sinon tu ne lirais pas ça. Ce qui te manque, c'est un cadre et quelqu'un pour t'empêcher de lâcher quand ça devient difficile. Fais le test, on regarde ensemble ce dont tu as vraiment besoin.</p>
     <div class="hero-ctas" data-hero-el>
       <a href="formule.html#diagnostic" class="btn btn-ember">Faire le test gratuit (2 min)</a>
@@ -532,7 +548,8 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 <section class="contact" id="contact">
   <div class="wrap">
     <h2>Une question ?</h2>
-    <p class="lede">Pour un e-book, une info avant d'acheter, ou toute autre question. Réponse sous 24h. Tu peux aussi m'écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
+    <p class="lede">Pour un e-book, une info avant d'acheter, ou toute autre question. Réponse sous 24h. Tu peux aussi m'écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>, ou réserver un appel de 15 minutes.</p>
+    <div style="margin:-16px 0 36px;"><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3Df20q3wi_AxYXwjR2P8RMfLlNOKBtOQnvWW4IA8Gk2jpkVIB7uGy-0ZsXSrmLYppKt7iJ9bMe" target="_blank" rel="noopener" class="btn btn-outline-light">Réserver un appel de 15 min</a></div>
     <form class="form-grid" id="contactForm" action="https://formspree.io/f/xnpjdajy" method="POST" onsubmit="return handleContactSubmit(event);">
       <input type="text" name="_gotcha" id="hp-field" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
       <input type="hidden" name="_subject" value="Nouveau message — formulaire de contact tibobody.fr">
@@ -546,7 +563,8 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         </select>
       </div>
       <div class="full"><label for="fmsg">Ta situation en quelques mots</label><textarea id="fmsg" name="message"></textarea></div>
-      <div class="full"><button type="submit" class="btn btn-ember" id="contactSubmitBtn">Envoyer ma demande</button></div>
+      <div class="full"><button type="submit" class="btn btn-ember" id="contactSubmitBtn">Envoyer ma demande</button>
+        <p class="form-privacy">Tes données servent uniquement à te répondre. <a href="confidentialite.html">Confidentialité</a></p></div>
     </form>
   </div>
 </section>
@@ -561,7 +579,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 </main>
 
 <!-- TOAST -->
-<div class="toast" id="toast"><span class="check">✓</span><span id="toastMsg">Ajouté au panier</span></div>
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="check" hidden>✓</span><span id="toastMsg"></span></div>
 
 <footer>
   <div class="wrap">
@@ -610,7 +628,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
   <div class="cart-footer">
     <div class="cart-subtotal"><span>Sous-total</span><strong id="cartSubtotal">0,00 €</strong></div>
     <button class="btn btn-ember btn-block" id="checkoutBtn" onclick="startCheckout()">Passer commande</button>
-    <span class="cart-note">Paiement sécurisé par Stripe — livraison immédiate par email après achat.</span>
+    <span class="cart-note">Paiement sécurisé par Stripe — e-books livrés immédiatement par email après achat.</span>
   </div>
 </div>
 
@@ -716,6 +734,8 @@ let toastTimer=null;
 function showToast(msg){
   const t=document.getElementById('toast');
   document.getElementById('toastMsg').textContent = msg;
+  // ✓ seulement pour une action réussie (pas pour « panier vide » ou une erreur)
+  t.querySelector('.check').hidden = !/ajouté au panier|bien été envoyée/i.test(msg);
   t.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(()=> t.classList.remove('show'), 2400);

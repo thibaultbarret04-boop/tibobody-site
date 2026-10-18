@@ -83,8 +83,8 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .cart-footer{padding:18px 22px 24px;border-top:1px solid var(--line);}
 .cart-subtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:16px;}
 .cart-note{display:block;font-size:11.5px;color:var(--steel);text-align:center;margin-top:10px;}
-.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;padding:14px 24px;font-size:14px;font-weight:600;z-index:500;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;padding:14px 24px;font-size:14px;font-weight:600;z-index:500;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);visibility:hidden;}
+.toast.show{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0);}
 .toast .check{color:var(--ember);font-weight:800;}
 .burger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;}
 .burger span{width:22px;height:2px;background:var(--ink);transition:.25s;}
@@ -246,6 +246,23 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 @keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
 @keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
 @media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
+
+/* coins arrondis (cadres et blocs) */
+.pp-quote-card,.definition-card,.guarantee-box,.quiz-card,.plan,.pack,.method-grid,.plan-compare{border-radius:18px;}
+.promise-cards .pc,.obj-box,.checkin-card,.book,.hero-stack a,.ba-item,.pt-card{border-radius:14px;}
+.book,.method-grid,.plan-compare,.hero-stack a{overflow:hidden;}
+.plan-head{border-radius:16px 16px 0 0;}
+.form-grid input,.form-grid select,.form-grid textarea,.quiz-lead input{border-radius:10px;}
+.toast{border-radius:12px;}
+.cart-item-thumb{border-radius:6px;}
+.cart-drawer{border-radius:18px 0 0 18px;}
+.plan-badge,.plan-places{border-radius:8px 8px 0 0;}
+.pp-quote-card blockquote{border-radius:2px;}
+
+/* nouvelles couvertures : le titre est déjà dessus, format 2:3 */
+.book-grid .cover{aspect-ratio:2/3;}
+.book-grid .cover::after,.book-grid .cover .cover-title,.book-grid .cover .idx{display:none;}
+.hero-stack a img{aspect-ratio:2/3;}
 </style>
 </head>
 <body>
@@ -296,15 +313,15 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     <div class="hero-stack reveal">
       <a href="#ebooks-grid" class="hs-1" onclick="event.preventDefault();openBook('05');">
         <img src="assets/img/COVER5.jpg" alt="30 jours pour devenir inarrêtable">
-        <div class="hs-label"><div class="hs-name">30 jours</div><div class="hs-price">14,99 €</div></div>
+        <div class="hs-label"><div class="hs-name">30 jours</div><div class="hs-price">9,99 €</div></div>
       </a>
       <a href="#ebooks-grid" class="hs-2" onclick="event.preventDefault();openBook('04');">
         <img src="assets/img/COVER4.jpg" alt="Le guide d'un jeune homme ambitieux">
-        <div class="hs-label"><div class="hs-name">Ambitieux</div><div class="hs-price">5,99 €</div></div>
+        <div class="hs-label"><div class="hs-name">Ambitieux</div><div class="hs-price">9,99 €</div></div>
       </a>
       <a href="#ebooks-grid" class="hs-3" onclick="event.preventDefault();openBook('06');">
         <img src="assets/img/COVER6.jpg" alt="10 leçons que la musculation m'a apprises">
-        <div class="hs-label"><div class="hs-name">10 leçons</div><div class="hs-price">4,99 €</div></div>
+        <div class="hs-label"><div class="hs-name">10 leçons</div><div class="hs-price">9,99 €</div></div>
       </a>
     </div>
   </div>
@@ -317,11 +334,11 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     <p class="ebook-desc reveal">Plusieurs e-books réunis autour d'un même objectif, pour avancer sur plusieurs fronts en même temps.</p>
     <div class="pack-grid reveal">
       <div class="book" onclick="openBook('07')">
-        <div class="cover"><img src="assets/img/COVER7.png" alt="Pack Discipline"><span class="idx">Pack</span><span class="price-tag">16,99 €</span><div class="cover-title"><h4>Pack Discipline</h4></div></div>
+        <div class="cover"><img src="assets/img/COVER7.png" alt="Pack Discipline"><span class="idx">Pack</span><div class="cover-title"><h4>Pack Discipline</h4></div></div>
         <div class="book-info"><div class="price">16,99 € — 2 e-books</div><div class="more">En savoir plus</div></div>
       </div>
       <div class="book" onclick="openBook('08')">
-        <div class="cover"><img src="assets/img/COVER8.png" alt="Pack Accomplissement"><span class="idx">Pack</span><span class="price-tag">8,99 €</span><div class="cover-title"><h4>Pack Accomplissement</h4></div></div>
+        <div class="cover"><img src="assets/img/COVER8.png" alt="Pack Accomplissement"><span class="idx">Pack</span><div class="cover-title"><h4>Pack Accomplissement</h4></div></div>
         <div class="book-info"><div class="price">8,99 € — 2 e-books</div><div class="more">En savoir plus</div></div>
       </div>
     </div>
@@ -331,28 +348,28 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
     <p class="ebook-desc reveal">Chaque e-book traite un sujet précis — clique sur celui qui correspond le mieux à ce que tu cherches à changer en ce moment.</p>
     <div class="book-grid">
       <div class="book reveal" onclick="openBook('01')">
-        <div class="cover"><img src="assets/img/COVER1.jpg" alt="Trouver sa passion"><span class="idx">01</span><span class="price-tag">5,99 €</span><div class="cover-title"><h4>Trouver sa passion</h4></div></div>
-        <div class="book-info"><div class="price">5,99 €</div><div class="more">En savoir plus</div></div>
+        <div class="cover"><img src="assets/img/COVER1.jpg" alt="Trouver sa passion"><span class="idx">01</span><div class="cover-title"><h4>Trouver sa passion</h4></div></div>
+        <div class="book-info"><div class="price">9,99 €</div><div class="more">En savoir plus</div></div>
       </div>
       <div class="book reveal" onclick="openBook('02')">
-        <div class="cover"><img src="assets/img/COVER2.jpg" alt="L'art de positiver"><span class="idx">02</span><span class="price-tag">5,99 €</span><div class="cover-title"><h4>L'art de positiver</h4></div></div>
-        <div class="book-info"><div class="price">5,99 €</div><div class="more">En savoir plus</div></div>
+        <div class="cover"><img src="assets/img/COVER2.jpg" alt="L'art de positiver"><span class="idx">02</span><div class="cover-title"><h4>L'art de positiver</h4></div></div>
+        <div class="book-info"><div class="price">9,99 €</div><div class="more">En savoir plus</div></div>
       </div>
       <div class="book reveal" onclick="openBook('03')">
-        <div class="cover"><img src="assets/img/COVER3.jpg" alt="Communication non violente"><span class="idx">03</span><span class="price-tag">9,99 €</span><div class="cover-title"><h4>Communication non violente</h4></div></div>
+        <div class="cover"><img src="assets/img/COVER3.jpg" alt="Communication non violente"><span class="idx">03</span><div class="cover-title"><h4>Communication non violente</h4></div></div>
         <div class="book-info"><div class="price">9,99 €</div><div class="more">En savoir plus</div></div>
       </div>
       <div class="book reveal" onclick="openBook('04')">
-        <div class="cover"><img src="assets/img/COVER4.jpg" alt="Le guide d'un jeune homme ambitieux"><span class="idx">04</span><span class="price-tag">5,99 €</span><div class="cover-title"><h4>Le guide d'un jeune homme ambitieux</h4></div></div>
-        <div class="book-info"><div class="price">5,99 €</div><div class="more">En savoir plus</div></div>
+        <div class="cover"><img src="assets/img/COVER4.jpg" alt="Le guide d'un jeune homme ambitieux"><span class="idx">04</span><div class="cover-title"><h4>Le guide d'un jeune homme ambitieux</h4></div></div>
+        <div class="book-info"><div class="price">9,99 €</div><div class="more">En savoir plus</div></div>
       </div>
       <div class="book reveal" onclick="openBook('05')">
-        <div class="cover"><img src="assets/img/COVER5.jpg" alt="30 jours pour devenir inarrêtable"><span class="idx">05</span><span class="price-tag">14,99 €</span><div class="cover-title"><h4>30 jours pour devenir inarrêtable</h4></div></div>
-        <div class="book-info"><div class="price">14,99 €</div><div class="more">En savoir plus</div></div>
+        <div class="cover"><img src="assets/img/COVER5.jpg" alt="30 jours pour devenir inarrêtable"><span class="idx">05</span><div class="cover-title"><h4>30 jours pour devenir inarrêtable</h4></div></div>
+        <div class="book-info"><div class="price">9,99 €</div><div class="more">En savoir plus</div></div>
       </div>
       <div class="book reveal" onclick="openBook('06')">
-        <div class="cover"><img src="assets/img/COVER6.jpg" alt="10 leçons que la musculation m'a apprises"><span class="idx">06</span><span class="price-tag">4,99 €</span><div class="cover-title"><h4>10 leçons que la musculation m'a apprises</h4></div></div>
-        <div class="book-info"><div class="price">4,99 €</div><div class="more">En savoir plus</div></div>
+        <div class="cover"><img src="assets/img/COVER6.jpg" alt="10 leçons que la musculation m'a apprises"><span class="idx">06</span><div class="cover-title"><h4>10 leçons que la musculation m'a apprises</h4></div></div>
+        <div class="book-info"><div class="price">9,99 €</div><div class="more">En savoir plus</div></div>
       </div>
     </div>
   </div>
@@ -415,12 +432,12 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
   <div class="cart-footer">
     <div class="cart-subtotal"><span>Sous-total</span><strong id="cartSubtotal">0,00 €</strong></div>
     <button class="btn btn-ember btn-block" id="checkoutBtn" onclick="startCheckout()">Passer commande</button>
-    <span class="cart-note">Paiement sécurisé par Stripe — livraison immédiate par email après achat.</span>
+    <span class="cart-note">Paiement sécurisé par Stripe — e-books livrés immédiatement par email après achat.</span>
   </div>
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast"><span class="check">✓</span><span id="toastMsg">Ajouté au panier</span></div>
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="check" hidden>✓</span><span id="toastMsg"></span></div>
 
 <footer>
   <div class="wrap">
@@ -536,22 +553,22 @@ document.querySelectorAll('.mmenu-inner a').forEach(a=>a.addEventListener('click
 
 // ebook data
 const books={
-  '01':{eyebrow:'E-book Nº01',title:"Trouver sa passion",price:'5,99 €',
+  '01':{eyebrow:'E-book Nº01',title:"Trouver sa passion",price:'9,99 €',
     images:['assets/img/COVER1.jpg','assets/img/PAGE/Passion/1.png','assets/img/PAGE/Passion/2.png','assets/img/PAGE/Passion/3.png'],
     desc:"Tu tournes en rond sans savoir ce que tu veux vraiment faire de ta vie ? Ce guide t'aide à sortir de l'indécision avec une méthode en 3 étapes, des exercices pratiques de moins de 30 minutes, et des questions concrètes pour clarifier ce que tu veux vraiment."},
-  '02':{eyebrow:'E-book Nº02',title:"L'art de positiver",price:'5,99 €',
+  '02':{eyebrow:'E-book Nº02',title:"L'art de positiver",price:'9,99 €',
     images:['assets/img/COVER2.jpg','assets/img/PAGE/positiver/1.png','assets/img/PAGE/positiver/2.png','assets/img/PAGE/positiver/3.png'],
     desc:"Arrête de subir tes journées. Des techniques pour changer ton dialogue intérieur, réagir face à un échec sans t'effondrer, et des rituels quotidiens pour muscler ton mental."},
   '03':{eyebrow:'E-book Nº03',title:"Communication non violente",price:'9,99 €',
     images:['assets/img/COVER3.jpg','assets/img/PAGE/comnonviolente/1.png','assets/img/PAGE/comnonviolente/2.png','assets/img/PAGE/comnonviolente/3.png'],
     desc:"Arrête les conflits qui empoisonnent tes relations. Une méthode en 4 étapes pour désamorcer un conflit, dire ce que tu ressens sans accuser l'autre, et des phrases concrètes à utiliser au quotidien."},
-  '04':{eyebrow:'E-book Nº04',title:"Le guide d'un jeune homme ambitieux",price:'5,99 €',
+  '04':{eyebrow:'E-book Nº04',title:"Le guide d'un jeune homme ambitieux",price:'9,99 €',
     images:['assets/img/COVER4.jpg','assets/img/PAGE/Ambitieux/1.png','assets/img/PAGE/Ambitieux/2.png','assets/img/PAGE/Ambitieux/3.png'],
     desc:"Poser une vision claire de ce que tu veux construire, bâtir une discipline qui tient dans le temps, gérer ton temps et tes priorités, et éviter les pièges qui freinent la plupart des gens."},
-  '05':{eyebrow:'E-book Nº05',title:"30 jours pour devenir inarrêtable",price:'14,99 €',
+  '05':{eyebrow:'E-book Nº05',title:"30 jours pour devenir inarrêtable",price:'9,99 €',
     images:['assets/img/COVER5.jpg','assets/img/PAGE/30jours/1.jpeg','assets/img/PAGE/30jours/2.jpeg','assets/img/PAGE/30jours/3.jpeg'],
     desc:"Un programme structuré sur 30 jours, des séances pensées pour progresser en sécurité, et un suivi pour mesurer tes progrès chaque semaine."},
-  '06':{eyebrow:'E-book Nº06',title:"10 leçons que la musculation m'a apprises",price:'4,99 €',
+  '06':{eyebrow:'E-book Nº06',title:"10 leçons que la musculation m'a apprises",price:'9,99 €',
     images:['assets/img/COVER6.jpg','assets/img/PAGE/10lecon/1.png','assets/img/PAGE/10lecon/2.png','assets/img/PAGE/10lecon/3.png'],
     desc:"Ce que la musculation t'apprend sur la patience, comment transformer la discipline physique en discipline de vie, et gérer les phases de stagnation sans lâcher."},
   '07':{eyebrow:'Pack économique',title:"Pack Discipline",price:'16,99 €',
@@ -699,6 +716,8 @@ let toastTimer=null;
 function showToast(msg){
   const t=document.getElementById('toast');
   document.getElementById('toastMsg').textContent = msg;
+  // ✓ seulement pour une action réussie (pas pour « panier vide » ou une erreur)
+  t.querySelector('.check').hidden = !/ajouté au panier|bien été envoyée/i.test(msg);
   t.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(()=> t.classList.remove('show'), 2400);

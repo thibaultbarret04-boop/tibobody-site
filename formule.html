@@ -70,8 +70,8 @@ p{color:var(--steel);font-size:17.5px;}
 @media(max-width:600px){.form-grid{grid-template-columns:1fr;}}
 
 /* toast */
-.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;padding:14px 24px;font-size:14px;font-weight:600;z-index:500;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;padding:14px 24px;font-size:14px;font-weight:600;z-index:500;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);visibility:hidden;}
+.toast.show{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0);}
 .toast .check{color:var(--ember);font-weight:800;}
 .btn-block{display:flex;justify-content:center;width:100%;}
 
@@ -243,6 +243,13 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .plan-buy:disabled{opacity:.5;cursor:not-allowed;transform:none;}
 .plan-question{display:block;text-align:center;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--steel);text-decoration:underline;}
 .plan-question:hover{color:var(--ember-dim);}
+.plan-guarantee{font-size:12.5px;line-height:1.5;color:var(--steel);text-align:center;margin-top:12px;}
+.founder-mention strong{color:var(--ink);}
+.contact-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+.btn-outline-light{border-color:#fff;color:#fff;background:transparent;}
+.btn-outline-light:hover{background:#fff;color:var(--ink);transform:translateY(-2px);}
+.form-privacy{font-size:13px;color:#A8A49B;margin-top:12px;}
+.form-privacy a{color:#fff;text-decoration:underline;}
 .plan-head{padding:30px 26px 22px;border-bottom:1px solid var(--line);}
 .plan-name{font-size:26px;margin-bottom:14px;}
 .plan-price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
@@ -350,6 +357,18 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 .reveal.in{opacity:1;transform:translateY(0);}
 
 @media(max-width:860px){ section{padding:72px 0;} }
+
+/* coins arrondis (cadres et blocs) */
+.pp-quote-card,.definition-card,.guarantee-box,.quiz-card,.plan,.pack,.method-grid,.plan-compare{border-radius:18px;}
+.promise-cards .pc,.obj-box,.checkin-card,.book,.hero-stack a,.ba-item,.pt-card{border-radius:14px;}
+.book,.method-grid,.plan-compare,.hero-stack a{overflow:hidden;}
+.plan-head{border-radius:16px 16px 0 0;}
+.form-grid input,.form-grid select,.form-grid textarea,.quiz-lead input{border-radius:10px;}
+.toast{border-radius:12px;}
+.cart-item-thumb{border-radius:6px;}
+.cart-drawer{border-radius:18px 0 0 18px;}
+.plan-badge,.plan-places{border-radius:8px 8px 0 0;}
+.pp-quote-card blockquote{border-radius:2px;}
 </style>
 </head>
 <body>
@@ -395,21 +414,21 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       <a href="index.html" class="back-link">← Retour à l'accueil</a>
       <p class="tag">Accompagnement</p>
       <h1>Choisis ton niveau <span class="ac">d'accompagnement</span></h1>
-      <p>Du plan à suivre seul au suivi quasi quotidien : quatre façons de travailler avec moi, pour trouver celle qui correspond à où tu en es.</p>
+      <p>Du plan à suivre seul au suivi quasi quotidien : trois façons de travailler avec moi, pour trouver celle qui correspond à où tu en es.</p>
       <div style="margin-top:28px;"><a href="#diagnostic" class="btn btn-ember">Faire le test gratuit (2 min)</a></div>
     </div>
     <div class="hero-stack reveal">
       <a href="#formules" class="hs-1">
-        <img src="assets/img/cadre.png" alt="Cadre">
-        <div class="hs-label"><div class="hs-name">Cadre</div><div class="hs-price">67 €/mois les 3 premiers mois</div></div>
+        <img src="assets/img/cadre.png" alt="">
+        <div class="hs-label"><div class="hs-name">Cadre</div> <div class="hs-price">67 €/mois</div></div>
       </a>
       <a href="#formules" class="hs-2">
-        <img src="assets/img/accompagne.png" alt="Accompagné">
-        <div class="hs-label"><div class="hs-name">Accompagné</div><div class="hs-price">147 €/mois les 3 premiers mois</div></div>
+        <img src="assets/img/accompagne.png" alt="">
+        <div class="hs-label"><div class="hs-name">Accompagné</div> <div class="hs-price">147 €/mois</div></div>
       </a>
       <a href="#formules" class="hs-3">
-        <img src="assets/img/immersion.png" alt="Immersion">
-        <div class="hs-label"><div class="hs-name">Immersion</div><div class="hs-price">297 €/mois les 3 premiers mois</div></div>
+        <img src="assets/img/immersion.png" alt="">
+        <div class="hs-label"><div class="hs-name">Immersion</div> <div class="hs-price">297 €/mois</div></div>
       </a>
     </div>
   </div>
@@ -468,9 +487,9 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 
         <div class="quiz-step" data-step="6">
           <h3>Quel budget mensuel es-tu prêt à investir dans ta transformation ?</h3>
-          <button type="button" class="quiz-opt" data-q="6" data-v="A">Autour de 70 €</button>
-          <button type="button" class="quiz-opt" data-q="6" data-v="B">Autour de 150 €</button>
-          <button type="button" class="quiz-opt" data-q="6" data-v="C">300 € ou plus</button>
+          <button type="button" class="quiz-opt" data-q="6" data-v="A">Autour de 67 €</button>
+          <button type="button" class="quiz-opt" data-q="6" data-v="B">Autour de 147 €</button>
+          <button type="button" class="quiz-opt" data-q="6" data-v="C">297 € ou plus</button>
           <button type="button" class="quiz-opt" data-q="6" data-v="D">Je ne suis pas prêt à investir pour l'instant</button>
         </div>
 
@@ -613,22 +632,22 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         <div class="plan-head">
           <div class="plan-name">Cadre</div>
           <div class="plan-price-row"><div class="plan-price">67€<span>/mois</span></div></div>
-          <p class="plan-price-after">les 3 premiers mois, puis <strong>127 €/mois</strong></p>
+          <p class="plan-price-after">Sans engagement, résiliable en ligne</p>
         </div>
         <div class="plan-body"><ul>
           <li>1 appel de diagnostic initial (30 min)</li>
           <li>Plan d'action personnalisé</li>
           <li>Suivi écrit hebdomadaire</li>
         </ul></div>
-        <div class="plan-foot"><button type="button" class="btn btn-line btn-block plan-buy" data-formule="cadre" data-label="Commencer maintenant" onclick="buyFormule('cadre', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('cadre')">En savoir plus</button><a href="#contact" class="plan-question">Une question avant de te lancer ?</a></div>
-        <div class="founder-mention">Sans engagement, résiliable à tout moment. TVA non applicable, art. 293 B du CGI.</div>
+        <div class="plan-foot"><button type="button" class="btn btn-line btn-block plan-buy" data-formule="cadre" data-label="Commencer maintenant" onclick="buyFormule('cadre', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('cadre')">En savoir plus</button><p class="plan-guarantee">Pas convaincu après l'appel de départ ? 1<sup>er</sup> mois remboursé. · Sans engagement · Résiliable en ligne</p><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3Df20q3wi_AxYXwjR2P8RMfLlNOKBtOQnvWW4IA8Gk2jpkVIB7uGy-0ZsXSrmLYppKt7iJ9bMe" target="_blank" rel="noopener" class="plan-question">Réserver un appel de 15 min</a></div>
+        <div class="founder-mention"><strong>Tarif de lancement :</strong> -50 % le 1<sup>er</sup> mois avec un code de lancement, jusqu'au 31/12/2026. Ensuite 67 €/mois, sans engagement.<br>En échange, un retour honnête (positif ou non), publié seulement avec ton accord.<br>TVA non applicable, art. 293 B du CGI.</div>
       </div>
       <div class="plan feat">
         <div class="plan-badges"><span class="plan-badge">Recommandé</span><span class="plan-places" data-places="accompagne" hidden></span></div>
         <div class="plan-head">
           <div class="plan-name">Accompagné</div>
           <div class="plan-price-row"><div class="plan-price">147€<span>/mois</span></div></div>
-          <p class="plan-price-after">les 3 premiers mois, puis <strong>297 €/mois</strong></p>
+          <p class="plan-price-after">Sans engagement, résiliable en ligne</p>
         </div>
         <div class="plan-body"><ul>
           <li>1 appel de diagnostic initial (45 min)</li>
@@ -637,15 +656,15 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
           <li>1 appel de suivi mensuel</li>
           <li>Accès à tous les e-books</li>
         </ul></div>
-        <div class="plan-foot"><button type="button" class="btn btn-ember btn-block plan-buy" data-formule="accompagne" data-label="Commencer maintenant" onclick="buyFormule('accompagne', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('accompagne')">En savoir plus</button><a href="#contact" class="plan-question">Une question avant de te lancer ?</a></div>
-        <div class="founder-mention">Sans engagement, résiliable à tout moment. TVA non applicable, art. 293 B du CGI.</div>
+        <div class="plan-foot"><button type="button" class="btn btn-ember btn-block plan-buy" data-formule="accompagne" data-label="Commencer maintenant" onclick="buyFormule('accompagne', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('accompagne')">En savoir plus</button><p class="plan-guarantee">Pas convaincu après l'appel de départ ? 1<sup>er</sup> mois remboursé. · Sans engagement · Résiliable en ligne</p><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3Df20q3wi_AxYXwjR2P8RMfLlNOKBtOQnvWW4IA8Gk2jpkVIB7uGy-0ZsXSrmLYppKt7iJ9bMe" target="_blank" rel="noopener" class="plan-question">Réserver un appel de 15 min</a></div>
+        <div class="founder-mention"><strong>Tarif de lancement :</strong> -50 % le 1<sup>er</sup> mois avec un code de lancement, jusqu'au 31/12/2026. Ensuite 147 €/mois, sans engagement.<br>En échange, un retour honnête (positif ou non), publié seulement avec ton accord.<br>TVA non applicable, art. 293 B du CGI.</div>
       </div>
       <div class="plan">
         <div class="plan-badges"><span class="plan-places" data-places="immersion" hidden></span></div>
         <div class="plan-head">
           <div class="plan-name">Immersion</div>
           <div class="plan-price-row"><div class="plan-price">297€<span>/mois</span></div></div>
-          <p class="plan-price-after">les 3 premiers mois, puis <strong>597 €/mois</strong></p>
+          <p class="plan-price-after">Sans engagement, résiliable en ligne</p>
         </div>
         <div class="plan-body"><ul>
           <li>1 appel de diagnostic approfondi (1h)</li>
@@ -655,8 +674,8 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
           <li>Places limitées à 3 personnes en simultané</li>
           <li>Accès à tous les e-books</li>
         </ul></div>
-        <div class="plan-foot"><button type="button" class="btn btn-line btn-block plan-buy" data-formule="immersion" data-label="Commencer maintenant" onclick="buyFormule('immersion', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('immersion')">En savoir plus</button><a href="#contact" class="plan-question">Une question avant de te lancer ?</a></div>
-        <div class="founder-mention">Sans engagement, résiliable à tout moment. TVA non applicable, art. 293 B du CGI.</div>
+        <div class="plan-foot"><button type="button" class="btn btn-line btn-block plan-buy" data-formule="immersion" data-label="Commencer maintenant" onclick="buyFormule('immersion', this)">Commencer maintenant</button><button class="btn btn-line btn-block" style="margin-top:10px;" onclick="openPlan('immersion')">En savoir plus</button><p class="plan-guarantee">Pas convaincu après l'appel de départ ? 1<sup>er</sup> mois remboursé. · Sans engagement · Résiliable en ligne</p><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3Df20q3wi_AxYXwjR2P8RMfLlNOKBtOQnvWW4IA8Gk2jpkVIB7uGy-0ZsXSrmLYppKt7iJ9bMe" target="_blank" rel="noopener" class="plan-question">Réserver un appel de 15 min</a></div>
+        <div class="founder-mention"><strong>Tarif de lancement :</strong> -50 % le 1<sup>er</sup> mois avec un code de lancement, jusqu'au 31/12/2026. Ensuite 297 €/mois, sans engagement.<br>En échange, un retour honnête (positif ou non), publié seulement avec ton accord.<br>TVA non applicable, art. 293 B du CGI.</div>
       </div>
     </div>
   </div>
@@ -680,9 +699,9 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         </div>
         <div class="pc-row">
           <div class="pc-c">Prix</div>
-          <div class="pc-c">67 €/mois les 3 premiers mois, puis 127 €/mois</div>
-          <div class="pc-c">147 €/mois les 3 premiers mois, puis 297 €/mois</div>
-          <div class="pc-c">297 €/mois les 3 premiers mois, puis 597 €/mois</div>
+          <div class="pc-c">67 €/mois</div>
+          <div class="pc-c">147 €/mois</div>
+          <div class="pc-c">297 €/mois</div>
         </div>
         <div class="pc-row">
           <div class="pc-c">Appel de départ</div>
@@ -752,7 +771,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
       </div>
       <div class="faq-mini-item">
         <button class="faq-mini-q">C'est trop cher.<span class="sign">+</span></button>
-        <div class="faq-mini-a"><p>Le tarif de bienvenue est là pour ça : tes 3 premiers mois sont à prix réduit, sans engagement, pour tester l'accompagnement. Compare-le à ce que t'a déjà coûté chaque tentative ratée en temps et en motivation perdue.</p></div>
+        <div class="faq-mini-a"><p>Jusqu'au 31/12/2026, le code de lancement te fait -50 % sur le 1<sup>er</sup> mois. Et si tu n'es pas convaincu après l'appel de départ, ton 1<sup>er</sup> mois est remboursé. Sans engagement. Compare-le à ce que t'a déjà coûté chaque tentative ratée en temps et en motivation perdue.</p></div>
       </div>
       <div class="faq-mini-item">
         <button class="faq-mini-q">Je ne sais pas si ça va marcher pour moi.<span class="sign">+</span></button>
@@ -770,7 +789,8 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 <section class="contact" id="contact">
   <div class="wrap">
     <h2>Une question avant de choisir ?</h2>
-    <p class="lede">Sur une formule, un délai, ou autre chose. Réponse sous 24h. Tu peux aussi m'écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
+    <p class="lede">Sur une formule, un délai, ou autre chose. Réponse sous 24h. Tu peux aussi m'écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>, ou réserver un appel de 15 minutes.</p>
+    <div style="margin:-16px 0 36px;"><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3Df20q3wi_AxYXwjR2P8RMfLlNOKBtOQnvWW4IA8Gk2jpkVIB7uGy-0ZsXSrmLYppKt7iJ9bMe" target="_blank" rel="noopener" class="btn btn-outline-light">Réserver un appel de 15 min</a></div>
     <form class="form-grid" id="contactForm" action="https://formspree.io/f/xnpjdajy" method="POST" onsubmit="return handleContactSubmit(event);">
       <input type="text" name="_gotcha" id="hp-field" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
       <input type="hidden" name="_subject" value="Nouveau message — page formules tibobody.fr">
@@ -784,7 +804,8 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
         </select>
       </div>
       <div class="full"><label for="fmsg">Ta situation en quelques mots</label><textarea id="fmsg" name="message"></textarea></div>
-      <div class="full"><button type="submit" class="btn btn-ember" id="contactSubmitBtn">Envoyer ma demande</button></div>
+      <div class="full"><button type="submit" class="btn btn-ember" id="contactSubmitBtn">Envoyer ma demande</button>
+        <p class="form-privacy">Tes données servent uniquement à te répondre. <a href="confidentialite.html">Confidentialité</a></p></div>
     </form>
   </div>
 </section>
@@ -792,7 +813,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 </main>
 
 <!-- TOAST -->
-<div class="toast" id="toast"><span class="check">✓</span><span id="toastMsg">Ta demande a bien été envoyée !</span></div>
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="check" hidden>✓</span><span id="toastMsg"></span></div>
 
 <!-- CART DRAWER -->
 <div class="cart-bg" id="cartBg"></div>
@@ -805,7 +826,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
   <div class="cart-footer">
     <div class="cart-subtotal"><span>Sous-total</span><strong id="cartSubtotal">0,00 €</strong></div>
     <button class="btn btn-ember btn-block" id="checkoutBtn" onclick="startCheckout()">Passer commande</button>
-    <span class="cart-note">Paiement sécurisé par Stripe — livraison immédiate par email après achat.</span>
+    <span class="cart-note">Paiement sécurisé par Stripe — e-books livrés immédiatement par email après achat.</span>
   </div>
 </div>
 
@@ -971,17 +992,17 @@ const quizTotalSteps = 7; // 6 questions + lead capture
 
 const RESULTS = {
   CADRE: {
-    tag: 'Ta formule', title: 'CADRE', price: '67 €/mois les 3 premiers mois, puis 127 €/mois',
+    tag: 'Ta formule', title: 'CADRE', price: '67 €/mois, sans engagement',
     desc: "Tu as déjà la volonté, il te manque la structure. CADRE te donne un plan clair et des repères pour avancer seul, sans te disperser.",
     cta: 'Choisir cette formule', action: 'cadre'
   },
   ACCOMPAGNE: {
-    tag: 'Ta formule', title: 'ACCOMPAGNÉ', price: '147 €/mois les 3 premiers mois, puis 297 €/mois',
+    tag: 'Ta formule', title: 'ACCOMPAGNÉ', price: '147 €/mois, sans engagement',
     desc: "Tu sais démarrer, mais tu lâches quand personne ne te suit. ACCOMPAGNÉ te donne un suivi chaque semaine pour tenir sur la durée. C'est la formule la plus choisie.",
     cta: 'Choisir cette formule', action: 'accompagne'
   },
   IMMERSION: {
-    tag: 'Ta formule', title: 'IMMERSION', price: '297 €/mois les 3 premiers mois, puis 597 €/mois',
+    tag: 'Ta formule', title: 'IMMERSION', price: '297 €/mois, sans engagement',
     desc: "Tu as besoin d'un changement profond et rapide. IMMERSION, c'est un suivi quasi quotidien, limité à 3 personnes en même temps.",
     cta: 'Choisir cette formule', action: 'immersion'
   },
@@ -1112,6 +1133,8 @@ let toastTimer=null;
 function showToast(msg){
   const t=document.getElementById('toast');
   document.getElementById('toastMsg').textContent = msg;
+  // ✓ seulement pour une action réussie (pas pour « panier vide » ou une erreur)
+  t.querySelector('.check').hidden = !/ajouté au panier|bien été envoyée/i.test(msg);
   t.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(()=> t.classList.remove('show'), 2400);
@@ -1247,7 +1270,7 @@ document.querySelectorAll('.faq-mini-item').forEach(item=>{
 // MODAL FORMULE
 // ---------------------------------------------------------------------
 const plans = {
-  cadre:{eyebrow:'Cadre',title:'Une semaine type',price:'67 €/mois les 3 premiers mois, puis 127 €/mois',image:'assets/img/cadre.png',
+  cadre:{eyebrow:'Cadre',title:'Une semaine type',price:'67 €/mois, sans engagement',image:'assets/img/cadre.png',
     desc:`<ul style="margin:0 0 16px 18px;padding:0;">
       <li style="margin-bottom:10px;">Du lundi au samedi : tu avances seul sur ton plan, avec 3 à 5 axes prioritaires et une action concrète pour chacun.</li>
       <li style="margin-bottom:10px;">Dimanche soir : je t'envoie ton point de la semaine sur WhatsApp, avec toujours les 3 mêmes questions : ce que tu as réussi, ce qui a bloqué, sur quoi te concentrer ensuite.</li>
@@ -1264,7 +1287,7 @@ const plans = {
     </ul>
     <p style="font-weight:700;color:var(--ink);font-size:21px;">Pour toi si tu as besoin d'un cadre régulier, pas d'un suivi rapproché.</p>`,
     cta:'cadre',ctaLabel:'Commencer maintenant'},
-  accompagne:{eyebrow:'Accompagné',title:'Une semaine type',price:'147 €/mois les 3 premiers mois, puis 297 €/mois',image:'assets/img/accompagne.png',
+  accompagne:{eyebrow:'Accompagné',title:'Une semaine type',price:'147 €/mois, sans engagement',image:'assets/img/accompagne.png',
     desc:`<ul style="margin:0 0 16px 18px;padding:0;">
       <li style="margin-bottom:10px;">Quand tu avances ou que tu bloques : tu m'écris, en message ou en vocal. Je réponds sous 48h maximum.</li>
       <li style="margin-bottom:10px;">En moyenne, 2 à 3 échanges par semaine, au rythme de ce qui se passe pour toi.</li>
@@ -1274,7 +1297,7 @@ const plans = {
     </ul>
     <p style="font-weight:700;color:var(--ink);">Pour toi si tu lâches dès que personne ne regarde.</p>`,
     cta:'accompagne',ctaLabel:'Commencer maintenant'},
-  immersion:{eyebrow:'Immersion',title:'Une semaine type',price:'297 €/mois les 3 premiers mois, puis 597 €/mois',image:'assets/img/immersion.png',
+  immersion:{eyebrow:'Immersion',title:'Une semaine type',price:'297 €/mois, sans engagement',image:'assets/img/immersion.png',
     desc:`<ul style="margin:0 0 16px 18px;padding:0;">
       <li style="margin-bottom:10px;">Chaque jour : tu m'écris autant que tu veux sur ton canal dédié. Je réponds sous 24h, les jours ouvrés.</li>
       <li style="margin-bottom:10px;">Ton plan est détaillé semaine par semaine dans ton espace Notion, avec un journal mis à jour au fil de nos échanges.</li>

@@ -8,19 +8,20 @@
 //   GET  /api/telechargements?session_id=cs_… | ?t=…   -> liens de téléchargement
 //   GET  /api/fichier/05?exp=…&sig=…    -> le PDF (lien signé, valable 1 h)
 //   POST /api/retractation              -> demande de rétractation + accusé de réception (Brevo)
-//   POST /api/stripe-webhook            -> email de prévenance avant la fin du tarif de bienvenue (Brevo)
+//   POST /api/stripe-webhook            -> plus utilisé (répond « reçu » ; le webhook peut être supprimé dans Stripe)
 //
 // Variables à régler dans Cloudflare (Settings > Variables and Secrets) :
 //   STRIPE_SECRET_KEY      (Secret)  clé Stripe sk_test_… / sk_live_…
 //   PAIEMENTS_OUVERTS      (Texte)   facultatif : "non" pour fermer les paiements. Absent = ouverts.
 //   BREVO_API_KEY          (Secret)  clé API Brevo (emails automatiques)
-//   STRIPE_WEBHOOK_SECRET  (Secret)  whsec_… du webhook Stripe
 //   PORTAIL_CLIENT_URL     (Texte)   lien du portail client Stripe (https://billing.stripe.com/p/login/…)
+//   DOMAINE_PRINCIPAL      (Texte)   ex. tibobody.fr : redirige tibobody-site.pages.dev vers ce domaine
+//                                    (voir functions/_middleware.js). Absent = pas de redirection.
 //
 //   GET  /api/portail                   -> redirige vers le portail client Stripe
 //
-// Tarif de bienvenue : dans Stripe, produit > Métadonnées > clé "coupon" = ID du coupon
-// (repeating, 3 mois). Il est appliqué automatiquement au paiement.
+// Tarif de lancement : le client tape le code promo (ex. TIBOBODY50) sur la page de paiement
+// des formules. Le code se crée dans Stripe (Bons de réduction > Codes promotionnels).
 //
 // Les PDF sont dans un dossier au nom secret (DOSSIER_PRIVE ci-dessous),
 // impossible à deviner : le backend lit le fichier et le transmet à l'acheteur
@@ -79,7 +80,9 @@ const LIEN_FICHIER_SECONDES = 60 * 60; // lien direct vers un PDF
 
 const EMAIL_CONTACT = 'contact@tibobody.fr';
 const NOM_EXPEDITEUR = 'Tibobody';
-const NOMS_FORMULES = { cadre: 'Cadre', accompagne: 'Accompagné', immersion: 'Immersion' };
+
+// Pied des factures (obligatoire : identité du vendeur + mention TVA)
+const PIED_FACTURE = 'Thibault Barret – TiboBody, entrepreneur individuel – 29 rue Tronchet, 75008 Paris – SIRET 13152662600018 – TVA non applicable, art. 293 B du CGI – contact@tibobody.fr';
 
 // Champ obligatoire au paiement (Stripe n'a pas de case à cocher : liste à un seul choix)
 const CHAMP_MAJEUR = {
@@ -170,7 +173,6 @@ async function calculerPlaces(env, seulement) {
       max: placesMax,
       restantes: Math.max(0, placesMax - occupees - enCours),
       prix: prixId,
-      coupon: (produit.metadata && produit.metadata.coupon || '').trim() || null,
     };
   }));
   return resultat;
@@ -207,23 +209,25 @@ async function createCheckout(request, env) {
       success_url: `${origin}/merci.html?type=formule&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/formule.html#formules`,
       expires_at: expiresAt,
-      // tarif de bienvenue appliqué automatiquement (aucun code à taper)
-      ...(places.coupon ? { discounts: [{ coupon: places.coupon }] } : {}),
+      // champ « Code promo » (tarif de lancement : TIBOBODY50)
+      allow_promotion_codes: true,
       metadata: { formule: cle },
-      subscription_data: { metadata: { formule: cle, ...(places.coupon ? { bienvenue: places.coupon } : {}) } },
+      subscription_data: { metadata: { formule: cle } },
+      // case à cocher obligatoire (seule vraie case que Stripe propose)
       consent_collection: { terms_of_service: 'required' },
       custom_text: {
-        terms_of_service_acceptance: { message: `J'accepte les [conditions générales de vente](${origin}/cgv.html).` },
+        terms_of_service_acceptance: { message: `J'accepte les [CGV](${origin}/cgv.html).` },
       },
+      // Stripe n'a pas d'autre case à cocher : choix obligatoire dans une liste
       custom_fields: [{
         key: 'demarrage',
-        label: { type: 'custom', custom: 'Démarrage' },
+        label: { type: 'custom', custom: 'Début de l\'accompagnement' },
         type: 'dropdown',
         optional: false,
         dropdown: {
           options: [
-            { label: 'Je demande à commencer tout de suite. Si je me rétracte, je paierai la part déjà effectuée.', value: 'immediat' },
-            { label: 'Je préfère attendre la fin du délai de 14 jours.', value: 'attendre14j' },
+            { label: "Je demande que l'accompagnement commence avant la fin du délai de rétractation de 14 jours", value: 'immediat' },
+            { label: 'Je préfère attendre la fin du délai de rétractation de 14 jours', value: 'attendre14j' },
           ],
         },
       }, CHAMP_MAJEUR],
@@ -263,13 +267,13 @@ async function createCheckout(request, env) {
       enabled: true,
       invoice_data: {
         description: `Merci pour ton achat ! Télécharge tes e-books ici (lien valable 1 an) : ${lienCommande}`,
-        footer: 'Tibobody — contact@tibobody.fr',
+        footer: PIED_FACTURE,
       },
     },
     consent_collection: { terms_of_service: 'required' },
     custom_text: {
       terms_of_service_acceptance: {
-        message: `J'accepte les [CGV](${origin}/cgv.html) et je demande l'accès immédiat à mon e-book. Je reconnais perdre mon droit de rétractation dès sa livraison.`,
+        message: `J'accepte les [CGV](${origin}/cgv.html). J'accepte la livraison immédiate et je renonce à mon droit de rétractation.`,
       },
     },
   });
@@ -300,12 +304,6 @@ function echapper(t) {
 }
 function dateHeureParis(d) {
   return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'medium', timeZone: 'Europe/Paris' }).format(d) + ' (heure de Paris)';
-}
-function dateParis(d) {
-  return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long', timeZone: 'Europe/Paris' }).format(d);
-}
-function euros(centimes) {
-  return (centimes / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
 }
 
 // ---------------------------------------------------------------------
@@ -339,7 +337,7 @@ async function postRetractation(request, env) {
     to: { email, name: nom },
     replyTo: { email: EMAIL_CONTACT, name: NOM_EXPEDITEUR },
     subject: 'Accusé de réception de ta rétractation — Tibobody',
-    text: `Bonjour ${nom},\n\nNous accusons réception de ta demande de rétractation, reçue le ${quand}.\n\nVoici le contenu de ta déclaration :\n\n${contenu}\n\nLe remboursement interviendra au plus tard 14 jours après ta rétractation, par le même moyen de paiement que celui utilisé lors de l'achat.\n\nPour toute question, réponds simplement à cet email.\n\nTibobody — ${EMAIL_CONTACT}`,
+    text: `Bonjour ${nom},\n\nNous accusons réception de ta demande de rétractation, reçue le ${quand}.\n\nVoici le contenu de ta déclaration :\n\n${contenu}\n\nLe remboursement interviendra au plus tard 14 jours après ta rétractation, par le même moyen de paiement que celui utilisé lors de l'achat. Si tu avais demandé que l'accompagnement commence avant la fin du délai de 14 jours, seule la part correspondant aux jours écoulés reste due.\n\nPour toute question, réponds simplement à cet email.\n\nTibobody — ${EMAIL_CONTACT}`,
   });
   // copie pour Tibobody (si elle échoue, la demande du client reste valide)
   try {
@@ -355,80 +353,12 @@ async function postRetractation(request, env) {
 }
 
 // ---------------------------------------------------------------------
-// Webhook Stripe : prévient le client avant la fin du tarif de bienvenue
-// Événement principal : invoice.paid — au paiement de la DERNIÈRE mensualité au tarif de bienvenue
-// (la 3e), on prévient le client ~1 mois avant le passage au tarif normal (CGV : « au moins 7 jours »).
-// invoice.upcoming est aussi accepté en secours. Un seul email par client (métadonnée prevenu_tarif_normal).
+// Webhook Stripe : plus nécessaire (l'ancien tarif de bienvenue a été remplacé
+// par un code promo sur le 1er mois). On répond « reçu » pour que Stripe ne
+// réessaie pas si le webhook n'a pas encore été supprimé.
 // ---------------------------------------------------------------------
-async function stripeWebhook(request, env) {
-  const brut = await request.text();
-  if (!env.STRIPE_WEBHOOK_SECRET || !(await signatureStripeValide(brut, request.headers.get('Stripe-Signature'), env.STRIPE_WEBHOOK_SECRET))) {
-    return json({ error: 'Signature invalide.' }, 400);
-  }
-  const event = JSON.parse(brut);
-  if (event.type !== 'invoice.paid' && event.type !== 'invoice.upcoming') return json({ recu: true });
-
-  const facture = event.data && event.data.object || {};
-  const subId = idDe(facture.subscription)
-    || idDe(facture.parent && facture.parent.subscription_details && facture.parent.subscription_details.subscription);
-  if (!subId) return json({ recu: true });
-
-  const abo = await stripe(env, 'GET', `subscriptions/${subId}`, { 'expand[]': 'discounts' });
-  const meta = abo.metadata || {};
-  if (!meta.bienvenue || meta.prevenu_tarif_normal) return json({ recu: true }); // pas concerné ou déjà prévenu
-  if (abo.status === 'canceled' || abo.cancel_at_period_end) return json({ recu: true }); // abonnement qui s'arrête : rien à annoncer
-
-  const ligne = facture.lines && facture.lines.data && facture.lines.data[0];
-  let dateTarifNormal = null; // timestamp de la 1re mensualité au tarif normal
-
-  if (event.type === 'invoice.paid') {
-    // fin de la période payée = date de la prochaine mensualité
-    const finPeriode = ligne && ligne.period && ligne.period.end;
-    const remises = (abo.discounts || []).filter(d => d && typeof d === 'object');
-    const remise = remises.find(d => d.coupon && (d.coupon.id === meta.bienvenue)) || remises[0];
-    // la remise de bienvenue se termine au plus tard à la prochaine mensualité -> c'était la dernière au tarif réduit
-    if (!finPeriode || !remise || !remise.end || remise.end > finPeriode + 86400) return json({ recu: true });
-    dateTarifNormal = finPeriode;
-  } else {
-    // invoice.upcoming (secours) : la prochaine mensualité n'a plus de remise
-    const reduction = (facture.total_discount_amounts || []).reduce((t, d) => t + (d.amount || 0), 0);
-    if (reduction > 0) return json({ recu: true });
-    dateTarifNormal = ligne && ligne.period && ligne.period.start;
-  }
-
-  const email = facture.customer_email;
-  if (!email) return json({ recu: true });
-
-  // montant du tarif normal = prix de l'abonnement sans remise
-  const item = abo.items && abo.items.data && abo.items.data[0];
-  const prixUnitaire = item && item.price && typeof item.price.unit_amount === 'number' ? item.price.unit_amount * (item.quantity || 1) : null;
-  const montant = prixUnitaire !== null ? euros(prixUnitaire) : 'le tarif normal';
-  const quand = dateTarifNormal ? `le ${dateParis(new Date(dateTarifNormal * 1000))}` : 'à ta prochaine mensualité';
-  const nomFormule = NOMS_FORMULES[meta.formule] || 'ta formule';
-  const portail = env.PORTAIL_CLIENT_URL ? `\n\nGérer ou résilier ton abonnement : ${env.PORTAIL_CLIENT_URL}` : `\n\nPour gérer ou résilier ton abonnement, utilise le lien « Gérer ou résilier mon abonnement » en bas du site, ou écris à ${EMAIL_CONTACT}.`;
-  const nom = facture.customer_name || '';
-
-  await envoyerEmail(env, {
-    to: nom ? { email, name: nom } : { email },
-    replyTo: { email: EMAIL_CONTACT, name: NOM_EXPEDITEUR },
-    subject: `Ta formule ${nomFormule} passe au tarif normal ${quand}`,
-    text: `Bonjour${nom ? ' ' + nom : ''},\n\nTes 3 mois au tarif de bienvenue se terminent bientôt. À partir de ta prochaine mensualité, ${quand}, ta formule ${nomFormule} sera facturée ${montant} par mois (tarif normal en vigueur au jour de ta souscription).\n\nTu n'as rien à faire pour continuer. Si tu préfères arrêter, tu peux résilier à tout moment, sans frais, avant cette date.${portail}\n\nMerci pour ta confiance,\nTibobody — ${EMAIL_CONTACT}`,
-  });
-  await stripe(env, 'POST', `subscriptions/${subId}`, { metadata: { prevenu_tarif_normal: new Date().toISOString().slice(0, 10) } });
-  return json({ recu: true, prevenu: true });
-}
-
-async function signatureStripeValide(brut, entete, secret) {
-  if (!entete) return false;
-  const parts = Object.fromEntries(entete.split(',').map(p => p.split('=')).filter(p => p.length === 2).map(([k, v]) => [k.trim(), v.trim()]));
-  const v1 = entete.split(',').map(p => p.trim()).filter(p => p.startsWith('v1=')).map(p => p.slice(3));
-  const t = parts.t;
-  if (!t || v1.length === 0) return false;
-  if (Math.abs(Date.now() / 1000 - Number(t)) > 300) return false; // 5 min de tolérance
-  const cle = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
-  const sig = new Uint8Array(await crypto.subtle.sign('HMAC', cle, new TextEncoder().encode(`${t}.${brut}`)));
-  const attendu = [...sig].map(b => b.toString(16).padStart(2, '0')).join('');
-  return v1.some(v => egal(v, attendu));
+async function stripeWebhook() {
+  return json({ recu: true });
 }
 
 // ---------------------------------------------------------------------
