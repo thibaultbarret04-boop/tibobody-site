@@ -8,12 +8,14 @@
 //   GET  /api/telechargements?session_id=cs_… | ?t=…   -> liens de téléchargement
 //   GET  /api/fichier/05?exp=…&sig=…    -> le PDF (lien signé, valable 1 h)
 //   POST /api/retractation              -> demande de rétractation + accusé de réception (Brevo)
-//   POST /api/stripe-webhook            -> plus utilisé (répond « reçu » ; le webhook peut être supprimé dans Stripe)
+//   POST /api/stripe-webhook            -> après chaque achat : email au client (e-books : lien de téléchargement)
+//                                          + email à Tibobody (détail de la vente)
 //
 // Variables à régler dans Cloudflare (Settings > Variables and Secrets) :
 //   STRIPE_SECRET_KEY      (Secret)  clé Stripe sk_test_… / sk_live_…
 //   PAIEMENTS_OUVERTS      (Texte)   facultatif : "non" pour fermer les paiements. Absent = ouverts.
 //   BREVO_API_KEY          (Secret)  clé API Brevo (emails automatiques)
+//   STRIPE_WEBHOOK_SECRET  (Secret)  whsec_… du webhook Stripe (événement checkout.session.completed)
 //   PORTAIL_CLIENT_URL     (Texte)   lien du portail client Stripe (https://billing.stripe.com/p/login/…)
 //   DOMAINE_PRINCIPAL      (Texte)   ex. tibobody.fr : redirige tibobody-site.pages.dev vers ce domaine
 //                                    (voir functions/_middleware.js). Absent = pas de redirection.
@@ -73,11 +75,12 @@ const FICHIERS = {
   '06': { fichier: '10-lecons-musculation.pdf',         titre: "10 leçons que la musculation m'a apprises" },
 };
 
-const LIEN_COMMANDE_JOURS = 365;      // lien envoyé dans la facture
+const LIEN_COMMANDE_JOURS = 3650;     // lien de téléchargement envoyé par email (10 ans)
 const LIEN_FICHIER_SECONDES = 60 * 60; // lien direct vers un PDF
 
 const EMAIL_CONTACT = 'contact@tibobody.fr';
 const NOM_EXPEDITEUR = 'Tibobody';
+const NOMS_FORMULES = { cadre: 'Cadre', accompagne: 'Accompagné', immersion: 'Immersion' };
 
 // Pied des factures (obligatoire : identité du vendeur + mention TVA)
 const PIED_FACTURE = 'Thibault Barret – TiboBody, entrepreneur individuel – 29 rue Tronchet, 75008 Paris – SIRET 13152662600018 – TVA non applicable, art. 293 B du CGI – contact@tibobody.fr';
@@ -266,12 +269,12 @@ async function createCheckout(request, env) {
     success_url: `${origin}/merci.html?type=ebook&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/ebook.html`,
     expires_at: expiresAt,
-    metadata: { ebooks: ids.join(',') },
+    metadata: { ebooks: ids.join(','), t: jeton },
     custom_fields: [CHAMP_MAJEUR],
     invoice_creation: {
       enabled: true,
       invoice_data: {
-        description: `Merci pour ton achat ! Télécharge tes e-books ici (lien valable 1 an) : ${lienCommande}`,
+        description: `Merci pour ton achat ! Télécharge tes e-books ici, à tout moment : ${lienCommande}`,
         footer: PIED_FACTURE,
       },
     },
@@ -323,6 +326,9 @@ async function envoyerEmail(env, { to, subject, text, replyTo }) {
 
 function echapper(t) {
   return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function euros(centimes) {
+  return (centimes / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace(/\u202f|\u00a0/g, ' ') + ' €';
 }
 function dateHeureParis(d) {
   return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'medium', timeZone: 'Europe/Paris' }).format(d) + ' (heure de Paris)';
@@ -389,12 +395,105 @@ async function postRetractation(request, env) {
 }
 
 // ---------------------------------------------------------------------
-// Webhook Stripe : plus nécessaire (l'ancien tarif de bienvenue a été remplacé
-// par un code promo sur le 1er mois). On répond « reçu » pour que Stripe ne
-// réessaie pas si le webhook n'a pas encore été supprimé.
+// Webhook Stripe (événement checkout.session.completed)
+//  - achat d'e-books : email au client avec son lien de téléchargement permanent
+//  - abonnement : email de confirmation au client
+//  - dans tous les cas : email à Tibobody avec le détail de la vente
 // ---------------------------------------------------------------------
-async function stripeWebhook() {
-  return json({ recu: true });
+async function stripeWebhook(request, env) {
+  const brut = await request.text();
+  if (!env.STRIPE_WEBHOOK_SECRET || !(await signatureStripeValide(brut, request.headers.get('Stripe-Signature'), env.STRIPE_WEBHOOK_SECRET))) {
+    return json({ error: 'Signature invalide.' }, 400);
+  }
+  const event = JSON.parse(brut);
+  if (event.type !== 'checkout.session.completed' && event.type !== 'checkout.session.async_payment_succeeded') return json({ recu: true });
+  const session = (event.data && event.data.object) || {};
+  if (session.payment_status !== 'paid') return json({ recu: true }); // paiement pas encore confirmé
+  if (!env.BREVO_API_KEY) { console.error('webhook : BREVO_API_KEY manquante'); return json({ recu: true }); }
+
+  // Stripe peut renvoyer le même événement : on n'envoie qu'une fois
+  const cleVente = `vente/${session.id}`;
+  if (await dejaTraite(cleVente)) return json({ recu: true, doublon: true });
+
+  const client = session.customer_details || {};
+  const email = client.email || session.customer_email;
+  const nom = (client.name || '').trim();
+  const prenom = nom.split(' ')[0] || '';
+  const meta = session.metadata || {};
+  const base = env.DOMAINE_PRINCIPAL ? `https://${String(env.DOMAINE_PRINCIPAL).replace(/^https?:\/\//, '').replace(/\/.*$/, '')}` : new URL(request.url).origin;
+  const montant = typeof session.amount_total === 'number' ? euros(session.amount_total) : '';
+  const remise = session.total_details && session.total_details.amount_discount ? euros(session.total_details.amount_discount) : '';
+  const champ = cle => { const c = (session.custom_fields || []).find(f => f.key === cle); return c && c.dropdown ? c.dropdown.value : ''; };
+  const portail = env.PORTAIL_CLIENT_URL || `${base}/api/portail`;
+
+  let sujetVente, detailVente;
+
+  if (session.mode === 'payment' && meta.ebooks) {
+    const contenu = contenuDe(String(meta.ebooks).split(',').filter(Boolean));
+    const titres = contenu.map(id => `- ${FICHIERS[id].titre}`).join('\n');
+    const lien = meta.t ? `${base}/merci.html?type=ebook&t=${meta.t}` : `${base}/merci.html?type=ebook&session_id=${session.id}`;
+    const articles = String(meta.ebooks).split(',').includes('07') ? 'Pack Intégral (les 6 e-books)' : `${contenu.length} e-book${contenu.length > 1 ? 's' : ''}`;
+    if (email) {
+      await envoyerEmail(env, {
+        to: nom ? { email, name: nom } : { email },
+        replyTo: { email: EMAIL_CONTACT, name: NOM_EXPEDITEUR },
+        subject: 'Tes e-books Tibobody — lien de téléchargement',
+        text: `Bonjour${prenom ? ' ' + prenom : ''},\n\nMerci pour ton achat ! Voici ce que tu as acheté :\n\n${titres}\n\nTélécharge tes e-books ici, quand tu veux (garde bien cet email, le lien reste valable) :\n${lien}\n\nTu as accepté la livraison immédiate : le droit de rétractation ne s'applique donc plus à cet achat.\n\nUne question ? Réponds simplement à cet email.\n\nBonne lecture,\nThibault — Tibobody`,
+      });
+    }
+    sujetVente = `Nouvelle vente : ${articles}${montant ? ' — ' + montant : ''}`;
+    detailVente = `Achat : ${articles}\n${titres}`;
+  } else if (session.mode === 'subscription') {
+    const formule = NOMS_FORMULES[meta.formule] || meta.formule || 'formule';
+    const demarrage = champ('demarrage') === 'immediat' ? 'tout de suite (avant la fin des 14 jours)' : champ('demarrage') === 'attendre14j' ? 'après le délai de rétractation de 14 jours' : 'non précisé';
+    if (email) {
+      await envoyerEmail(env, {
+        to: nom ? { email, name: nom } : { email },
+        replyTo: { email: EMAIL_CONTACT, name: NOM_EXPEDITEUR },
+        subject: `Bienvenue dans l'accompagnement ${formule} — Tibobody`,
+        text: `Bonjour${prenom ? ' ' + prenom : ''},\n\nTon abonnement ${formule} est confirmé${montant ? ` (1er paiement : ${montant})` : ''}. Bienvenue !\n\nJe te contacte sous 48 h à cette adresse email pour fixer ton appel de départ.\n\nPas convaincu après l'appel de départ ? Tu peux demander le remboursement intégral de ton 1er mois dans les 7 jours qui suivent l'appel.\n\nGérer ou résilier ton abonnement, à tout moment : ${portail}\n\nÀ très vite,\nThibault — Tibobody`,
+      });
+    }
+    sujetVente = `Nouvel abonnement : ${formule}${montant ? ' — ' + montant : ''}`;
+    detailVente = `Formule : ${formule}\nDémarrage demandé : ${demarrage}\n\nÀ faire : contacter le client sous 48 h pour fixer l'appel de départ.`;
+  } else {
+    return json({ recu: true });
+  }
+
+  // email à Tibobody (si un envoi échoue, Stripe réessaiera plus tard)
+  await envoyerEmail(env, {
+    to: { email: EMAIL_CONTACT, name: NOM_EXPEDITEUR },
+    ...(email ? { replyTo: nom ? { email, name: nom } : { email } } : {}),
+    subject: sujetVente,
+    text: `${detailVente}\n\nClient : ${nom || 'non renseigné'}\nEmail : ${email || 'non renseigné'}\nMontant payé : ${montant || '?'}${remise ? `\nRéduction (code promo) : ${remise}` : ''}\nDate : ${dateHeureParis(new Date((session.created || Date.now() / 1000) * 1000))}\n\nDétail dans Stripe : https://dashboard.stripe.com/${String(env.STRIPE_SECRET_KEY).startsWith('sk_test_') ? 'test/' : ''}checkout/sessions/${session.id}`,
+  });
+  await marquerTraite(cleVente); // seulement une fois les emails partis (sinon Stripe réessaie)
+  return json({ recu: true, envoye: true });
+}
+
+// Anti-doublon (Stripe peut envoyer deux fois le même événement)
+async function dejaTraite(cle) {
+  if (typeof caches === 'undefined') return false;
+  try { return !!(await caches.default.match(new Request(`https://doublons.tibobody.invalid/${cle}`))); }
+  catch (e) { console.warn('doublon', e.message); return false; }
+}
+async function marquerTraite(cle) {
+  if (typeof caches === 'undefined') return;
+  try { await caches.default.put(new Request(`https://doublons.tibobody.invalid/${cle}`), new Response('1', { headers: { 'Cache-Control': 'max-age=604800' } })); }
+  catch (e) { console.warn('doublon', e.message); }
+}
+
+async function signatureStripeValide(brut, entete, secret) {
+  if (!entete) return false;
+  const morceaux = entete.split(',').map(p => p.trim());
+  const t = (morceaux.find(p => p.startsWith('t=')) || '').slice(2);
+  const v1 = morceaux.filter(p => p.startsWith('v1=')).map(p => p.slice(3));
+  if (!t || v1.length === 0) return false;
+  if (Math.abs(Date.now() / 1000 - Number(t)) > 300) return false; // 5 min de tolérance
+  const cle = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  const sig = new Uint8Array(await crypto.subtle.sign('HMAC', cle, new TextEncoder().encode(`${t}.${brut}`)));
+  const attendu = [...sig].map(b => b.toString(16).padStart(2, '0')).join('');
+  return v1.some(v => egal(v, attendu));
 }
 
 // ---------------------------------------------------------------------

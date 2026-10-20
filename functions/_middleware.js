@@ -14,7 +14,8 @@ const ADRESSE_PAGES = 'tibobody-site.pages.dev';
 export async function onRequest({ request, env, next }) {
   const domaine = String(env.DOMAINE_PRINCIPAL || '').trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '');
   const url = new URL(request.url);
-  if (domaine && url.hostname === ADRESSE_PAGES) {
+  // /api/ n'est jamais redirigé : Stripe n'accepte pas les redirections sur le webhook
+  if (domaine && url.hostname === ADRESSE_PAGES && !url.pathname.startsWith('/api/')) {
     url.hostname = domaine;
     url.protocol = 'https:';
     url.port = '';
