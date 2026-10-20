@@ -101,10 +101,6 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 @media(max-width:860px){.nav-links{display:none;} .burger{display:flex;}}
 
 /* section head */
-.shead{max-width:680px;margin-bottom:54px;}
-.shead .tag{font-size:13px;font-weight:700;color:var(--ember-dim);margin-bottom:14px;}
-.shead h2{font-size:clamp(30px,5.6vw,52px);}
-.shead p{margin-top:16px;font-size:16px;max-width:58ch;}
 
 /* page intro */
 .page-hero{background:var(--ink);color:#fff;padding:90px 0;overflow:hidden;}
@@ -128,18 +124,9 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .back-link:hover{color:#fff;}
 
 /* defi 30 */
-.defi{background:var(--paper-2);}
-.defi-feature{display:grid;grid-template-columns:0.9fr 1.1fr;gap:48px;align-items:center;border:2px solid var(--ink);background:var(--white);padding:0;margin-bottom:60px;}
-.defi-cover{aspect-ratio:3/4;overflow:hidden;background:var(--ink);}
-.defi-cover img{width:100%;height:100%;object-fit:cover;}
-.defi-info{padding:40px 44px 40px 0;}
-.defi-tag{font-size:13px;font-weight:700;color:var(--ember-dim);margin-bottom:14px;}
-.defi-info h3{font-size:clamp(26px,4vw,36px);margin-bottom:14px;}
-.defi-price{font-size:22px;font-weight:700;color:var(--ember-dim);margin-bottom:20px;}
-@media(max-width:800px){.defi-feature{grid-template-columns:1fr;} .defi-info{padding:0 26px 32px;}}
 
 .ebooks{background:var(--white);}
-.pack-grid{display:grid;grid-template-columns:repeat(2,minmax(0,420px));gap:24px;justify-content:center;margin-bottom:64px;}
+
 .book-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
 .book{border:1px solid var(--line);border-radius:14px;padding:0;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;background:var(--white);overflow:hidden;}
 .book:hover{transform:translateY(-6px);box-shadow:0 18px 34px rgba(18,17,16,.14);}
@@ -147,16 +134,13 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,16,16,0) 42%,rgba(17,16,16,.9) 100%);}
 .cover .idx{position:absolute;top:18px;left:20px;font-family:var(--display);font-size:15px;color:var(--steel-on-dark);z-index:2;}
-.cover .price-tag{position:absolute;top:16px;right:16px;background:var(--ember);color:#fff;font-size:16px;font-weight:700;padding:9px 16px;z-index:2;}
+
 .cover .cover-title{position:absolute;left:0;right:0;bottom:0;padding:20px 22px;z-index:2;}
 .cover .cover-title h4{color:#fff;font-size:clamp(20px,2.4vw,25px);line-height:1;}
 .book-info{padding:18px 20px 22px;}
 .book-info .price{font-size:14px;color:var(--steel);margin-bottom:8px;}
 .book-info .more{font-size:13.5px;font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:2px;}
-.pack{border:2px solid var(--ink);border-radius:14px;padding:26px 26px 24px;cursor:pointer;background:var(--white);}
-.pack .tag{font-size:12.5px;font-weight:700;color:var(--ember-dim);margin-bottom:10px;}
-.pack h4{font-size:24px;margin-bottom:10px;}
-.pack .price{font-size:16px;margin-bottom:14px;}
+
 .packs-lead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px;}
 .packs-lead h3{font-size:22px;}
 .ebook-desc{max-width:60ch;color:var(--steel);font-size:15px;margin-bottom:28px;}
@@ -221,7 +205,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 
 @media(max-width:860px){
   section{padding:72px 0;}
-  .pack-grid{grid-template-columns:1fr;}
+  
   .book-grid{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:560px){
@@ -248,16 +232,13 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 @media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
 
 /* coins arrondis (cadres et blocs) */
-.pp-quote-card,.definition-card,.guarantee-box,.quiz-card,.plan,.pack,.method-grid,.plan-compare{border-radius:18px;}
-.promise-cards .pc,.obj-box,.checkin-card,.book,.hero-stack a,.ba-item,.pt-card{border-radius:14px;}
-.book,.method-grid,.plan-compare,.hero-stack a{overflow:hidden;}
-.plan-head{border-radius:16px 16px 0 0;}
-.form-grid input,.form-grid select,.form-grid textarea,.quiz-lead input{border-radius:10px;}
+
+.book,.hero-stack a{border-radius:14px;}
+.book,.hero-stack a{overflow:hidden;}
+
 .toast{border-radius:12px;}
 .cart-item-thumb{border-radius:6px;}
 .cart-drawer{border-radius:18px 0 0 18px;}
-.plan-badge,.plan-places{border-radius:8px 8px 0 0;}
-.pp-quote-card blockquote{border-radius:2px;}
 
 /* nouvelles couvertures : le titre est déjà dessus, format 2:3 */
 .book-grid .cover{aspect-ratio:2/3;}
@@ -560,7 +541,7 @@ if(window.gsap && !prefersReduced){
   document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
 }
 
-// burger menu
+// menu mobile
 const burgerBtn=document.getElementById('burgerBtn'),mmenu=document.getElementById('mmenu'),mmenuBg=document.getElementById('mmenuBg'),mmenuClose=document.getElementById('mmenuClose');
 function openM(){mmenu.classList.add('open');mmenuBg.classList.add('open');burgerBtn.classList.add('open');document.body.style.overflow='hidden';}
 function closeM(){mmenu.classList.remove('open');mmenuBg.classList.remove('open');burgerBtn.classList.remove('open');document.body.style.overflow='';}
@@ -569,7 +550,7 @@ mmenuBg.addEventListener('click',closeM);
 mmenuClose.addEventListener('click',closeM);
 document.querySelectorAll('.mmenu-inner a').forEach(a=>a.addEventListener('click',closeM));
 
-// ebook data
+// données des e-books
 const books={
   '01':{eyebrow:'E-book Nº01',title:"Trouver sa passion",price:'9,99 €',
     images:['assets/img/COVER1.jpg','assets/img/PAGE/Passion/1.jpg','assets/img/PAGE/Passion/2.jpg','assets/img/PAGE/Passion/3.jpg'],
@@ -705,7 +686,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){
 }});
 
 // ---------------------------------------------------------------------
-// CART
+// PANIER
 // ---------------------------------------------------------------------
 function priceToNumber(str){
   return parseFloat(String(str).replace(/[^\d,.-]/g,'').replace(',','.')) || 0;

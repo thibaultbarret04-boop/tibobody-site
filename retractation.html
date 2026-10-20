@@ -23,8 +23,8 @@
   strong{color:#111010;}
   a{color:#8C1B16;}
   a.back{display:inline-block;margin-bottom:30px;font-size:13px;font-weight:700;color:#8C1B16;text-decoration:none;}
-  .note{background:#fff;border-left:3px solid #8C1B16;padding:14px 18px;margin-top:16px;font-size:14px;color:#57544C;}
-  .annex{background:#fff;border:1px solid #DDD9D0;padding:24px 26px;margin-top:14px;}
+  
+  
   .legal-foot{border-top:1px solid #DDD9D0;padding:28px 24px 40px;text-align:center;font-size:13px;color:#57544C;}
   .legal-foot nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 10px;margin-bottom:10px;}
   .legal-foot nav a{color:#111010;text-decoration:none;font-weight:600;}
@@ -36,7 +36,7 @@
   .form input,.form select,.form textarea{width:100%;border:1px solid #CFCBC1;background:#FBFAF8;padding:12px 13px;font-family:inherit;font-size:15px;color:#111010;}
   .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:#8C1B16;}
   .form textarea{min-height:90px;resize:vertical;}
-  .form .row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  
   .form button{justify-self:start;border-radius:12px;background:#8C1B16;color:#fff;border:none;padding:15px 28px;font-family:inherit;font-weight:700;font-size:14.5px;cursor:pointer;}
   .form button:hover{background:#6B1310;}
   .form button:disabled{opacity:.5;cursor:not-allowed;}
@@ -47,7 +47,7 @@
   .form-err{color:#8C1B16;font-size:13.5px;display:none;}
   .done{display:none;background:#fff;border-left:3px solid #8C1B16;padding:22px 24px;margin-top:26px;}
   .done h2{margin-top:0;}
-  @media(max-width:600px){.form .row{grid-template-columns:1fr;}}
+  
 /* page transition — écran de chargement (rendu de la vidéo d'intro) */
 .page-transition{position:fixed;inset:0;background:#111010;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .5s ease;}
 .page-transition.hide{opacity:0;pointer-events:none;}
@@ -67,8 +67,8 @@
 @media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
 
   /* coins arrondis */
-  .note,.done{border-radius:0 12px 12px 0;}
-  .annex,.seller,.form{border-radius:16px;}
+  .done{border-radius:0 12px 12px 0;}
+  .form{border-radius:16px;}
   .form input,.form select,.form textarea{border-radius:10px;}
 </style>
 </head>

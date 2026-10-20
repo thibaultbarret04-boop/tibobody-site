@@ -1,42 +1,36 @@
 // =====================================================================
-// Tibobody — backend de paiement (Cloudflare Pages Functions)
+// Tibobody — backend du site (Cloudflare Pages Functions)
 //
+// Routes :
 //   GET  /api/places                    -> places restantes par formule
 //   POST /api/create-checkout-session   -> crée un paiement Stripe
 //        { formule: "cadre" | "accompagne" | "immersion" }  (abonnement)
-//        { items: [{ id: "01" }, ...] }                     (e-books)
+//        { items: [{ id: "01" }, ...] }                     (e-books, "07" = Pack Intégral)
 //   GET  /api/telechargements?session_id=cs_… | ?t=…   -> liens de téléchargement
 //   GET  /api/fichier/05?exp=…&sig=…    -> le PDF (lien signé, valable 1 h)
 //   POST /api/retractation              -> demande de rétractation + accusé de réception (Brevo)
-//   POST /api/stripe-webhook            -> après chaque achat : email au client (e-books : lien de téléchargement)
-//                                          + email à Tibobody (détail de la vente)
-//
-// Variables à régler dans Cloudflare (Settings > Variables and Secrets) :
-//   STRIPE_SECRET_KEY      (Secret)  clé Stripe sk_test_… / sk_live_…
-//   PAIEMENTS_OUVERTS      (Texte)   facultatif : "non" pour fermer les paiements. Absent = ouverts.
-//   BREVO_API_KEY          (Secret)  clé API Brevo (emails automatiques)
-//   STRIPE_WEBHOOK_SECRET  (Secret)  whsec_… du webhook Stripe (événement checkout.session.completed)
-//   PORTAIL_CLIENT_URL     (Texte)   lien du portail client Stripe (https://billing.stripe.com/p/login/…)
-//   DOMAINE_PRINCIPAL      (Texte)   ex. www.tibobody.fr : redirige tibobody-site.pages.dev vers ce domaine
-//                                    (voir functions/_middleware.js). Absent = pas de redirection.
-//
+//   POST /api/stripe-webhook            -> après chaque achat : email au client + email à Tibobody
 //   GET  /api/portail                   -> redirige vers le portail client Stripe
 //
-// Tarif de lancement : le client tape le code promo (ex. TIBOBODY50) sur la page de paiement
-// des formules. Le code se crée dans Stripe (Bons de réduction > Codes promotionnels).
+// Variables à régler dans Cloudflare (Settings > Variables and Secrets) :
+//   STRIPE_SECRET_KEY      (Secret)  clé Stripe (sk_live_… ou rk_live_…)
+//   STRIPE_WEBHOOK_SECRET  (Secret)  whsec_… du webhook Stripe (événement checkout.session.completed)
+//   BREVO_API_KEY          (Secret)  clé API Brevo (emails automatiques)
+//   DOWNLOAD_SECRET        (Secret)  signe les liens de téléchargement — ne jamais le changer
+//   PORTAIL_CLIENT_URL     (Texte)   lien du portail client Stripe (https://billing.stripe.com/p/login/…)
+//   DOMAINE_PRINCIPAL      (Texte)   www.tibobody.fr : redirige tibobody-site.pages.dev vers ce domaine
+//   PAIEMENTS_OUVERTS      (Texte)   facultatif : "non" ferme les paiements. Absent = ouverts.
 //
-// Les PDF sont dans un dossier au nom secret (DOSSIER_PRIVE ci-dessous),
-// impossible à deviner : le backend lit le fichier et le transmet à l'acheteur
-// sans jamais révéler ce nom. Seuls les liens signés permettent de télécharger.
-// ⚠ Ne jamais écrire ce nom de dossier sur le site, ni le partager.
-//
-// La clé secrète Stripe n'est JAMAIS écrite ici : elle est lue dans la
-// variable d'environnement STRIPE_SECRET_KEY (réglages Cloudflare Pages).
+// Tarif de lancement : code promo TIBOBODY50 tapé par le client sur la page de paiement des
+// formules. Il se gère dans Stripe (Bons de réduction > Codes promotionnels).
 //
 // Places : Stripe sert de registre, pas besoin de base de données.
 //   places restantes = places max − abonnements en cours − paiements en cours
-//   « places max » se règle dans Stripe : produit > Métadonnées > clé "places".
-//   (valeur par défaut ci-dessous si la métadonnée n'existe pas)
+//   « places max » : Stripe > produit > Métadonnées > clé "places" (sinon valeur par défaut ci-dessous).
+//
+// Les PDF sont dans un dossier au nom secret (DOSSIER_PRIVE ci-dessous) : le backend lit le
+// fichier et le transmet sans jamais révéler ce nom. ⚠ Ne jamais l'écrire sur le site ni le partager.
+// Aucune clé secrète n'est écrite ici : tout est lu dans les variables Cloudflare.
 // =====================================================================
 
 const FORMULES = {

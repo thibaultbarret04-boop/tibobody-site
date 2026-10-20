@@ -51,10 +51,6 @@ p{color:var(--steel);font-size:17.5px;}
 .btn-line:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);}
 .btn-ember{background:var(--ember);border-color:var(--ember);color:#fff;}
 .btn-ember:hover{background:var(--ember-dim);border-color:var(--ember-dim);transform:translateY(-2px);}
-.btn-gold{background:#C93A32;border-color:#C93A32;color:#fff;}
-.btn-gold:hover{background:#E24B41;border-color:#E24B41;transform:translateY(-2px);}
-.btn-disabled{background:#2A2824;border-color:#2A2824;color:#8a8884;cursor:not-allowed;pointer-events:none;opacity:.7;}
-.btn-disabled:hover{background:#2A2824;border-color:#2A2824;transform:none;}
 
 /* contact */
 .contact{background:var(--ink);color:#fff;}
@@ -181,15 +177,6 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .shead p{margin-top:18px;font-size:19px;max-width:60ch;}
 
 /* how it works */
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
-.how-grid .h-item{padding:0 30px;}
-.how-grid .h-item:first-child{padding-left:0;}
-.how-grid .h-item+.h-item{border-left:1px solid var(--line);}
-.how-grid .h-num{font-family:var(--display);font-size:44px;color:var(--ember-dim);margin-bottom:14px;}
-.how-grid h4{font-family:var(--sans);text-transform:none;font-weight:700;font-size:17px;margin-bottom:10px;}
-@media(max-width:800px){.how-grid{grid-template-columns:1fr;row-gap:34px;} .how-grid .h-item{border-left:none !important;padding-left:0 !important;}}
-
-.rule{border-top:1px solid var(--line);margin:56px 0 30px;}
 
 /* exemple de check-in */
 .checkin{margin-top:90px;}
@@ -245,7 +232,7 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 .plan-question:hover{color:var(--ember-dim);}
 .plan-guarantee{font-size:12.5px;line-height:1.5;color:var(--steel);text-align:center;margin-top:12px;}
 .founder-mention strong{color:var(--ink);}
-.contact-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+
 .btn-outline-light{border-color:#fff;color:#fff;background:transparent;}
 .btn-outline-light:hover{background:#fff;color:var(--ink);transform:translateY(-2px);}
 .form-privacy{font-size:13px;color:#A8A49B;margin-top:12px;}
@@ -283,21 +270,6 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80
 @media(max-width:760px){.plan-compare{min-width:640px;}}
 
 /* modal */
-.modal-ov{position:fixed;inset:0;background:rgba(18,17,16,.82);display:none;align-items:center;justify-content:center;z-index:200;padding:18px;opacity:0;transition:opacity .2s;}
-.modal-ov.active{display:flex;}
-.modal-ov.in{opacity:1;}
-.modal-panel{background:var(--white);max-width:920px;width:100%;max-height:90vh;overflow-y:auto;border-radius:2px;display:grid;grid-template-columns:1fr 1fr;
-  transform:scale(.95) translateY(12px);opacity:0;transition:transform .3s cubic-bezier(.22,.9,.3,1),opacity .22s;}
-.modal-ov.in .modal-panel{transform:scale(1) translateY(0);opacity:1;}
-.modal-cover{background:var(--ink);position:relative;overflow:hidden;min-height:320px;}
-.modal-cover>img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
-.modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border:none;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;}
-.modal-body{padding:34px 34px 32px;display:flex;flex-direction:column;justify-content:center;}
-.modal-eyebrow{font-size:12.5px;font-weight:700;color:var(--ember-dim);margin-bottom:6px;}
-.modal-title-side{font-size:clamp(22px,2.4vw,28px);margin-bottom:8px;}
-.modal-price{font-size:16px;margin-bottom:18px;}
-.modal-desc{font-size:14.5px;line-height:1.75;margin-bottom:26px;}
-@media(max-width:760px){.modal-panel{grid-template-columns:1fr;max-height:94vh;} .modal-cover{aspect-ratio:4/3;min-height:0;}}
 
 /* modal plein écran (test) — même forme que la popup, mais à l'échelle de l'écran */
 .modal-full{position:fixed;top:80px;left:0;right:0;bottom:0;background:var(--white);display:none;z-index:70;opacity:0;transition:opacity .25s ease;}
@@ -359,16 +331,16 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
 @media(max-width:860px){ section{padding:72px 0;} }
 
 /* coins arrondis (cadres et blocs) */
-.pp-quote-card,.definition-card,.guarantee-box,.quiz-card,.plan,.pack,.method-grid,.plan-compare{border-radius:18px;}
-.promise-cards .pc,.obj-box,.checkin-card,.book,.hero-stack a,.ba-item,.pt-card{border-radius:14px;}
-.book,.method-grid,.plan-compare,.hero-stack a{overflow:hidden;}
+.quiz-card,.plan,.method-grid,.plan-compare{border-radius:18px;}
+.checkin-card,.hero-stack a{border-radius:14px;}
+.method-grid,.plan-compare,.hero-stack a{overflow:hidden;}
 .plan-head{border-radius:16px 16px 0 0;}
 .form-grid input,.form-grid select,.form-grid textarea,.quiz-lead input{border-radius:10px;}
 .toast{border-radius:12px;}
-.cart-item-thumb{border-radius:6px;}
+
 .cart-drawer{border-radius:18px 0 0 18px;}
 .plan-badge,.plan-places{border-radius:8px 8px 0 0;}
-.pp-quote-card blockquote{border-radius:2px;}
+
 </style>
 </head>
 <body>
@@ -830,24 +802,7 @@ footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font
   </div>
 </div>
 
-<!-- MODAL FORMULE -->
-<div class="modal-ov" id="planModal">
-  <div class="modal-panel">
-    <div class="modal-cover" id="planModalCover">
-      <button class="modal-close" onclick="closePlan()">✕</button>
-      <img id="planModalImg" src="" alt="">
-    </div>
-    <div class="modal-body">
-      <p class="modal-eyebrow" id="planModalEyebrow"></p>
-      <h3 class="modal-title-side" id="planModalTitle"></h3>
-      <p class="modal-price" id="planModalPrice"></p>
-      <div class="modal-desc" id="planModalDesc"></div>
-      <a href="#" class="btn btn-ember btn-block" id="planModalCta">En savoir plus</a>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL PLEIN ECRAN (test — Cadre) -->
+<!-- FENÊTRE « EN SAVOIR PLUS » DES FORMULES -->
 <div class="modal-full" id="fullModal">
   <div class="modal-full-panel">
     <div class="modal-full-cover">
@@ -974,7 +929,7 @@ if(window.gsap && !prefersReduced){
   document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
 }
 
-// burger menu
+// menu mobile
 const burgerBtn=document.getElementById('burgerBtn'),mmenu=document.getElementById('mmenu'),mmenuBg=document.getElementById('mmenuBg'),mmenuClose=document.getElementById('mmenuClose');
 function openM(){mmenu.classList.add('open');mmenuBg.classList.add('open');burgerBtn.classList.add('open');document.body.style.overflow='hidden';}
 function closeM(){mmenu.classList.remove('open');mmenuBg.classList.remove('open');burgerBtn.classList.remove('open');document.body.style.overflow='';}
@@ -1128,7 +1083,7 @@ function quizSend(){
 
 quizShowStep(1);
 
-// toast
+// notification (toast)
 let toastTimer=null;
 function showToast(msg){
   const t=document.getElementById('toast');
@@ -1175,11 +1130,8 @@ function handleContactSubmit(e){
 }
 
 // ---------------------------------------------------------------------
-// CART
+// PANIER
 // ---------------------------------------------------------------------
-function priceToNumber(str){
-  return parseFloat(String(str).replace(/[^\d,.-]/g,'').replace(',','.')) || 0;
-}
 let cart = [];
 try{
   const saved = localStorage.getItem('tb_cart');
@@ -1307,34 +1259,10 @@ const plans = {
     <p style="font-weight:700;color:var(--ink);">Pour toi si tu veux quelqu'un à tes côtés tous les jours. 3 places seulement.</p>`,
     cta:'immersion',ctaLabel:'Commencer maintenant'}
 };
-function openPlan(id){
-  openFullPlan(id); return;
-  const p = plans[id]; if(!p) return;
-  document.getElementById('planModalEyebrow').textContent = p.eyebrow;
-  document.getElementById('planModalTitle').textContent = p.title;
-  document.getElementById('planModalPrice').textContent = p.price;
-  document.getElementById('planModalDesc').innerHTML = p.desc;
-  document.getElementById('planModalImg').src = p.image;
-  document.getElementById('planModalImg').alt = p.title;
-  const cta = document.getElementById('planModalCta');
-  cta.href = p.cta;
-  cta.textContent = p.ctaLabel;
-  const ov = document.getElementById('planModal');
-  ov.classList.add('active');
-  requestAnimationFrame(()=>requestAnimationFrame(()=>ov.classList.add('in')));
-  document.body.style.overflow = 'hidden';
-}
-function closePlan(){
-  const ov = document.getElementById('planModal');
-  ov.classList.remove('in');
-  setTimeout(()=>ov.classList.remove('active'),220);
-  document.body.style.overflow = '';
-}
-document.getElementById('planModal').addEventListener('click', e=>{ if(e.target===e.currentTarget) closePlan(); });
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closePlan(); });
+function openPlan(id){ openFullPlan(id); }
 
 // ---------------------------------------------------------------------
-// MODAL PLEIN ECRAN (test)
+// FENÊTRE « EN SAVOIR PLUS » (plein écran)
 // ---------------------------------------------------------------------
 function openFullPlan(id){
   const p = plans[id]; if(!p) return;
