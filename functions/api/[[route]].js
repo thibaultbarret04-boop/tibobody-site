@@ -17,7 +17,7 @@
 //   BREVO_API_KEY          (Secret)  clé API Brevo (emails automatiques)
 //   STRIPE_WEBHOOK_SECRET  (Secret)  whsec_… du webhook Stripe (événement checkout.session.completed)
 //   PORTAIL_CLIENT_URL     (Texte)   lien du portail client Stripe (https://billing.stripe.com/p/login/…)
-//   DOMAINE_PRINCIPAL      (Texte)   ex. tibobody.fr : redirige tibobody-site.pages.dev vers ce domaine
+//   DOMAINE_PRINCIPAL      (Texte)   ex. www.tibobody.fr : redirige tibobody-site.pages.dev vers ce domaine
 //                                    (voir functions/_middleware.js). Absent = pas de redirection.
 //
 //   GET  /api/portail                   -> redirige vers le portail client Stripe

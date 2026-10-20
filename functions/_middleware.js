@@ -4,9 +4,9 @@
 // Tant que la variable DOMAINE_PRINCIPAL n'existe pas dans Cloudflare,
 // rien ne change : le site reste accessible sur tibobody-site.pages.dev.
 // Le jour du lancement : Settings > Variables and Secrets >
-//   DOMAINE_PRINCIPAL = tibobody.fr   (Texte), puis « Retry deployment ».
+//   DOMAINE_PRINCIPAL = www.tibobody.fr   (Texte), puis « Retry deployment ».
 // Alors https://tibobody-site.pages.dev/n-importe-quoi
-//   -> https://tibobody.fr/n-importe-quoi (redirection permanente 301).
+//   -> https://www.tibobody.fr/n-importe-quoi (redirection permanente 301).
 // Les anciennes versions (xxxx.tibobody-site.pages.dev) ne sont pas redirigées.
 // =====================================================================
 const ADRESSE_PAGES = 'tibobody-site.pages.dev';

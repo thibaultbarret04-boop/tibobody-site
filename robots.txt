@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /api/
 Disallow: /merci.html
 
-Sitemap: https://tibobody.fr/sitemap.xml
+Sitemap: https://www.tibobody.fr/sitemap.xml

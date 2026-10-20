@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tibobody.fr/</loc>
+    <loc>https://www.tibobody.fr/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tibobody.fr/formule.html</loc>
+    <loc>https://www.tibobody.fr/formule.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tibobody.fr/ebook.html</loc>
+    <loc>https://www.tibobody.fr/ebook.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tibobody.fr/cgv.html</loc>
+    <loc>https://www.tibobody.fr/cgv.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://tibobody.fr/mentions-legales.html</loc>
+    <loc>https://www.tibobody.fr/mentions-legales.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://tibobody.fr/confidentialite.html</loc>
+    <loc>https://www.tibobody.fr/confidentialite.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://tibobody.fr/retractation.html</loc>
+    <loc>https://www.tibobody.fr/retractation.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
