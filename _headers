@@ -1,2 +1,2 @@
 /*
-  Content-Security-Policy: frame-ancestors 'self' https://alexandreaymon.fr https://www.alexandreaymon.fr https://*.netlify.app
+  Content-Security-Policy: frame-ancestors 'self' https://aym-on.com https://www.aym-on.com https://alexandreaymon.fr https://www.alexandreaymon.fr https://*.netlify.app http://localhost:* http://127.0.0.1:*
