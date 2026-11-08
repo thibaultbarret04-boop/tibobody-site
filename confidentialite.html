@@ -2,163 +2,56 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Politique de confidentialité — Tibobody</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Politique de confidentialité — TiboBody</title>
+<meta name="description" content="Comment TiboBody utilise tes données : défi 7 jours, contact, Groupe 30, paiement.">
 <link rel="canonical" href="https://www.tibobody.fr/confidentialite.html">
 <meta name="robots" content="index, follow">
-<link rel="icon" type="image/png" href="assets/img/logo.png">
-<meta name="theme-color" content="#121110">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:#F2F1EE;color:#111010;font-family:'Work Sans',sans-serif;line-height:1.7;}
-  .wrap{max-width:760px;margin:0 auto;padding:60px 24px 80px;}
-  h1{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(32px,6vw,52px);line-height:1;text-transform:uppercase;margin-bottom:24px;}
-  h2{font-size:18px;margin:36px 0 10px;}
-  h3{font-size:15.5px;margin:22px 0 6px;}
-  p,li{color:#57544C;font-size:15px;margin-bottom:10px;}
-  ul,ol{padding-left:22px;margin-bottom:10px;}
-  strong{color:#111010;}
-  a{color:#8C1B16;}
-  a.back{display:inline-block;margin-bottom:30px;font-size:13px;font-weight:700;color:#8C1B16;text-decoration:none;}
-  
-  
-  .legal-foot{border-top:1px solid #DDD9D0;padding:28px 24px 40px;text-align:center;font-size:13px;color:#57544C;}
-  .legal-foot nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 10px;margin-bottom:10px;}
-  .legal-foot nav a{color:#111010;text-decoration:none;font-weight:600;}
-  .legal-foot nav a:hover{color:#8C1B16;}
-  .legal-foot span{color:#B5B1A8;}
-  .legal-foot p{font-size:12.5px;margin:0;}
-
-/* page transition — écran de chargement (rendu de la vidéo d'intro) */
-.page-transition{position:fixed;inset:0;background:#111010;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .5s ease;}
-.page-transition.hide{opacity:0;pointer-events:none;}
-.pt-logo{position:relative;font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(64px,15vw,200px);line-height:1;letter-spacing:.01em;filter:drop-shadow(0 10px 18px rgba(0,0,0,.7));}
-.pt-glow{position:absolute;left:42%;top:52%;width:78%;height:190%;transform:translateY(-50%) scale(.75);background:radial-gradient(closest-side,rgba(140,27,22,.42),rgba(140,27,22,.14) 55%,rgba(140,27,22,0));opacity:0;pointer-events:none;}
-.pt-word{position:relative;display:flex;overflow:hidden;padding:0 .02em;}
-.pt-l{display:inline-block;color:#fff;transform:translateY(110%);}
-.pt-l.r{color:#8C1B16;}
-.pt-play .pt-l{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 60ms + 120ms);}
-.pt-play .pt-l.r{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards,ptShine .5s ease forwards;animation-delay:calc(var(--i) * 60ms + 120ms),calc((var(--i) - 4) * 70ms + 1150ms);}
-.pt-play .pt-glow{animation:ptGlow .8s ease .65s forwards;}
-.pt-fast.pt-play .pt-l,.pt-fast.pt-play .pt-l.r{animation:ptUp .4s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 35ms + 60ms);}
-.pt-fast.pt-play .pt-glow{animation:ptGlow .5s ease .3s forwards;}
-@keyframes ptUp{to{transform:translateY(0);}}
-@keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
-@keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
-@media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
-
-  /* coins arrondis */
-  .done{border-radius:0 12px 12px 0;}
-  
-  
-</style>
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://www.tibobody.fr/confidentialite.html">
+<meta property="og:title" content="Politique de confidentialité — TiboBody">
+<meta property="og:description" content="Comment TiboBody utilise tes données : défi 7 jours, contact, Groupe 30, paiement.">
+<meta property="og:image" content="https://www.tibobody.fr/assets/img/og-image.jpg">
+<meta name="theme-color" content="#111010">
+<link rel="icon" type="image/png" href="/assets/img/logo.png">
+<link rel="preload" href="/assets/fonts/saira-extra-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 <div class="page-transition" id="pageTransition" aria-hidden="true"><div class="pt-logo"><span class="pt-glow"></span><span class="pt-word"><span class="pt-l" style="--i:0">T</span><span class="pt-l" style="--i:1">I</span><span class="pt-l" style="--i:2">B</span><span class="pt-l" style="--i:3">O</span><span class="pt-l r" style="--i:4">B</span><span class="pt-l r" style="--i:5">O</span><span class="pt-l r" style="--i:6">D</span><span class="pt-l r" style="--i:7">Y</span></span></div></div>
-<div class="wrap">
-  <a class="back" href="index.html">← Retour à l'accueil</a>
-  <h1>Politique de confidentialité</h1>
-
-  <h2>Responsable du traitement</h2>
-  <p>Thibault Barret, entrepreneur individuel (nom commercial TiboBody) — 29 rue Tronchet, 75008 Paris (c/o Belldom) — <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p>
-
-  <h2>Les données collectées</h2>
-  <h3>Formulaire de contact</h3>
-  <p>Prénom, email, message. Pour répondre à ta demande. Conservées 3 ans après notre dernier échange.</p>
-  <h3>Test gratuit</h3>
-  <p>Prénom, email, réponses au test. Pour t'envoyer ton résultat et, si tu l'acceptes, des emails de conseils et d'offres. Base : ton consentement. Conservées 3 ans après ton dernier contact ou jusqu'à ta désinscription.</p>
-  <h3>Réservation d'un appel</h3>
-  <p>Nom, email et créneau choisi lorsque tu réserves un appel de 15 minutes. Pour organiser l'appel. Conservées 3 ans après notre dernier échange.</p>
-  <h3>Rétractation</h3>
-  <p>Nom, email, contrat concerné, date de souscription. Pour traiter ta demande, t'envoyer l'accusé de réception et en garder la preuve. Conservées 5 ans.</p>
-  <h3>Accompagnement</h3>
-  <p>Identité, email, échanges de suivi, check-ins. Pour réaliser l'accompagnement. Conservées pendant l'accompagnement, puis 3 ans.</p>
-  <h3>Paiements</h3>
-  <p>Nom, email, montants. Les données de carte sont traitées par Stripe, jamais par nous. Factures conservées 10 ans (obligation légale).</p>
-
-  <h2>Les prestataires qui reçoivent tes données</h2>
-  <p>Tes données ne sont transmises qu'aux prestataires nécessaires au fonctionnement du site, qui les traitent pour notre compte :</p>
-  <ul>
-    <li><strong>Cloudflare</strong> : hébergement du site ;</li>
-    <li><strong>Formspree</strong> : réception des formulaires (contact, test gratuit) ;</li>
-    <li><strong>Brevo</strong> : envoi des emails (résultat du test, conseils et offres si tu l'as accepté, accusés de réception, informations sur ton abonnement) ;</li>
-    <li><strong>Stripe</strong> : paiement et gestion des abonnements ;</li>
-    <li><strong>Google</strong> : prise de rendez-vous (Google Agenda) et messagerie de contact@tibobody.fr.</li>
-  </ul>
-  <p>Certains de ces prestataires peuvent traiter des données hors de l'Union européenne. Ces transferts sont encadrés par les garanties prévues par le RGPD (notamment les clauses contractuelles types de la Commission européenne).</p>
-
-  <h2>Cookies</h2>
-  <p>Ce site utilise des cookies pour mesurer l'audience. Tu peux les refuser via la bannière affichée lors de ta première visite. Ton panier est stocké localement dans ton navigateur et n'est pas transmis à un serveur.</p>
-
-  <h2>Comment tes données sont utilisées</h2>
-  <p>Tes données servent uniquement aux finalités listées ci-dessus. Elles ne sont jamais vendues. Si tu as accepté de recevoir nos emails, chacun contient un lien de désinscription qui fonctionne en un clic.</p>
-
-  <h2>Tes droits</h2>
-  <p>Tu peux à tout moment accéder à tes données, les rectifier, les effacer, t'opposer à leur utilisation, en limiter l'usage, les récupérer dans un format lisible, et retirer ton consentement. Écris simplement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a> : nous répondons dans un délai d'un mois.</p>
-  <p>Si tu estimes que tes droits ne sont pas respectés, tu peux adresser une réclamation à la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>).</p>
-</div>
-<footer class="legal-foot">
-  <nav>
-    <a href="cgv.html">CGV</a><span>·</span>
-    <a href="mentions-legales.html">Mentions légales</a><span>·</span>
-    <a href="confidentialite.html">Confidentialité</a><span>·</span>
-    <a href="/api/portail">Gérer ou résilier mon abonnement</a><span>·</span>
-    <a href="retractation.html">Se rétracter</a><span>·</span>
-    <a href="index.html#contact">Contact</a>
-  </nav>
-  <p>© 2026 Tibobody — tibobody.fr · <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a></p>
-</footer>
-<script>
-(function(){
-  const overlay = document.getElementById('pageTransition');
-  if(!overlay) return;
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // intro complète à la première page vue, version courte ensuite
-  let seen = false;
-  try{ seen = sessionStorage.getItem('tb_intro') === '1'; sessionStorage.setItem('tb_intro','1'); }catch(e){}
-  if(seen) overlay.classList.add('pt-fast');
-  const minTime = reduce ? 150 : (seen ? 850 : 2100);
-  const t0 = performance.now();
-  requestAnimationFrame(()=> overlay.classList.add('pt-play'));
-
-  let done = false;
-  function reveal(){
-    if(done) return; done = true;
-    const wait = Math.max(0, minTime - (performance.now() - t0));
-    setTimeout(()=>{
-      overlay.classList.add('hide');
-      window.__tbRevealed = true;
-      document.dispatchEvent(new Event('tb:reveal'));
-    }, wait);
-  }
-  if(document.readyState === 'complete') reveal();
-  else window.addEventListener('load', reveal);
-  setTimeout(reveal, 4500); // sécurité si une ressource bloque le chargement
-
-  // retour arrière du navigateur : ne pas rester bloqué sur l'écran noir
-  window.addEventListener('pageshow', e=>{ if(e.persisted){ overlay.classList.remove('pt-play'); overlay.classList.add('hide'); } });
-
-  document.addEventListener('click', function(e){
-    const a = e.target.closest('a');
-    if(!a) return;
-    const href = a.getAttribute('href');
-    if(!href) return;
-    if(href.startsWith('#')) return;
-    if(href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
-    if(a.target === '_blank' || a.hasAttribute('download')) return;
-    if(/\.pdf($|\?)/i.test(href)) return;
-    if(/^https?:\/\//i.test(href)) return;
-    if(e.metaKey || e.ctrlKey || e.shiftKey) return;
-    e.preventDefault();
-    overlay.classList.remove('pt-play');
-    overlay.classList.remove('hide');
-    setTimeout(()=>{ window.location.href = href; }, 420);
-  });
-})();
-
-</script>
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="/">TIBO<b>BODY</b></a>
+    <nav class="main" aria-label="Navigation principale"><a href="/groupe-30.html">Groupe 30</a><a href="/#defi">Défi gratuit</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></nav>
+    <a class="btn solid hdr-cta" href="/groupe-30.html#reserver">Rejoindre le groupe</a>
+    <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer" id="burger"><span></span></button>
+  </div>
+  <div class="drawer" id="drawer"><div class="wrap">
+    <a href="/groupe-30.html">Groupe 30</a><a href="/#defi">Défi gratuit</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a>
+    <a class="btn solid" href="/groupe-30.html#reserver">Rejoindre le groupe</a>
+  </div></div>
+</header>
+<main>
+<section><div class="wrap legal">
+  <h1>Politique de <em>confidentialité</em></h1>
+  <div><h2>Responsable du traitement</h2><p>Thibault Barret, entrepreneur individuel (nom commercial TiboBody), 29 rue Tronchet, 75008 Paris (c/o Belldom), <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>.</p></div>
+  <div><h2>Données, finalités et durées</h2><div class="tbl"><table><thead><tr><th>Quand</th><th>Données</th><th>Pourquoi</th><th>Durée</th></tr></thead><tbody><tr><td>Défi 7 jours</td><td>Prénom, e-mail</td><td>Envoyer le défi et, avec ton accord, des conseils et offres par e-mail (consentement)</td><td>3 ans après le dernier contact ou jusqu'à ta désinscription</td></tr><tr><td>Contact</td><td>Prénom, e-mail, message</td><td>Répondre à ta demande (intérêt légitime)</td><td>3 ans après le dernier échange</td></tr><tr><td>Appel de 15 min</td><td>Nom, e-mail, créneau</td><td>Organiser l'appel</td><td>3 ans après le dernier échange</td></tr><tr><td>Groupe 30</td><td>Prénom, numéro de téléphone (WhatsApp), réponses au formulaire de départ, check-ins</td><td>Réaliser l'accompagnement (contrat)</td><td>Durée de l'accompagnement + 3 ans</td></tr><tr><td>Paiement</td><td>Nom, e-mail, téléphone, montant</td><td>Encaisser et facturer (contrat, obligation légale). Les données de carte sont traitées par Stripe uniquement.</td><td>10 ans (factures)</td></tr><tr><td>Rétractation</td><td>Nom, e-mail, commande, date</td><td>Traiter la demande, envoyer l'accusé de réception et en garder la preuve</td><td>5 ans</td></tr></tbody></table></div></div>
+  <div><h2>Prestataires</h2><ul><li>Cloudflare : hébergement du site</li><li>Formspree : réception des formulaires</li><li>Brevo : envoi des e-mails (défi, accusés de réception, confirmation de commande)</li><li>Stripe : paiement</li><li>Google : agenda, formulaire de départ et messagerie contact@tibobody.fr</li><li>WhatsApp (Meta) : groupe d'accompagnement, avec ton accord</li></ul><p style="margin-top:8px">Certains prestataires traitent des données hors de l'Union européenne, avec les garanties prévues par le RGPD (clauses contractuelles types de la Commission européenne). Tes données ne sont jamais vendues.</p></div>
+  <div><h2>Cookies</h2><p>Ce site ne dépose aucun cookie publicitaire ni de mesure d'audience. Il garde seulement dans ton navigateur une information technique (avoir déjà vu l'écran d'introduction), qui n'est transmise à personne. Les pages de paiement Stripe utilisent leurs propres cookies, nécessaires à la sécurité du paiement.</p></div>
+  <div><h2>Tes droits</h2><p>Tu peux accéder à tes données, les rectifier, les effacer, t'opposer à leur utilisation, en limiter l'usage, les récupérer dans un format lisible et retirer ton consentement à tout moment. Écris à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a> : réponse sous un mois. Chaque e-mail de conseils contient un lien de désinscription. Tu peux aussi adresser une réclamation à la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>).</p></div>
+  <p class="upd muted">Dernière mise à jour : 3 novembre 2026</p>
+</div></section>
+</main>
+<footer class="site"><div class="wrap">
+  <div class="fgrid">
+    <div style="display:grid;gap:12px;align-content:start"><a class="logo" href="/">TIBO<b>BODY</b></a><p class="muted" style="max-width:34ch">Tu commences fort. Je t'aide à tenir. Accompagnement en discipline, dès 18 ans.</p></div>
+    <div><h4>Offres</h4><a href="/groupe-30.html">Groupe 30</a><a href="/#defi">Défi 7 jours gratuit</a><a href="https://calendar.app.google/q8aqi8hjH1oPkBtR7" target="_blank" rel="noopener">Appel de 15 min</a><a href="/#contact">Contact</a></div>
+    <div><h4>Réseaux</h4><a href="https://www.instagram.com/tibobody" target="_blank" rel="noopener">Instagram</a><a href="https://youtube.com/@tibobody" target="_blank" rel="noopener">YouTube</a><a href="https://www.tiktok.com/@tibobody" target="_blank" rel="noopener">TikTok</a></div>
+    <div><h4>Légal</h4><a href="/cgv.html">CGV</a><a href="/mentions-legales.html">Mentions légales</a><a href="/confidentialite.html">Confidentialité</a><a href="/retractation.html">Se rétracter</a></div>
+  </div>
+  <div class="fbottom"><span>© 2026 TiboBody · Thibault Barret · <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a></span><span>Paiements sécurisés par Stripe</span></div>
+</div></footer>
+<script src="/assets/site.js"></script>
 </body>
 </html>

@@ -2,822 +2,174 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tibobody — Tu commences fort. Je t'aide à tenir.</title>
-<meta name="description" content="Tu commences fort et tu lâches au bout de 3 semaines ? Fais le test gratuit en 2 minutes et découvre la formule d'accompagnement faite pour toi.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>TiboBody — Tu sais quoi faire. Je t'aide à le tenir.</title>
+<meta name="description" content="Groupe 30 : 30 jours pour tenir une seule habitude, avec un suivi humain chaque jour sur WhatsApp. Groupe de 10, 29 €. Défi 7 jours gratuit.">
 <link rel="canonical" href="https://www.tibobody.fr/">
+<meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:url" content="https://www.tibobody.fr/">
-<meta property="og:title" content="Tibobody — Tu commences fort. Je t'aide à tenir.">
-<meta property="og:description" content="Fais le test gratuit en 2 minutes et découvre la formule d'accompagnement faite pour toi.">
+<meta property="og:title" content="TiboBody — Tu sais quoi faire. Je t'aide à le tenir.">
+<meta property="og:description" content="Groupe 30 : 30 jours pour tenir une seule habitude, avec un suivi humain chaque jour sur WhatsApp. Groupe de 10, 29 €. Défi 7 jours gratuit.">
 <meta property="og:image" content="https://www.tibobody.fr/assets/img/og-image.jpg">
-<meta name="robots" content="index, follow">
-<link rel="icon" type="image/png" href="assets/img/logo.png">
-<meta name="theme-color" content="#121110">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Thibault","jobTitle":"Coach en développement personnel","url":"https://www.tibobody.fr/","email":"contact@tibobody.fr"}
-</script>
-<style>
-:root{
-  --ink:#111010; --ink-2:#1A1918;
-  --paper:#FFFFFF; --paper-2:#F2F2F2;
-  --ember:#8C1B16; --ember-dim:#6B1310;
-  --steel:#55555A; --steel-on-dark:#A5A4A8;
-  --line:#D6D6D6; --line-dark:rgba(255,255,255,.12);
-  --white:#FFFFFF;
-  --gold:#C9A24B;
-  --display:'Bebas Neue',Impact,sans-serif;
-  --sans:'Work Sans',sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-h1,h2,h3,h4{font-family:var(--display);font-weight:400;letter-spacing:0.01em;line-height:0.92;text-transform:uppercase;}
-a{color:inherit;text-decoration:none;}
-img{max-width:100%;display:block;}
-.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
-section{padding:104px 0;}
-p{color:var(--steel);}
-.num{font-family:var(--display);}
-
-@media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important;} .reveal{opacity:1 !important;transform:none !important;} }
-
-/* buttons */
-.btn{display:inline-flex;border-radius:12px;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:14.5px;
-  padding:16px 30px;border:2px solid var(--ink);cursor:pointer;background:none;transition:transform .15s ease,background .2s ease,color .2s ease;}
-.btn-solid{background:var(--ink);color:var(--paper);}
-.btn-solid:hover{background:var(--ember);border-color:var(--ember);color:#fff;transform:translateY(-2px);}
-
-.btn-ember{background:var(--ember);border-color:var(--ember);color:#fff;}
-.btn-ember:hover{background:var(--ember-dim);border-color:var(--ember-dim);transform:translateY(-2px);}
-.btn-block{display:flex;justify-content:center;width:100%;}
-.btn-white{background:#fff;border-color:#fff;color:var(--ink);}
-.btn-white:hover{background:var(--ink);border-color:var(--ink);color:#fff;transform:translateY(-2px);}
-.btn:disabled{opacity:.45;cursor:not-allowed;pointer-events:none;}
-
-/* header */
-header{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
-nav.wrap{display:flex;align-items:center;justify-content:space-between;height:80px;gap:16px;}
-.logo{font-family:var(--display);font-size:26px;letter-spacing:.02em;}
-.logo em{font-style:normal;color:var(--ember);}
-.nav-links{display:flex;gap:30px;font-size:14.5px;font-weight:600;}
-.nav-links a{opacity:.75;transition:opacity .2s;}
-.nav-links a:hover{opacity:1;color:var(--ember-dim);}
-.nav-right{display:flex;align-items:center;gap:14px;}
-.cart-btn{position:relative;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:none;background:none;cursor:pointer;color:var(--ink);}
-.cart-count{position:absolute;top:2px;right:1px;background:var(--ember);color:#fff;font-size:10.5px;font-weight:700;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 3px;}
-.cart-bg{position:fixed;inset:0;background:rgba(18,17,16,.6);opacity:0;pointer-events:none;transition:opacity .3s;z-index:160;}
-.cart-bg.open{opacity:1;pointer-events:auto;}
-.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(90vw,400px);background:var(--white);transform:translateX(100%);transition:transform .32s cubic-bezier(.22,.9,.3,1);z-index:170;display:flex;flex-direction:column;}
-.cart-drawer.open{transform:translateX(0);}
-.cart-header{display:flex;align-items:center;justify-content:space-between;padding:22px 22px 18px;border-bottom:1px solid var(--line);}
-.cart-header h3{font-size:22px;}
-.cart-close{width:36px;height:36px;border:none;background:var(--paper-2);border-radius:50%;cursor:pointer;color:var(--ink);}
-.cart-items{flex:1;overflow-y:auto;padding:10px 22px;}
-.cart-empty{color:var(--steel);font-size:14px;padding:30px 0;text-align:center;}
-.cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);}
-
-.cart-item-info{flex:1;display:flex;flex-direction:column;gap:6px;}
-.cart-item-title{font-size:14px;font-weight:700;line-height:1.25;}
-.cart-item-price{font-size:13px;color:var(--steel);}
-.cart-remove{font-size:12px;color:var(--steel);text-decoration:underline;background:none;border:none;cursor:pointer;align-self:flex-start;margin-top:6px;}
-.cart-footer{padding:18px 22px 24px;border-top:1px solid var(--line);}
-.cart-subtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:16px;}
-.cart-note{display:block;font-size:11.5px;color:var(--steel);text-align:center;margin-top:10px;}
-.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;padding:14px 24px;font-size:14px;font-weight:600;z-index:500;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);visibility:hidden;}
-.toast.show{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0);}
-.toast .check{color:var(--ember);font-weight:800;}
-.burger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;}
-.burger span{width:22px;height:2px;background:var(--ink);transition:.25s;}
-.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.burger.open span:nth-child(2){opacity:0;}
-.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mmenu-bg{position:fixed;inset:0;background:rgba(18,17,16,.6);opacity:0;pointer-events:none;transition:opacity .3s;z-index:140;}
-.mmenu-bg.open{opacity:1;pointer-events:auto;}
-.mmenu{position:fixed;top:0;right:0;bottom:0;width:min(80vw,320px);background:var(--paper);transform:translateX(100%);transition:transform .32s cubic-bezier(.22,.9,.3,1);z-index:150;overflow-y:auto;}
-.mmenu.open{transform:translateX(0);}
-.mmenu-inner{display:flex;flex-direction:column;padding:26px 26px 30px;gap:2px;}
-.mmenu-inner a{padding:15px 2px;font-size:15px;font-weight:700;border-bottom:1px solid var(--line);}
-.mmenu-close{align-self:flex-end;margin:16px 16px 0;width:38px;height:38px;border:none;background:var(--paper-2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
-@media(max-width:860px){.nav-links{display:none;} .burger{display:flex;}}
-
-/* hero */
-.hero{background:var(--ink);color:#fff;position:relative;overflow:hidden;}
-.hero-inner{min-height:calc(100vh - 80px);display:flex;flex-direction:column;justify-content:center;padding:32px 0;padding-bottom:14vh;position:relative;z-index:2;}
-.hero-media{position:absolute;inset:0;z-index:0;}
-.hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-.hero-media video{z-index:0;transform:scale(1.15);transform-origin:center center;}
-@media(max-width:760px){.hero-media video{transform:scale(1.2);}}
-.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(140,27,22,.42) 0%,rgba(18,17,16,.6) 45%,rgba(18,17,16,.88) 100%);}
-.hero-kickers{display:flex;flex-wrap:wrap;gap:10px;align-self:flex-start;margin-bottom:14px;}
-.hero-kicker{font-size:16.5px;font-weight:700;color:var(--ember);border:2px solid var(--ember);display:inline-block;width:fit-content;padding:8px 18px;}
-.hero-kicker-grey{color:var(--steel-on-dark);border-color:var(--steel-on-dark);}
-.hero h1{font-size:clamp(48px,9.5vw,118px);max-width:22ch;margin-bottom:18px;}
-.hero h1 .ac{color:var(--ember);}
-.hero .lede{font-size:clamp(15px,1.6vw,17.5px);color:#CFCBBD;max-width:52ch;margin-bottom:26px;}
-.hero-ctas{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:10px;}
-.hero-subcta{font-size:13.5px;color:var(--steel-on-dark);text-decoration:underline;}
-.hero-subcta:hover{color:#fff;}
-@media(max-width:560px){.hero-ctas{align-items:center;}}
-
-/* section head */
-.shead{max-width:680px;margin-bottom:54px;}
-.shead .tag{font-size:13px;font-weight:700;color:var(--ember-dim);margin-bottom:14px;}
-.shead h2{font-size:clamp(30px,5.6vw,52px);}
-.shead p{margin-top:16px;font-size:16px;max-width:58ch;}
-
-/* problem / promise */
-.problem-promise{background:var(--ink);color:#fff;}
-.problem-promise .tag{color:var(--ember);font-size:13px;font-weight:700;margin-bottom:8px;display:block;}
-.problem-promise .pp-h2{color:#fff;}
-.problem-promise .pp-lede{color:#C9C5B7;}
-.pp-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:50px;align-items:center;margin-bottom:64px;}
-.pp-h2{font-size:clamp(30px,5.6vw,52px);margin-bottom:18px;}
-.pp-lede{font-size:16px;max-width:52ch;}
-.pp-quote-card{background:var(--white);border:2px solid var(--ink);padding:40px 36px;}
-.pp-quote-card blockquote{font-family:var(--display);font-size:clamp(21px,3vw,30px);text-transform:none;line-height:1.15;border-left:3px solid var(--ember);padding-left:22px;color:var(--ink);}
-.pp-divider{border-top:1px solid var(--line-dark);margin-bottom:64px;}
-.promise-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;}
-.promise-cards .pc{background:var(--white);border:1px solid var(--line);padding:30px 26px;transition:transform .2s ease,box-shadow .2s ease;}
-.promise-cards .pc:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.3);}
-.promise-cards .pc-num{font-family:var(--display);color:var(--ember);font-size:32px;margin-bottom:14px;}
-.promise-cards h4{font-family:var(--sans);text-transform:none;font-weight:700;font-size:16px;margin-bottom:8px;color:var(--ink);}
-.promise-cards p{font-size:14px;color:var(--steel);}
-@media(max-width:800px){.pp-grid{grid-template-columns:1fr;} .promise-cards{grid-template-columns:1fr;}}
-
-/* proof / before-after */
-.proof{background:var(--white);}
-.proof-grid{display:grid;grid-template-columns:1.4fr 0.6fr;gap:56px;align-items:center;}
-.ba-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.ba-item{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--ink-2);border-radius:18px;border:2px solid var(--ink);}
-.ba-item img{width:100%;height:100%;object-fit:cover;border-radius:16px;}
-.ba-label{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(0deg,rgba(17,16,16,.9),transparent);color:#fff;font-family:var(--display);font-size:18px;letter-spacing:.03em;border-radius:0 0 16px 16px;}
-.ba-label .ba-date{display:block;font-family:var(--sans);text-transform:none;font-size:12px;font-weight:600;color:var(--steel-on-dark);margin-top:2px;}
-.proof-social{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:13.5px;font-weight:700;color:var(--ember-dim);text-decoration:underline;}
-.proof-social:hover{color:var(--ember);}
-@media(max-width:900px){.proof-grid{grid-template-columns:1fr;}}
-.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:48px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.stats3 .s3{padding:26px 20px;text-align:center;border-left:1px solid var(--line);}
-.stats3 .s3:first-child{border-left:none;}
-.stats3 .num{font-size:clamp(30px,4vw,44px);color:var(--ember);line-height:1;margin-bottom:8px;}
-.stats3 .lab{font-size:12px;color:var(--steel);font-weight:600;}
-@media(max-width:800px){.proof-grid{grid-template-columns:1fr;gap:32px;}}
-@media(max-width:560px){.stats3{grid-template-columns:1fr;} .stats3 .s3{border-left:none;border-top:1px solid var(--line);} .stats3 .s3:first-child{border-top:none;}}
-
-/* definition card */
-.definition-card{background:var(--white);border:2px solid var(--ink);padding:40px 36px;margin-top:48px;}
-.definition-card .tag{color:var(--ember-dim);font-size:13px;font-weight:700;margin-bottom:16px;display:block;}
-.definition-card .d-word{font-family:var(--display);font-size:clamp(32px,5vw,48px);color:var(--ink);margin-bottom:6px;}
-.definition-card .d-pron{font-size:14px;color:var(--steel);margin-bottom:24px;}
-.definition-card .d-pron .d-highlight{color:var(--ember-dim);font-weight:700;}
-.definition-card ol{padding-left:20px;margin-bottom:22px;}
-.definition-card ol li{font-family:var(--sans);font-size:15px;color:var(--steel);margin-bottom:12px;line-height:1.5;}
-.definition-card ol li::marker{color:var(--ember-dim);font-weight:700;}
-.d-divider{border-top:1px solid var(--line);margin:22px 0;}
-.d-note{font-size:13.5px;color:var(--steel);font-style:italic;}
-
-/* guarantee */
-
-/* par ou commencer */
-.choice{background:var(--ember);}
-.choice .shead .tag{color:rgba(255,255,255,.85);}
-.choice .shead h2{color:#fff;}
-.choice .shead p{color:rgba(255,255,255,.88);}
-.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;background:var(--ember);}
-.choice-card{border:2px solid var(--ink);background:var(--white);display:flex;flex-direction:column;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease;}
-.choice-card:hover{transform:translateY(-6px);}
-.choice-card{border:none;background:var(--ember);padding:0 12px;}
-.choice-cover{overflow:hidden;background:var(--ink);position:relative;display:block;border-radius:14px;text-decoration:none;}
-.choice-cover img{width:100%;height:auto;display:block;}
-.choice-cover-crop{aspect-ratio:4/5;}
-.choice-cover-crop img{height:100%;object-fit:cover;object-position:bottom;}
-.choice-cover::after{content:"";position:absolute;top:0;bottom:0;width:14px;background:var(--ink);}
-.choice-card:first-child .choice-cover::after{right:0;}
-.choice-card:last-child .choice-cover::after{left:0;}
-.choice-body{padding:18px 0 0;}
-.choice-btn{border-radius:12px;}
-@media(max-width:760px){.choice-grid{grid-template-columns:1fr;}}
-
-/* lightbox */
-
- 
-
-/* objections */
-
-/* faq */
-.faq{background:var(--paper-2);}
-.faq .wrap{max-width:760px;}
-.faq-item{border-top:1px solid var(--line);}
-.faq-item:last-child{border-bottom:1px solid var(--line);}
-.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:18px;background:none;border:none;text-align:left;cursor:pointer;padding:22px 0;font-family:var(--sans);font-weight:700;font-size:15.5px;color:var(--ink);}
-.faq-q .sign{color:var(--ember-dim);font-size:22px;flex-shrink:0;transition:transform .2s;}
-.faq-item.open .sign{transform:rotate(45deg);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
-.faq-a p{padding-bottom:22px;font-size:14.5px;}
-
-/* contact */
-.contact{background:var(--ink);color:#fff;}
-.contact h2{color:#fff;font-size:clamp(28px,4.8vw,44px);max-width:16ch;margin-bottom:18px;}
-.contact p.lede{color:#C9C5B7;max-width:54ch;margin-bottom:40px;}
-.contact p.lede a{color:#fff;text-decoration:underline;}
-.btn-outline-light{border-color:#fff;color:#fff;background:transparent;}
-.btn-outline-light:hover{background:#fff;color:var(--ink);transform:translateY(-2px);}
-.form-privacy{font-size:13px;color:#A8A49B;margin-top:12px;}
-.form-privacy a{color:#fff;text-decoration:underline;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:680px;}
-.form-grid .full{grid-column:1/-1;}
-.form-grid label{display:block;font-size:12.5px;font-weight:600;color:var(--steel-on-dark);margin-bottom:8px;}
-.form-grid input,.form-grid select,.form-grid textarea{width:100%;background:var(--ink-2);border:1px solid var(--line-dark);color:#fff;padding:13px 14px;font-family:var(--sans);font-size:14.5px;}
-.form-grid textarea{resize:vertical;min-height:100px;}
-.form-grid button{margin-top:6px;}
-@media(max-width:600px){.form-grid{grid-template-columns:1fr;}}
-
-/* cta band */
-.cta-final{background:var(--ember);color:#fff;text-align:left;}
-.cta-final .wrap{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;}
-.cta-final h2{color:#fff;font-size:clamp(28px,5.6vw,48px);max-width:16ch;}
-.cta-final p{color:rgba(255,255,255,.88);max-width:40ch;}
-
-footer{background:var(--ink);color:var(--steel-on-dark);padding:60px 0 30px;font-size:14px;}
-.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:40px;border-bottom:1px solid var(--line-dark);}
-.foot-grid h5{color:#fff;font-size:12.5px;font-weight:700;margin-bottom:16px;}
-.foot-grid a{display:block;margin-bottom:10px;}
-.foot-grid a:hover{color:var(--ember);}
-.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:22px;font-size:12px;}
-@media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:28px;}}
-
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
-.reveal.in{opacity:1;transform:translateY(0);}
-
-@media(max-width:860px){
-  section{padding:72px 0;}
-  
-  
-  
-}
-@media(max-width:560px){
-  
-  section{padding:56px 0;}
-  .cta-final .wrap{flex-direction:column;align-items:flex-start;}
-  .hero-inner{align-items:center;text-align:center;}
-  .hero-kickers{align-self:center;justify-content:center;}
-  .hero-kicker,.hero h1,.hero .lede{margin-left:auto;margin-right:auto;}
-  .hero-ctas{justify-content:center;}
-}
-
-/* page transition — écran de chargement (rendu de la vidéo d'intro) */
-.page-transition{position:fixed;inset:0;background:#111010;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:all;transition:opacity .5s ease;}
-.page-transition.hide{opacity:0;pointer-events:none;}
-.pt-logo{position:relative;font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(64px,15vw,200px);line-height:1;letter-spacing:.01em;filter:drop-shadow(0 10px 18px rgba(0,0,0,.7));}
-.pt-glow{position:absolute;left:42%;top:52%;width:78%;height:190%;transform:translateY(-50%) scale(.75);background:radial-gradient(closest-side,rgba(140,27,22,.42),rgba(140,27,22,.14) 55%,rgba(140,27,22,0));opacity:0;pointer-events:none;}
-.pt-word{position:relative;display:flex;overflow:hidden;padding:0 .02em;}
-.pt-l{display:inline-block;color:#fff;transform:translateY(110%);}
-.pt-l.r{color:#8C1B16;}
-.pt-play .pt-l{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 60ms + 120ms);}
-.pt-play .pt-l.r{animation:ptUp .55s cubic-bezier(.2,.8,.2,1) forwards,ptShine .5s ease forwards;animation-delay:calc(var(--i) * 60ms + 120ms),calc((var(--i) - 4) * 70ms + 1150ms);}
-.pt-play .pt-glow{animation:ptGlow .8s ease .65s forwards;}
-.pt-fast.pt-play .pt-l,.pt-fast.pt-play .pt-l.r{animation:ptUp .4s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 35ms + 60ms);}
-.pt-fast.pt-play .pt-glow{animation:ptGlow .5s ease .3s forwards;}
-@keyframes ptUp{to{transform:translateY(0);}}
-@keyframes ptGlow{to{opacity:1;transform:translateY(-50%) scale(1);}}
-@keyframes ptShine{0%{color:#8C1B16;}50%{color:#E3A19C;}100%{color:#8C1B16;}}
-@media (prefers-reduced-motion: reduce){.pt-l{transform:none !important;}.pt-glow{opacity:1 !important;transform:translateY(-50%) !important;}}
-
-/* coins arrondis (cadres et blocs) */
-.pp-quote-card,.definition-card,.plan{border-radius:18px;}
-.promise-cards .pc,.ba-item{border-radius:14px;}
-
-.form-grid input,.form-grid select,.form-grid textarea{border-radius:10px;}
-.toast{border-radius:12px;}
-
-.cart-drawer{border-radius:18px 0 0 18px;}
-
-.pp-quote-card blockquote{border-radius:2px;}
-</style>
+<meta name="theme-color" content="#111010">
+<link rel="icon" type="image/png" href="/assets/img/logo.png">
+<link rel="preload" href="/assets/fonts/saira-extra-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-
 <div class="page-transition" id="pageTransition" aria-hidden="true"><div class="pt-logo"><span class="pt-glow"></span><span class="pt-word"><span class="pt-l" style="--i:0">T</span><span class="pt-l" style="--i:1">I</span><span class="pt-l" style="--i:2">B</span><span class="pt-l" style="--i:3">O</span><span class="pt-l r" style="--i:4">B</span><span class="pt-l r" style="--i:5">O</span><span class="pt-l r" style="--i:6">D</span><span class="pt-l r" style="--i:7">Y</span></span></div></div>
-
-<header>
-  <nav class="wrap">
-    <a href="#top" class="logo">Tibo<em>body</em></a>
-    <div class="nav-links">
-      <a href="formule.html">Formules</a>
-      <a href="ebook.html">Les e-books</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="nav-right">
-      <button class="cart-btn" id="cartBtn" aria-label="Voir le panier">
-        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        <span class="cart-count" id="cartCount">0</span>
-      </button>
-      <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="/">TIBO<b>BODY</b></a>
+    <nav class="main" aria-label="Navigation principale"><a href="/groupe-30.html">Groupe 30</a><a href="/#defi">Défi gratuit</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></nav>
+    <a class="btn solid hdr-cta" href="/groupe-30.html#reserver">Rejoindre le groupe</a>
+    <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer" id="burger"><span></span></button>
+  </div>
+  <div class="drawer" id="drawer"><div class="wrap">
+    <a href="/groupe-30.html">Groupe 30</a><a href="/#defi">Défi gratuit</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a>
+    <a class="btn solid" href="/groupe-30.html#reserver">Rejoindre le groupe</a>
+  </div></div>
 </header>
-<div class="mmenu-bg" id="mmenuBg"></div>
-<div class="mmenu" id="mmenu">
-  <button class="mmenu-close" id="mmenuClose" aria-label="Fermer">✕</button>
-  <div class="mmenu-inner">
-    <a href="formule.html">Formules</a>
-    <a href="ebook.html">Les e-books</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
-    <button class="btn btn-solid" style="justify-content:center;margin-top:14px;width:100%;" onclick="closeM();openCart();">Voir le panier (<span id="cartCountMobile">0</span>)</button>
+<main>
+
+<section class="hero hero-full"><div class="wrap two">
+  <div class="hero-copy">
+    <div class="kicker"><i></i>Groupe 1 · 10 places · Démarrage lundi 30 novembre</div>
+    <h1>30 jours.<br><em>1 habitude.</em></h1>
+    <p class="lead">Tu choisis une seule habitude et tu la tiens 30 jours d'affilée. Chaque jour, quelqu'un t'attend : moi, et 9 autres personnes motivées.</p>
+    <div class="ctas"><a class="btn solid" href="/groupe-30.html#reserver">Réserver ma place · 29 €</a><a class="btn" href="https://calendar.app.google/q8aqi8hjH1oPkBtR7" target="_blank" rel="noopener">Appel de 15 min</a></div>
+    <div class="trust"><span><b>29 €</b> les 30 jours</span><span>WhatsApp</span><span>Groupe de <b>10</b></span><span>Dès 18 ans</span></div>
+  </div>
+  <div class="card" style="padding:28px;gap:16px">
+    <h3>C'est pour toi si…</h3>
+    <ul class="ticks"><li>Tu commences fort, puis tu lâches au bout de quelques jours.</li><li>Tu sais quoi faire. Ce qui te manque, c'est de le faire tous les jours.</li><li>Personne ne remarque quand tu décroches.</li><li>Tu as 2 minutes par jour pour faire un point.</li></ul>
+    <h3 style="margin-top:6px">Ce n'est pas pour toi si…</h3>
+    <ul class="cross"><li>Tu cherches un programme de musculation ou un régime.</li><li>Tu veux changer 10 choses à la fois.</li><li>Tu traverses une période qui demande l'aide d'un professionnel de santé.</li></ul>
   </div>
 </div>
-
-<main id="top">
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-media" aria-hidden="true">
-    <video autoplay muted loop playsinline>
-      <source src="assets/vidéo/muscu.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="wrap hero-inner">
-    <div class="hero-kickers" data-hero-el>
-      <p class="hero-kicker">Thibault - Disciplineur</p>
-      <p class="hero-kicker hero-kicker-grey">Pour les 18-30 ans</p>
-    </div>
-    <h1 data-hero-el>Tu sais quoi faire.<br><span class="ac">Je t'aide à le tenir.</span></h1>
-    <p class="lede" data-hero-el>La motivation, tu l'as déjà — sinon tu ne lirais pas ça. Ce qui te manque, c'est un cadre et quelqu'un pour t'empêcher de lâcher quand ça devient difficile. Fais le test, on regarde ensemble ce dont tu as vraiment besoin.</p>
-    <div class="hero-ctas" data-hero-el>
-      <a href="formule.html#diagnostic" class="btn btn-ember">Faire le test gratuit (2 min)</a>
-      <a href="formule.html" class="hero-subcta">Ou voir directement les formules →</a>
-    </div>
-  </div>
+  <a class="scroll-hint" href="#suite" aria-label="Voir la suite"><span></span></a>
 </section>
 
-<!-- LE PROBLEME + LA PROMESSE -->
-<section class="problem-promise">
-  <div class="wrap">
-    <div class="pp-grid reveal">
-      <div>
-        <p class="tag">Le problème</p>
-        <h2 class="pp-h2">Le problème n'est pas que tu ne sais pas quoi faire</h2>
-        <p class="pp-lede">Tu as probablement déjà lu des articles, essayé des programmes, commencé fort plusieurs fois. Tu sais ce qu'il faudrait faire. Le vrai problème, c'est de le tenir dans la durée, sans personne pour te le rappeler quand la motivation retombe — ce qui arrive toujours, à tout le monde.</p>
-      </div>
-      <div class="pp-quote-card">
-        <blockquote>Ce n'est pas un problème de volonté. C'est un problème de structure et de redevabilité.</blockquote>
-      </div>
-    </div>
+<section class="band" id="suite"><div class="wrap two">
+  <div class="sec-head" style="margin:0"><div class="kicker"><i></i>Le problème</div><blockquote>Ce n'est pas un problème de volonté. C'est un problème de structure et de redevabilité.</blockquote></div>
+  <div class="prose">
+    <p>Tu sais déjà ce qu'il faut faire. Le sport, le sommeil, les études, le téléphone : l'info, tu l'as.</p>
+    <p><strong>Ce qui manque, c'est de tenir quand la motivation retombe.</strong> Au jour 4, personne ne remarque que tu décroches. Alors tu décroches.</p>
+    <p>Les applis t'envoient des rappels. Elles ne te demandent jamais de comptes.</p>
+  </div>
+</div></section>
 
-    <div class="pp-divider"></div>
+<section><div class="wrap">
+  <div class="sec-head"><div class="kicker"><i></i>Ma promesse</div><h2>Je ne te vends pas de la motivation. <em>Je te donne de quoi tenir sans elle.</em></h2></div>
+  <div class="cards">
+    <div class="card"><div class="n">01</div><h3>Un cadre simple à tenir</h3><p>Une seule habitude, un moment précis, une version de 2 minutes pour les mauvais jours. Adapté à ta vraie vie.</p></div>
+    <div class="card"><div class="n">02</div><h3>Quelqu'un qui te tient responsable</h3><p>Tu fais ton check-in chaque jour. Je te réponds chaque jour. Si tu décroches, je le vois.</p></div>
+    <div class="card"><div class="n">03</div><h3>Des ajustements en continu</h3><p>Chaque dimanche, on regarde ce qui a coincé et on corrige avant que tu lâches.</p></div>
+  </div>
+</div></section>
 
-    <div class="shead reveal">
-      <p class="tag">Ma promesse</p>
-      <h2 style="color:#fff;">Je ne te vends pas de la motivation. Je te donne de quoi tenir sans elle.</h2>
-      <p style="color:#C9C5B7;">La motivation va et vient — c'est normal, ce n'est pas un échec. Ce que je construis avec toi, c'est un système qui fonctionne même les jours où elle n'est pas là.</p>
-    </div>
-    <div class="promise-cards reveal">
-      <div class="pc">
-        <div class="pc-num">01</div>
-        <h4>Un cadre simple à tenir</h4>
-        <p>Pas un plan parfait sur le papier que tu abandonnes en une semaine — des étapes réalistes, adaptées à ta vraie vie.</p>
-      </div>
-      <div class="pc">
-        <div class="pc-num">02</div>
-        <h4>Quelqu'un qui te tient responsable</h4>
-        <p>Un suivi qui te demande des comptes, au rythme prévu par ta formule — pour que lâcher devienne plus difficile que continuer.</p>
-      </div>
-      <div class="pc">
-        <div class="pc-num">03</div>
-        <h4>Des ajustements en continu</h4>
-        <p>Ce qui ne marche pas se corrige vite, sans attendre que tu aies déjà tout lâché.</p>
-      </div>
+<section class="band"><div class="wrap">
+  <div class="sec-head"><div class="kicker"><i></i>L'offre</div><h2>Groupe 30 : <em>30 jours, 1 habitude</em></h2><p class="lead muted">Un petit groupe de 10. Un suivi humain chaque jour sur WhatsApp. Pas de remise à zéro si tu rates un jour.</p></div>
+  <div class="offer">
+    <div class="left"><div class="amt">29<small> €</small></div><p>Les 30 jours, en une fois. Sans abonnement.</p><div class="chips"><span>10 places</span><span>30 nov → 29 déc</span><span>Dès 18 ans</span></div></div>
+    <div class="right">
+      <ul class="ticks"><li>Formulaire de départ + ton plan écrit, validé par moi</li><li>Ton contrat d'engagement, annoncé au groupe</li><li>Check-in chaque jour + réponse personnelle</li><li>Bilan chaque dimanche</li><li>Calendrier 30 cases à cocher</li><li>Garantie : remboursé si pas convaincu sous 7 jours</li></ul>
+      <p class="places" data-places hidden></p>
+      <div class="ctas"><a class="btn solid" href="/groupe-30.html">Voir le programme complet</a></div>
     </div>
   </div>
-</section>
+</div></section>
 
-<!-- PREUVE / AVANT APRES -->
-<section class="proof">
-  <div class="wrap">
-    <div class="proof-grid reveal">
-      <div>
-        <h3 style="font-size:clamp(42px,7vw,64px);margin-bottom:4px;">Je suis <span style="color:var(--ember-dim);">Thibault</span></h3>
-        <p style="font-family:var(--sans);text-transform:uppercase;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--ember-dim);margin-bottom:22px;">Disciplineur</p>
-        <div class="ba-wrap">
-          <div class="ba-item"><img src="assets/img/avant.jpg" alt="Avant"><span class="ba-label">Avant<span class="ba-date">20 juillet 2026</span></span></div>
-          <div class="ba-item"><img src="assets/img/apres.png" alt="Après"><span class="ba-label">Après<span class="ba-date">20 septembre 2026</span></span></div>
-        </div>
-      </div>
-      <div>
-        <p class="tag" style="font-size:13px;font-weight:700;color:var(--ember-dim);margin-bottom:14px;">Pourquoi me faire confiance</p>
-        <h2 style="font-size:clamp(28px,4.4vw,42px);margin-bottom:18px;">Je n'enseigne rien que je n'ai pas d'abord appliqué sur moi-même</h2>
-        <p style="margin-bottom:0;">J'ai 20 ans. Je travaille 35 heures par semaine. Depuis juillet, j'ai perdu 10 kg en sèche, tout en construisant ce projet à côté. Je ne te vends pas 20 ans d'expérience. Je te vends une méthode que j'applique tous les jours, devant toi.</p>
-        <a href="https://www.instagram.com/tibobody?stkn=MXc2aDRpMTFsMnFtYg%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="proof-social">Suis mes progrès en direct sur Instagram →</a>
-      </div>
-    </div>
-
-    <div class="stats3 reveal" style="grid-template-columns:repeat(2,1fr);">
-      <div class="s3"><div class="num">4 ans</div><div class="lab">de pratique sportive</div></div>
-      <div class="s3"><div class="num">-10 kg</div><div class="lab">perdus et stabilisés </div></div>
-    </div>
-
-    <div class="definition-card reveal">
-      <p class="tag">Définition</p>
-      <h3 class="d-word">DISCIPLINEUR</h3>
-      <p class="d-pron">n. m. · de <span class="d-highlight">discipline</span></p>
-      <ol>
-        <li>Personne qui impose un cadre et des règles à quelqu'un, pour l'aider à tenir ce qu'il n'arrive pas à tenir seul.</li>
-        <li>Celui qui demande des comptes, remarque le relâchement, et ramène vers l'objectif quand la motivation retombe.</li>
-      </ol>
-      <div class="d-divider"></div>
-      <p class="d-note">C'est le rôle que je joue pour toi — pas un copain qui te laisse faire ce que tu veux, quelqu'un qui te tient.</p>
-    </div>
+<section><div class="wrap two">
+  <div class="photos">
+    <div class="ph wm"><img src="/assets/img/avant.jpg" alt="Thibault avant, le 20 juillet 2026" draggable="false" loading="lazy"><span>Avant · 20 juil. 2026</span></div>
+    <div class="ph wm"><img src="/assets/img/apres.png" alt="Thibault après, le 20 septembre 2026" draggable="false" loading="lazy"><span>Après · 20 sept. 2026</span></div>
   </div>
-</section>
-
-<!-- PAR OU COMMENCER -->
-<section class="choice" id="commencer">
-  <div class="wrap">
-    <div class="shead reveal">
-      <p class="tag">Deux façons de commencer</p>
-      <h2>À toi de choisir ce qu'il te faut</h2>
-      <p>Avancer seul avec un programme clé en main, ou être accompagné pas à pas — les deux fonctionnent, à toi de voir où tu en es.</p>
-    </div>
-    <div class="choice-grid reveal">
-      <div class="choice-card">
-        <a href="ebook.html" class="choice-cover choice-cover-crop"><img src="assets/img/COVER5.jpg" alt="Les e-books Tibobody"></a>
-        <div class="choice-body">
-          <a href="ebook.html" class="btn btn-white btn-block choice-btn">Voir les e-books</a>
-        </div>
-      </div>
-      <div class="choice-card">
-        <a href="formule.html" class="choice-cover"><img src="assets/img/accompagne.png" alt="Accompagnement"></a>
-        <div class="choice-body">
-          <a href="formule.html" class="btn btn-white btn-block choice-btn">Voir les formules</a>
-        </div>
-      </div>
-    </div>
+  <div style="display:grid;gap:20px">
+    <div class="kicker"><i></i>Je suis Thibault</div>
+    <h2>Je n'enseigne que <em>ce que j'applique</em></h2>
+    <div class="prose"><p>J'ai 21 ans, je travaille 35 heures par semaine, et j'ai construit ce projet en parallèle. Depuis juillet, j'ai perdu 10 kg en tenant mes propres règles.</p><p>En ce moment, je relève un défi public de 70 jours sur YouTube, avec un gage si je lâche. Je sais ce que c'est d'avoir envie d'abandonner au jour 4.</p></div>
+    <div class="stats"><div class="stat"><b>4 ans</b><span>de pratique sportive</span></div><div class="stat"><b>-10 kg</b><span>perdus et stabilisés</span></div><div class="stat"><b>70 j</b><span>de défi public en cours</span></div></div>
+    <div class="ctas"><a class="btn ghost" href="https://www.instagram.com/tibobody" target="_blank" rel="noopener">Me suivre sur Instagram</a></div>
   </div>
-</section>
+</div></section>
 
-<!-- FAQ -->
-<section class="faq" id="faq">
-  <div class="wrap">
-    <div class="shead reveal">
-      <p class="tag">Questions fréquentes</p>
-      <h2>Tout ce qu'il faut savoir</h2>
-    </div>
-    <div class="faq-list reveal">
-      <div class="faq-item">
-        <button class="faq-q">Le test est-il vraiment gratuit ?<span class="sign">+</span></button>
-        <div class="faq-a"><p>Oui, sans aucun engagement. Tu reçois ton résultat et un PDF offert, et tu es libre de ne rien faire ensuite.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Ai-je accès aux e-books à vie ?<span class="sign">+</span></button>
-        <div class="faq-a"><p>Oui. Une fois acheté, le fichier est à toi définitivement — tu peux le retélécharger quand tu veux.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Es-tu psychologue ou thérapeute ?<span class="sign">+</span></button>
-        <div class="faq-a"><p>Non. Cet accompagnement porte sur le développement personnel et professionnel — organisation, discipline, objectifs. Si ta situation nécessite un accompagnement psychologique, je t'orienterai vers un professionnel qualifié.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Le paiement est-il sécurisé ?<span class="sign">+</span></button>
-        <div class="faq-a"><p>Oui, le paiement passe par Stripe. Tes coordonnées bancaires ne transitent jamais par ce site et n'y sont jamais stockées.</p></div>
-      </div>
-    </div>
+<section class="band"><div class="wrap">
+  <div class="def">
+    <div class="word">Disciplineur<small>[di.si.pli.nœʁ] · nom masculin</small></div>
+    <ol><li>Personne qui impose un cadre et des règles à quelqu'un, pour l'aider à tenir ce qu'il n'arrive pas à tenir seul.</li><li>Celui qui demande des comptes, remarque le relâchement, et ramène vers l'objectif quand la motivation retombe.</li></ol>
   </div>
-</section>
+</div></section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="wrap">
-    <h2>Une question ?</h2>
-    <p class="lede">Pour un e-book, une info avant d'acheter, ou toute autre question. Réponse sous 24h. Tu peux aussi m'écrire directement à <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>, ou réserver un appel de 15 minutes.</p>
-    <div style="margin:-16px 0 36px;"><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3Df20q3wi_AxYXwjR2P8RMfLlNOKBtOQnvWW4IA8Gk2jpkVIB7uGy-0ZsXSrmLYppKt7iJ9bMe" target="_blank" rel="noopener" class="btn btn-outline-light">Réserver un appel de 15 min</a></div>
-    <form class="form-grid" id="contactForm" action="https://formspree.io/f/xnpjdajy" method="POST" onsubmit="return handleContactSubmit(event);">
-      <input type="text" name="_gotcha" id="hp-field" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
-      <input type="hidden" name="_subject" value="Nouveau message — formulaire de contact tibobody.fr">
-      <div><label for="fname">Prénom</label><input id="fname" name="prenom" type="text" required></div>
-      <div><label for="femail">Email</label><input id="femail" name="email" type="email" required></div>
-      <div class="full"><label for="finterest">Ce qui t'intéresse</label>
-        <select id="finterest" name="interet">
-          <option>Un accompagnement</option>
-          <option>Un e-book</option>
-          <option>Une question générale</option>
-        </select>
-      </div>
-      <div class="full"><label for="fmsg">Ta situation en quelques mots</label><textarea id="fmsg" name="message"></textarea></div>
-      <div class="full"><button type="submit" class="btn btn-ember" id="contactSubmitBtn">Envoyer ma demande</button>
-        <p class="form-privacy">Tes données servent uniquement à te répondre. <a href="confidentialite.html">Confidentialité</a></p></div>
+<section id="defi"><div class="wrap two">
+  <div style="display:grid;gap:18px">
+    <div class="kicker"><i></i>Gratuit</div>
+    <h2>Le défi <em>7 jours</em> : reprends le contrôle</h2>
+    <p class="lead muted">Un PDF, 7 jours, une action par jour. Tu le reçois par e-mail immédiatement. Idéal pour voir si ma méthode te correspond.</p>
+  </div>
+  <div class="box">
+    <form class="form" id="defiForm" novalidate>
+      <div class="hp" aria-hidden="true"><input type="text" name="site" tabindex="-1" autocomplete="off"></div>
+      <div class="row"><label for="d-prenom">Prénom<input id="d-prenom" name="prenom" type="text" autocomplete="given-name" required></label><label for="d-email">E-mail<input id="d-email" name="email" type="email" autocomplete="email" required></label></div>
+      <label class="check" for="d-18"><input id="d-18" name="majeur" type="checkbox" required><span>J'ai 18 ans ou plus.</span></label>
+      <label class="check" for="d-rgpd"><input id="d-rgpd" name="accord" type="checkbox" required><span>J'accepte de recevoir le défi et des conseils par e-mail. Désinscription en 1 clic. <a href="/confidentialite.html">Confidentialité</a></span></label>
+      <button class="btn solid" type="submit">Recevoir le défi gratuit</button>
+      <div class="ok" role="status">C'est envoyé ! Regarde ta boîte mail (et les spams) dans quelques minutes.</div>
+      <div class="err" role="alert"></div>
     </form>
   </div>
-</section>
+</div></section>
 
-<section class="cta-final">
-  <div class="wrap">
-    <h2>Tu commences fort à chaque fois. Cette fois, fais en sorte que ça tienne.</h2>
-    <a href="formule.html#diagnostic" class="btn" style="background:var(--ink);border-color:var(--ink);color:#fff;">Faire le test gratuit</a>
+<section class="band" id="faq"><div class="wrap">
+  <div class="sec-head"><div class="kicker"><i></i>Questions</div><h2>Tes <em>questions</em></h2></div>
+  <div class="faq">
+    <details><summary>Le défi 7 jours est vraiment gratuit ?</summary><p>Oui, sans engagement. Tu laisses ton prénom et ton e-mail, tu reçois le PDF tout de suite.</p></details>
+    <details><summary>Comment se passe le Groupe 30 ?</summary><p>Un formulaire de départ pour construire ton plan, puis 30 jours dans un groupe WhatsApp de 10 personnes. Chaque matin je lance la journée, chaque soir je réponds à ton check-in, et on fait un bilan collectif chaque dimanche.</p></details>
+    <details><summary>Et si je rate un jour ?</summary><p>Tu reprends le lendemain. On ne remet pas le compteur à zéro. La seule règle : jamais 2 jours de suite.</p></details>
+    <details><summary>Tu es psychologue ou coach sportif ?</summary><p>Non. Je t'aide à tenir une habitude avec de la discipline et de l'organisation. Je ne fournis ni programme sportif ni suivi médical ou psychologique, et je t'oriente vers un professionnel si ta situation le demande.</p></details>
+    <details><summary>Le paiement est sécurisé ?</summary><p>Oui, il passe par Stripe. Tes données bancaires ne transitent jamais par ce site et ne sont jamais stockées ici.</p></details>
   </div>
-</section>
+</div></section>
+
+<section id="contact"><div class="wrap two" style="align-items:start">
+  <div style="display:grid;gap:18px">
+    <div class="kicker"><i></i>Contact</div>
+    <h2>Parlons de <em>ta situation</em></h2>
+    <p class="lead muted">Je réponds sous 24 h. Tu préfères en parler de vive voix ? Réserve un appel de 15 min, sans engagement.</p>
+    <div class="ctas"><a class="btn solid" href="https://calendar.app.google/q8aqi8hjH1oPkBtR7" target="_blank" rel="noopener">Réserver un appel de 15 min</a></div>
+    <p class="muted">Ou écris à <a href="mailto:contact@tibobody.fr" style="color:var(--ivory);font-weight:700">contact@tibobody.fr</a></p>
+  </div>
+  <div class="box">
+    <form class="form" id="contactForm" novalidate>
+      <div class="hp" aria-hidden="true"><input type="text" name="site" tabindex="-1" autocomplete="off"></div>
+      <div class="row"><label for="c-prenom">Prénom<input id="c-prenom" name="prenom" type="text" autocomplete="given-name" required></label><label for="c-email">E-mail<input id="c-email" name="email" type="email" autocomplete="email" required></label></div>
+      <label for="c-sujet">Sujet<select id="c-sujet" name="sujet"><option>Groupe 30</option><option>Autre question</option></select></label>
+      <label for="c-msg">Ta situation en quelques lignes<textarea id="c-msg" name="message" required></textarea></label>
+      <label class="check" for="c-rgpd"><input id="c-rgpd" name="accord" type="checkbox" required><span>J'accepte que mes données soient utilisées pour répondre à ma demande. <a href="/confidentialite.html">Confidentialité</a></span></label>
+      <button class="btn solid" type="submit">Envoyer</button>
+      <div class="ok" role="status">Message envoyé. Je te réponds sous 24 h.</div>
+      <div class="err" role="alert"></div>
+    </form>
+  </div>
+</div></section>
+
+<section class="end"><div class="wrap final">
+  <h2>Tu commences fort à chaque fois. <em>Cette fois, fais en sorte que ça tienne.</em></h2>
+  <div class="ctas" style="justify-content:center"><a class="btn solid" href="/groupe-30.html">Rejoindre le Groupe 30</a><a class="btn" href="#defi">Commencer gratuitement</a></div>
+</div></section>
 
 </main>
-
-<!-- TOAST -->
-<div class="toast" id="toast" role="status" aria-live="polite"><span class="check" hidden>✓</span><span id="toastMsg"></span></div>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="logo" style="color:#fff;">Tibo<em>body</em></div>
-        <p style="max-width:280px;margin-top:12px;">Coach en développement personnel. E-books et accompagnement pour t'aider à tenir tes objectifs.</p>
-      </div>
-      <div>
-        <h5>Offres</h5>
-        <a href="formule.html">Formules</a>
-        <a href="ebook.html">Les e-books</a>
-      </div>
-      <div>
-        <h5>Réseaux</h5>
-        <a href="https://www.instagram.com/tibobody?stkn=MXc2aDRpMTFsMnFtYg%3D%3D&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://youtube.com/@tibobody?si=4-kEflijwVZpphdh" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://www.tiktok.com/@tibobody?_r=1&_t=ZG-99Wi2ngUSNE" target="_blank" rel="noopener">TikTok</a>
-      </div>
-      <div>
-        <h5>Informations</h5>
-        <a href="cgv.html">CGV</a>
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
-        <a href="/api/portail">Gérer ou résilier mon abonnement</a>
-        <a href="retractation.html">Se rétracter</a>
-        <a href="#contact">Contact</a>
-        <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© 2026 Tibobody — tibobody.fr. Tous droits réservés.</span>
-      <span>Conçu pour la performance.</span>
-    </div>
+<footer class="site"><div class="wrap">
+  <div class="fgrid">
+    <div style="display:grid;gap:12px;align-content:start"><a class="logo" href="/">TIBO<b>BODY</b></a><p class="muted" style="max-width:34ch">Tu commences fort. Je t'aide à tenir. Accompagnement en discipline, dès 18 ans.</p></div>
+    <div><h4>Offres</h4><a href="/groupe-30.html">Groupe 30</a><a href="/#defi">Défi 7 jours gratuit</a><a href="https://calendar.app.google/q8aqi8hjH1oPkBtR7" target="_blank" rel="noopener">Appel de 15 min</a><a href="/#contact">Contact</a></div>
+    <div><h4>Réseaux</h4><a href="https://www.instagram.com/tibobody" target="_blank" rel="noopener">Instagram</a><a href="https://youtube.com/@tibobody" target="_blank" rel="noopener">YouTube</a><a href="https://www.tiktok.com/@tibobody" target="_blank" rel="noopener">TikTok</a></div>
+    <div><h4>Légal</h4><a href="/cgv.html">CGV</a><a href="/mentions-legales.html">Mentions légales</a><a href="/confidentialite.html">Confidentialité</a><a href="/retractation.html">Se rétracter</a></div>
   </div>
-</footer>
-
-<!-- CART DRAWER -->
-<div class="cart-bg" id="cartBg"></div>
-<div class="cart-drawer" id="cartDrawer">
-  <div class="cart-header">
-    <h3>Ton panier</h3>
-    <button class="cart-close" id="cartClose" aria-label="Fermer">✕</button>
-  </div>
-  <div class="cart-items" id="cartItems"></div>
-  <div class="cart-footer">
-    <div class="cart-subtotal"><span>Sous-total</span><strong id="cartSubtotal">0,00 €</strong></div>
-    <button class="btn btn-ember btn-block" id="checkoutBtn" onclick="startCheckout()">Passer commande</button>
-    <span class="cart-note">Paiement sécurisé par Stripe — e-books livrés immédiatement par email après achat.</span>
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script>
-// ---------------------------------------------------------------------
-// PAGE TRANSITION
-// ---------------------------------------------------------------------
-(function(){
-  const overlay = document.getElementById('pageTransition');
-  if(!overlay) return;
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // intro complète à la première page vue, version courte ensuite
-  let seen = false;
-  try{ seen = sessionStorage.getItem('tb_intro') === '1'; sessionStorage.setItem('tb_intro','1'); }catch(e){}
-  if(seen) overlay.classList.add('pt-fast');
-  const minTime = reduce ? 150 : (seen ? 850 : 2100);
-  const t0 = performance.now();
-  requestAnimationFrame(()=> overlay.classList.add('pt-play'));
-
-  let done = false;
-  function reveal(){
-    if(done) return; done = true;
-    const wait = Math.max(0, minTime - (performance.now() - t0));
-    setTimeout(()=>{
-      overlay.classList.add('hide');
-      window.__tbRevealed = true;
-      document.dispatchEvent(new Event('tb:reveal'));
-    }, wait);
-  }
-  if(document.readyState === 'complete') reveal();
-  else window.addEventListener('load', reveal);
-  setTimeout(reveal, 4500); // sécurité si une ressource bloque le chargement
-
-  // retour arrière du navigateur : ne pas rester bloqué sur l'écran noir
-  window.addEventListener('pageshow', e=>{ if(e.persisted){ overlay.classList.remove('pt-play'); overlay.classList.add('hide'); } });
-
-  document.addEventListener('click', function(e){
-    const a = e.target.closest('a');
-    if(!a) return;
-    const href = a.getAttribute('href');
-    if(!href) return;
-    if(href.startsWith('#')) return;
-    if(href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
-    if(a.target === '_blank' || a.hasAttribute('download')) return;
-    if(/\.pdf($|\?)/i.test(href)) return;
-    if(/^https?:\/\//i.test(href)) return;
-    if(e.metaKey || e.ctrlKey || e.shiftKey) return;
-    e.preventDefault();
-    overlay.classList.remove('pt-play');
-    overlay.classList.remove('hide');
-    setTimeout(()=>{ window.location.href = href; }, 420);
-  });
-})();
-
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(window.gsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
-
-// ---------------------------------------------------------------------
-// GSAP — animation d'entrée du haut de page + apparitions au défilement
-// ---------------------------------------------------------------------
-if(window.gsap && !prefersReduced){
-  gsap.set('[data-hero-el]', {opacity:0, y:22});
-  const heroTl = gsap.timeline({paused:true, defaults:{ease:'power3.out'}})
-    .to('[data-hero-el]', {opacity:1, y:0, duration:0.9, stagger:0.12});
-  // le hero démarre quand l'écran de chargement se lève
-  if(window.__tbRevealed) heroTl.play();
-  else document.addEventListener('tb:reveal', ()=>heroTl.play(), {once:true});
-
-  gsap.utils.toArray('.reveal').forEach(el=>{
-    gsap.fromTo(el, {opacity:0, y:24}, {
-      opacity:1, y:0, duration:0.8, ease:'power2.out',
-      scrollTrigger:{trigger:el, start:'top 85%'}
-    });
-  });
-} else {
-  document.querySelectorAll('.reveal,[data-hero-el]').forEach(el=>el.classList.add('in'));
-}
-
-// menu mobile
-const burgerBtn=document.getElementById('burgerBtn'),mmenu=document.getElementById('mmenu'),mmenuBg=document.getElementById('mmenuBg'),mmenuClose=document.getElementById('mmenuClose');
-function openM(){mmenu.classList.add('open');mmenuBg.classList.add('open');burgerBtn.classList.add('open');document.body.style.overflow='hidden';}
-function closeM(){mmenu.classList.remove('open');mmenuBg.classList.remove('open');burgerBtn.classList.remove('open');document.body.style.overflow='';}
-burgerBtn.addEventListener('click',()=>mmenu.classList.contains('open')?closeM():openM());
-mmenuBg.addEventListener('click',closeM);
-mmenuClose.addEventListener('click',closeM);
-document.querySelectorAll('.mmenu-inner a').forEach(a=>a.addEventListener('click',closeM));
-
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){ closeM(); }});
-
-// FAQ (accordéon)
-document.querySelectorAll('.faq-item').forEach(item=>{
-  const q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a');
-  q.addEventListener('click',()=>{
-    const isOpen=item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;});
-    if(!isOpen){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
-  });
-});
-
-let toastTimer=null;
-function showToast(msg){
-  const t=document.getElementById('toast');
-  document.getElementById('toastMsg').textContent = msg;
-  // ✓ seulement pour une action réussie (pas pour « panier vide » ou une erreur)
-  t.querySelector('.check').hidden = !/ajouté au panier|bien été envoyée/i.test(msg);
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=> t.classList.remove('show'), 2400);
-}
-
-// formulaire de contact — envoi vers Formspree (voir l'attribut action du formulaire)
-function handleContactSubmit(e){
-  e.preventDefault();
-  const form = document.getElementById('contactForm');
-
-  const btn = document.getElementById('contactSubmitBtn');
-  const originalLabel = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = 'Envoi en cours...';
-
-  fetch(form.action, {
-    method: 'POST',
-    body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(res => {
-    if(res.ok){
-      showToast('Ta demande a bien été envoyée !');
-      form.reset();
-    } else {
-      showToast("Un problème est survenu, réessaie ou écris à contact@tibobody.fr");
-    }
-  })
-  .catch(() => {
-    showToast("Un problème est survenu, réessaie ou écris à contact@tibobody.fr");
-  })
-  .finally(() => {
-    btn.disabled = false;
-    btn.textContent = originalLabel;
-  });
-
-  return false;
-}
-
-// bandeau cookies
-(function(){
-  const KEY='tb_cookie_consent';
-  let consent=null;
-  try{ consent = localStorage.getItem(KEY); }catch(e){}
-  if(consent) return;
-  const bar=document.createElement('div');
-  bar.id='cookieBar';
-  bar.style.cssText='position:fixed;left:16px;right:16px;bottom:16px;max-width:520px;margin:0 auto;background:var(--ink);color:#fff;padding:18px 20px;z-index:400;font-family:var(--sans);font-size:13.5px;box-shadow:0 10px 30px rgba(0,0,0,.3);';
-  bar.innerHTML = 'Ce site utilise des cookies pour améliorer ton expérience et mesurer l\'audience.'
-    +'<div style="display:flex;gap:10px;margin-top:12px;">'
-    +'<button id="cookieAccept" style="flex:1;border-radius:10px;background:var(--ember);color:#fff;border:none;padding:10px;font-weight:700;cursor:pointer;">Accepter</button>'
-    +'<button id="cookieRefuse" style="flex:1;border-radius:10px;background:none;color:#fff;border:1px solid rgba(255,255,255,.3);padding:10px;font-weight:700;cursor:pointer;">Refuser</button></div>';
-  document.body.appendChild(bar);
-  function setConsent(v){ try{ localStorage.setItem(KEY, v); }catch(e){} bar.remove(); }
-  document.getElementById('cookieAccept').addEventListener('click', ()=>setConsent('accepted'));
-  document.getElementById('cookieRefuse').addEventListener('click', ()=>setConsent('refused'));
-})();
-
-// ---------------------------------------------------------------------
-// PANIER
-// ---------------------------------------------------------------------
-let cart = [];
-try{
-  const saved = localStorage.getItem('tb_cart');
-  if(saved) cart = JSON.parse(saved);
-}catch(e){ cart = []; }
-
-function saveCart(){
-  try{ localStorage.setItem('tb_cart', JSON.stringify(cart)); }catch(e){}
-}
-function removeFromCart(id){
-  cart = cart.filter(i=>i.id!==id);
-  saveCart();
-  renderCart();
-}
-function renderCart(){
-  const wrap = document.getElementById('cartItems');
-  const count = cart.length;
-  document.getElementById('cartCount').textContent = count;
-  const mobileCount = document.getElementById('cartCountMobile');
-  if(mobileCount) mobileCount.textContent = count;
-
-  if(cart.length===0){
-    wrap.innerHTML = '<p class="cart-empty">Ton panier est vide pour l\'instant.</p>';
-  } else {
-    wrap.innerHTML = cart.map(item=>{
-      return `<div class="cart-item">
-        <div class="cart-item-info">
-          <div class="cart-item-title">${String(item.title).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}</div>
-          <div class="cart-item-price">${item.price.toFixed(2).replace('.',',')} €</div>
-          <button class="cart-remove" onclick="removeFromCart('${String(item.id).replace(/[^0-9]/g,'')}')">Retirer</button>
-        </div>
-      </div>`;
-    }).join('');
-  }
-  const subtotal = cart.reduce((s,i)=>s+i.price,0);
-  document.getElementById('cartSubtotal').textContent = subtotal.toFixed(2).replace('.',',')+' €';
-}
-
-const cartBtn=document.getElementById('cartBtn'),cartBg=document.getElementById('cartBg'),cartDrawer=document.getElementById('cartDrawer'),cartClose=document.getElementById('cartClose');
-function openCart(){ cartDrawer.classList.add('open'); cartBg.classList.add('open'); document.body.style.overflow='hidden'; }
-function closeCart(){ cartDrawer.classList.remove('open'); cartBg.classList.remove('open'); document.body.style.overflow=''; }
-if(cartBtn) cartBtn.addEventListener('click', openCart);
-if(cartBg) cartBg.addEventListener('click', closeCart);
-if(cartClose) cartClose.addEventListener('click', closeCart);
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeCart(); });
-
-async function startCheckout(){
-  if(cart.length===0){ showToast('Ton panier est vide.'); return; }
-  const btn = document.getElementById('checkoutBtn');
-  const originalLabel = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = 'Redirection vers le paiement...';
-  try{
-    const res = await fetch('/api/create-checkout-session', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ items: cart.map(i=>({id:i.id})) })
-    });
-    const data = await res.json();
-    if(res.ok && data.url){
-      window.location.href = data.url;
-    } else {
-      showToast(data.error || "Le paiement n'a pas pu démarrer, réessaie.");
-      btn.disabled = false;
-      btn.textContent = originalLabel;
-    }
-  }catch(e){
-    showToast("Le paiement n'a pas pu démarrer, réessaie.");
-    btn.disabled = false;
-    btn.textContent = originalLabel;
-  }
-}
-
-renderCart();
-
-</script>
-
+  <div class="fbottom"><span>© 2026 TiboBody · Thibault Barret · <a href="mailto:contact@tibobody.fr">contact@tibobody.fr</a></span><span>Paiements sécurisés par Stripe</span></div>
+</div></footer>
+<script src="/assets/site.js"></script>
 </body>
 </html>
