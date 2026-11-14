@@ -1,0 +1,13 @@
+# Anciennes pages -> nouvelles pages (redirections permanentes)
+/formule.html     /groupe-30.html  301
+/formule          /groupe-30.html  301
+/formules.html    /groupe-30.html  301
+/formules         /groupe-30.html  301
+/ebook.html       /groupe-30.html  301
+/ebook             /groupe-30.html  301
+/ebooks.html      /groupe-30.html  301
+/ebooks           /groupe-30.html  301
+/candidature.html  /  301
+/candidature       /  301
+/test.html        /  301
+/test             /  301
